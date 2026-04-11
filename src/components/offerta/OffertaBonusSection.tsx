@@ -3,6 +3,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { meseAnnoCorrente, meseAnnoCorrenteLower } from "@/lib/dynamic-date";
 
 const checkpoints = [
   "Posizionamento e canali di acquisizione più efficaci per il tuo settore",
@@ -53,7 +54,7 @@ const OffertaBonusSection = () => {
         <AnimatedSection>
           <div className="text-center mb-6">
             <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-xs sm:text-sm font-bold mb-4 uppercase tracking-wider">
-              Offerta Speciale Marzo 2026
+              Offerta Speciale {meseAnnoCorrente}
             </span>
             <h2 className="heading-section text-foreground mb-3">
               In Regalo L'<span className="text-gold">Analisi Strategica</span> della Tua Azienda
@@ -101,7 +102,7 @@ const OffertaBonusSection = () => {
 
             <div className="bg-gold/10 border border-gold/30 rounded-xl p-4 text-center mb-5">
               <p className="text-muted-foreground text-base mb-1">Valore: <span className="line-through">€500</span></p>
-              <p className="text-lg md:text-xl font-black text-gold">Per marzo 2026: GRATUITA.</p>
+              <p className="text-lg md:text-xl font-black text-gold">Per {meseAnnoCorrenteLower}: GRATUITA.</p>
             </div>
 
             <div className="text-center">

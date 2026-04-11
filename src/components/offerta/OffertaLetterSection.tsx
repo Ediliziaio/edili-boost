@@ -1,5 +1,6 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { PhoneOff, TrendingDown, TrendingUp } from "lucide-react";
+import { meseCorrente, meseProssimo, meseAnnoCorrenteLower } from "@/lib/dynamic-date";
 
 const categories = [
   {
@@ -34,7 +35,7 @@ const categories = [
     borderClass: "border-gold/60",
     numberClass: "text-gold",
     lines: [
-      "Chiudono marzo sapendo già che aprile è pieno. Guadagnano di più da ogni preventivo — stesse ore, migliaia di euro in più, senza sconti.",
+      `Chiudono ${meseCorrente} sapendo già che ${meseProssimo} è pieno. Guadagnano di più da ogni preventivo — stesse ore, migliaia di euro in più, senza sconti.`,
       "Hanno un sistema che porta clienti qualificati ogni settimana. Quando guardano i numeri: \"Finalmente sto costruendo qualcosa che dura.\"",
     ],
   },
@@ -49,7 +50,7 @@ const OffertaLetterSection = () => {
             <p className="text-gold font-medium mb-3 tracking-wider uppercase text-sm">Una lettera diretta</p>
             <h2 className="heading-section text-foreground mb-4">Caro imprenditore edile,</h2>
             <p className="text-muted-foreground body-large leading-relaxed">
-              A marzo 2026 ci sono <strong className="text-foreground">3 grandi categorie</strong> di aziende nel settore edile.
+              A {meseAnnoCorrenteLower} ci sono <strong className="text-foreground">3 grandi categorie</strong> di aziende nel settore edile.
             </p>
           </div>
         </AnimatedSection>

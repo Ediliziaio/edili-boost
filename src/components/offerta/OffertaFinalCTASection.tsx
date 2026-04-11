@@ -2,6 +2,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { LeadConnectorForm } from "@/components/blog/LeadConnectorForm";
 import { AlertTriangle } from "lucide-react";
 import heroWindowsImage from "@/assets/hero-windows.jpg";
+import { meseAnnoCorrenteLower, postiDisponibili } from "@/lib/dynamic-date";
 
 const OffertaFinalCTASection = () => {
   return (
@@ -41,7 +42,7 @@ const OffertaFinalCTASection = () => {
           <div className="mt-6 bg-gold/10 border border-gold/30 rounded-xl p-3 inline-flex items-center gap-3 max-w-lg">
             <AlertTriangle className="w-5 h-5 text-gold shrink-0" />
             <p className="text-foreground font-semibold text-base sm:text-lg text-left">
-              Solo 3 posti disponibili per marzo 2026.
+              Solo {postiDisponibili} posti disponibili per {meseAnnoCorrenteLower}.
             </p>
           </div>
         </AnimatedSection>

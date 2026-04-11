@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, AlertTriangle, TrendingUp } from "lucide-react";
+import { meseAnnoCorrente, postiDisponibili, postiTotali } from "@/lib/dynamic-date";
 const HeroSection = () => {
   return <section className="min-h-screen flex flex-col justify-center section-padding bg-background relative overflow-hidden">
       {/* Subtle gradient background */}
@@ -32,7 +33,7 @@ const HeroSection = () => {
           <div className="inline-flex items-start gap-2 px-3 py-2 sm:px-4 sm:py-3 bg-destructive/10 border border-destructive/30 rounded-xl text-xs sm:text-sm text-destructive font-medium max-w-2xl">
             <AlertTriangle size={14} className="animate-pulse flex-shrink-0 mt-0.5 sm:w-4 sm:h-4" />
             <span className="sm:hidden">ATTENZIONE: ogni mese senza un sistema stai regalando commesse ai concorrenti</span>
-            <span className="hidden sm:inline">ATTENZIONE IMPRENDITORI EDILI: ogni mese senza un sistema di acquisizione stai regalando €30.000-50.000 di commesse ai tuoi concorrenti. Marzo 2026: rimasti 2 posti su 3 disponibili</span>
+            <span className="hidden sm:inline">ATTENZIONE IMPRENDITORI EDILI: ogni mese senza un sistema di acquisizione stai regalando €30.000-50.000 di commesse ai tuoi concorrenti. {meseAnnoCorrente}: rimasti {postiDisponibili} posti su {postiTotali} disponibili</span>
           </div>
         </motion.div>
 

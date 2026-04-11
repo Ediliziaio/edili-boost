@@ -134,7 +134,7 @@ const PrivacyPolicy = () => {
                 Il Titolare si riserva il diritto di modificare la presente informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con indicazione della data di ultimo aggiornamento.
               </p>
               <p className="mt-3 text-sm">
-                <strong className="text-foreground">Ultimo aggiornamento:</strong> Marzo 2026
+                <strong className="text-foreground">Ultimo aggiornamento:</strong> Aprile 2026
               </p>
             </div>
             </section>

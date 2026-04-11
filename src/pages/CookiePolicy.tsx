@@ -162,7 +162,7 @@ const CookiePolicy = () => {
 
             <div>
               <p className="text-sm">
-                <strong className="text-foreground">Ultimo aggiornamento:</strong> Marzo 2026
+                <strong className="text-foreground">Ultimo aggiornamento:</strong> Aprile 2026
               </p>
             </div>
             </section>

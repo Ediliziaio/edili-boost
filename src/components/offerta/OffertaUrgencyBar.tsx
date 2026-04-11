@@ -1,4 +1,5 @@
 import { AlertTriangle } from "lucide-react";
+import { meseAnnoCorrente, postiDisponibili, meseProssimo } from "@/lib/dynamic-date";
 
 const OffertaUrgencyBar = () => {
   return (
@@ -6,9 +7,9 @@ const OffertaUrgencyBar = () => {
       <div className="container mx-auto flex items-center justify-center gap-2 text-center">
         <AlertTriangle className="w-4 h-4 shrink-0" />
         <span className="text-xs sm:text-sm font-bold">
-          <span className="sm:hidden">Solo 3 posti disponibili per marzo 2026!</span>
+          <span className="sm:hidden">Solo {postiDisponibili} posti disponibili per {meseAnnoCorrente}!</span>
           <span className="hidden sm:inline">
-            DISPONIBILE SOLO PER MARZO 2026: ogni mese apriamo solo 5 posti nuovi. Questo mese ne rimangono 3 disponibili. Una volta esauriti, lista d'attesa fino ad aprile.
+            DISPONIBILE SOLO PER {meseAnnoCorrente.toUpperCase()}: ogni mese apriamo solo 3 posti nuovi. Questo mese ne rimangono {postiDisponibili} disponibili. Una volta esauriti, lista d'attesa fino a {meseProssimo}.
           </span>
         </span>
       </div>
