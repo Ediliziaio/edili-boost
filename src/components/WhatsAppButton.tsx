@@ -14,6 +14,12 @@ const WhatsAppButton = () => {
     transition: { delay: 2, duration: 0.4, ease: [0.16, 1, 0.3, 1] as const },
   };
 
+  const trackClick = () => {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "Lead", { content_name: "WhatsApp Click" });
+    }
+  };
+
   return (
     <>
       {/* Desktop: round floating button */}
@@ -22,6 +28,7 @@ const WhatsAppButton = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chatta con noi su WhatsApp"
+        onClick={trackClick}
         {...animProps}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -40,6 +47,7 @@ const WhatsAppButton = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contattaci su WhatsApp"
+        onClick={trackClick}
         {...animProps}
         whileTap={{ scale: 0.98 }}
         className="flex md:hidden fixed bottom-0 left-0 right-0 z-50 items-center justify-center gap-3 py-4 px-6 text-white font-bold text-sm tracking-wide"

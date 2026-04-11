@@ -23,6 +23,9 @@ const CookieBanner = () => {
   const handleConsent = (value: "all" | "necessary") => {
     localStorage.setItem(CONSENT_KEY, value);
     setVisible(false);
+    if (value === "all" && typeof window._meInitTracking === "function") {
+      window._meInitTracking();
+    }
   };
 
   return (

@@ -17,20 +17,47 @@
     <!-- TODO: Sostituire con il codice di verifica reale da Google Search Console -->
     <meta name="google-site-verification" content="CVzWs1yufRSRScCvZKLXCRQD-G7CNkXDybwWblEfYUo">
 
-    <!-- Google Analytics 4 -->
-    <!-- TODO: Sostituire G-WPFY0KXY0Y con il tuo Measurement ID da Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WPFY0KXY0Y"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-WPFY0KXY0Y');
-    </script>
-
     <!-- Preconnect per performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://connect.facebook.net" />
+
+    <!-- Tracking: GA4 + Meta Pixel — caricati solo dopo consenso cookie (GDPR) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      window._meTrackingLoaded = false;
+      window._meInitTracking = function() {
+        if (window._meTrackingLoaded) return;
+        window._meTrackingLoaded = true;
+
+        // Google Analytics 4
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-WPFY0KXY0Y';
+        document.head.appendChild(gaScript);
+        gtag('js', new Date());
+        gtag('config', 'G-WPFY0KXY0Y');
+
+        // Meta Pixel
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1526425959076537');
+        fbq('track', 'PageView');
+      };
+
+      // Auto-init se il consenso è già stato dato in una sessione precedente
+      try {
+        if (localStorage.getItem('cookie-consent') === 'all') {
+          window._meInitTracking();
+        }
+      } catch(e) {}
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -79,6 +106,8 @@
   </head>
 
   <body>
+    <!-- Meta Pixel noscript fallback -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1526425959076537&ev=PageView&noscript=1"></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
