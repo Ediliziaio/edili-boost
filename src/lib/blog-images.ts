@@ -9,7 +9,7 @@ import blogClientiQualificati from '@/assets/blog-clienti-qualificati-edilizia.j
 import blogAumentareVendite from '@/assets/blog-aumentare-vendite-edilizia.jpg';
 import blog30RichiesteQualificate from '@/assets/blog-30-richieste-qualificate.jpg';
 
-// Mappa path database -> immagine importata
+// Mappa path -> immagine importata (supporta sia /src/assets/ che /public/ paths)
 const blogImageMap: Record<string, string> = {
   '/src/assets/blog-preventivi-edilizia-cover.jpg': blogPreventiviCover,
   '/src/assets/blog-controllo-gestione-edilizia.jpg': blogControlloGestione,
@@ -20,21 +20,28 @@ const blogImageMap: Record<string, string> = {
   '/src/assets/blog-clienti-qualificati-edilizia.jpg': blogClientiQualificati,
   '/src/assets/blog-aumentare-vendite-edilizia.jpg': blogAumentareVendite,
   '/src/assets/blog-30-richieste-qualificate.jpg': blog30RichiesteQualificate,
+  // Static data paths (from /public/)
+  '/blog-preventivi-edilizia-cover.jpg': blogPreventiviCover,
+  '/blog-controllo-gestione-edilizia.jpg': blogControlloGestione,
+  '/blog-perdere-clienti-distrazione.jpg': blogPerdereClienti,
+  '/blog-smetti-fare-sconti.jpg': blogSmettiSconti,
+  '/blog-efficienza-operativa-edilizia.jpg': blogEfficienzaOperativa,
+  '/blog-azienda-dipende-da-te.jpg': blogAziendaDipendeDaTe,
+  '/blog-clienti-qualificati-edilizia.jpg': blogClientiQualificati,
+  '/blog-aumentare-vendite-edilizia.jpg': blogAumentareVendite,
+  '/blog-30-richieste-qualificate.jpg': blog30RichiesteQualificate,
 };
 
 /**
  * Risolve l'URL dell'immagine del blog.
- * Se l'URL è un path locale (/src/assets/...), lo mappa all'import ES6.
- * Altrimenti ritorna l'URL originale (per URL esterni o storage).
+ * Mappa i path locali agli import ES6 per ottimizzazione Vite.
  */
 export function resolveBlogImageUrl(url: string | null | undefined): string | null {
   if (!url) return null;
-  
-  // Se è un path locale mappato, usa l'import
+
   if (blogImageMap[url]) {
     return blogImageMap[url];
   }
-  
-  // Altrimenti ritorna l'URL originale
+
   return url;
 }

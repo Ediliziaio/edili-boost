@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { blogPosts, blogAuthor, StaticBlogPost, StaticBlogAuthor } from '@/data/blog-posts';
 
 export interface BlogAuthor {
   id: string;
@@ -31,31 +31,50 @@ export interface BlogPostDB {
   author: BlogAuthor | null;
 }
 
+function toAuthor(a: StaticBlogAuthor): BlogAuthor {
+  return {
+    ...a,
+    bio: a.bio,
+    created_at: "2025-12-26T10:24:30.099858+00:00"
+  };
+}
+
+function toPostDB(p: StaticBlogPost): BlogPostDB {
+  return {
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    content: p.content,
+    cover_image_url: p.cover_image_url,
+    author_id: p.author.id,
+    category: p.category,
+    tags: p.tags,
+    published_at: p.published_at,
+    updated_at: p.updated_at,
+    reading_time: p.reading_time,
+    featured: p.featured,
+    status: p.status,
+    seo_title: p.seo_title,
+    seo_description: p.seo_description,
+    created_at: p.published_at,
+    author: toAuthor(p.author)
+  };
+}
+
+const allPosts: BlogPostDB[] = blogPosts
+  .filter(p => p.status === 'published')
+  .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+  .map(toPostDB);
+
 export function useBlogPosts(category?: string) {
   return useQuery({
     queryKey: ['blog-posts', category],
     queryFn: async () => {
-      let query = supabase
-        .from('blog_posts')
-        .select(`
-          *,
-          author:blog_authors(*)
-        `)
-        .eq('status', 'published')
-        .order('published_at', { ascending: false });
-
       if (category && category !== 'all') {
-        query = query.eq('category', category);
+        return allPosts.filter(p => p.category === category);
       }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('Error fetching blog posts:', error);
-        throw error;
-      }
-
-      return data as BlogPostDB[];
+      return allPosts;
     },
   });
 }
@@ -64,22 +83,7 @@ export function useFeaturedPosts() {
   return useQuery({
     queryKey: ['blog-posts', 'featured'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select(`
-          *,
-          author:blog_authors(*)
-        `)
-        .eq('status', 'published')
-        .eq('featured', true)
-        .order('published_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching featured posts:', error);
-        throw error;
-      }
-
-      return data as BlogPostDB[];
+      return allPosts.filter(p => p.featured);
     },
   });
 }
@@ -88,22 +92,7 @@ export function useBlogPost(slug: string) {
   return useQuery({
     queryKey: ['blog-post', slug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select(`
-          *,
-          author:blog_authors(*)
-        `)
-        .eq('slug', slug)
-        .eq('status', 'published')
-        .maybeSingle();
-
-      if (error) {
-        console.error('Error fetching blog post:', error);
-        throw error;
-      }
-
-      return data as BlogPostDB | null;
+      return allPosts.find(p => p.slug === slug) || null;
     },
     enabled: !!slug,
   });
@@ -113,23 +102,9 @@ export function useRelatedPosts(currentPostId: string, category: string, tags: s
   return useQuery({
     queryKey: ['blog-posts', 'related', currentPostId],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select(`
-          *,
-          author:blog_authors(*)
-        `)
-        .eq('status', 'published')
-        .neq('id', currentPostId)
-        .eq('category', category)
-        .limit(limit);
-
-      if (error) {
-        console.error('Error fetching related posts:', error);
-        throw error;
-      }
-
-      return data as BlogPostDB[];
+      return allPosts
+        .filter(p => p.id !== currentPostId && p.category === category)
+        .slice(0, limit);
     },
     enabled: !!currentPostId,
   });
