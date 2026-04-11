@@ -44,7 +44,7 @@ const Footer = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-12 mb-12"
+          className="grid md:grid-cols-4 gap-12 mb-12"
         >
           {/* Brand */}
           <div>
@@ -90,6 +90,20 @@ const Footer = () => {
             </nav>
           </div>
 
+          {/* Settori */}
+          <div>
+            <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
+              Settori
+            </h4>
+            <nav className="flex flex-col gap-3" aria-label="Pagine settori">
+              <Link to="/settori/serramenti" className="text-muted-foreground hover:text-gold transition-colors">Marketing Serramenti</Link>
+              <Link to="/settori/ristrutturazioni" className="text-muted-foreground hover:text-gold transition-colors">Marketing Ristrutturazioni</Link>
+              <Link to="/settori/fotovoltaico" className="text-muted-foreground hover:text-gold transition-colors">Marketing Fotovoltaico</Link>
+              <Link to="/settori/impiantisti" className="text-muted-foreground hover:text-gold transition-colors">Marketing Impiantisti</Link>
+              <Link to="/settori/tetti" className="text-muted-foreground hover:text-gold transition-colors">Marketing Tetti</Link>
+            </nav>
+          </div>
+
           {/* Contact Info */}
           <div>
             <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
@@ -111,7 +125,7 @@ const Footer = () => {
           </div>
 
           {/* Dati Aziendali */}
-          <div className="md:col-span-3 mt-4">
+          <div className="md:col-span-4 mt-4">
             <div className="pt-6 border-t border-border/30 text-sm text-muted-foreground space-y-1">
               <p className="font-semibold text-foreground">Domus Group S.r.l.</p>
               <p>Sede Legale: Via Aurelio Saffi 29, CAP 20123 — P.IVA: 13132010961</p>

@@ -23,6 +23,11 @@ import CasiStudio from "./pages/CasiStudio";
 import Servizi from "./pages/Servizi";
 import Prezzi from "./pages/Prezzi";
 import Contattaci from "./pages/Contattaci";
+import Serramenti from "./pages/settori/Serramenti";
+import Ristrutturazioni from "./pages/settori/Ristrutturazioni";
+import Fotovoltaico from "./pages/settori/Fotovoltaico";
+import Impiantisti from "./pages/settori/Impiantisti";
+import Tetti from "./pages/settori/Tetti";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppButton from "./components/WhatsAppButton";
 
@@ -48,6 +53,11 @@ const App = () => (
             <Route path="/servizi" element={<Servizi />} />
             <Route path="/prezzi" element={<Prezzi />} />
             <Route path="/contattaci" element={<Contattaci />} />
+            <Route path="/settori/serramenti" element={<Serramenti />} />
+            <Route path="/settori/ristrutturazioni" element={<Ristrutturazioni />} />
+            <Route path="/settori/fotovoltaico" element={<Fotovoltaico />} />
+            <Route path="/settori/impiantisti" element={<Impiantisti />} />
+            <Route path="/settori/tetti" element={<Tetti />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><Admin /></ProtectedRoute>} />
             <Route path="/admin/posts" element={<ProtectedRoute requireAdmin><BlogList /></ProtectedRoute>} />

@@ -75,7 +75,35 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- NOTE: Gli articoli del blog vengono generati dinamicamente dalla Supabase Edge Function.
-       Per aggiungere articoli al sitemap, usa la Edge Function in supabase/functions/sitemap/ -->
+  <!-- Pagine Settori -->
+  <url>
+    <loc>https://marketingedile.com/settori/serramenti</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://marketingedile.com/settori/ristrutturazioni</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://marketingedile.com/settori/fotovoltaico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://marketingedile.com/settori/impiantisti</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://marketingedile.com/settori/tetti</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 </urlset>

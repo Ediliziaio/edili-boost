@@ -85,6 +85,31 @@ export const siteConfig = {
     offerta: [
       "offerta marketing edile", "sistema acquisizione clienti edilizia",
       "marketing garantito imprese edili", "proposta marketing a percentuale edile"
+    ],
+    serramenti: [
+      "marketing serramenti", "marketing infissi", "lead generation serramenti",
+      "pubblicità showroom infissi", "clienti per serramentisti", "marketing showroom serramenti",
+      "acquisizione clienti serramenti", "vendere serramenti online"
+    ],
+    ristrutturazioni: [
+      "marketing ristrutturazioni", "lead generation ristrutturazioni", "clienti impresa ristrutturazione",
+      "marketing imprese edili", "pubblicità ristrutturazioni", "acquisizione clienti edilizia",
+      "trovare clienti ristrutturazioni"
+    ],
+    fotovoltaico: [
+      "marketing fotovoltaico", "lead generation fotovoltaico", "clienti fotovoltaico",
+      "pubblicità impianti fotovoltaici", "marketing pannelli solari", "acquisizione clienti fotovoltaico",
+      "vendere fotovoltaico"
+    ],
+    impiantisti: [
+      "marketing impiantisti", "lead generation impiantisti", "clienti per idraulici",
+      "marketing elettricisti", "pubblicità impiantisti", "marketing climatizzazione",
+      "trovare clienti impiantista"
+    ],
+    tetti: [
+      "marketing rifacimento tetti", "lead generation coperture", "clienti rifacimento tetto",
+      "marketing coperture edili", "pubblicità azienda tetti", "marketing bonifica amianto",
+      "trovare clienti coperture"
     ]
   },
   links: {
