@@ -28,7 +28,15 @@ export default function BlogPost() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [slug]);
+    // Meta Pixel: track blog post view
+    if (post && typeof window.fbq === "function") {
+      window.fbq("track", "ViewContent", {
+        content_name: post.title,
+        content_category: post.category,
+        content_type: "blog_article",
+      });
+    }
+  }, [slug, post]);
 
   useEffect(() => {
     const updateProgress = () => {

@@ -25,7 +25,12 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "ViewContent", { content_type: "blog_listing" });
+    }
+  }, []);
 
 
   const { data: allPosts, isLoading } = useBlogPosts(selectedCategory === 'all' ? undefined : selectedCategory);
