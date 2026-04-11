@@ -28,7 +28,7 @@ export default function Blog() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (typeof window.fbq === "function") {
-      window.fbq("track", "ViewContent", { content_type: "blog_listing" });
+      window.fbq("trackSingle", "912028060826443", "ViewContent", { content_type: "blog_listing" });
     }
   }, []);
 

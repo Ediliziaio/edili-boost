@@ -30,7 +30,7 @@ export default function BlogPost() {
     window.scrollTo(0, 0);
     // Meta Pixel: track blog post view
     if (post && typeof window.fbq === "function") {
-      window.fbq("track", "ViewContent", {
+      window.fbq("trackSingle", "912028060826443", "ViewContent", {
         content_name: post.title,
         content_category: post.category,
         content_type: "blog_article",

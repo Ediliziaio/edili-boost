@@ -42,15 +42,20 @@
         gtag('js', new Date());
         gtag('config', 'G-WPFY0KXY0Y');
 
-        // Meta Pixel
+        // Meta Pixels
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
         n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
         (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        // Pixel vecchio (912028060826443) — PageView, Lead, ViewContent
+        fbq('init', '912028060826443');
+        // Pixel nuovo (1526425959076537) — solo PageviewMarketingEdile
         fbq('init', '1526425959076537');
-        fbq('track', 'PageView');
-        fbq('trackCustom', 'PageviewMarketingEdile');
+
+        fbq('trackSingle', '912028060826443', 'PageView');
+        fbq('trackSingleCustom', '1526425959076537', 'PageviewMarketingEdile');
       };
 
       // Auto-init se il consenso è già stato dato in una sessione precedente
@@ -109,7 +114,7 @@
 
   <body>
     <!-- Meta Pixel noscript fallback -->
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1526425959076537&ev=PageView&noscript=1"></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912028060826443&ev=PageView&noscript=1"></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

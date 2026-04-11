@@ -16,7 +16,7 @@ const WhatsAppButton = () => {
 
   const trackClick = () => {
     if (typeof window.fbq === "function") {
-      window.fbq("track", "Lead", { content_name: "WhatsApp Click" });
+      window.fbq("trackSingle", "912028060826443", "Lead", { content_name: "WhatsApp Click" });
     }
   };
 
