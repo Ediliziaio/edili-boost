@@ -174,10 +174,10 @@ const ChiSiamo = () => {
               <AnimatedSection delay={0.2} direction="left">
                 <div className="relative mx-auto lg:mx-0 w-64 lg:w-full lg:sticky lg:top-24">
                   <div className="rounded-2xl overflow-hidden border-2 border-secondary/20 aspect-[3/4]">
-                    <img src={floPortrait} alt="Flo, fondatore di Marketing Edile" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                    <img src={floPortrait} alt="Florin Andriciuc, fondatore di Marketing Edile" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   </div>
                   <div className="mt-4 text-center lg:text-left">
-                    <p className="text-foreground font-bold text-lg">Flo</p>
+                    <p className="text-foreground font-bold text-lg">Florin Andriciuc</p>
                     <p className="text-muted-foreground text-sm">Fondatore, Marketing Edile®</p>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ const ChiSiamo = () => {
                     Perché ho creato Marketing Edile — e perché lavoriamo solo a provvigione
                   </h2>
                   <p className="text-lg text-foreground leading-relaxed">
-                    Mi chiamo <span className="text-secondary font-bold">Flo</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
+                    Mi chiamo <span className="text-secondary font-bold">Florin Andriciuc</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     Mio padre ha un'azienda edile, e da <span className="text-secondary font-bold">8 anni</span> mi sono specializzato in un'unica cosa: portare clienti qualificati alle aziende del settore edile. Serramentisti, imprese di ristrutturazione, fotovoltaico, pergole, pavimentazioni. Solo edilizia. Nient'altro.

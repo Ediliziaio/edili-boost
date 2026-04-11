@@ -100,14 +100,14 @@ const DifferentialSection = () => {
           </AnimatedSection>
 
           <div className="grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-14 items-start">
-            {/* Foto Flo */}
+            {/* Foto Florin */}
             <AnimatedSection delay={0.2} direction="left">
               <div className="relative mx-auto lg:mx-0 w-64 lg:w-full lg:sticky lg:top-24">
                 <div className="rounded-2xl overflow-hidden border-2 border-gold/20 aspect-[3/4]">
-                  <img src={floPortrait} alt="Flo, fondatore di Marketing Edile" className="w-full h-full object-cover" />
+                  <img src={floPortrait} alt="Florin Andriciuc, fondatore di Marketing Edile" className="w-full h-full object-cover" />
                 </div>
                 <div className="mt-4 text-center lg:text-left">
-                  <p className="text-foreground font-bold text-lg">Flo</p>
+                  <p className="text-foreground font-bold text-lg">Florin Andriciuc</p>
                   <p className="text-muted-foreground text-sm">Fondatore, Marketing Edile®</p>
                 </div>
               </div>
@@ -121,7 +121,7 @@ const DifferentialSection = () => {
                 </h3>
 
                 <p className="text-lg text-foreground leading-relaxed">
-                  Mi chiamo <span className="text-gold font-bold">Flo</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
+                  Mi chiamo <span className="text-gold font-bold">Florin Andriciuc</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed">

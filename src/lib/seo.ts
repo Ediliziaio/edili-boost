@@ -6,7 +6,7 @@ export const siteConfig = {
   url: "https://marketingedile.com",
   ogImage: "/og-image.jpg",
   author: "MARKETING EDILE®",
-  founder: "Flo",
+  founder: "Florin Andriciuc",
   companyName: "Domus Group S.r.l.",
   vatNumber: "13132010961",
   address: {
@@ -66,7 +66,7 @@ export const siteConfig = {
       "testimonianze marketing edilizia"
     ],
     chiSiamo: [
-      "chi è Marketing Edile", "agenzia marketing specializzata edilizia", "Flo Marketing Edile fondatore",
+      "chi è Marketing Edile", "agenzia marketing specializzata edilizia", "Florin Andriciuc Marketing Edile fondatore",
       "Domus Group marketing edile", "team marketing edilizia", "esperienza marketing edile"
     ],
     contattaci: [
@@ -401,7 +401,7 @@ export const generateProfessionalServiceSchema = () => ({
 export const generatePersonSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Flo",
+  name: "Florin Andriciuc",
   jobTitle: "Fondatore & CEO",
   description: "Fondatore di Marketing Edile®, imprenditore con 8+ anni di esperienza nel marketing per il settore edile. Proprietario di un'azienda di serramenti con oltre €2M di vendite in 2 anni.",
   worksFor: { "@id": `${siteConfig.url}/#organization` },

@@ -35,7 +35,7 @@ const OffertaFounderSection = () => {
                 </div>
               </motion.div>
               <div className="mt-4 text-center lg:text-left">
-                <p className="text-foreground font-bold text-lg">Flo</p>
+                <p className="text-foreground font-bold text-lg">Florin Andriciuc</p>
                 <p className="text-muted-foreground text-sm">Fondatore, Marketing Edile®</p>
               </div>
               <img src={showroomImage} alt="Showroom aziendale" loading="lazy" decoding="async" className="rounded-xl w-full h-32 object-cover opacity-80 mt-4" />
@@ -50,7 +50,7 @@ const OffertaFounderSection = () => {
               </h3>
 
               <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                Mi chiamo <span className="text-gold font-bold">Flo</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
+                Mi chiamo <span className="text-gold font-bold">Florin Andriciuc</span>. Non sono nato serramentista — sono nato nel marketing e nella vendita.
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
