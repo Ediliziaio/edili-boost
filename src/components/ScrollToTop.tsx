@@ -9,6 +9,7 @@ const ScrollToTop = () => {
     // Track SPA page views for Meta Pixel + GA4
     if (typeof window.fbq === "function") {
       window.fbq("track", "PageView");
+      window.fbq("trackCustom", "PageviewMarketingEdile");
     }
     if (typeof window.gtag === "function") {
       window.gtag("config", "G-WPFY0KXY0Y", { page_path: pathname });
