@@ -272,8 +272,8 @@ const Ristrutturazioni = () => {
   return (
     <>
       <SEOHead
-        title="Marketing Ristrutturazioni | Clienti"
-        description="Lead generation per imprese di ristrutturazione. Paghi solo a provvigione. 47+ aziende, 60M+ generati. Zero canone fisso."
+        title="Marketing Ristrutturazioni | Lead e Clienti Reali"
+        description="Marketing ristrutturazioni a provvigione: lead qualificati per imprese edili. 47+ aziende, €60M+ generati, zero canone fisso. Primi lead in 7-14 giorni."
         keywords={[
           "marketing ristrutturazioni",
           "lead generation ristrutturazioni",
@@ -313,7 +313,7 @@ const Ristrutturazioni = () => {
               alt="Cantiere di ristrutturazione edile - Marketing Edile porta clienti qualificati alle imprese di ristrutturazione"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/65 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="container-narrow relative z-10 text-center pt-32 pb-20 px-6">
@@ -329,19 +329,19 @@ const Ristrutturazioni = () => {
                 LAVORIAMO A PROVVIGIONE
               </motion.div>
 
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1]">
-                BASTA BUTTARE SOLDI IN{" "}
-                <span className="text-secondary">AGENZIE CHE NON CAPISCONO</span>{" "}
-                LE RISTRUTTURAZIONI
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-[1.1]">
+                MARKETING RISTRUTTURAZIONI:{" "}
+                <span className="text-secondary">BASTA AGENZIE</span>{" "}
+                CHE BRUCIANO I TUOI SOLDI
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto mb-4 leading-relaxed font-medium">
+              <p className="text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto mb-4 leading-relaxed font-medium">
                 Mentre la tua agenzia "creativa" brucia i tuoi soldi in post su Instagram
                 che non generano una singola telefonata, i tuoi concorrenti stanno chiudendo
                 le commesse che dovevano essere TUE.
               </p>
 
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-10">
+              <p className="text-lg text-foreground/80 max-w-3xl mx-auto mb-10">
                 Marketing Edile e l'unica agenzia in Italia specializzata nell'edilizia
                 che lavora{" "}
                 <strong className="text-secondary">SOLO a provvigione sulle commesse chiuse</strong>.
@@ -365,7 +365,7 @@ const Ristrutturazioni = () => {
               </div>
 
               {/* Social proof badges */}
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-300">
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-foreground/80">
                 <span className="flex items-center gap-2 backdrop-blur-sm bg-white/5 px-3 py-1.5 rounded-full">
                   <ShieldCheck className="w-4 h-4 text-secondary" /> Zero canone fisso
                 </span>
@@ -464,7 +464,7 @@ const Ristrutturazioni = () => {
                 alt="Cantiere di ristrutturazione - Marketing Edile conosce il settore edile dall'interno"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/30 lg:to-background/80" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95" />
             </div>
 
             {/* Content half */}
@@ -592,7 +592,7 @@ const Ristrutturazioni = () => {
               alt="Edificio moderno - risultati marketing ristrutturazioni imprese edili"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="container-narrow relative z-10 px-6">
@@ -602,7 +602,7 @@ const Ristrutturazioni = () => {
                   I NUMERI NON MENTONO.{" "}
                   <span className="text-secondary">LE AGENZIE SI.</span>
                 </h2>
-                <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
                   Questi sono risultati REALI, documentati e verificabili.
                   Non vanity metrics. Non impressions. Fatturato vero generato per imprese edili vere.
                 </p>
@@ -619,7 +619,7 @@ const Ristrutturazioni = () => {
                     <p className="text-white font-bold text-sm uppercase tracking-wider mb-2">
                       {stat.label}
                     </p>
-                    <p className="text-gray-400 text-xs leading-relaxed">
+                    <p className="text-foreground/80 text-xs leading-relaxed">
                       {stat.detail}
                     </p>
                   </div>
@@ -733,14 +733,14 @@ const Ristrutturazioni = () => {
               alt="Team Marketing Edile - specialisti in lead generation per ristrutturazioni e imprese edili"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
           <div className="container-narrow relative z-10 text-center px-6">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
                 UN TEAM CHE PARLA LA TUA LINGUA
               </h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-6">
+              <p className="text-lg text-foreground/80 max-w-2xl mx-auto mb-6">
                 Non assumiamo neolaureati in comunicazione.
                 Il nostro team conosce il settore edile, ha visitato cantieri, sa leggere un computo metrico.
                 Quando parli con noi, non devi spiegare cosa fai.{" "}
@@ -773,7 +773,7 @@ const Ristrutturazioni = () => {
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   Metti a confronto quello che paghi oggi con quello che potresti avere.
-                  Poi deciditi tu.
+                  Poi decidi tu.
                 </p>
               </div>
             </AnimatedSection>
@@ -917,7 +917,7 @@ const Ristrutturazioni = () => {
                 LA COMMESSA CHE ERA TUA.
               </h2>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4 leading-relaxed">
+              <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-4 leading-relaxed">
                 Non lavoriamo con tutti. Accettiamo massimo 3 nuove imprese di ristrutturazione
                 al mese per garantire risultati a ogni partner. La valutazione e gratuita
                 e senza impegno. Ma i posti no.
@@ -926,7 +926,7 @@ const Ristrutturazioni = () => {
               <p className="text-foreground font-bold text-xl mb-10">
                 Zero canone fisso. Zero anticipo. Paghi SOLO a provvigione sulle commesse chiuse.
                 <br />
-                <span className="text-muted-foreground font-normal text-base">
+                <span className="text-foreground/80 font-normal text-base">
                   Spesa pubblicitaria esclusa (e tua, la gestisci tu).
                 </span>
               </p>
@@ -940,7 +940,7 @@ const Ristrutturazioni = () => {
                 </Link>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-foreground/80">
                 <span className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-secondary" /> Nessun vincolo contrattuale
                 </span>

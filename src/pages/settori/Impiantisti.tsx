@@ -217,7 +217,7 @@ const Impiantisti = () => {
     <>
       <SEOHead
         title="Marketing Impiantisti | Clienti a Provvigione"
-        description="Lead generation per idraulici, elettricisti, climatizzazione. Zero canone, paghi solo su commesse chiuse. 47+ aziende, €60M+ generati."
+        description="Marketing per impiantisti a provvigione: clienti per idraulici, elettricisti e climatizzazione. Zero canone, paghi solo su commesse chiuse."
         keywords={[
           "marketing impiantisti",
           "lead generation impiantisti",
@@ -262,8 +262,8 @@ const Impiantisti = () => {
               alt="Cantiere edile - marketing per impiantisti, idraulici, elettricisti"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/60" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50" />
           </div>
 
           <div className="container-narrow relative z-10">
@@ -283,21 +283,21 @@ const Impiantisti = () => {
                 </motion.div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] mb-6">
-                  Marketing per Impiantisti che{" "}
-                  <span className="text-gold">Porta Cantieri,</span>
+                  Marketing impiantisti:{" "}
+                  <span className="text-gold">ti portiamo cantieri,</span>
                   <br />
-                  Non Promesse Vuote
+                  non promesse vuote
                 </h1>
 
-                <p className="text-lg md:text-xl text-gray-300 mb-4 max-w-2xl leading-relaxed">
+                <p className="text-lg md:text-xl text-foreground/80 mb-4 max-w-2xl leading-relaxed">
                   Sei stufo di PagineGialle che vende il tuo contatto a 10
                   concorrenti? Di agenzie che ti portano follower invece di
                   clienti? Di lavorare 12 ore al giorno senza sapere da dove
                   arrivera il prossimo lavoro?
                 </p>
 
-                <p className="text-base text-gray-400 mb-8 max-w-2xl">
-                  <strong className="text-white">
+                <p className="text-base text-foreground/70 mb-8 max-w-2xl">
+                  <strong className="text-foreground">
                     Marketing Edile e diverso.
                   </strong>{" "}
                   Lavoriamo SOLO con aziende del settore edile. Paghi SOLO a
@@ -328,7 +328,7 @@ const Impiantisti = () => {
                 </div>
 
                 {/* Trust badges */}
-                <div className="mt-8 flex flex-wrap gap-6 text-sm text-gray-400">
+                <div className="mt-8 flex flex-wrap gap-6 text-sm text-foreground/70">
                   <span className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-gold" /> 47+ aziende
                     gestite
@@ -356,8 +356,8 @@ const Impiantisti = () => {
                   Il Problema Vero
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black mb-6">
-                  Perche il Tuo Telefono{" "}
-                  <span className="text-red-400">Non Squilla Abbastanza</span>
+                  Perche il tuo telefono{" "}
+                  <span className="text-red-400">non squilla abbastanza</span>
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
                   Non e colpa tua. E colpa del sistema che stai usando — o meglio, che NON stai usando.
@@ -404,21 +404,21 @@ const Impiantisti = () => {
           <div className="absolute inset-0">
             <img
               src={cantiereImage}
-              alt="Impiantista al lavoro in cantiere - lead generation per idraulici e elettricisti"
+              alt="Impiantista al lavoro in cantiere - marketing impiantisti per idraulici ed elettricisti"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
           <div className="container-narrow relative z-10 text-center">
             <AnimatedSection>
               <p className="text-gold text-sm font-bold uppercase tracking-widest mb-4">
-                La Verita Scomoda
+                La verita scomoda
               </p>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-4xl mx-auto mb-6">
-                I Tuoi Concorrenti Stanno Investendo in Marketing.{" "}
-                <span className="text-gold">Tu Stai Aspettando Che il Telefono Squilli.</span>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground leading-tight max-w-4xl mx-auto mb-6">
+                I tuoi concorrenti investono in marketing.{" "}
+                <span className="text-gold">Tu aspetti che il telefono squilli da solo.</span>
               </h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-foreground/80 max-w-2xl mx-auto mb-8">
                 Ogni giorno che passa senza un sistema di acquisizione clienti, stai regalando
                 lavori — e fatturato — a chi lo ha gia.
               </p>
@@ -447,8 +447,8 @@ const Impiantisti = () => {
                   Il Nostro Sistema
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black mb-6">
-                  Come Trasformiamo un Impiantista Invisibile nel{" "}
-                  <span className="text-gold">Punto di Riferimento</span> della Sua Zona
+                  Da impiantista invisibile a{" "}
+                  <span className="text-gold">punto di riferimento</span> della tua zona
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                   Non vendiamo like. Non vendiamo follower. Costruiamo un
@@ -513,8 +513,8 @@ const Impiantisti = () => {
             <AnimatedSection>
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-5xl font-black mb-4">
-                  I Numeri Parlano.{" "}
-                  <span className="text-gold">Le Promesse No.</span>
+                  I numeri parlano.{" "}
+                  <span className="text-gold">Le promesse no.</span>
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                   Non proiezioni. Non stime. Dati reali da campagne attive
@@ -576,7 +576,7 @@ const Impiantisti = () => {
                 <h2 className="text-3xl md:text-4xl font-black mb-6 text-foreground">
                   "Lavoriamo a provvigione perche siamo{" "}
                   <span className="text-gold">dannatamente bravi</span> in
-                  quello che facciamo."
+                  quello che facciamo"
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
@@ -625,7 +625,7 @@ const Impiantisti = () => {
                   Confronto Diretto
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black mb-4">
-                  PagineGialle / Instapro vs Agenzia Generica vs{" "}
+                  PagineGialle e Instapro vs agenzia generica vs{" "}
                   <span className="text-gold">Marketing Edile</span>
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -716,8 +716,8 @@ const Impiantisti = () => {
                   Domande Frequenti
                 </span>
                 <h2 className="text-3xl md:text-4xl font-black mb-4">
-                  Ogni Impiantista Ci Fa Queste Domande.{" "}
-                  <span className="text-gold">Ecco le Risposte.</span>
+                  Le domande che ci fanno tutti gli impiantisti.{" "}
+                  <span className="text-gold">Ecco le risposte.</span>
                 </h2>
               </div>
             </AnimatedSection>
@@ -758,9 +758,9 @@ const Impiantisti = () => {
                     Posti Limitati Per Zona
                   </p>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-foreground">
-                    Ogni Giorno Che Aspetti, un Tuo Concorrente{" "}
+                    Ogni giorno che aspetti, un tuo concorrente{" "}
                     <span className="text-gold">
-                      Ti Sta Rubando Clienti
+                      ti sta rubando clienti
                     </span>
                   </h2>
                   <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto">

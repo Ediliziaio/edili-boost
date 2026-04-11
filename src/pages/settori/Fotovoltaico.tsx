@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import heroWindowsImage from "@/assets/hero-windows.jpg";
+import fotovoltaicoHero from "@/assets/fotovoltaico-hero.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import cantiereImage from "@/assets/cantiere.jpg";
 import teamImage from "@/assets/team.jpg";
@@ -260,12 +260,12 @@ const Fotovoltaico = () => {
           {/* Background image */}
           <div className="absolute inset-0">
             <img
-              src={heroWindowsImage}
-              alt="Edificio moderno con pannelli solari — marketing fotovoltaico per installatori"
+              src={fotovoltaicoHero}
+              alt="Installazione pannelli solari fotovoltaico — marketing e lead generation per installatori"
               className="w-full h-full object-cover"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="container-narrow relative z-10 pt-32 pb-20 px-6">
@@ -286,17 +286,17 @@ const Fotovoltaico = () => {
 
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-[1.1]">
                   Il <span className="text-gold">marketing fotovoltaico</span> che ti porta clienti.{" "}
-                  <span className="text-muted-foreground">Non scuse.</span>
+                  <span className="text-foreground/80">Non scuse.</span>
                 </h1>
 
-                <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mb-4 leading-relaxed">
+                <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mb-4 leading-relaxed">
                   Il mercato solare italiano esplode: incentivi al 50%, Comunita Energetiche, bollette alle stelle.{" "}
                   <span className="text-foreground font-bold">
                     Ma tu stai ancora comprando lead dai portali che li vendono a 5 installatori?
                   </span>
                 </p>
 
-                <p className="text-lg text-muted-foreground max-w-2xl mb-4">
+                <p className="text-lg text-foreground/80 max-w-2xl mb-4">
                   Oppure paghi 3-5.000 euro al mese a un'agenzia che non sa la differenza tra
                   monocristallino e policristallino?
                 </p>
@@ -326,7 +326,7 @@ const Fotovoltaico = () => {
                 </div>
 
                 {/* Trust signals */}
-                <div className="flex flex-wrap gap-6 mt-10 text-sm text-muted-foreground">
+                <div className="flex flex-wrap gap-6 mt-10 text-sm text-foreground/80">
                   <span className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-gold" /> Zero costi fissi
                   </span>
@@ -354,7 +354,7 @@ const Fotovoltaico = () => {
                   Basta buttare soldi
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Portali di lead e agenzie tradizionali{" "}
+                  I portali di lead e le agenzie tradizionali{" "}
                   <span className="text-red-400">ti stanno dissanguando</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -406,7 +406,7 @@ const Fotovoltaico = () => {
               className="w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="container-narrow relative z-10">
@@ -420,12 +420,12 @@ const Fotovoltaico = () => {
                   Green Energy Group:{" "}
                   <span className="text-gold">+€300.000 in 2 mesi</span>
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
                   Green Energy Group ci ha contattato dopo aver bruciato migliaia di euro
                   con un portale di lead che gli vendeva contatti condivisi con altri 4 installatori.
                   Tasso di conversione: meno del 5%. Frustrazione: alle stelle.
                 </p>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
                   In 60 giorni abbiamo attivato il nostro sistema di lead generation esclusiva
                   per il fotovoltaico. Risultato? <span className="text-foreground font-bold">+€300.000 di impianti venduti</span>,
                   lead pre-qualificati che arrivavano gia pronti per il sopralluogo,
@@ -435,15 +435,15 @@ const Fotovoltaico = () => {
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   <div className="bg-card/80 backdrop-blur rounded-xl p-4 border border-gold/20 text-center">
                     <div className="text-2xl md:text-3xl font-black text-gold">+€300K</div>
-                    <div className="text-xs text-muted-foreground mt-1">Fatturato generato</div>
+                    <div className="text-xs text-foreground/80 mt-1">Fatturato generato</div>
                   </div>
                   <div className="bg-card/80 backdrop-blur rounded-xl p-4 border border-gold/20 text-center">
                     <div className="text-2xl md:text-3xl font-black text-gold">60gg</div>
-                    <div className="text-xs text-muted-foreground mt-1">Tempo risultato</div>
+                    <div className="text-xs text-foreground/80 mt-1">Tempo risultato</div>
                   </div>
                   <div className="bg-card/80 backdrop-blur rounded-xl p-4 border border-gold/20 text-center">
                     <div className="text-2xl md:text-3xl font-black text-gold">5x</div>
-                    <div className="text-xs text-muted-foreground mt-1">Conv. vs portali</div>
+                    <div className="text-xs text-foreground/80 mt-1">Conv. vs portali</div>
                   </div>
                 </div>
 
@@ -463,7 +463,7 @@ const Fotovoltaico = () => {
                     className="w-48 h-auto mb-8 opacity-90"
                     loading="lazy"
                   />
-                  <blockquote className="text-lg text-muted-foreground italic leading-relaxed mb-6">
+                  <blockquote className="text-lg text-foreground/80 italic leading-relaxed mb-6">
                     "Avevamo provato portali e agenzie. Con Marketing Edile abbiamo finalmente
                     un sistema che ci porta clienti veri, pre-qualificati, esclusivi. In due mesi
                     abbiamo generato piu fatturato che nei sei mesi precedenti."
@@ -473,7 +473,7 @@ const Fotovoltaico = () => {
                       <Star key={i} className="w-5 h-5 text-gold fill-gold" />
                     ))}
                   </div>
-                  <p className="text-sm text-muted-foreground">Green Energy Group — Fotovoltaico</p>
+                  <p className="text-sm text-foreground/80">Green Energy Group — Fotovoltaico</p>
                 </div>
               </AnimatedSection>
             </div>
@@ -492,8 +492,8 @@ const Fotovoltaico = () => {
                   Il Sistema
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Come portiamo clienti alla tua azienda di{" "}
-                  <span className="text-gold">fotovoltaico</span>
+                  Ecco come portiamo clienti alla tua azienda{" "}
+                  <span className="text-gold">fotovoltaica</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                   Non facciamo "brand awareness". Non facciamo "crescita organica". Non facciamo
@@ -554,16 +554,16 @@ const Fotovoltaico = () => {
               className="w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-background/90 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95 backdrop-blur-sm" />
           </div>
 
           <div className="container-narrow relative z-10 px-6">
             <AnimatedSection>
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  Numeri che parlano. Non slide di PowerPoint.
+                  I numeri parlano. Non le slide di PowerPoint.
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-foreground/80 max-w-2xl mx-auto">
                   Mentre le agenzie tradizionali ti mostrano "impression" e "reach",
                   noi ti mostriamo fatturato generato e contratti chiusi.
                 </p>
@@ -576,7 +576,7 @@ const Fotovoltaico = () => {
                   <div className="bg-card/80 backdrop-blur rounded-2xl p-6 border border-gold/20 text-center">
                     <div className="text-3xl md:text-4xl font-black text-gold mb-2">{stat.value}</div>
                     <div className="text-foreground font-bold text-sm mb-1">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">{stat.sublabel}</div>
+                    <div className="text-xs text-foreground/80">{stat.sublabel}</div>
                   </div>
                 </StaggerItem>
               ))}
@@ -612,7 +612,7 @@ const Fotovoltaico = () => {
                 <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
                   Non siamo un'agenzia di marketing.{" "}
                   <span className="text-gold">Siamo imprenditori edili</span>{" "}
-                  che fanno marketing.
+                  che fanno marketing per il fotovoltaico.
                 </h2>
                 <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
                   Mi chiamo Florian Andriciuc. Ho un'azienda di serramenti. Sono nel settore
@@ -777,7 +777,7 @@ const Fotovoltaico = () => {
                   Domande Frequenti
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Tutto quello che vuoi sapere sul{" "}
+                  Tutto quello che devi sapere sul{" "}
                   <span className="text-gold">marketing fotovoltaico</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

@@ -315,7 +315,7 @@ const Serramenti = () => {
               alt="Installazione serramenti moderni - marketing serramenti Marketing Edile"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="container-narrow relative z-10 text-center py-32 px-6">
@@ -332,15 +332,15 @@ const Serramenti = () => {
               </motion.div>
 
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-8 leading-[1.1]">
-                Il Tuo Showroom Merita{" "}
+                Marketing Serramenti Che Porta{" "}
                 <span className="text-gold">Clienti Veri</span>,<br />
                 Non{" "}
-                <span className="line-through text-muted-foreground/50">
+                <span className="line-through text-foreground/40">
                   Report di Impressioni
                 </span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-6 leading-relaxed">
+              <p className="text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto mb-6 leading-relaxed">
                 Sei stanco di pagare agenzie che ti mostrano{" "}
                 <strong className="text-foreground">clic e impressioni</strong>{" "}
                 mentre il tuo showroom resta vuoto? Noi portiamo{" "}
@@ -353,7 +353,7 @@ const Serramenti = () => {
                 </span>
               </p>
 
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">
+              <p className="text-lg text-foreground/80 max-w-3xl mx-auto mb-4">
                 Il marketing serramenti non deve essere un costo fisso. Deve essere
                 un investimento che si ripaga da solo. Come per le{" "}
                 <Link
@@ -387,7 +387,7 @@ const Serramenti = () => {
                   <Button
                     variant="outline"
                     size="xl"
-                    className="border-border text-muted-foreground hover:text-foreground"
+                    className="border-border text-foreground/80 hover:text-foreground"
                   >
                     Come Funziona il Modello
                   </Button>
@@ -395,7 +395,7 @@ const Serramenti = () => {
               </div>
 
               {/* Trust proof */}
-              <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-muted-foreground text-sm">
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-foreground/80 text-sm">
                 <span className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-gold" />
                   Zero anticipo
@@ -658,7 +658,7 @@ const Serramenti = () => {
               alt="Cantiere edile con installazione serramenti - risultati marketing infissi"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-background/92" />
+            <div className="absolute inset-0 bg-background/95" />
           </div>
 
           <div className="container-narrow relative z-10">
@@ -672,7 +672,7 @@ const Serramenti = () => {
                   I Risultati Parlano.{" "}
                   <span className="text-gold">Noi li Dimostriamo.</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
                   Questi non sono numeri inventati per impressionarti. Sono
                   risultati documentati, verificabili, generati per aziende
                   reali di serramenti e infissi.
@@ -1012,7 +1012,7 @@ const Serramenti = () => {
               alt="Team Marketing Edile - specialisti marketing serramenti e lead generation infissi"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-background/85" />
+            <div className="absolute inset-0 bg-background/93" />
           </div>
           <div className="container-narrow relative z-10 text-center">
             <AnimatedSection>
@@ -1020,7 +1020,7 @@ const Serramenti = () => {
                 Un Team che Parla la{" "}
                 <span className="text-gold">Tua Lingua</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+              <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8 leading-relaxed">
                 Non siamo ragazzini appena usciti da un corso online di
                 "marketing digitale". Siamo imprenditori edili, specialisti
                 di advertising, videomaker, copywriter verticali nel settore
@@ -1178,13 +1178,13 @@ const Serramenti = () => {
                   Già Lavorando
                 </h2>
 
-                <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-xl text-foreground/80 mb-4 leading-relaxed">
                   Accettiamo un numero limitato di partner per zona per
                   garantire esclusività territoriale. Se il tuo concorrente si
                   candida prima di te, lavoriamo con lui. Punto.
                 </p>
 
-                <p className="text-lg text-muted-foreground mb-10">
+                <p className="text-lg text-foreground/80 mb-10">
                   La valutazione è gratuita. Non ci sono impegni. Ma se
                   aspetti troppo, il posto potrebbe non esserci più.
                 </p>
@@ -1200,7 +1200,7 @@ const Serramenti = () => {
                     <ArrowRight className="w-6 h-6 ml-2" />
                   </Button>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-6 text-sm text-muted-foreground">
+                  <div className="flex flex-col sm:flex-row items-center gap-6 text-sm text-foreground/80">
                     <span className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-gold" />
                       Zero costo iniziale
@@ -1215,7 +1215,7 @@ const Serramenti = () => {
                     </span>
                   </div>
 
-                  <p className="text-xs text-muted-foreground/60 max-w-lg">
+                  <p className="text-xs text-foreground/60 max-w-lg">
                     Oppure contattaci direttamente:{" "}
                     <Link
                       to="/contattaci"

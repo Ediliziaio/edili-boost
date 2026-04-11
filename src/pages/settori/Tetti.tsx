@@ -48,7 +48,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import cantiereImage from "@/assets/cantiere.jpg";
+import tettiHero from "@/assets/tetti-hero.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import teamImage from "@/assets/team.jpg";
 import logoRenovaTetto from "@/assets/renova_tetto.png";
@@ -300,11 +300,11 @@ export default function Tetti() {
           {/* Background image */}
           <div className="absolute inset-0">
             <img
-              src={cantiereImage}
-              alt="Cantiere rifacimento tetto — marketing coperture edili"
+              src={tettiHero}
+              alt="Rifacimento tetto e coperture edili — lead generation per aziende di tetti"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95" />
           </div>
 
           <div className="relative z-10 section-padding w-full">
@@ -326,11 +326,11 @@ export default function Tetti() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.08] mb-6 max-w-4xl"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground leading-[1.08] mb-6 max-w-4xl"
               >
                 Marketing Rifacimento Tetti:{" "}
                 <span className="text-gold">
-                  Cantieri Pieni 12 Mesi All'Anno
+                  Cantieri Pieni 12 Mesi l'Anno
                 </span>
               </motion.h1>
 
@@ -338,12 +338,12 @@ export default function Tetti() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="text-lg sm:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed"
+                className="text-lg sm:text-xl text-foreground/80 max-w-2xl mb-8 leading-relaxed"
               >
                 Basta dipendere dalle piogge autunnali per riempire l'agenda.
                 Il nostro sistema genera lead qualificati per rifacimenti tetti,
                 bonifica amianto e coperture edili —{" "}
-                <strong className="text-white">
+                <strong className="text-foreground">
                   e paghi solo sulle commesse che chiudi.
                 </strong>
               </motion.p>
@@ -364,7 +364,7 @@ export default function Tetti() {
                   <Button
                     variant="outline"
                     size="xl"
-                    className="border-white/20 text-white hover:bg-white/10"
+                    className="border-foreground/20 text-foreground hover:bg-foreground/10"
                   >
                     Vedi i risultati
                   </Button>
@@ -376,7 +376,7 @@ export default function Tetti() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="mt-12 flex flex-wrap items-center gap-6 text-sm text-gray-400"
+                className="mt-12 flex flex-wrap items-center gap-6 text-sm text-foreground/80"
               >
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-gold" />
@@ -402,10 +402,10 @@ export default function Tetti() {
           <div className="container-narrow">
             <AnimatedSection className="text-center mb-16">
               <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
-                La verita' che nessuno ti dice
+                La verità che nessuno ti dice
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
-                Ecco perche' la tua agenzia{" "}
+                Ecco perché la tua agenzia{" "}
                 <span className="text-gold">sta bruciando i tuoi soldi</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
@@ -467,14 +467,14 @@ export default function Tetti() {
                     alt="Team Marketing Edile — lead generation per aziende di coperture e rifacimento tetti"
                     className="w-full h-[400px] object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/90 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <img
                       src={logoRenovaTetto}
                       alt="Renova Tetto — caso studio marketing rifacimento tetti"
                       className="h-12 mb-3 brightness-0 invert"
                     />
-                    <p className="text-white/80 text-sm">
+                    <p className="text-foreground/80 text-sm">
                       Partner dal 2023 — Settore coperture e bonifica amianto
                     </p>
                   </div>
@@ -538,7 +538,7 @@ export default function Tetti() {
                 <span className="text-gold">coperture e tetti</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-                Non vendiamo click. Non vendiamo "visibilita'". Vendiamo
+                Non vendiamo click. Non vendiamo "visibilità". Vendiamo
                 commesse chiuse. Ecco come funziona il sistema che ha generato
                 +€600K per Renova Tetto e milioni per le nostre 47+ aziende
                 partner.
@@ -624,7 +624,7 @@ export default function Tetti() {
 
               <AnimatedSection direction="right">
                 <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
-                  Chi c'e' dietro il sistema
+                  Chi c'è dietro il sistema
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black text-foreground leading-tight mb-6">
                   Non sono un marketer che{" "}
@@ -641,7 +641,7 @@ export default function Tetti() {
                   <p>
                     Non ti parlo di teoria. Parlo di cantieri, di preventivi, di
                     clienti difficili, di margini reali. So cosa significa avere
-                    gli operai a casa perche' non ci sono commesse. So cosa
+                    gli operai a casa perché non ci sono commesse. So cosa
                     significa chiudere un lavoro da 30.000 euro con un cliente
                     che tre settimane prima non sapeva nemmeno che esistevi.
                   </p>
@@ -650,7 +650,7 @@ export default function Tetti() {
                     <strong className="text-foreground">
                       lavoriamo solo a provvigione
                     </strong>
-                    : perche' so che il sistema funziona. Se non ti porto
+                    : perché so che il sistema funziona. Se non ti porto
                     commesse, non guadagno. Punto. Nessuna agenzia che "ci
                     crede davvero" ti chiederebbe 4.000 euro al mese fissi.
                   </p>
@@ -809,14 +809,14 @@ export default function Tetti() {
                 <span className="text-gold">cantieri pieni tutto l'anno</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
-                Ogni mese che passa senza un sistema di lead generation e' un
+                Ogni mese che passa senza un sistema di lead generation è un
                 mese di commesse perse — commesse da 15.000, 25.000, 40.000
                 euro che vanno ai tuoi concorrenti. Non ti chiediamo un centesimo
                 di fisso. Paghi solo quando chiudi.
               </p>
               <p className="text-foreground font-semibold text-lg mb-8">
                 Una sola commessa chiusa al mese cambia tutto. E il sistema ne
-                genera molte di piu'.
+                genera molte di più.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -839,7 +839,7 @@ export default function Tetti() {
 
               <p className="text-muted-foreground text-sm mt-6">
                 Selezioniamo massimo 3 nuove aziende di coperture al mese.
-                Esclusivita' territoriale garantita.
+                Esclusività territoriale garantita.
               </p>
             </AnimatedSection>
           </div>
