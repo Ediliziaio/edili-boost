@@ -1,649 +1,914 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { AnimatedSection } from "@/components/AnimatedSection";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import {
-  CloudRain,
-  ShieldAlert,
-  TrendingDown,
-  EyeOff,
-  Camera,
-  CalendarClock,
-  FileWarning,
+  ArrowRight,
+  Check,
+  X,
+  AlertTriangle,
   Target,
   Search,
   BarChart3,
   Handshake,
-  HelpCircle,
-  ArrowRight,
-  Check,
-  ChevronDown,
-  Home,
-  Droplets,
-  Flame,
-  Thermometer,
-  Wrench,
-  Star,
   Phone,
   TrendingUp,
   Users,
   Euro,
   Clock,
+  ChevronDown,
+  Star,
+  ShieldAlert,
+  CloudRain,
+  Flame,
+  Droplets,
+  Wrench,
+  ThumbsDown,
+  Ban,
+  Eye,
+  CalendarClock,
+  Zap,
+  FileWarning,
+  Camera,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { siteConfig, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/seo";
-import { useState } from "react";
+import {
+  siteConfig,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateServiceSchema,
+} from "@/lib/seo";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
-/* ─── DATA ─── */
+import cantiereImage from "@/assets/cantiere.jpg";
+import floPortrait from "@/assets/flo-portrait.jpg";
+import teamImage from "@/assets/team.jpg";
+import logoRenovaTetto from "@/assets/renova_tetto.png";
 
-const problems = [
+/* ══════════════════════════════════════════════════════════
+   DATA
+   ══════════════════════════════════════════════════════════ */
+
+const truthCards = [
+  {
+    icon: Ban,
+    title: "Non sanno cos'è un colmo",
+    description:
+      "La tua agenzia attuale non ha mai messo piede su un tetto. Non sa la differenza tra una tegola portoghese e una marsigliese. Ti chiede 3.000-5.000 euro al mese per mostrarti report pieni di click, impression e \"brand awareness\" — mentre i tuoi cantieri restano vuoti e i tuoi operai stanno a casa.",
+  },
+  {
+    icon: ThumbsDown,
+    title: "Lead spazzatura",
+    description:
+      "Ti mandano contatti che chiedono preventivi per \"riparare una tegola\" o gente che vuole solo il prezzo al metro quadro per confrontarlo con altri 10 concorrenti. Non sono lead — sono perditempo. Non hanno la minima idea di come qualificare un contatto che ha bisogno di un rifacimento completo da 15.000-40.000 euro.",
+  },
   {
     icon: CloudRain,
-    title: "Stagionalit\u00e0 estrema",
+    title: "Ti lasciano solo d'inverno",
     description:
-      "Il lavoro sui tetti dipende dal meteo e dalle stagioni. D\u2019inverno i cantieri si fermano, d\u2019estate tutti vogliono rifare il tetto nello stesso momento. Senza un sistema che genera richieste costanti tutto l\u2019anno, il fatturato \u00e8 un\u2019altalena che mette a rischio la stabilit\u00e0 dell\u2019azienda e del tuo team.",
-  },
-  {
-    icon: ShieldAlert,
-    title: "Lavori urgenti vs pianificati",
-    description:
-      "Le infiltrazioni non aspettano. I clienti con urgenze cercano online e chiamano il primo risultato \u2014 se non sei tu, \u00e8 un concorrente. Allo stesso tempo, chi pianifica un rifacimento completo confronta 4-5 preventivi. Senza una doppia strategia (emergenza + pianificazione), perdi entrambi i tipi di cliente.",
-  },
-  {
-    icon: TrendingDown,
-    title: "Preventivi che non chiudi",
-    description:
-      "Vai a fare il sopralluogo, prepari il preventivo dettagliato, lo invii\u2026 e poi silenzio. Il cliente confronta, rimanda, sceglie chi costa meno. Il problema non \u00e8 il tuo prezzo: \u00e8 che il cliente non percepisce il valore del tuo lavoro prima ancora di ricevere il preventivo. E intanto hai perso ore e benzina.",
-  },
-  {
-    icon: EyeOff,
-    title: "Visibilit\u00e0 zero online",
-    description:
-      "Quando qualcuno cerca \u201Crifacimento tetto + citt\u00e0\u201D, non trova la tua azienda. Il tuo sito \u2014 se esiste \u2014 non compare. I social sono fermi a sei mesi fa. Il passaparola funziona, ma non scala. Intanto le aziende pi\u00f9 furbe investono in marketing e prendono tutti i clienti migliori della tua zona.",
-  },
-];
-
-const solutions = [
-  {
-    icon: ShieldAlert,
-    title: "Targeting emergenza + ristrutturazione pianificata",
-    description:
-      "Creiamo due linee parallele di acquisizione clienti. La prima intercetta chi ha un\u2019emergenza: infiltrazioni, danni da maltempo, tegole rotte. Campagne Google Ads con landing page dedicate che convertono in chiamata entro 24 ore. La seconda linea lavora su chi sta pianificando il rifacimento completo del tetto: campagne social con contenuti educativi, before/after dei tuoi cantieri e un percorso di nurturing che ti posiziona come la scelta ovvia quando il cliente \u00e8 pronto a decidere.",
-  },
-  {
-    icon: Camera,
-    title: "Strategia foto e video before/after",
-    description:
-      "Il tetto \u00e8 il lavoro edile con il maggiore impatto visivo. Un tetto vecchio, rovinato, con infiltrazioni \u2014 trasformato in una copertura nuova, isolata, perfetta. Documentiamo ogni cantiere con foto professionali e video con drone. Questi contenuti diventano le armi pi\u00f9 potenti per le tue campagne: il cliente vede con i propri occhi cosa sai fare, e il preventivo smette di essere \u201Ccaro\u201D.",
+      "Quando piove, tutti cercano chi ripara il tetto. Quando c'è il sole, nessuno ci pensa. La tua agenzia non ha un piano per generare lavoro tutto l'anno. Risultato? 4 mesi di picco, 4 mesi di vuoto totale, 4 mesi di agonia. E il canone mensile lo paghi sempre — 12 mesi su 12.",
   },
   {
     icon: FileWarning,
-    title: "Angolo assicurativo e danni atmosferici",
+    title: "Zero strategia amianto",
     description:
-      "Molti proprietari non sanno che il rifacimento del tetto pu\u00f2 essere coperto da assicurazione in caso di danni atmosferici o grandine. Creiamo contenuti e campagne che educano il pubblico su questa possibilit\u00e0, posizionando la tua azienda come esperta anche nella gestione delle pratiche assicurative. Questo apre un mercato enorme di clienti che non avrebbero mai cercato \u201Crifacimento tetto\u201D spontaneamente.",
+      "Le bonifica amianto sono le commesse più redditizie del settore tetti: ticket medio 25.000-60.000 euro. Ma la tua agenzia generalista non sa nemmeno che esistono. Non ha mai creato una campagna per intercettare proprietari con coperture in eternit. Ti sta lasciando sul tavolo le commesse migliori.",
+  },
+];
+
+const systemSteps = [
+  {
+    icon: Search,
+    step: "01",
+    title: "Analisi e posizionamento",
+    description:
+      "Studiamo la tua zona, i tuoi concorrenti, i tuoi margini. Identifichiamo le commesse più redditizie per la tua azienda — rifacimenti completi, bonifica amianto, coibentazione, lattoneria. Costruiamo un posizionamento che ti separa dalla guerra dei preventivi al ribasso.",
   },
   {
-    icon: CalendarClock,
-    title: "Pianificazione campagne stagionali",
+    icon: Target,
+    step: "02",
+    title: "Campagne chirurgiche",
     description:
-      "Non aspettiamo che arrivi la pioggia per iniziare a fare marketing. Pianifichiamo le campagne in anticipo rispetto ai picchi stagionali: promozione rifacimento tetto in primavera, campagne anti-infiltrazione in autunno, offerte isolamento termico prima dell\u2019inverno. Quando i concorrenti si svegliano, tu hai gi\u00e0 l\u2019agenda piena per i prossimi tre mesi.",
+      "Lanciamo campagne su Google e Meta che intercettano chi ha BISOGNO di rifare il tetto — non curiosi. Doppia linea: emergenze (infiltrazioni, danni maltempo) e lavori pianificati (ristrutturazioni, efficientamento energetico). Ogni euro di spesa pubblicitaria è tracciato fino alla commessa chiusa.",
+  },
+  {
+    icon: Handshake,
+    step: "03",
+    title: "Lead pre-qualificati",
+    description:
+      "Ogni contatto passa un processo di qualificazione prima di arrivare a te. Sappiamo già budget, tipo di intervento, tempistica e indirizzo. Tu ricevi solo persone pronte a far partire il cantiere — non perditempo che vogliono \"un'idea di prezzo\". Il tuo tempo vale troppo per sprecarlo.",
+  },
+  {
+    icon: BarChart3,
+    step: "04",
+    title: "Ottimizzazione continua",
+    description:
+      "Ogni settimana analizziamo i numeri: costo per lead, tasso di chiusura, valore medio commessa, ROI. Tagliamo ciò che non funziona, raddoppiamo ciò che porta cantieri. Il sistema migliora ogni mese — e con esso il tuo fatturato. Confronto settimanale con il tuo referente dedicato.",
   },
 ];
 
 const stats = [
   {
-    value: "+\u20AC600k",
+    value: "+€600K",
     label: "Fatturato generato",
     detail: "Renova Tetto in 12 mesi",
     icon: Euro,
   },
   {
     value: "47+",
-    label: "Aziende edili seguite",
+    label: "Aziende edili partner",
     detail: "In tutta Italia",
     icon: Users,
   },
   {
-    value: "72h",
-    label: "Primi contatti",
-    detail: "Dalla partenza delle campagne",
-    icon: Clock,
-  },
-  {
-    value: "8.2x",
-    label: "ROI medio",
-    detail: "Ritorno sull\u2019investimento",
+    value: "€60M+",
+    label: "Volume totale generato",
+    detail: "Per i nostri partner",
     icon: TrendingUp,
   },
-];
-
-const roofingTypes = [
   {
-    icon: Home,
-    title: "Rifacimento completo del tetto",
-    description:
-      "La richiesta pi\u00f9 redditizia. Ticket medio elevato (dai 15.000\u20AC ai 60.000\u20AC+), clienti disposti a investire per un lavoro fatto bene. Il nostro sistema attira proprietari di case e amministratori di condominio che cercano un\u2019azienda affidabile, non il prezzo pi\u00f9 basso. Generiamo richieste di preventivo qualificate da persone che hanno gi\u00e0 visto i tuoi lavori e sanno quanto vali.",
-  },
-  {
-    icon: Droplets,
-    title: "Impermeabilizzazione",
-    description:
-      "Un mercato enorme e sottovalutato. Terrazzi, tetti piani, coperture industriali: le infiltrazioni sono il problema numero uno e i clienti cercano disperatamente una soluzione. Campagne mirate su Google intercettano chi ha gi\u00e0 l\u2019acqua in casa e vuole risolvere subito. I tuoi tecnici non perderanno pi\u00f9 tempo con curiosi: ogni contatto \u00e8 un\u2019emergenza reale o un progetto concreto.",
-  },
-  {
-    icon: Flame,
-    title: "Bonifica amianto",
-    description:
-      "Settore ad altissimo valore e barriera d\u2019ingresso. Se la tua azienda \u00e8 abilitata alla rimozione amianto, hai un vantaggio competitivo enorme. Le normative spingono sempre pi\u00f9 proprietari a bonificare, e gli incentivi fiscali rendono l\u2019investimento pi\u00f9 accessibile. Creiamo campagne informative che educano sul rischio amianto e posizionano la tua azienda come il partner certificato di riferimento nella zona.",
-  },
-  {
-    icon: Thermometer,
-    title: "Isolamento termico del tetto",
-    description:
-      "Con il Superbonus e le detrazioni fiscali, l\u2019isolamento termico del tetto \u00e8 diventato uno dei servizi pi\u00f9 richiesti. I proprietari cercano risparmio energetico e comfort abitativo. Le nostre campagne combinano l\u2019aspetto tecnico (classe energetica, risparmio in bolletta) con l\u2019aspetto emotivo (casa pi\u00f9 calda d\u2019inverno, pi\u00f9 fresca d\u2019estate), generando contatti pronti a investire.",
-  },
-  {
-    icon: Wrench,
-    title: "Grondaie e lattoneria",
-    description:
-      "Servizio complementare che pu\u00f2 diventare un\u2019importante fonte di fatturato ricorrente. Sostituzione grondaie, riparazione pluviali, lattoneria su misura: lavori con margini interessanti e clienti che tornano. Il nostro sistema genera richieste costanti per questi interventi \u201Cminori\u201D che insieme costruiscono una base solida di fatturato, soprattutto nei periodi di bassa stagione per i rifacimenti completi.",
+    value: "0€",
+    label: "Canone fisso",
+    detail: "Solo provvigione su chiuso",
+    icon: Star,
   },
 ];
 
-const processSteps = [
+const comparisonRows = [
   {
-    step: "01",
-    icon: Search,
-    title: "Analisi del tuo mercato locale",
-    description:
-      "Studiamo la tua zona, i tuoi concorrenti, i tuoi punti di forza e il tipo di lavori su cui vuoi concentrarti. Analizziamo le ricerche online nella tua area per capire esattamente cosa cercano i tuoi potenziali clienti e come intercettarli prima dei concorrenti. Questa fase dura 5-7 giorni e definisce tutta la strategia.",
+    feature: "Modello di pagamento",
+    traditional: "3.000-5.000 €/mese fissi",
+    us: "Solo provvigione su commesse chiuse",
   },
   {
-    step: "02",
-    icon: Target,
-    title: "Costruzione del sistema di acquisizione",
-    description:
-      "Creiamo landing page dedicate per ogni tipo di servizio (rifacimento, impermeabilizzazione, bonifica, isolamento), prepariamo le campagne pubblicitarie su Google e social, e costruiamo il funnel di conversione. Tutto ottimizzato per generare richieste di preventivo da clienti qualificati, non curiosi.",
+    feature: "Conoscenza del settore tetti",
+    traditional: "Zero — oggi tetti, domani pizzerie",
+    us: "Specializzati nell'edilizia dal 2018",
   },
   {
-    step: "03",
-    icon: BarChart3,
-    title: "Lancio e ottimizzazione continua",
-    description:
-      "Attiviamo le campagne e monitoriamo ogni singolo contatto. Nelle prime 72 ore arrivano gi\u00e0 le prime richieste. Ogni settimana ottimizziamo: testiamo nuovi messaggi, aggiustiamo il targeting, miglioriamo le landing page. Il costo per contatto scende, la qualit\u00e0 dei lead sale. Report settimanale con numeri reali, non vanity metrics.",
+    feature: "Qualità dei lead",
+    traditional: "Contatti freddi, curiosi, perditempo",
+    us: "Pre-qualificati con budget e tempistica",
   },
   {
-    step: "04",
-    icon: Handshake,
-    title: "Crescita e scaling",
-    description:
-      "Quando il sistema funziona e il tuo team riesce a gestire il flusso di richieste, scaliamo. Pi\u00f9 budget, pi\u00f9 zone coperte, pi\u00f9 servizi pubblicizzati. Il bello del modello a percentuale: quando cresci tu, cresciamo noi. Non abbiamo interesse a farti spendere di pi\u00f9 \u2014 abbiamo interesse a farti fatturare di pi\u00f9.",
+    feature: "Strategia amianto",
+    traditional: "Non sanno cos'è l'eternit",
+    us: "Campagne dedicate bonifica amianto",
+  },
+  {
+    feature: "Lavoro stagionale",
+    traditional: "Nessun piano anti-stagionalità",
+    us: "Sistema per generare lead 12 mesi/anno",
+  },
+  {
+    feature: "Reportistica",
+    traditional: "Report di vanità: click e impression",
+    us: "Report reali: lead, preventivi, commesse chiuse, €",
+  },
+  {
+    feature: "Allineamento interessi",
+    traditional: "Ti fatturano anche se non vendi nulla",
+    us: "Se non chiudi commesse, non guadagniamo",
+  },
+  {
+    feature: "Risultato medio",
+    traditional: "\"Ci vuole tempo\" (= non funziona)",
+    us: "+€600K per Renova Tetto in 12 mesi",
   },
 ];
 
 const faqs = [
   {
-    question: "Quanto tempo ci vuole per vedere i primi risultati con il marketing per tetti?",
+    question: "Quanto costa lavorare con Marketing Edile per il settore tetti?",
     answer:
-      "I primi contatti qualificati arrivano entro 72 ore dall\u2019attivazione delle campagne. Per\u00f2 un sistema di acquisizione clienti completo richiede 2-3 mesi per raggiungere la piena efficienza. In questo periodo ottimizziamo le campagne, testiamo diversi messaggi e costruiamo un flusso costante di richieste. Il caso Renova Tetto ha generato +\u20AC600.000 di fatturato nei primi 12 mesi, ma i primi cantieri chiusi sono arrivati gi\u00e0 nel primo mese.",
+      "Zero euro fissi. Marketing Edile lavora esclusivamente a provvigione sulle commesse che chiudi grazie ai nostri lead. Non ci sono canoni mensili, setup fee o costi nascosti. L'unico costo a tuo carico è la spesa pubblicitaria (budget per le campagne su Google e Meta), che viene gestita in totale trasparenza. Se non chiudi commesse, non ci devi nulla. Questo modello funziona particolarmente bene per il settore tetti perché il valore medio di una commessa (€15.000-€40.000) genera margini sufficienti a rendere sostenibile la collaborazione fin dal primo cantiere chiuso.",
   },
   {
-    question: "Come funziona il pagamento a percentuale per un\u2019azienda di coperture?",
+    question: "Che tipo di lavori sui tetti riuscite a generare?",
     answer:
-      "Non paghi nessun fisso mensile. Il nostro compenso \u00e8 una percentuale sulle vendite generate dal nostro sistema. Questo significa che se non vendi, non ci paghi. \u00c8 il modello pi\u00f9 equo possibile: il nostro guadagno \u00e8 direttamente legato al tuo. Per questo selezioniamo solo aziende che possono gestire un aumento di lavoro e che hanno un servizio di qualit\u00e0 \u2014 perch\u00e9 se il cliente \u00e8 soddisfatto, tutti vincono.",
+      "Generiamo lead per tutte le tipologie di intervento su coperture: rifacimenti completi del tetto, bonifica e smaltimento amianto, coibentazione e isolamento termico, riparazione infiltrazioni, installazione linee vita, lattoneria, posa pannelli fotovoltaici su tetto. Creiamo campagne specifiche per ogni tipo di intervento, perché chi cerca una riparazione urgente per infiltrazione ha un percorso decisionale completamente diverso da chi pianifica un rifacimento completo. Questa segmentazione è ciò che rende i nostri lead molto più chiudibili rispetto a quelli generici.",
   },
   {
-    question: "Funziona anche per aziende di coperture che lavorano solo nella loro provincia?",
+    question: "Come gestite la stagionalità del lavoro sui tetti?",
     answer:
-      "Assolutamente s\u00ec, anzi \u00e8 il caso ideale. Il nostro sistema di geotargeting ci permette di mostrare le tue campagne solo a persone nella tua zona operativa \u2014 che sia un singolo comune, una provincia o una regione. Per le aziende di coperture il raggio d\u2019azione locale \u00e8 un vantaggio: il cliente vuole qualcuno vicino, che possa intervenire rapidamente. Sfruttiamo questo a tuo favore con campagne iper-localizzate.",
+      "La stagionalità è il problema numero uno delle aziende di coperture — e il motivo per cui il marketing generico fallisce nel vostro settore. Il nostro sistema prevede campagne diverse per ogni periodo dell'anno: in primavera e estate spingiamo rifacimenti completi e bonus edilizi, in autunno intercettiamo chi ha subito danni da maltempo e infiltrazioni, in inverno lavoriamo su coibentazione e isolamento termico. Il risultato è un flusso di lead costante 12 mesi all'anno. Renova Tetto, nostro partner, non ha mai avuto un mese senza cantieri da quando lavora con noi.",
   },
   {
-    question: "Quali tipi di lavori sui tetti generano pi\u00f9 richieste?",
+    question: "In quanto tempo vedrò i primi cantieri dai vostri lead?",
     answer:
-      "I rifacimenti completi del tetto generano i ticket pi\u00f9 alti (15.000-60.000\u20AC+), ma il volume maggiore di richieste arriva dalle impermeabilizzazioni e dalle riparazioni urgenti. La strategia vincente \u00e8 coprire tutti i servizi: le emergenze portano lavoro immediato e clienti che poi tornano per il rifacimento completo. La bonifica amianto e l\u2019isolamento termico sono nicchie ad altissimo valore che pochi pubblicizzano online, quindi la concorrenza \u00e8 bassa e i costi per contatto molto favorevoli.",
+      "I primi lead qualificati arrivano entro 2-3 settimane dall'avvio delle campagne. Il tempo per trasformarli in cantieri aperti dipende dal tuo ciclo di vendita: per interventi urgenti (infiltrazioni, danni) il ciclo è di 1-2 settimane, per rifacimenti pianificati è di 4-8 settimane. La maggior parte dei nostri partner nel settore coperture chiude il primo cantiere entro 30-45 giorni dall'avvio. Il nostro obiettivo è portarti almeno 1-2 commesse chiuse al mese nel primo trimestre, per poi scalare.",
   },
   {
-    question: "Il marketing funziona anche durante i mesi invernali quando i cantieri sono fermi?",
+    question: "Lavorate anche con aziende che fanno bonifica amianto?",
     answer:
-      "I mesi invernali sono perfetti per il marketing, anche se i cantieri rallentano. In inverno le infiltrazioni aumentano e i proprietari cercano soluzioni urgenti. Inoltre, chi pianifica un rifacimento completo per la primavera inizia a informarsi e chiedere preventivi proprio nei mesi freddi. Il nostro sistema lavora tutto l\u2019anno: in inverno generiamo i contatti, in primavera hai gi\u00e0 l\u2019agenda piena. Le aziende che smettono di fare marketing in inverno si ritrovano a rincorrere il lavoro da marzo in poi.",
+      "Assolutamente sì — ed è uno dei settori dove i nostri risultati sono più impressionanti. La bonifica amianto ha ticket medi tra €25.000 e €60.000, il che significa che anche una sola commessa chiusa al mese cambia completamente il fatturato. Creiamo campagne specifiche per intercettare proprietari di immobili con coperture in eternit che devono adeguarsi alla normativa o che vogliono riqualificare l'edificio. Il tasso di chiusura su questi lead è molto alto perché c'è un obbligo normativo e un'urgenza reale.",
+  },
+  {
+    question: "Come fate a generare lead di qualità e non perditempo?",
+    answer:
+      "Il segreto è nel processo di qualificazione a monte. Non ci limitiamo a raccogliere nomi e numeri di telefono. Ogni lead passa attraverso un funnel che filtra: tipo di intervento richiesto, metratura indicativa, tempistica desiderata, budget disponibile, indirizzo dell'immobile. Solo chi supera tutti i criteri viene passato a te. In più, le nostre campagne sono costruite per attrarre chi ha un bisogno reale e urgente — non curiosi. Questo è possibile perché conosciamo il settore: sappiamo quali angoli di comunicazione attraggono clienti pronti a firmare e quali attirano solo perditempo.",
+  },
+  {
+    question: "Cosa succede se i lead non chiudono?",
+    answer:
+      "Se non chiudi commesse, non ci devi nulla — lavoriamo a provvigione, ricordalo. Ma il punto è un altro: il nostro sistema è costruito per farti chiudere. Oltre a generare lead qualificati, ti affianchiamo nella gestione commerciale: script per le chiamate, template per i preventivi, strategie di follow-up. Se un lead non chiude, analizziamo il motivo e ottimizziamo. Ogni settimana rivediamo i numeri insieme: quanti lead, quanti preventivi inviati, quanti chiusi, a che valore. Se qualcosa non funziona, lo correggiamo in tempo reale.",
+  },
+  {
+    question: "Lavorate con altre aziende di tetti nella mia zona?",
+    answer:
+      "No. Garantiamo esclusività territoriale ai nostri partner. Se lavoriamo con te nella tua provincia, non lavoriamo con un tuo concorrente diretto. Questo è fondamentale per il settore tetti dove le zone operative sono ben definite. L'esclusività territoriale è parte del nostro accordo — i lead della tua zona arrivano solo a te. Questo è anche il motivo per cui selezioniamo con attenzione i partner: lavoriamo con un numero limitato di aziende per garantire risultati reali a ciascuna.",
   },
 ];
 
-/* ─── COMPONENT ─── */
+const crossLinks = [
+  {
+    title: "Ristrutturazioni",
+    href: "/settori/ristrutturazioni",
+    description: "Lead per imprese di ristrutturazione edile",
+  },
+  {
+    title: "Serramenti",
+    href: "/settori/serramenti",
+    description: "Clienti per showroom e posatori di infissi",
+  },
+  {
+    title: "Fotovoltaico",
+    href: "/settori/fotovoltaico",
+    description: "Contatti per installatori di impianti solari",
+  },
+  {
+    title: "Impiantisti",
+    href: "/settori/impiantisti",
+    description: "Lead per idraulici, elettricisti e climatizzazione",
+  },
+];
 
-const Tetti = () => {
-  const navigate = useNavigate();
-  const handleCTA = () => navigate("/#candidati");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+/* ══════════════════════════════════════════════════════════
+   COMPONENT
+   ══════════════════════════════════════════════════════════ */
+
+export default function Tetti() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [openFaq, setOpenFaq] = useState<string | undefined>(undefined);
+
+  /* ── JSON-LD ─────────────────────────────────────────── */
+  const serviceSchema = generateServiceSchema({
+    name: "Marketing Rifacimento Tetti — Lead Generation Coperture",
+    description:
+      "Marketing Edile® genera lead qualificati per aziende di rifacimento tetti, bonifica amianto e coperture edili. Solo a provvigione sulle commesse chiuse.",
+    url: `${siteConfig.url}/settori/tetti`,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: siteConfig.url },
+    { name: "Settori", url: `${siteConfig.url}/settori` },
+    { name: "Tetti", url: `${siteConfig.url}/settori/tetti` },
+  ]);
+
+  const faqSchema = generateFAQSchema(
+    faqs.map((f) => ({ question: f.question, answer: f.answer }))
+  );
 
   return (
     <>
       <SEOHead
-        title="Marketing Rifacimento Tetti"
-        description="Lead generation per aziende di rifacimento tetti e coperture. Clienti qualificati, solo a percentuale. Caso studio: +€600k in 12 mesi."
-        keywords={[
-          "marketing tetti",
-          "lead generation coperture",
-          "clienti rifacimento tetti",
-          "pubblicit\u00e0 lattoniere",
-          "marketing coperture edili",
-          "acquisizione clienti tetti",
-        ]}
+        title="Marketing Tetti — Lead per Rifacimento Coperture"
+        description="Lead qualificati per aziende di tetti e coperture. Solo a provvigione. Renova Tetto: +€600K in 12 mesi. Scopri il sistema."
+        keywords={siteConfig.pageKeywords.tetti}
         url={`${siteConfig.url}/settori/tetti`}
-        jsonLd={[
-          generateBreadcrumbSchema([
-            { name: "Home", url: siteConfig.url },
-            { name: "Settori", url: `${siteConfig.url}/settori` },
-            { name: "Tetti", url: `${siteConfig.url}/settori/tetti` },
-          ]),
-          generateFAQSchema(faqs),
-        ]}
+        jsonLd={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
+
       <Navbar />
 
-      <main className="overflow-hidden">
-        {/* ── HERO ── */}
-        <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+      <main className="bg-background min-h-screen">
+        {/* ═══════════════════════════════════════════════
+            1. HERO
+            ═══════════════════════════════════════════════ */}
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+          {/* Background image */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[400px] bg-secondary/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[100px]" />
+            <img
+              src={cantiereImage}
+              alt="Cantiere rifacimento tetto — marketing coperture edili"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
           </div>
+
+          <div className="relative z-10 section-padding w-full">
+            <div className="container-narrow">
+              {/* Badge provvigione */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-full px-5 py-2 mb-8"
+              >
+                <Euro className="w-4 h-4 text-gold" />
+                <span className="text-gold font-semibold text-sm tracking-wide uppercase">
+                  Lavoriamo solo a provvigione — Zero fisso
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.08] mb-6 max-w-4xl"
+              >
+                Marketing Rifacimento Tetti:{" "}
+                <span className="text-gold">
+                  Cantieri Pieni 12 Mesi All'Anno
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="text-lg sm:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed"
+              >
+                Basta dipendere dalle piogge autunnali per riempire l'agenda.
+                Il nostro sistema genera lead qualificati per rifacimenti tetti,
+                bonifica amianto e coperture edili —{" "}
+                <strong className="text-white">
+                  e paghi solo sulle commesse che chiudi.
+                </strong>
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.45 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link to="/#candidati">
+                  <Button variant="gold" size="xl" className="glow-gold group">
+                    Riempi i tuoi cantieri
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to="/casi-studio">
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    className="border-white/20 text-white hover:bg-white/10"
+                  >
+                    Vedi i risultati
+                  </Button>
+                </Link>
+              </motion.div>
+
+              {/* Social proof strip */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="mt-12 flex flex-wrap items-center gap-6 text-sm text-gray-400"
+              >
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-gold" />
+                  <span>Renova Tetto: +€600K in 12 mesi</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-gold" />
+                  <span>47+ aziende edili partner</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-gold" />
+                  <span>€60M+ generati in totale</span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            2. "LA VERITA'" — Why agencies fail roofers
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <AnimatedSection className="text-center mb-16">
+              <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                La verita' che nessuno ti dice
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
+                Ecco perche' la tua agenzia{" "}
+                <span className="text-gold">sta bruciando i tuoi soldi</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Le agenzie generaliste trattano la tua azienda di coperture come
+                se fosse una pizzeria. Non capiscono il tuo settore, non
+                conoscono i tuoi margini, non sanno come funziona una commessa
+                da 20.000 euro. Ecco cosa ti stanno facendo.
+              </p>
+            </AnimatedSection>
+
+            <StaggerContainer className="grid md:grid-cols-2 gap-6">
+              {truthCards.map((card) => (
+                <StaggerItem key={card.title}>
+                  <div className="bg-card border border-border rounded-2xl p-8 h-full hover:border-gold/30 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-5">
+                      <card.icon className="w-6 h-6 text-red-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      {card.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            <AnimatedSection delay={0.3} className="text-center mt-12">
+              <p className="text-lg text-muted-foreground mb-6">
+                Se ti riconosci in anche solo uno di questi punti, stai
+                lasciando{" "}
+                <strong className="text-foreground">
+                  decine di migliaia di euro
+                </strong>{" "}
+                sul tavolo ogni mese.
+              </p>
+              <Link to="/#candidati">
+                <Button variant="gold" size="xl" className="glow-gold group">
+                  Smetti di buttare soldi
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            3. RENOVA TETTO — Case study
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-background">
+          <div className="container-narrow">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left — image + logo */}
+              <AnimatedSection direction="left">
+                <div className="relative rounded-2xl overflow-hidden">
+                  <img
+                    src={teamImage}
+                    alt="Team Marketing Edile — lead generation per aziende di coperture e rifacimento tetti"
+                    className="w-full h-[400px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <img
+                      src={logoRenovaTetto}
+                      alt="Renova Tetto — caso studio marketing rifacimento tetti"
+                      className="h-12 mb-3 brightness-0 invert"
+                    />
+                    <p className="text-white/80 text-sm">
+                      Partner dal 2023 — Settore coperture e bonifica amianto
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+
+              {/* Right — results */}
+              <AnimatedSection direction="right">
+                <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                  Caso studio reale
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-foreground leading-tight mb-6">
+                  Renova Tetto:{" "}
+                  <span className="text-gold">+€600.000</span> in 12 mesi
+                </h2>
+                <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                  Renova Tetto era un'azienda di coperture con lavoro
+                  stagionale. Quattro mesi pieni, otto mesi di sofferenza. Hanno
+                  provato due agenzie — soldi buttati. Poi sono arrivati da noi.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Da lavoro stagionale a cantieri 12 mesi/anno",
+                    "+€600.000 di fatturato generato in 12 mesi",
+                    "Commessa media passata da €12.000 a €22.000",
+                    "Nuova linea bonifica amianto: +€180.000",
+                    "Zero euro di canone fisso pagato a noi",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-gold mt-0.5 shrink-0" />
+                      <span className="text-foreground font-medium">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link to="/casi-studio">
+                  <Button variant="gold" size="xl" className="glow-gold group">
+                    Leggi il caso studio completo
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            4. IL NOSTRO SISTEMA — 4 steps
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <AnimatedSection className="text-center mb-16">
+              <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                Il nostro sistema
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
+                Come riempiamo i cantieri delle aziende di{" "}
+                <span className="text-gold">coperture e tetti</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Non vendiamo click. Non vendiamo "visibilita'". Vendiamo
+                commesse chiuse. Ecco come funziona il sistema che ha generato
+                +€600K per Renova Tetto e milioni per le nostre 47+ aziende
+                partner.
+              </p>
+            </AnimatedSection>
+
+            <StaggerContainer className="grid md:grid-cols-2 gap-8">
+              {systemSteps.map((step) => (
+                <StaggerItem key={step.step}>
+                  <div className="bg-card border border-border rounded-2xl p-8 h-full hover:border-gold/30 transition-colors relative overflow-hidden">
+                    <span className="absolute top-4 right-4 text-6xl font-black text-gold/10">
+                      {step.step}
+                    </span>
+                    <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-5">
+                      <step.icon className="w-6 h-6 text-gold" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            5. STATS
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-background">
+          <div className="container-narrow">
+            <AnimatedSection className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-black text-foreground leading-tight">
+                I numeri parlano.{" "}
+                <span className="text-gold">Le chiacchiere stanno a zero.</span>
+              </h2>
+            </AnimatedSection>
+
+            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {stats.map((stat) => (
+                <StaggerItem key={stat.label}>
+                  <div className="bg-card border border-border rounded-2xl p-6 text-center hover:border-gold/30 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mx-auto mb-4">
+                      <stat.icon className="w-6 h-6 text-gold" />
+                    </div>
+                    <div className="text-3xl sm:text-4xl font-black text-gold mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-foreground font-semibold mb-1">
+                      {stat.label}
+                    </div>
+                    <div className="text-muted-foreground text-sm">
+                      {stat.detail}
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            6. FOUNDER SECTION
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <AnimatedSection direction="left">
+                <div className="relative">
+                  <img
+                    src={floPortrait}
+                    alt="Florin Andriciuc — fondatore Marketing Edile, esperto marketing rifacimento tetti e coperture"
+                    className="rounded-2xl w-full max-w-md mx-auto"
+                  />
+                  <div className="absolute -bottom-4 -right-4 bg-gold text-black rounded-xl px-5 py-3 font-bold text-sm shadow-lg">
+                    Fondatore & CEO
+                  </div>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="right">
+                <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                  Chi c'e' dietro il sistema
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-foreground leading-tight mb-6">
+                  Non sono un marketer che{" "}
+                  <span className="text-gold">gioca a fare l'imprenditore</span>
+                </h2>
+                <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <p>
+                    Mi chiamo <strong className="text-foreground">Florin Andriciuc</strong>.
+                    Possiedo un'azienda di serramenti che ha generato oltre{" "}
+                    <strong className="text-foreground">2 milioni di euro di vendite in 2 anni</strong>{" "}
+                    — con lo stesso sistema che oggi applico alle aziende di
+                    tetti e coperture.
+                  </p>
+                  <p>
+                    Non ti parlo di teoria. Parlo di cantieri, di preventivi, di
+                    clienti difficili, di margini reali. So cosa significa avere
+                    gli operai a casa perche' non ci sono commesse. So cosa
+                    significa chiudere un lavoro da 30.000 euro con un cliente
+                    che tre settimane prima non sapeva nemmeno che esistevi.
+                  </p>
+                  <p>
+                    Per questo{" "}
+                    <strong className="text-foreground">
+                      lavoriamo solo a provvigione
+                    </strong>
+                    : perche' so che il sistema funziona. Se non ti porto
+                    commesse, non guadagno. Punto. Nessuna agenzia che "ci
+                    crede davvero" ti chiederebbe 4.000 euro al mese fissi.
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <Link to="/#candidati">
+                    <Button
+                      variant="gold"
+                      size="xl"
+                      className="glow-gold group"
+                    >
+                      Parla con me direttamente
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            7. COMPARISON TABLE
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-background">
+          <div className="container-narrow">
+            <AnimatedSection className="text-center mb-12">
+              <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                Il confronto
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
+                Agenzia tradizionale vs{" "}
+                <span className="text-gold">Marketing Edile</span>
+              </h2>
+            </AnimatedSection>
+
+            <AnimatedSection>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left p-4 text-muted-foreground font-medium text-sm border-b border-border">
+                        Caratteristica
+                      </th>
+                      <th className="text-left p-4 text-red-400 font-bold text-sm border-b border-border">
+                        <div className="flex items-center gap-2">
+                          <X className="w-4 h-4" />
+                          Agenzia Tradizionale
+                        </div>
+                      </th>
+                      <th className="text-left p-4 text-gold font-bold text-sm border-b border-border">
+                        <div className="flex items-center gap-2">
+                          <Check className="w-4 h-4" />
+                          Marketing Edile
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row, i) => (
+                      <tr
+                        key={row.feature}
+                        className={
+                          i % 2 === 0 ? "bg-card/50" : "bg-transparent"
+                        }
+                      >
+                        <td className="p-4 text-foreground font-semibold text-sm border-b border-border/50">
+                          {row.feature}
+                        </td>
+                        <td className="p-4 text-muted-foreground text-sm border-b border-border/50">
+                          {row.traditional}
+                        </td>
+                        <td className="p-4 text-foreground font-medium text-sm border-b border-border/50">
+                          {row.us}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2} className="text-center mt-10">
+              <Link to="/prezzi">
+                <Button
+                  variant="outline"
+                  size="xl"
+                  className="border-gold/30 text-gold hover:bg-gold/10 group"
+                >
+                  Scopri come funziona il modello a provvigione
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            8. FAQ
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow max-w-3xl">
+            <AnimatedSection className="text-center mb-12">
+              <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                Domande frequenti
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-foreground leading-tight mb-6">
+                Tutto quello che devi sapere sul{" "}
+                <span className="text-gold">
+                  marketing per aziende di tetti
+                </span>
+              </h2>
+            </AnimatedSection>
+
+            <AnimatedSection>
+              <Accordion
+                type="single"
+                collapsible
+                value={openFaq}
+                onValueChange={setOpenFaq}
+                className="space-y-4"
+              >
+                {faqs.map((faq, i) => (
+                  <AccordionItem
+                    key={i}
+                    value={`faq-${i}`}
+                    className="bg-card border border-border rounded-2xl px-6 overflow-hidden"
+                  >
+                    <AccordionTrigger className="text-foreground font-semibold text-left py-5 hover:no-underline">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            9. FINAL CTA
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-background relative overflow-hidden">
+          {/* Glow effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="container-narrow relative z-10 text-center">
             <AnimatedSection>
-              <span className="inline-block px-4 py-2 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-6 uppercase tracking-wider">
-                Settore Tetti & Coperture
+              <span className="text-gold font-semibold text-sm tracking-widest uppercase mb-4 block">
+                Basta aspettare le piogge
               </span>
-              <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-                Marketing per Aziende di{" "}
-                <span className="text-secondary">Rifacimento Tetti e Coperture</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4">
-                Portiamo clienti qualificati alla tua azienda di coperture. Ogni settimana, tutto l'anno.
-                Solo a percentuale sulle vendite generate.
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6 max-w-3xl mx-auto">
+                La tua azienda di coperture merita{" "}
+                <span className="text-gold">cantieri pieni tutto l'anno</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
+                Ogni mese che passa senza un sistema di lead generation e' un
+                mese di commesse perse — commesse da 15.000, 25.000, 40.000
+                euro che vanno ai tuoi concorrenti. Non ti chiediamo un centesimo
+                di fisso. Paghi solo quando chiudi.
               </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-                Niente fisso mensile, niente vincoli. Il nostro guadagno dipende dal tuo fatturato.
-                Se non vendi, non ci devi nulla. Punto.
+              <p className="text-foreground font-semibold text-lg mb-8">
+                Una sola commessa chiusa al mese cambia tutto. E il sistema ne
+                genera molte di piu'.
               </p>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg px-8 py-6 rounded-xl font-bold"
-                  onClick={handleCTA}
-                >
-                  Candidati ora
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-border text-foreground text-lg px-8 py-6 rounded-xl font-bold"
-                  onClick={() => navigate("/casi-studio")}
-                >
-                  Vedi i risultati
-                </Button>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* ── PROBLEMS ── */}
-        <section className="section-padding bg-card">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <span className="inline-block px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-red-400 text-sm font-medium mb-4 uppercase tracking-wider">
-                  I problemi
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Perch\u00e9 la tua azienda di coperture{" "}
-                  <span className="text-red-400">non cresce</span> come dovrebbe
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Questi sono i quattro problemi che vediamo in quasi tutte le aziende di rifacimento tetti
-                  che ci contattano. Se ti riconosci in almeno due, il nostro sistema fa al caso tuo.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {problems.map((problem, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <motion.div
-                    className="bg-background border border-border rounded-2xl p-8 h-full hover:border-red-500/30 transition-colors"
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.2 }}
+                <Link to="/#candidati">
+                  <Button variant="gold" size="xl" className="glow-gold group">
+                    Candidati ora — Zero rischio
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to="/servizi">
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    className="border-gold/30 text-gold hover:bg-gold/10"
                   >
-                    <div className="w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center justify-center mb-6">
-                      <problem.icon className="w-7 h-7 text-red-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">{problem.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{problem.description}</p>
-                  </motion.div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── SOLUTION ── */}
-        <section className="section-padding bg-background">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-4 uppercase tracking-wider">
-                  La soluzione
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Come generiamo clienti per la tua azienda di{" "}
-                  <span className="text-secondary">coperture</span>
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Un sistema completo che lavora 24/7 per portarti richieste di preventivo da proprietari
-                  di casa e amministratori che hanno bisogno di rifare il tetto. Non lead freddi: contatti
-                  caldi, pronti a fissare il sopralluogo.
-                </p>
+                    Scopri i servizi
+                  </Button>
+                </Link>
               </div>
-            </AnimatedSection>
 
-            <div className="space-y-8">
-              {solutions.map((solution, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="bg-card border border-border rounded-2xl p-8 md:p-10">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-14 h-14 bg-secondary/10 border border-secondary/30 rounded-xl flex items-center justify-center">
-                          <solution.icon className="w-7 h-7 text-secondary" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground mb-3">{solution.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-
-            {/* Case study callout */}
-            <AnimatedSection delay={0.4}>
-              <div className="mt-12 bg-secondary/5 border border-secondary/20 rounded-2xl p-8 md:p-10 text-center">
-                <Star className="w-10 h-10 text-secondary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-foreground mb-3">
-                  Caso studio: Renova Tetto
-                </h3>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                  Azienda di rifacimento tetti nel Nord Italia. In 12 mesi di collaborazione con Marketing
-                  Edile hanno generato <span className="text-secondary font-bold">+€600.000 di fatturato</span> partendo
-                  da zero presenza online. Oggi hanno 3 squadre operative e l'agenda piena per i prossimi
-                  4 mesi. Il passaparola da solo non li avrebbe mai portati a questi numeri.
-                </p>
-                <Button
-                  variant="outline"
-                  className="border-secondary/30 text-secondary hover:bg-secondary/10"
-                  onClick={() => navigate("/casi-studio")}
-                >
-                  Leggi il caso studio completo
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
+              <p className="text-muted-foreground text-sm mt-6">
+                Selezioniamo massimo 3 nuove aziende di coperture al mese.
+                Esclusivita' territoriale garantita.
+              </p>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* ── STATS ── */}
-        <section className="section-padding bg-navy-light">
+        {/* ═══════════════════════════════════════════════
+            10. CROSS-LINKS
+            ═══════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light border-t border-border">
           <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-                  I numeri parlano <span className="text-secondary">pi\u00f9 forte</span> delle promesse
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                  Risultati reali, misurabili, verificabili. Non proiezioni, non stime \u2014 fatturato vero
-                  generato per aziende edili come la tua.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {stats.map((stat, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="bg-card border border-border rounded-2xl p-6 text-center">
-                    <stat.icon className="w-8 h-8 text-secondary mx-auto mb-3" />
-                    <div className="text-3xl md:text-4xl font-black text-secondary mb-1">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm font-bold text-foreground mb-1">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">{stat.detail}</div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── TYPES OF ROOFING WORK ── */}
-        <section className="section-padding bg-background">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-4 uppercase tracking-wider">
-                  Specializzazioni
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Generiamo clienti per{" "}
-                  <span className="text-secondary">ogni tipo</span> di lavoro sui tetti
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Non importa se fai rifacimenti completi, impermeabilizzazioni o bonifica amianto. Il nostro
-                  sistema si adatta ai servizi che offri e genera richieste specifiche per ognuno. Ecco le
-                  aree in cui i nostri clienti ottengono i migliori risultati.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="space-y-6">
-              {roofingTypes.map((type, index) => (
-                <AnimatedSection key={index} delay={index * 0.08}>
-                  <div className="bg-card border border-border rounded-2xl p-8 hover:border-secondary/30 transition-colors">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-14 h-14 bg-secondary/10 border border-secondary/30 rounded-xl flex items-center justify-center">
-                          <type.icon className="w-7 h-7 text-secondary" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground mb-3">{type.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{type.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── PROCESS ── */}
-        <section className="section-padding bg-card">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-4 uppercase tracking-wider">
-                  Il processo
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Come funziona, <span className="text-secondary">passo dopo passo</span>
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Dalla prima analisi al primo cantiere generato dal marketing: ecco cosa succede quando
-                  inizi a lavorare con Marketing Edile. Nessuna sorpresa, nessun costo nascosto.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="space-y-8">
-              {processSteps.map((step, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="flex gap-6 md:gap-8">
-                    <div className="flex-shrink-0 flex flex-col items-center">
-                      <div className="w-16 h-16 bg-secondary/10 border-2 border-secondary/30 rounded-2xl flex items-center justify-center">
-                        <span className="text-secondary font-black text-lg">{step.step}</span>
-                      </div>
-                      {index < processSteps.length - 1 && (
-                        <div className="w-0.5 h-full bg-border mt-4 min-h-[40px]" />
-                      )}
-                    </div>
-                    <div className="pb-8">
-                      <div className="flex items-center gap-3 mb-3">
-                        <step.icon className="w-5 h-5 text-secondary" />
-                        <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── FAQ ── */}
-        <section className="section-padding bg-background">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-4 uppercase tracking-wider">
-                  Domande frequenti
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  Tutto quello che vuoi sapere sul{" "}
-                  <span className="text-secondary">marketing per tetti</span>
-                </h2>
-              </div>
-            </AnimatedSection>
-
-            <div className="max-w-3xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <AnimatedSection key={index} delay={index * 0.08}>
-                  <div className="bg-card border border-border rounded-2xl overflow-hidden">
-                    <button
-                      className="w-full flex items-center justify-between p-6 text-left"
-                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    >
-                      <div className="flex items-center gap-4 pr-4">
-                        <HelpCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-                        <span className="font-bold text-foreground">{faq.question}</span>
-                      </div>
-                      <ChevronDown
-                        className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${
-                          openFaq === index ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: openFaq === index ? "auto" : 0,
-                        opacity: openFaq === index ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 pt-0">
-                        <p className="text-muted-foreground leading-relaxed pl-9">{faq.answer}</p>
-                      </div>
-                    </motion.div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── INTERNAL LINKS ── */}
-        <section className="py-12 bg-card border-t border-border">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="flex flex-wrap justify-center gap-4">
+            <AnimatedSection className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl font-black text-foreground">
+                Lavoriamo anche con altri settori dell'edilizia
+              </h2>
+              <p className="text-muted-foreground mt-3">
+                Scopri come portiamo clienti qualificati a{" "}
                 <Link
                   to="/servizi"
-                  className="px-5 py-2.5 bg-background border border-border rounded-full text-sm font-medium text-foreground hover:border-secondary/30 hover:text-secondary transition-colors"
+                  className="text-gold hover:underline"
                 >
-                  Tutti i servizi
-                </Link>
-                <Link
-                  to="/casi-studio"
-                  className="px-5 py-2.5 bg-background border border-border rounded-full text-sm font-medium text-foreground hover:border-secondary/30 hover:text-secondary transition-colors"
-                >
-                  Casi studio
-                </Link>
-                <Link
-                  to="/prezzi"
-                  className="px-5 py-2.5 bg-background border border-border rounded-full text-sm font-medium text-foreground hover:border-secondary/30 hover:text-secondary transition-colors"
-                >
-                  Prezzi e modello
-                </Link>
-                <Link
-                  to="/contattaci"
-                  className="px-5 py-2.5 bg-background border border-border rounded-full text-sm font-medium text-foreground hover:border-secondary/30 hover:text-secondary transition-colors"
-                >
-                  Contattaci
-                </Link>
-              </div>
+                  tutti i settori
+                </Link>{" "}
+                dell'edilizia.
+              </p>
             </AnimatedSection>
-          </div>
-        </section>
 
-        {/* ── CTA ── */}
-        <section className="section-padding bg-background">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="bg-card border border-border rounded-2xl p-10 md:p-16 text-center relative overflow-hidden">
-                <div className="absolute inset-0">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-secondary/5 rounded-full blur-[100px]" />
-                </div>
-                <div className="relative z-10">
-                  <Phone className="w-12 h-12 text-secondary mx-auto mb-6" />
-                  <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                    Pronto a riempire l'agenda della tua{" "}
-                    <span className="text-secondary">azienda di coperture</span>?
-                  </h2>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
-                    Selezioniamo solo un numero limitato di aziende per zona, per non creare concorrenza
-                    tra i nostri stessi clienti. Verifica se la tua zona \u00e8 ancora disponibile.
-                  </p>
-                  <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                    La candidatura \u00e8 gratuita e senza impegno. Analizziamo il tuo mercato locale e ti
-                    diciamo onestamente se possiamo aiutarti e quali risultati aspettarti. Se non siamo
-                    il partner giusto, te lo diciamo subito.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg px-10 py-6 rounded-xl font-bold"
-                      onClick={handleCTA}
-                    >
-                      Verifica disponibilit\u00e0 zona
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-6">
-                    <Check className="w-4 h-4 inline mr-1 text-secondary" />
-                    Nessun costo fisso &middot;{" "}
-                    <Check className="w-4 h-4 inline mr-1 text-secondary" />
-                    Solo a percentuale &middot;{" "}
-                    <Check className="w-4 h-4 inline mr-1 text-secondary" />
-                    Primi contatti in 72h
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
+            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {crossLinks.map((link) => (
+                <StaggerItem key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="block bg-card border border-border rounded-2xl p-6 hover:border-gold/30 transition-colors group"
+                  >
+                    <h3 className="text-foreground font-bold mb-2 group-hover:text-gold transition-colors">
+                      {link.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {link.description}
+                    </p>
+                    <ArrowRight className="w-4 h-4 text-gold mt-3 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            {/* Internal SEO links */}
+            <div className="mt-10 text-center text-sm text-muted-foreground space-x-4">
+              <Link to="/blog" className="hover:text-gold transition-colors">
+                Blog
+              </Link>
+              <span>|</span>
+              <Link
+                to="/casi-studio"
+                className="hover:text-gold transition-colors"
+              >
+                Casi Studio
+              </Link>
+              <span>|</span>
+              <Link
+                to="/servizi"
+                className="hover:text-gold transition-colors"
+              >
+                Servizi
+              </Link>
+              <span>|</span>
+              <Link to="/prezzi" className="hover:text-gold transition-colors">
+                Prezzi
+              </Link>
+            </div>
           </div>
         </section>
       </main>
@@ -651,6 +916,4 @@ const Tetti = () => {
       <Footer />
     </>
   );
-};
-
-export default Tetti;
+}

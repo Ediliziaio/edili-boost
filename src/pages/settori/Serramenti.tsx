@@ -1,365 +1,412 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import {
   ArrowRight,
   Check,
+  X,
   AlertTriangle,
   Target,
   Users,
-  Video,
   Search,
   BarChart3,
   TrendingUp,
   Eye,
   ShieldCheck,
-  MessageSquare,
   DoorOpen,
   Zap,
   Clock,
-  ChevronDown,
   Star,
   MapPin,
   Building2,
+  Phone,
+  BadgeEuro,
+  ShieldX,
+  FileWarning,
+  CircleDollarSign,
+  Handshake,
+  Flame,
+  Award,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { siteConfig, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/seo";
+import {
+  siteConfig,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateServiceSchema,
+} from "@/lib/seo";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+import heroWindowsImage from "@/assets/hero-windows.jpg";
+import showroomImage from "@/assets/showroom.jpg";
+import floPortrait from "@/assets/flo-portrait.jpg";
+import cantiereImage from "@/assets/cantiere.jpg";
+import teamImage from "@/assets/team.jpg";
 
 // ─── FAQ Data ──────────────────────────────────────────
 const faqs = [
   {
-    question: "Quanto costa il marketing per serramentisti con Marketing Edile?",
+    question:
+      "Quanto costa il marketing per serramentisti con Marketing Edile?",
     answer:
-      "Marketing Edile lavora esclusivamente a percentuale sulle vendite generate. Non ci sono canoni fissi, abbonamenti o costi anticipati. Paghi solo quando chiudi una commessa grazie ai contatti che ti portiamo. Questo significa rischio zero per te: se non vendiamo, non guadagniamo nemmeno noi. Per i serramentisti questo modello è particolarmente vantaggioso perché il valore medio di una commessa infissi (tra i 5.000 e i 30.000 euro) permette margini che rendono sostenibile la collaborazione fin dal primo mese.",
+      "Zero. Niente. Nada. Non ci sono canoni fissi, non ci sono abbonamenti, non ci sono costi anticipati. Lavoriamo ESCLUSIVAMENTE a provvigione sulle vendite che chiudi grazie ai nostri contatti. Se non vendi, non ci devi un centesimo. L'unico investimento che sostieni è la spesa pubblicitaria (che resta tua e costruisce la TUA visibilità, non la nostra). Questo è il motivo per cui le agenzie tradizionali ci odiano: il nostro modello dimostra che il loro canone fisso da €3.000-5.000/mese è una truffa legalizzata.",
   },
   {
-    question: "Che tipo di clienti portate ai serramentisti?",
+    question: "Che tipo di contatti portate ai serramentisti?",
     answer:
-      "Generiamo contatti di proprietari di immobili che stanno attivamente cercando di sostituire o installare infissi e serramenti. Non parliamo di curiosi o perditempo: attraverso campagne mirate su Facebook, Instagram e Google, intercettiamo persone che hanno un bisogno reale e urgente — ristrutturazioni in corso, bonus edilizi, problemi di isolamento termico o acustico. Ogni lead viene pre-qualificato prima di essere passato al tuo team commerciale, così il tuo tempo viene investito solo su trattative con alta probabilità di chiusura.",
+      "Proprietari di immobili che stanno ATTIVAMENTE cercando di sostituire o installare infissi e serramenti. Non curiosi. Non perditempo. Non gente che vuole 'solo un'informazione'. Attraverso campagne chirurgiche su Facebook, Instagram e Google, intercettiamo persone con un bisogno reale e urgente: ristrutturazioni in corso, problemi di isolamento termico o acustico, case nuove da completare. Ogni lead viene pre-qualificato PRIMA di arrivare a te. Il tuo tempo viene investito solo su trattative con alta probabilità di chiusura. Risultato? Tasso di chiusura medio dei nostri lead: 15-25%, contro il 3-5% dei contatti generici.",
   },
   {
     question: "In quanto tempo vedrò i primi risultati?",
     answer:
-      "La maggior parte dei nostri partner nel settore serramenti vede i primi contatti qualificati entro 2-4 settimane dall'avvio delle campagne. I risultati in termini di fatturato dipendono dalla velocità del tuo ciclo di vendita: con infissi, il tempo medio dalla richiesta di preventivo alla chiusura è di 2-6 settimane. Aziende come Teda Infissi hanno raggiunto un flusso costante di 30-40 mila euro al mese di vendite generate dalle nostre campagne. Factory S.r.l.s ha generato +60.000 euro di venduto nel primo mese di collaborazione.",
+      "I primi contatti qualificati arrivano entro 2-4 settimane dall'avvio delle campagne. I risultati in termini di fatturato dipendono dalla velocità del tuo ciclo di vendita (con infissi, il tempo medio dalla richiesta al contratto è 2-6 settimane). Teda Infissi ha raggiunto €30-40K/mese di vendite costanti dalle nostre campagne. Factory S.r.l.s ha generato +€60.000 di venduto nel PRIMO mese. Non promettiamo miracoli overnight, ma i numeri parlano chiaro: chi lavora bene i contatti, fattura già dal primo mese.",
   },
   {
-    question: "Funziona anche per showroom piccoli o appena avviati?",
+    question:
+      "Funziona anche per showroom piccoli o appena avviati?",
     answer:
-      "Assolutamente sì. Il nostro sistema è pensato per scalare: funziona sia per il piccolo showroom locale che per l'azienda strutturata con più sedi. L'importante è che tu abbia un prodotto di qualità e la capacità di gestire i contatti che arrivano. Analizziamo la tua situazione specifica nella valutazione gratuita iniziale e ti diciamo onestamente se sei in target. Non lavoriamo con tutti: selezioniamo i partner con cui possiamo davvero generare risultati.",
+      "Sì, a patto che tu abbia un prodotto di qualità e la capacità di gestire i contatti che arrivano. Il nostro sistema scala: funziona per il piccolo showroom locale come per l'azienda con più sedi. Analizziamo la tua situazione nella valutazione iniziale e ti diciamo ONESTAMENTE se sei in target. Non lavoriamo con tutti. Se il tuo prodotto è scarso o il tuo team commerciale non sa chiudere, non ti prendiamo. Non per snobismo, ma perché se tu non vendi, noi non guadagniamo. Il nostro filtro è il tuo vantaggio.",
   },
   {
-    question: "Cosa vi distingue da una normale agenzia di marketing?",
+    question:
+      "Cosa vi distingue da una normale agenzia di marketing?",
     answer:
-      "Tre cose fondamentali. Primo: lavoriamo SOLO a percentuale sulle vendite, quindi il nostro interesse è allineato al tuo — se non vendi, non guadagniamo. Secondo: siamo specializzati nel settore edile e serramenti, non siamo un'agenzia generalista che oggi fa marketing per il ristorante e domani per il dentista. Conosciamo il linguaggio, i tempi decisionali e le obiezioni tipiche del tuo mercato. Terzo: il nostro fondatore possiede un'azienda di serramenti con oltre 2 milioni di euro di vendite in 2 anni — sappiamo cosa significa vendere infissi perché lo facciamo in prima persona.",
+      "Tutto. Primo: lavoriamo SOLO a provvigione. Le agenzie tradizionali ti spillano €3.000-5.000/mese qualunque cosa succeda. Noi guadagniamo solo se TU guadagni. Secondo: siamo specializzati ESCLUSIVAMENTE nel settore edile. Non facciamo marketing per ristoranti, dentisti o parrucchieri. Conosciamo la differenza tra un monoblocco e un controtelaio, tra un PVC e un legno-alluminio. Terzo — e questo è il colpo di grazia: il nostro fondatore POSSIEDE un'azienda di serramenti. €400K nei primi 3 mesi. Oltre €2M in 2 anni. SENZA sconto in fattura. Sappiamo cosa significa vendere infissi perché lo facciamo ogni giorno.",
+  },
+  {
+    question:
+      "Come funziona il modello a provvigione? Quanto pagate di provvigione?",
+    answer:
+      "È semplice: ti portiamo contatti qualificati di persone che vogliono comprare infissi. Tu li lavori, fai il sopralluogo, presenti il preventivo, chiudi la vendita. Sulla commessa chiusa, riconosci a Marketing Edile una percentuale concordata. La percentuale varia in base al settore, al valore medio delle commesse e alla tua struttura — la definiamo insieme nella fase di valutazione. La spesa pubblicitaria è a tuo carico (tipicamente €1.000-3.000/mese a seconda della zona), ma costruisce la TUA brand awareness, non la nostra.",
+  },
+  {
+    question:
+      "Coprite anche la mia zona? Lavorate in tutta Italia?",
+    answer:
+      "Lavoriamo con showroom di serramenti in tutta Italia. Anzi, le campagne geolocalizzate sono il nostro pane: targetizziamo un raggio specifico attorno al tuo showroom per intercettare proprietari nella tua zona. Che tu sia a Milano, a Cagliari o in un paese di 20.000 abitanti, il sistema funziona. L'unico requisito è che ci sia un bacino di utenza sufficiente. Lo verifichiamo nella valutazione gratuita.",
+  },
+  {
+    question:
+      "E se i contatti non sono buoni o non chiudo vendite?",
+    answer:
+      "Se non chiudi, noi non guadagniamo. Punto. Non c'è rischio per te. Detto questo, monitoriamo OGNI lead: qualità, tempistiche, obiezioni, tasso di risposta. Se i contatti non convertono, è nel NOSTRO interesse capire perché e sistemare. A volte il problema è nella campagna (e lo correggiamo). A volte è nel processo commerciale (e ti aiutiamo a migliorarlo). Il nostro successo dipende dal tuo: questo allineamento di interessi è ciò che rende il modello imbattibile.",
   },
 ];
 
-// ─── Problems Data ──────────────────────────────────────
-const problems = [
+// ─── Ugly Truth Cards ──────────────────────────────────
+const uglyTruthCards = [
+  {
+    icon: BadgeEuro,
+    title: "€3.000-5.000/mese buttati",
+    description:
+      "Le agenzie ti spillano un canone fisso ogni mese. Pioggia o sole, che tu venda o no, il loro conto corrente si riempie. Il tuo? Quello dipende.",
+    accent: "border-red-500/40 bg-red-500/5",
+    iconColor: "text-red-400",
+  },
+  {
+    icon: FileWarning,
+    title: "PDF pieni di aria fritta",
+    description:
+      "Ti mandano report con impressioni, clic, reach. Numeri bellissimi. Peccato che il tuo showroom sia vuoto e il telefono muto. Le impressioni non pagano le bollette.",
+    accent: "border-red-500/40 bg-red-500/5",
+    iconColor: "text-red-400",
+  },
+  {
+    icon: ShieldX,
+    title: "Zero conoscenza del settore",
+    description:
+      "L'agenzia che ti segue ieri faceva marketing per un ristorante di sushi, domani lo farà per un dentista. Non sa la differenza tra un monoblocco e un controtelaio. Non ha MAI messo piede in uno showroom.",
+    accent: "border-red-500/40 bg-red-500/5",
+    iconColor: "text-red-400",
+  },
   {
     icon: AlertTriangle,
-    title: "Preventivi ignorati",
+    title: "Nessun skin in the game",
     description:
-      "Passi ore a fare sopralluoghi e preventivi dettagliati, ma il 70% dei potenziali clienti sparisce senza darti una risposta. Tempo perso su persone che non erano realmente pronte ad acquistare.",
-  },
-  {
-    icon: BarChart3,
-    title: "Concorrenza sul prezzo",
-    description:
-      "Il cliente confronta 5-6 preventivi e sceglie il più economico, senza capire la differenza di qualità. Ti ritrovi a competere con chi monta infissi da discount, erodendo i tuoi margini.",
-  },
-  {
-    icon: Users,
-    title: "Dipendenza dal passaparola",
-    description:
-      "Il passaparola funziona, ma è imprevedibile. Un mese hai 10 richieste, il mese dopo zero. Non puoi pianificare fatturato e investimenti se il flusso clienti dipende dal caso.",
-  },
-  {
-    icon: Target,
-    title: "Lead non qualificati",
-    description:
-      "Hai provato qualche agenzia di marketing ma i contatti che arrivavano erano curiosi, perditempo o persone con budget ridicoli. Hai speso soldi senza vedere un ritorno concreto.",
-  },
-];
-
-// ─── Solution Data ──────────────────────────────────────
-const solutions = [
-  {
-    icon: Target,
-    title: "Lead generation specifica per serramenti",
-    description:
-      "Campagne mirate su Facebook, Instagram e Google che intercettano proprietari di casa in fase di ristrutturazione o sostituzione infissi. Ogni contatto viene pre-qualificato: budget, tempistiche, tipo di intervento. Ricevi solo appuntamenti con persone pronte a comprare.",
-    link: "/servizi",
-    linkText: "Scopri i nostri servizi",
-  },
-  {
-    icon: Search,
-    title: "SEO locale e Google Business",
-    description:
-      "Quando un proprietario cerca \"serramenti vicino a me\" o \"showroom infissi [città]\", il tuo nome deve essere il primo che trova. Ottimizziamo la tua presenza su Google Maps, il tuo profilo Google Business e il posizionamento organico per le ricerche locali a più alta intenzione d'acquisto.",
-    link: "/blog/marketing-locale-serramentisti-google-business-seo",
-    linkText: "Leggi la guida SEO locale",
-  },
-  {
-    icon: Video,
-    title: "Strategia video per showroom",
-    description:
-      "I video sono lo strumento più potente per vendere infissi: mostrano la qualità del prodotto, il prima/dopo delle installazioni, le testimonianze dei clienti soddisfatti. Creiamo script professionali, editiamo i contenuti e li distribuiamo sulle piattaforme giuste per generare fiducia e richieste.",
-    link: "/servizi",
-    linkText: "Scopri la produzione video",
-  },
-  {
-    icon: Eye,
-    title: "Posizionamento premium del tuo brand",
-    description:
-      "Basta competere sul prezzo. Costruiamo un posizionamento che comunica il valore reale dei tuoi serramenti: isolamento termoacustico, risparmio energetico, estetica, durabilità. Il cliente arriva già convinto della tua qualità e disposto a pagare il giusto prezzo.",
-    link: "/prezzi",
-    linkText: "Vedi il nostro modello",
-  },
-];
-
-// ─── Stats Data ──────────────────────────────────────
-const stats = [
-  {
-    value: "€30-40k",
-    label: "al mese",
-    detail: "Teda Infissi: fatturato mensile costante da campagne",
-  },
-  {
-    value: "+€100k",
-    label: "in 3 mesi",
-    detail: "S'infissi: venduto generato in Sardegna",
-  },
-  {
-    value: "+€60k",
-    label: "in 1 mese",
-    detail: "Factory S.r.l.s: vendite nel primo mese",
-  },
-  {
-    value: "47+",
-    label: "aziende edili",
-    detail: "Partner seguiti con risultati documentati",
+      "Se le tue campagne non portano risultati, a loro non cambia NIENTE. Il canone fisso arriva comunque. Zero incentivo a farti vendere. Il loro obiettivo è tenerti come cliente, non farti fatturare.",
+    accent: "border-red-500/40 bg-red-500/5",
+    iconColor: "text-red-400",
   },
 ];
 
 // ─── Process Steps ──────────────────────────────────────
-const steps = [
+const processSteps = [
   {
     number: "01",
-    title: "Analisi",
+    title: "Valutazione Brutale",
     description:
-      "Studiamo il tuo mercato locale, i concorrenti diretti, il tuo posizionamento attuale e il profilo del tuo cliente ideale. Identifichiamo le opportunità specifiche per il tuo showroom di serramenti e definiamo gli obiettivi di fatturato raggiungibili.",
+      "Non perdiamo tempo in convenevoli. Analizziamo il tuo showroom, il tuo mercato, i tuoi concorrenti, il tuo processo commerciale. Ti diciamo la verità nuda e cruda: dove stai sbagliando, cosa funziona, e se possiamo davvero aiutarti. Se non sei in target, te lo diciamo subito. Non lavoriamo con tutti.",
     icon: Search,
     color: "text-blue-400",
     bg: "bg-blue-400/10 border-blue-400/30",
   },
   {
     number: "02",
-    title: "Strategia",
+    title: "Strategia Chirurgica",
     description:
-      "Definiamo il piano d'azione: quali canali usare, che tipo di campagne lanciare, quale messaggio comunicare. Tutto calibrato sul settore serramenti e sulle caratteristiche specifiche del tuo territorio e della tua offerta. Creiamo landing page ottimizzate per la conversione.",
+      "Definiamo il piano d'attacco: quali canali usare, che messaggio comunicare, quale pubblico colpire. Landing page ad alta conversione, script video che vendono, campagne calibrate sul TUO territorio. Niente template. Niente copia-incolla. Ogni strategia è costruita su misura per il tuo showroom di serramenti.",
     icon: Target,
-    color: "text-secondary",
-    bg: "bg-secondary/10 border-secondary/30",
+    color: "text-gold",
+    bg: "bg-gold/10 border-gold/30",
   },
   {
     number: "03",
-    title: "Campagne",
+    title: "Lancio e Ottimizzazione",
     description:
-      "Lanciamo le campagne pubblicitarie su Facebook, Instagram e Google. Ogni annuncio è testato e ottimizzato quotidianamente per massimizzare il ritorno. Produciamo contenuti video, gestiamo i social e ottimizziamo il tuo profilo Google Business per le ricerche locali.",
+      "Le campagne partono su Facebook, Instagram e Google. Ma non ci fermiamo al lancio: ottimizziamo OGNI GIORNO. A/B test su creatività, copy, audience. Monitoriamo il costo per lead in tempo reale. Se qualcosa non performa, lo cambiamo prima che bruci budget. Il tuo investimento pubblicitario viene spremuto fino all'ultima goccia.",
     icon: Zap,
     color: "text-emerald-400",
     bg: "bg-emerald-400/10 border-emerald-400/30",
   },
   {
     number: "04",
-    title: "Risultati",
+    title: "Lead e Fatturato",
     description:
-      "Ricevi contatti pre-qualificati pronti per il preventivo. Monitoriamo ogni metrica: costo per lead, tasso di conversione, fatturato generato. Confronto settimanale con il tuo referente dedicato per analizzare i dati e migliorare continuamente le performance.",
+      "Ricevi contatti di proprietari che VOGLIONO comprare serramenti. Pre-qualificati. Con budget. Con tempistiche reali. Il tuo team commerciale lavora solo su trattative serie. Confronto settimanale con il tuo referente dedicato per analizzare ogni numero e spingere sempre di più. Il ciclo si ripete, il fatturato cresce.",
     icon: TrendingUp,
-    color: "text-secondary",
-    bg: "bg-secondary/10 border-secondary/30",
+    color: "text-gold",
+    bg: "bg-gold/10 border-gold/30",
   },
 ];
 
-// ─── Case Studies Preview ──────────────────────────────
-const caseStudies = [
+// ─── Comparison Table ──────────────────────────────────
+const comparisonRows = [
   {
-    company: "Teda Infissi",
-    highlight: "€30-40k/mese",
-    description:
-      "Da un investimento minimo in campagne a un flusso costante di 30-40 mila euro al mese. Dopo 2 anni di collaborazione, Teda Infissi ha trasformato completamente il proprio sistema di acquisizione clienti.",
-    testimonial:
-      "Con un investimento minimo in sponsorizzate, dopo 2 anni abbiamo un flusso costante di clienti da 30-40 mila euro al mese.",
-    author: "Luana Agostini",
-    role: "Titolare",
+    feature: "Costo mensile",
+    traditional: "€3.000-5.000/mese fissi",
+    us: "€0 fissi — solo provvigione sulle vendite",
   },
   {
-    company: "S'infissi",
-    highlight: "+€100k in 3 mesi",
-    description:
-      "Showroom sardo che competeva in un mercato locale saturo. Con campagne geolocalizzate e un posizionamento come riferimento territoriale, ha generato oltre 100.000 euro di venduto in soli 3 mesi.",
-    testimonial:
-      "In soli 3 mesi di collaborazione abbiamo generato oltre 100.000 euro di venduto.",
-    author: "Titolare S'infissi",
-    role: "Titolare",
+    feature: "Rischio per te",
+    traditional: "Tutto tuo. Paghi anche se non vendi nulla",
+    us: "Zero. Se non vendi, non ci devi niente",
   },
   {
-    company: "Factory S.r.l.s",
-    highlight: "+€60k in 1 mese",
-    description:
-      "Servivano contatti pronti all'acquisto in tempi brevi. Con campagne ad alta conversione e targeting su proprietari in ristrutturazione, ha raggiunto 60.000 euro di vendite aggiuntive nel primo mese.",
-    testimonial:
-      "In un solo mese di collaborazione abbiamo generato 60.000 euro di venduto in più.",
-    author: "Titolare Factory",
-    role: "Titolare",
+    feature: "Conoscenza del settore",
+    traditional: "Generalisti. Oggi infissi, domani pizzerie",
+    us: "SOLO edilizia. Il fondatore ha un'azienda di serramenti",
+  },
+  {
+    feature: "Tipo di report",
+    traditional: "PDF con impressioni e clic (vanity metrics)",
+    us: "Lead ricevuti, preventivi fatti, vendite chiuse, fatturato generato",
+  },
+  {
+    feature: "Interesse nel tuo successo",
+    traditional: "Basso. Il canone arriva comunque",
+    us: "Totale. Se non vendi, non guadagniamo",
+  },
+  {
+    feature: "Qualità dei contatti",
+    traditional: "Generici, non qualificati",
+    us: "Pre-qualificati: budget, tempistiche, tipo intervento",
+  },
+  {
+    feature: "Risultati documentati",
+    traditional: "Promesse vaghe",
+    us: "€60M+ generati. 47+ partner. Casi studio reali",
+  },
+  {
+    feature: "Durata contratto",
+    traditional: "Vincoli a 6-12 mesi",
+    us: "Nessun vincolo. Resti perché funziona, non perché sei obbligato",
   },
 ];
 
-// ─── FAQ Accordion Item ──────────────────────────────
-const FAQItem = ({
-  question,
-  answer,
-  isOpen,
-  onToggle,
-}: {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onToggle: () => void;
-}) => (
-  <motion.div
-    className="border border-border rounded-2xl overflow-hidden"
-    initial={false}
-  >
-    <button
-      onClick={onToggle}
-      className="w-full flex items-center justify-between p-6 text-left hover:bg-card/50 transition-colors"
-    >
-      <span className="text-lg font-bold text-foreground pr-4">{question}</span>
-      <motion.div
-        animate={{ rotate: isOpen ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="shrink-0"
-      >
-        <ChevronDown className="w-5 h-5 text-secondary" />
-      </motion.div>
-    </button>
-    <motion.div
-      initial={false}
-      animate={{
-        height: isOpen ? "auto" : 0,
-        opacity: isOpen ? 1 : 0,
-      }}
-      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="overflow-hidden"
-    >
-      <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-        {answer}
-      </div>
-    </motion.div>
-  </motion.div>
-);
+// ─── Cross-links ──────────────────────────────────────
+const crossLinks = [
+  {
+    title: "Ristrutturazioni",
+    description:
+      "Lead generation per imprese di ristrutturazione. Stesso modello a provvigione, stessi risultati.",
+    href: "/settori/ristrutturazioni",
+    icon: Building2,
+  },
+  {
+    title: "Fotovoltaico",
+    description:
+      "Contatti qualificati per aziende di impianti fotovoltaici. Il solare è in boom, cavalca l'onda.",
+    href: "/settori/fotovoltaico",
+    icon: Zap,
+  },
+  {
+    title: "Impiantisti",
+    description:
+      "Marketing per impiantisti termoidraulici. Caldaie, climatizzazione, pompe di calore.",
+    href: "/settori/impiantisti",
+    icon: Flame,
+  },
+  {
+    title: "Tetti e Coperture",
+    description:
+      "Lead generation per aziende di coperture, lattoneria e impermeabilizzazione.",
+    href: "/settori/tetti",
+    icon: Star,
+  },
+];
 
-// ─── Main Page ──────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+// MAIN COMPONENT
+// ═══════════════════════════════════════════════════════
 const Serramenti = () => {
   const navigate = useNavigate();
   const handleCTA = () => navigate("/#candidati");
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       <SEOHead
-        title="Marketing per Serramentisti"
-        description="Marketing per serramentisti e showroom infissi. Lead qualificati, campagne mirate, paghi solo a percentuale sulle vendite. Risultati documentati."
+        title="Marketing Serramenti | Solo a Provvigione"
+        description="Marketing per serramentisti a provvigione. Zero canone fisso. Paghi solo sulle vendite chiuse. €60M+ generati per 47+ aziende edili."
         keywords={[
           "marketing serramenti",
           "marketing infissi",
-          "lead generation serramentisti",
+          "lead generation serramenti",
           "pubblicità showroom infissi",
           "clienti per serramentisti",
+          "marketing serramentisti",
           "vendere infissi online",
+          "lead generation infissi",
+          "marketing per showroom serramenti",
         ]}
         url={`${siteConfig.url}/settori/serramenti`}
         jsonLd={[
           generateBreadcrumbSchema([
             { name: "Home", url: siteConfig.url },
             { name: "Settori", url: `${siteConfig.url}/settori` },
-            { name: "Serramenti", url: `${siteConfig.url}/settori/serramenti` },
+            {
+              name: "Serramenti",
+              url: `${siteConfig.url}/settori/serramenti`,
+            },
           ]),
           generateFAQSchema(faqs),
+          generateServiceSchema({
+            name: "Marketing per Serramentisti e Showroom Infissi",
+            description:
+              "Lead generation a provvigione per serramentisti. Campagne Facebook, Instagram e Google per portare clienti qualificati al tuo showroom di infissi. Paghi solo sulle vendite chiuse.",
+            url: `${siteConfig.url}/settori/serramenti`,
+          }),
         ]}
       />
       <Navbar />
+
       <main className="overflow-hidden">
         {/* ════════════════════════════════════════════════════
-            HERO SECTION
+            SECTION 1 — HERO
         ════════════════════════════════════════════════════ */}
-        <section className="pt-32 pb-20 px-6 relative overflow-hidden">
-          {/* Background gradient blobs */}
-          <div className="absolute inset-0 bg-background">
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[400px] bg-secondary/8 rounded-full blur-[120px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[350px] bg-blue-500/5 rounded-full blur-[100px]" />
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img
+              src={heroWindowsImage}
+              alt="Installazione serramenti moderni - marketing serramenti Marketing Edile"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
           </div>
 
-          <div className="container-narrow relative z-10 text-center">
+          <div className="container-narrow relative z-10 text-center py-32 px-6">
             <AnimatedSection>
-              <span className="inline-block px-4 py-2 bg-secondary/10 border border-secondary/30 rounded-full text-secondary text-sm font-medium mb-6 uppercase tracking-wider">
-                <DoorOpen className="w-4 h-4 inline-block mr-2 -mt-0.5" />
-                Settore Serramenti & Infissi
-              </span>
+              {/* Provvigione badge */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gold/15 border-2 border-gold/50 rounded-full text-gold font-black text-sm md:text-base uppercase tracking-widest mb-8 glow-gold"
+              >
+                <CircleDollarSign className="w-5 h-5" />
+                LAVORIAMO SOLO A PROVVIGIONE — ZERO CANONE FISSO
+              </motion.div>
 
-              <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-                CLIENTI QUALIFICATI PER IL TUO{" "}
-                <span className="text-secondary">SHOWROOM DI SERRAMENTI</span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-8 leading-[1.1]">
+                Il Tuo Showroom Merita{" "}
+                <span className="text-gold">Clienti Veri</span>,<br />
+                Non{" "}
+                <span className="line-through text-muted-foreground/50">
+                  Report di Impressioni
+                </span>
               </h1>
 
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 leading-relaxed">
-                Sei stanco di preventivi che finiscono nel nulla, clienti che scelgono
-                solo in base al prezzo e mesi in cui il telefono non squilla? Marketing
-                Edile porta al tuo showroom di infissi contatti{" "}
-                <strong className="text-foreground">pre-qualificati e pronti ad acquistare</strong>.
-                Paghi solo a percentuale sulle vendite chiuse.
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-6 leading-relaxed">
+                Sei stanco di pagare agenzie che ti mostrano{" "}
+                <strong className="text-foreground">clic e impressioni</strong>{" "}
+                mentre il tuo showroom resta vuoto? Noi portiamo{" "}
+                <strong className="text-gold">
+                  proprietari pronti a comprare serramenti
+                </strong>{" "}
+                direttamente al tuo banco preventivi.{" "}
+                <span className="text-foreground font-bold">
+                  E se non vendono, non ci devi niente.
+                </span>
               </p>
 
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-                Nessun canone fisso. Nessun rischio. Solo risultati misurabili — come
-                per le{" "}
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-4">
+                Il marketing serramenti non deve essere un costo fisso. Deve essere
+                un investimento che si ripaga da solo. Come per le{" "}
                 <Link
                   to="/casi-studio"
-                  className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors"
+                  className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors font-semibold"
                 >
                   47+ aziende edili
                 </Link>{" "}
-                che ci hanno scelto.
+                che hanno generato{" "}
+                <span className="text-gold font-bold">€60M+</span> con noi.
               </p>
 
-              <Button
-                variant="gold"
-                size="xl"
-                className="glow-gold"
-                onClick={handleCTA}
-              >
-                Richiedi Valutazione Gratuita
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              {/* Urgency line */}
+              <p className="text-sm text-red-400 font-semibold uppercase tracking-wider mb-10 flex items-center justify-center gap-2">
+                <Clock className="w-4 h-4" />
+                Accettiamo solo 3 nuovi partner serramenti al mese — verifica
+                se c'è posto nella tua zona
+              </p>
 
-              {/* Social proof mini */}
-              <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button
+                  variant="gold"
+                  size="xl"
+                  className="glow-gold text-lg px-10"
+                  onClick={handleCTA}
+                >
+                  Candidati Ora — È Gratuito
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+                <Link to="/prezzi">
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    className="border-border text-muted-foreground hover:text-foreground"
+                  >
+                    Come Funziona il Modello
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Trust proof */}
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-muted-foreground text-sm">
                 <span className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-secondary" /> Zero costi
-                  fissi
+                  <ShieldCheck className="w-4 h-4 text-gold" />
+                  Zero anticipo
                 </span>
                 <span className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-secondary" /> Primi lead in 2-4
-                  settimane
+                  <ShieldCheck className="w-4 h-4 text-gold" />
+                  Nessun vincolo contrattuale
                 </span>
                 <span className="flex items-center gap-2">
-                  <Star className="w-4 h-4 text-secondary" /> 4.9/5 dai partner
+                  <ShieldCheck className="w-4 h-4 text-gold" />
+                  Paghi solo sulle vendite
                 </span>
               </div>
             </AnimatedSection>
@@ -367,267 +414,233 @@ const Serramenti = () => {
         </section>
 
         {/* ════════════════════════════════════════════════════
-            PROBLEMS SECTION
+            SECTION 2 — THE UGLY TRUTH
         ════════════════════════════════════════════════════ */}
-        <section className="section-padding bg-card">
+        <section className="section-padding bg-background relative">
           <div className="container-narrow">
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="inline-block px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-semibold uppercase tracking-wider mb-4">
-                  I problemi che conosci bene
+              <div className="text-center mb-16">
+                <span className="inline-block px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full text-red-400 text-sm font-bold mb-6 uppercase tracking-wider">
+                  <AlertTriangle className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  La Brutta Verità
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  PERCHE IL TUO SHOWROOM{" "}
-                  <span className="text-secondary">NON CRESCE</span> COME DOVREBBE
+                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+                  Le Agenzie di Marketing Ti Stanno{" "}
+                  <span className="text-red-400">Derubando</span>
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Questi sono i problemi che sentiamo ogni giorno dai serramentisti
-                  italiani. Se ti riconosci in almeno due di questi, il nostro sistema
-                  e fatto apposta per te.
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Lo diciamo senza mezzi termini. Se stai pagando un canone
+                  fisso a un'agenzia per il marketing del tuo showroom
+                  infissi, stai buttando soldi nel cesso. Ecco perché.
                 </p>
               </div>
             </AnimatedSection>
 
-            <StaggerContainer
-              className="grid md:grid-cols-2 gap-6"
-              staggerDelay={0.1}
-            >
-              {problems.map((problem) => (
-                <StaggerItem key={problem.title}>
+            <StaggerContainer className="grid md:grid-cols-2 gap-6">
+              {uglyTruthCards.map((card) => (
+                <StaggerItem key={card.title}>
                   <motion.div
-                    whileHover={{
-                      borderColor: "hsl(var(--secondary))",
-                    }}
-                    className="p-6 bg-background border border-border rounded-2xl h-full transition-shadow duration-300 hover:shadow-[0_8px_30px_-10px_hsl(var(--secondary)/0.15)]"
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className={`p-8 rounded-2xl border ${card.accent} h-full`}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-center shrink-0">
-                        <problem.icon className="w-6 h-6 text-red-400" />
+                    <card.icon className={`w-10 h-10 ${card.iconColor} mb-4`} />
+                    <h3 className="text-xl font-black text-foreground mb-3">
+                      {card.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {card.description}
+                    </p>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            <AnimatedSection delay={0.3}>
+              <div className="mt-12 p-8 rounded-2xl bg-card border border-border text-center">
+                <p className="text-xl md:text-2xl text-foreground font-bold mb-2">
+                  Quant'è costata finora la tua "strategia digitale"?
+                </p>
+                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                  €3.000/mese x 12 mesi ={" "}
+                  <span className="text-red-400 font-black">
+                    €36.000 all'anno
+                  </span>{" "}
+                  in canoni fissi. Quante commesse hai chiuso da quei lead?
+                  Se la risposta è "poche" o "non lo so"... il problema è
+                  chiaro.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════
+            SECTION 3 — SHOWROOM PHOTO + STATS
+        ════════════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light relative overflow-hidden">
+          <div className="container-narrow">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Image side */}
+              <AnimatedSection direction="left">
+                <div className="relative rounded-2xl overflow-hidden">
+                  <img
+                    src={showroomImage}
+                    alt="Showroom serramenti Marketing Edile - lead generation infissi con risultati reali"
+                    className="w-full h-[500px] object-cover rounded-2xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+
+                  {/* Stats overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-gold/20">
+                        <p className="text-gold font-black text-2xl">€2M+</p>
+                        <p className="text-muted-foreground text-xs">
+                          Vendite nostre in 2 anni
+                        </p>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">
-                          {problem.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {problem.description}
+                      <div className="bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-gold/20">
+                        <p className="text-gold font-black text-2xl">€400K</p>
+                        <p className="text-muted-foreground text-xs">
+                          Primi 3 mesi senza bonus
                         </p>
                       </div>
                     </div>
-                  </motion.div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════
-            SOLUTION SECTION
-        ════════════════════════════════════════════════════ */}
-        <section className="section-padding bg-background">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
-                  La soluzione
-                </span>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  COME{" "}
-                  <span className="text-secondary">MARKETING EDILE</span>{" "}
-                  RISOLVE QUESTI PROBLEMI
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Un sistema completo pensato specificamente per serramentisti e
-                  showroom di infissi. Non strategie generiche: ogni azione e
-                  calibrata sul tuo settore, il tuo territorio e i tuoi obiettivi
-                  di fatturato.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <StaggerContainer
-              className="grid md:grid-cols-2 gap-8"
-              staggerDelay={0.12}
-            >
-              {solutions.map((solution) => (
-                <StaggerItem key={solution.title}>
-                  <motion.div
-                    whileHover={{
-                      borderColor: "hsl(var(--secondary))",
-                    }}
-                    className="p-6 md:p-8 bg-card border border-border rounded-2xl h-full transition-shadow duration-300 hover:shadow-[0_8px_30px_-10px_hsl(var(--secondary)/0.15)]"
-                  >
-                    <div className="w-12 h-12 bg-secondary/10 border border-secondary/30 rounded-xl flex items-center justify-center mb-4">
-                      <solution.icon className="w-6 h-6 text-secondary" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">
-                      {solution.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      {solution.description}
-                    </p>
-                    <Link
-                      to={solution.link}
-                      className="inline-flex items-center gap-1 text-secondary text-sm font-semibold hover:underline underline-offset-4 transition-colors"
-                    >
-                      {solution.linkText}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </motion.div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-
-            {/* Extra paragraph for SEO */}
-            <AnimatedSection className="mt-12">
-              <div className="p-6 md:p-8 bg-card border border-secondary/20 rounded-2xl">
-                <p className="text-muted-foreground leading-relaxed">
-                  Il settore dei serramenti in Italia vale oltre <strong className="text-foreground">15 miliardi di euro</strong> e
-                  la domanda di sostituzione infissi e in costante crescita grazie agli
-                  incentivi fiscali e alla crescente attenzione all'efficienza energetica.
-                  Tuttavia, la maggior parte dei serramentisti fatica a intercettare questa
-                  domanda online. Il <strong className="text-foreground">74% dei proprietari di casa</strong> inizia
-                  la ricerca di un fornitore di infissi su Google o sui social media —
-                  se il tuo showroom non e visibile dove cercano i tuoi potenziali clienti,
-                  stai lasciando fatturato sul tavolo. Il nostro{" "}
-                  <Link
-                    to="/servizi"
-                    className="text-secondary underline underline-offset-4 hover:text-secondary/80"
-                  >
-                    sistema di marketing integrato
-                  </Link>{" "}
-                  copre ogni fase del percorso d'acquisto: dalla prima ricerca su Google
-                  fino all'appuntamento in showroom.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════
-            STATS SECTION
-        ════════════════════════════════════════════════════ */}
-        <section className="py-16 px-6 bg-card border-y border-border">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
-                  NUMERI <span className="text-secondary">REALI</span> NEL SETTORE
-                  SERRAMENTI
-                </h2>
-                <p className="text-muted-foreground max-w-xl mx-auto">
-                  Risultati documentati dei nostri partner nel settore infissi e
-                  serramenti. Non promesse: dati verificabili.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <StaggerContainer
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
-              staggerDelay={0.08}
-            >
-              {stats.map((stat) => (
-                <StaggerItem key={stat.label}>
-                  <div className="text-center p-6 bg-background border border-border rounded-2xl hover:border-secondary/40 transition-colors">
-                    <p className="text-3xl md:text-4xl font-black text-secondary mb-1">
-                      {stat.value}
-                    </p>
-                    <p className="text-sm font-semibold text-foreground mb-2">
-                      {stat.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground">{stat.detail}</p>
                   </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                </div>
+              </AnimatedSection>
 
-            <AnimatedSection className="mt-8 text-center">
-              <p className="text-sm text-muted-foreground">
-                Vuoi vedere tutti i casi studio?{" "}
-                <Link
-                  to="/casi-studio"
-                  className="text-secondary font-semibold underline underline-offset-4 hover:text-secondary/80"
-                >
-                  Scopri i risultati completi
-                </Link>
-              </p>
-            </AnimatedSection>
+              {/* Text side */}
+              <AnimatedSection direction="right">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <DoorOpen className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Non Siamo Consulenti. Siamo Serramentisti.
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 leading-tight">
+                  Abbiamo Uno Showroom{" "}
+                  <span className="text-gold">VERO</span>. E Fatturiamo{" "}
+                  <span className="text-gold">DAVVERO</span>.
+                </h2>
+                <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <p>
+                    Sai qual è la differenza tra noi e qualsiasi altra agenzia
+                    di marketing per serramenti? <strong className="text-foreground">Noi vendiamo infissi.</strong>
+                  </p>
+                  <p>
+                    Il nostro fondatore ha aperto un'azienda di serramenti e
+                    ha fatturato <strong className="text-gold">€400.000 nei primi 3 mesi</strong>.
+                    Senza sconto in fattura. Senza bonus 110%. Solo marketing
+                    e vendita pura.
+                  </p>
+                  <p>
+                    In 2 anni, <strong className="text-gold">oltre €2 milioni di vendite</strong>.
+                    Il sistema che ti proponiamo non è teoria da manuale di
+                    marketing. È lo STESSO sistema che usiamo per vendere i
+                    NOSTRI serramenti, ogni singolo giorno.
+                  </p>
+                  <p className="text-foreground font-bold">
+                    Quando un'agenzia ti dice "sappiamo come vendere infissi",
+                    chiedigli quanti ne hanno venduti loro. La risposta ti
+                    farà capire tutto.
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <Button
+                    variant="gold"
+                    size="xl"
+                    className="glow-gold"
+                    onClick={handleCTA}
+                  >
+                    Voglio Questo Sistema
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </div>
+              </AnimatedSection>
+            </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════════
-            HOW IT WORKS
+            SECTION 4 — IL NOSTRO SISTEMA (4 Steps)
         ════════════════════════════════════════════════════ */}
         <section className="section-padding bg-background">
           <div className="container-narrow">
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
-                  Il processo
+              <div className="text-center mb-16">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <Target className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Il Nostro Sistema
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  COME FUNZIONA:{" "}
-                  <span className="text-secondary">4 STEP</span> PER RIEMPIRE
-                  IL TUO SHOWROOM
+                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+                  Come Portiamo{" "}
+                  <span className="text-gold">Clienti Qualificati</span> al
+                  Tuo Showroom di Serramenti
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Un percorso strutturato e testato su decine di aziende nel settore
-                  serramenti. Dall'analisi iniziale ai primi contatti qualificati in
-                  poche settimane.
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Non è magia. È un processo testato su oltre 47 aziende
+                  edili e affinato con milioni di euro di budget gestito. 4
+                  fasi. Risultati misurabili.
                 </p>
               </div>
             </AnimatedSection>
 
-            <StaggerContainer
-              className="grid md:grid-cols-2 gap-6"
-              staggerDelay={0.1}
-            >
-              {steps.map((step) => (
-                <StaggerItem key={step.number}>
-                  <div className="relative p-6 md:p-8 bg-card border border-border rounded-2xl h-full">
-                    {/* Step number watermark */}
-                    <span className="absolute top-4 right-6 text-6xl font-black text-border/50 select-none">
+            <div className="grid md:grid-cols-2 gap-8">
+              {processSteps.map((step, index) => (
+                <AnimatedSection key={step.number} delay={index * 0.15}>
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className={`p-8 rounded-2xl border ${step.bg} h-full relative overflow-hidden`}
+                  >
+                    {/* Large step number background */}
+                    <span className="absolute -top-4 -right-2 text-[120px] font-black text-foreground/[0.03] leading-none select-none">
                       {step.number}
                     </span>
+
                     <div className="relative z-10">
-                      <div
-                        className={`w-12 h-12 ${step.bg} border rounded-xl flex items-center justify-center mb-4`}
-                      >
-                        <step.icon className={`w-6 h-6 ${step.color}`} />
+                      <div className="flex items-center gap-4 mb-4">
+                        <div
+                          className={`w-12 h-12 rounded-xl ${step.bg} border flex items-center justify-center`}
+                        >
+                          <step.icon className={`w-6 h-6 ${step.color}`} />
+                        </div>
+                        <div>
+                          <span className={`text-sm font-bold ${step.color} uppercase tracking-wider`}>
+                            Fase {step.number}
+                          </span>
+                          <h3 className="text-xl font-black text-foreground">
+                            {step.title}
+                          </h3>
+                        </div>
                       </div>
-                      <h3 className={`text-xl font-bold ${step.color} mb-3`}>
-                        {step.title}
-                      </h3>
                       <p className="text-muted-foreground leading-relaxed">
                         {step.description}
                       </p>
                     </div>
-                  </div>
-                </StaggerItem>
+                  </motion.div>
+                </AnimatedSection>
               ))}
-            </StaggerContainer>
+            </div>
 
-            {/* Why it works for serramenti */}
-            <AnimatedSection className="mt-12">
-              <div className="p-6 md:p-8 bg-gradient-to-br from-secondary/10 via-background to-secondary/5 border border-secondary/30 rounded-2xl">
-                <h3 className="text-xl font-bold text-foreground mb-4">
-                  Perche questo processo funziona per i serramentisti?
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {[
-                    "Il valore medio per commessa (5-30k euro) giustifica l'investimento in marketing",
-                    "Il ciclo di vendita e tracciabile: dal click al preventivo firmato",
-                    "Il targeting geografico permette di coprire esattamente il tuo raggio d'azione",
-                    "I contenuti video in showroom convertono fino a 3x di piu delle sole foto",
-                    "La SEO locale porta traffico organico gratuito e costante nel tempo",
-                    "Il modello a percentuale allinea i nostri interessi ai tuoi risultati",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-5 h-5 bg-secondary/20 border border-secondary/30 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-secondary" />
-                      </div>
-                      <span className="text-foreground/80 text-sm">{item}</span>
-                    </div>
-                  ))}
+            <AnimatedSection delay={0.6}>
+              <div className="mt-12 text-center">
+                <p className="text-muted-foreground text-lg mb-6">
+                  Vuoi capire nel dettaglio come funziona e quanto costa?
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link to="/servizi">
+                    <Button variant="outline" size="xl" className="border-gold/30 text-gold hover:bg-gold/10">
+                      Scopri i Servizi
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </Link>
+                  <Link to="/prezzi">
+                    <Button variant="outline" size="xl" className="border-border text-muted-foreground hover:text-foreground">
+                      Vedi i Prezzi
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </AnimatedSection>
@@ -635,262 +648,345 @@ const Serramenti = () => {
         </section>
 
         {/* ════════════════════════════════════════════════════
-            CASE STUDIES PREVIEW
+            SECTION 5 — STATS with Background Image
         ════════════════════════════════════════════════════ */}
-        <section className="section-padding bg-card">
-          <div className="container-narrow">
+        <section className="relative py-24 overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img
+              src={cantiereImage}
+              alt="Cantiere edile con installazione serramenti - risultati marketing infissi"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-background/92" />
+          </div>
+
+          <div className="container-narrow relative z-10">
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
-                  Risultati documentati
+              <div className="text-center mb-16">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <BarChart3 className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Numeri Reali, Non Promesse
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  SERRAMENTISTI CHE HANNO{" "}
-                  <span className="text-secondary">GIA SCELTO</span> MARKETING
-                  EDILE
+                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+                  I Risultati Parlano.{" "}
+                  <span className="text-gold">Noi li Dimostriamo.</span>
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Non parliamo di teoria. Ecco cosa hanno ottenuto aziende reali nel
-                  settore infissi e serramenti lavorando con noi.
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Questi non sono numeri inventati per impressionarti. Sono
+                  risultati documentati, verificabili, generati per aziende
+                  reali di serramenti e infissi.
                 </p>
               </div>
             </AnimatedSection>
 
-            <StaggerContainer
-              className="grid md:grid-cols-3 gap-6"
-              staggerDelay={0.1}
-            >
-              {caseStudies.map((cs) => (
-                <StaggerItem key={cs.company}>
-                  <div className="bg-background border border-border rounded-2xl overflow-hidden h-full flex flex-col hover:border-secondary/40 transition-colors">
-                    {/* Header */}
-                    <div className="p-6 border-b border-border">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 bg-secondary/10 border border-secondary/20 rounded-lg flex items-center justify-center">
-                          <Building2 className="w-5 h-5 text-secondary" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-foreground">
-                            {cs.company}
-                          </h3>
-                          <span className="text-xs text-muted-foreground">
-                            Infissi e Serramenti
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-3xl font-black text-secondary">
-                          {cs.highlight}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Body */}
-                    <div className="p-6 flex-1">
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                        {cs.description}
-                      </p>
-                      <div className="p-3 bg-secondary/5 border border-secondary/10 rounded-lg">
-                        <p className="text-xs text-foreground/80 italic">
-                          "{cs.testimonial}"
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          -- {cs.author}, {cs.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  value: "€60M+",
+                  label: "Fatturato Generato",
+                  detail: "Per i nostri partner edili in tutta Italia",
+                },
+                {
+                  value: "47+",
+                  label: "Aziende Partner",
+                  detail: "Serramentisti, imprese edili, installatori",
+                },
+                {
+                  value: "€30-40K",
+                  label: "Al Mese — Teda Infissi",
+                  detail: "Flusso costante di vendite da campagne",
+                },
+                {
+                  value: "+€60K",
+                  label: "Primo Mese — Factory",
+                  detail: "Venduto aggiuntivo dal primo mese",
+                },
+              ].map((stat) => (
+                <StaggerItem key={stat.label}>
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-card/80 backdrop-blur-sm border border-gold/20 rounded-2xl p-6 text-center h-full"
+                  >
+                    <p className="text-3xl md:text-4xl font-black text-gold mb-2">
+                      {stat.value}
+                    </p>
+                    <p className="text-foreground font-bold text-sm mb-1">
+                      {stat.label}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      {stat.detail}
+                    </p>
+                  </motion.div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
 
-            <AnimatedSection className="mt-10 text-center">
-              <Link to="/casi-studio">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-secondary/40 text-secondary hover:bg-secondary/10"
-                >
-                  Vedi tutti i casi studio
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
+            {/* Case study teaser */}
+            <AnimatedSection delay={0.4}>
+              <div className="mt-12 grid md:grid-cols-3 gap-6">
+                {[
+                  {
+                    company: "Teda Infissi",
+                    result: "€30-40K/mese",
+                    quote:
+                      "Con un investimento minimo in sponsorizzate, dopo 2 anni abbiamo un flusso costante di clienti da 30-40 mila euro al mese.",
+                    author: "Luana Agostini, Titolare",
+                  },
+                  {
+                    company: "S'infissi",
+                    result: "+€100K in 3 mesi",
+                    quote:
+                      "In soli 3 mesi di collaborazione abbiamo generato oltre 100.000 euro di venduto nella nostra zona.",
+                    author: "Titolare S'infissi",
+                  },
+                  {
+                    company: "Factory S.r.l.s",
+                    result: "+€60K in 1 mese",
+                    quote:
+                      "In un solo mese di collaborazione abbiamo generato 60.000 euro di venduto in più rispetto alla media.",
+                    author: "Titolare Factory S.r.l.s",
+                  },
+                ].map((cs) => (
+                  <motion.div
+                    key={cs.company}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-card border border-border rounded-2xl p-6"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-foreground font-bold">
+                        {cs.company}
+                      </span>
+                      <span className="text-gold font-black text-lg">
+                        {cs.result}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm italic mb-4 leading-relaxed">
+                      "{cs.quote}"
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      — {cs.author}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="mt-8 text-center">
+                <Link to="/casi-studio">
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    className="border-gold/30 text-gold hover:bg-gold/10"
+                  >
+                    Vedi Tutti i Casi Studio
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
             </AnimatedSection>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════════
-            ADDITIONAL SEO CONTENT
+            SECTION 6 — FOUNDER
+        ════════════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <div className="grid lg:grid-cols-5 gap-12 items-center">
+              {/* Photo */}
+              <AnimatedSection direction="left" className="lg:col-span-2">
+                <div className="relative">
+                  <img
+                    src={floPortrait}
+                    alt="Florin Andriciuc fondatore Marketing Edile - esperto marketing serramenti e infissi"
+                    className="w-full max-w-md mx-auto rounded-2xl object-cover aspect-[3/4]"
+                  />
+                  <div className="absolute -bottom-4 -right-4 bg-gold/10 border border-gold/30 rounded-2xl p-4 backdrop-blur-sm">
+                    <p className="text-gold font-black text-sm">
+                      Fondatore & CEO
+                    </p>
+                    <p className="text-foreground font-bold text-lg">
+                      Florin Andriciuc
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+
+              {/* Story */}
+              <AnimatedSection direction="right" className="lg:col-span-3">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <Award className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Chi Sta Dietro al Sistema
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 leading-tight">
+                  "Ho Testato Tutto Su Me Stesso{" "}
+                  <span className="text-gold">Prima di Proporlo a Te</span>"
+                </h2>
+                <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <p>
+                    Non sono il classico "guru del marketing" che ti parla dal
+                    suo Mac in una stanza d'albergo. Sono un imprenditore che
+                    ha costruito un'azienda di serramenti{" "}
+                    <strong className="text-foreground">
+                      partendo da zero e portandola a €2M+ in 2 anni
+                    </strong>
+                    .
+                  </p>
+                  <p>
+                    Ho fatto €400.000 nei primi 3 mesi. Senza sconto in
+                    fattura. Senza bonus 110%. Solo marketing a risposta
+                    diretta e un sistema di vendita che funziona.
+                  </p>
+                  <p>
+                    Poi ho pensato:{" "}
+                    <em className="text-foreground">
+                      "Se funziona così bene per me, perché non replicarlo per
+                      altri serramentisti?"
+                    </em>{" "}
+                    È nato Marketing Edile. Oggi, con il mio team, abbiamo
+                    generato{" "}
+                    <strong className="text-gold">
+                      oltre €60 milioni di fatturato
+                    </strong>{" "}
+                    per i nostri partner.
+                  </p>
+                  <p className="text-foreground font-bold text-xl border-l-4 border-gold pl-6">
+                    Il mio rischio è il tuo rischio. Il mio guadagno dipende
+                    dal tuo guadagno. Per questo lavoro solo a provvigione: se
+                    non porti a casa risultati, io non merito un centesimo.
+                  </p>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center">
+                      <Building2 className="w-5 h-5 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-foreground font-bold text-sm">
+                        Proprietario
+                      </p>
+                      <p className="text-muted-foreground text-xs">
+                        Azienda serramenti attiva
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center">
+                      <TrendingUp className="w-5 h-5 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-foreground font-bold text-sm">
+                        €60M+
+                      </p>
+                      <p className="text-muted-foreground text-xs">
+                        Generati per i partner
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-foreground font-bold text-sm">
+                        47+ Partner
+                      </p>
+                      <p className="text-muted-foreground text-xs">
+                        In tutta Italia
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════
+            SECTION 7 — COMPARISON TABLE
         ════════════════════════════════════════════════════ */}
         <section className="section-padding bg-background">
           <div className="container-narrow">
             <AnimatedSection>
-              <div className="max-w-3xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-6">
-                  Marketing per Serramentisti:{" "}
-                  <span className="text-secondary">
-                    perche e diverso dal marketing generico
-                  </span>
-                </h2>
-
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <p>
-                    Vendere serramenti e infissi non e come vendere scarpe online. Il
-                    cliente che deve sostituire le finestre di casa investe in media tra
-                    i 5.000 e i 30.000 euro: una decisione importante che richiede
-                    tempo, fiducia e competenza. Per questo il marketing per
-                    serramentisti richiede un approccio completamente diverso da quello
-                    che propongono le agenzie generaliste.
-                  </p>
-                  <p>
-                    Il percorso d'acquisto di chi cerca infissi nuovi inizia quasi
-                    sempre online: una ricerca su Google per confrontare materiali e
-                    prezzi, un video su YouTube per capire le differenze tra PVC,
-                    alluminio e legno, un post su Facebook che mostra il prima e dopo di
-                    un'installazione. Se il tuo showroom non e presente in ognuno di
-                    questi touchpoint, stai perdendo clienti ogni giorno.
-                  </p>
-                  <p>
-                    Marketing Edile ha sviluppato un sistema specifico per il settore
-                    serramenti che copre l'intero funnel di vendita:{" "}
-                    <strong className="text-foreground">
-                      campagne pubblicitarie mirate
-                    </strong>{" "}
-                    per intercettare proprietari in fase di ristrutturazione,{" "}
-                    <strong className="text-foreground">
-                      contenuti video professionali
-                    </strong>{" "}
-                    per mostrare la qualita dei tuoi prodotti,{" "}
-                    <strong className="text-foreground">
-                      landing page ottimizzate
-                    </strong>{" "}
-                    per convertire il traffico in appuntamenti, e{" "}
-                    <strong className="text-foreground">SEO locale</strong> per
-                    dominare le ricerche nella tua zona.
-                  </p>
-                  <p>
-                    La differenza fondamentale? Lavoriamo{" "}
-                    <Link
-                      to="/prezzi"
-                      className="text-secondary underline underline-offset-4 hover:text-secondary/80"
-                    >
-                      solo a percentuale sulle vendite
-                    </Link>
-                    . Non ti chiediamo un canone mensile fisso da pagare indipendentemente
-                    dai risultati. Il nostro guadagno dipende interamente dalla tua
-                    crescita, e questo cambia tutto: ogni euro che investiamo nelle tue
-                    campagne e ottimizzato per generare il massimo ritorno, perche il
-                    nostro compenso dipende dalle commesse che chiudi tu.
-                  </p>
-                  <p>
-                    Il nostro fondatore, Florin Andriciuc, non e solo un esperto di
-                    marketing: possiede un'azienda di serramenti che ha generato oltre 2
-                    milioni di euro di vendite in 2 anni. Questa esperienza diretta nel
-                    settore significa che capiamo le sfide che affronti quotidianamente
-                    — dalla gestione dei sopralluoghi alla chiusura dei preventivi,
-                    dalla scelta dei fornitori alla gestione delle posature.
-                  </p>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {[
-                    "marketing serramenti",
-                    "pubblicita showroom infissi",
-                    "lead generation serramentisti",
-                    "vendere infissi online",
-                    "clienti per serramentisti",
-                    "marketing infissi",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-card border border-border rounded-full text-xs text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════
-            FAQ SECTION
-        ════════════════════════════════════════════════════ */}
-        <section className="section-padding bg-card">
-          <div className="container-narrow">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="inline-block px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
-                  FAQ
+              <div className="text-center mb-16">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <Eye className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Il Confronto
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                  DOMANDE FREQUENTI SUL{" "}
-                  <span className="text-secondary">MARKETING PER SERRAMENTISTI</span>
-                </h2>
-                <p className="text-muted-foreground max-w-xl mx-auto">
-                  Le risposte alle domande che ci fanno piu spesso i titolari di
-                  showroom di infissi e serramenti.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection>
-              <div className="max-w-3xl mx-auto space-y-3">
-                {faqs.map((faq, index) => (
-                  <FAQItem
-                    key={index}
-                    question={faq.question}
-                    answer={faq.answer}
-                    isOpen={openFAQ === index}
-                    onToggle={() =>
-                      setOpenFAQ(openFAQ === index ? null : index)
-                    }
-                  />
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection className="mt-10 text-center">
-              <p className="text-muted-foreground">
-                Hai altre domande?{" "}
-                <Link
-                  to="/contattaci"
-                  className="text-secondary font-semibold underline underline-offset-4 hover:text-secondary/80"
-                >
-                  Contattaci direttamente
-                </Link>
-              </p>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════
-            FINAL CTA
-        ════════════════════════════════════════════════════ */}
-        <section className="section-padding bg-background relative overflow-hidden">
-          {/* Background accent */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-secondary/5 rounded-full blur-[120px]" />
-          </div>
-
-          <div className="container-narrow relative z-10 text-center">
-            <AnimatedSection>
-              <div className="max-w-2xl mx-auto">
-                <MessageSquare className="w-12 h-12 text-secondary mx-auto mb-6" />
                 <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-                  VUOI CLIENTI QUALIFICATI PER IL TUO{" "}
-                  <span className="text-secondary">SHOWROOM?</span>
+                  Agenzia Tradizionale vs{" "}
+                  <span className="text-gold">Marketing Edile</span>
                 </h2>
-                <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
-                  Scopri se il tuo showroom di serramenti e in target per il nostro
-                  sistema di acquisizione clienti. La valutazione e gratuita e senza
-                  impegno.
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Mettili a confronto. Poi decidi tu con chi vuoi lavorare per
+                  il marketing del tuo showroom di infissi.
                 </p>
-                <p className="text-muted-foreground mb-10">
-                  Analizziamo il tuo mercato locale, i tuoi concorrenti e il
-                  potenziale di crescita. Ti diciamo onestamente se possiamo aiutarti
-                  — e come.
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left p-4 text-muted-foreground font-medium text-sm uppercase tracking-wider border-b border-border w-1/4">
+                        Caratteristica
+                      </th>
+                      <th className="text-left p-4 text-red-400 font-bold text-sm uppercase tracking-wider border-b border-border w-[37.5%]">
+                        <span className="flex items-center gap-2">
+                          <X className="w-4 h-4" />
+                          Agenzia Tradizionale
+                        </span>
+                      </th>
+                      <th className="text-left p-4 text-gold font-bold text-sm uppercase tracking-wider border-b border-gold/30 w-[37.5%] bg-gold/5 rounded-t-xl">
+                        <span className="flex items-center gap-2">
+                          <Check className="w-4 h-4" />
+                          Marketing Edile
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row, i) => (
+                      <motion.tr
+                        key={row.feature}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                        className="border-b border-border/50 hover:bg-card/50 transition-colors"
+                      >
+                        <td className="p-4 text-foreground font-bold text-sm">
+                          {row.feature}
+                        </td>
+                        <td className="p-4 text-muted-foreground text-sm">
+                          <span className="flex items-start gap-2">
+                            <X className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
+                            {row.traditional}
+                          </span>
+                        </td>
+                        <td className="p-4 text-sm bg-gold/5">
+                          <span className="flex items-start gap-2 text-foreground">
+                            <Check className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                            {row.us}
+                          </span>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
+              <div className="mt-12 text-center">
+                <p className="text-2xl font-black text-foreground mb-2">
+                  La scelta è ovvia.
+                </p>
+                <p className="text-muted-foreground text-lg mb-8">
+                  Smetti di regalare soldi a chi non ha skin in the game.
                 </p>
                 <Button
                   variant="gold"
@@ -898,71 +994,290 @@ const Serramenti = () => {
                   className="glow-gold"
                   onClick={handleCTA}
                 >
-                  Richiedi la Valutazione Gratuita
+                  Passa a Marketing Edile
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
 
-                {/* Trust indicators */}
-                <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-secondary" /> 47+ aziende edili
-                    ci hanno scelto
+        {/* ════════════════════════════════════════════════════
+            SECTION 7.5 — TEAM PHOTO BREAK
+        ════════════════════════════════════════════════════ */}
+        <section className="relative py-20 overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={teamImage}
+              alt="Team Marketing Edile - specialisti marketing serramenti e lead generation infissi"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-background/85" />
+          </div>
+          <div className="container-narrow relative z-10 text-center">
+            <AnimatedSection>
+              <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+                Un Team che Parla la{" "}
+                <span className="text-gold">Tua Lingua</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+                Non siamo ragazzini appena usciti da un corso online di
+                "marketing digitale". Siamo imprenditori edili, specialisti
+                di advertising, videomaker, copywriter verticali nel settore
+                serramenti. Sappiamo cos'è un Uw, cos'è un profilo a taglio
+                termico, qual è la differenza tra un infisso in PVC e uno in
+                legno-alluminio.{" "}
+                <strong className="text-foreground">
+                  Parliamo la tua lingua perché viviamo nel tuo mondo.
+                </strong>
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+                {[
+                  "Specialisti Meta Ads",
+                  "Esperti Google Ads",
+                  "Videomaker edili",
+                  "Copywriter settore serramenti",
+                  "Referente dedicato",
+                ].map((role) => (
+                  <span
+                    key={role}
+                    className="flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border rounded-full text-foreground"
+                  >
+                    <Check className="w-3 h-3 text-gold" />
+                    {role}
                   </span>
-                  <span className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-secondary" /> Nessun
-                    vincolo contrattuale
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-secondary" /> Risposta entro
-                    24h
-                  </span>
-                </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
 
-                {/* Internal links footer */}
-                <div className="mt-10 pt-8 border-t border-border">
-                  <p className="text-xs text-muted-foreground mb-3">
-                    Approfondisci:
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-4 text-sm">
-                    <Link
-                      to="/servizi"
-                      className="text-secondary hover:underline underline-offset-4"
+        {/* ════════════════════════════════════════════════════
+            SECTION 8 — FAQ
+        ════════════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <AnimatedSection>
+              <div className="text-center mb-16">
+                <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold mb-6 uppercase tracking-wider">
+                  <Handshake className="w-4 h-4 inline-block mr-2 -mt-0.5" />
+                  Domande Frequenti
+                </span>
+                <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
+                  Tutto Quello Che Vuoi Sapere sul{" "}
+                  <span className="text-gold">Marketing per Serramenti</span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Se non trovi la risposta alla tua domanda,{" "}
+                  <Link
+                    to="/contattaci"
+                    className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors"
+                  >
+                    contattaci direttamente
+                  </Link>
+                  . Rispondiamo in 24 ore.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem
+                      key={index}
+                      value={`faq-${index}`}
+                      className="border border-border rounded-2xl overflow-hidden bg-card/50 px-2"
                     >
-                      I nostri servizi
-                    </Link>
-                    <Link
-                      to="/casi-studio"
-                      className="text-secondary hover:underline underline-offset-4"
-                    >
-                      Casi studio
-                    </Link>
-                    <Link
-                      to="/prezzi"
-                      className="text-secondary hover:underline underline-offset-4"
-                    >
-                      Come funzionano i prezzi
-                    </Link>
+                      <AccordionTrigger className="p-6 text-left text-lg font-bold text-foreground hover:text-gold transition-colors [&[data-state=open]]:text-gold">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="px-6 pb-6 text-muted-foreground leading-relaxed text-base">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </AnimatedSection>
+
+            {/* Internal links for SEO */}
+            <AnimatedSection delay={0.4}>
+              <div className="mt-12 text-center text-muted-foreground text-sm">
+                <p>
+                  Approfondisci:{" "}
+                  <Link
+                    to="/servizi"
+                    className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors"
+                  >
+                    I nostri servizi
+                  </Link>{" "}
+                  ·{" "}
+                  <Link
+                    to="/prezzi"
+                    className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors"
+                  >
+                    Come funziona il modello a provvigione
+                  </Link>{" "}
+                  ·{" "}
+                  <Link
+                    to="/casi-studio"
+                    className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors"
+                  >
+                    Casi studio documentati
+                  </Link>{" "}
+                  ·{" "}
+                  <Link
+                    to="/blog"
+                    className="text-gold underline underline-offset-4 hover:text-gold/80 transition-colors"
+                  >
+                    Blog marketing edile
+                  </Link>
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════════
+            SECTION 9 — FINAL CTA
+        ════════════════════════════════════════════════════ */}
+        <section className="relative py-24 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0">
+            <img
+              src={heroWindowsImage}
+              alt="Serramenti moderni installati - candidati per marketing serramenti a provvigione"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
+          </div>
+
+          <div className="container-narrow relative z-10 text-center">
+            <AnimatedSection>
+              <div className="max-w-3xl mx-auto">
+                {/* Urgency badge */}
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 0 rgba(212, 175, 55, 0)",
+                      "0 0 0 10px rgba(212, 175, 55, 0.1)",
+                      "0 0 0 0 rgba(212, 175, 55, 0)",
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-500/10 border-2 border-red-500/40 rounded-full text-red-400 font-black text-sm uppercase tracking-widest mb-8"
+                >
+                  <Clock className="w-5 h-5" />
+                  SOLO 3 POSTI DISPONIBILI QUESTO MESE
+                </motion.div>
+
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-tight">
+                  Ogni Giorno Che Aspetti, un Tuo{" "}
+                  <span className="text-gold">Concorrente</span> Ci Sta
+                  Già Lavorando
+                </h2>
+
+                <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
+                  Accettiamo un numero limitato di partner per zona per
+                  garantire esclusività territoriale. Se il tuo concorrente si
+                  candida prima di te, lavoriamo con lui. Punto.
+                </p>
+
+                <p className="text-lg text-muted-foreground mb-10">
+                  La valutazione è gratuita. Non ci sono impegni. Ma se
+                  aspetti troppo, il posto potrebbe non esserci più.
+                </p>
+
+                <div className="flex flex-col items-center gap-6">
+                  <Button
+                    variant="gold"
+                    size="xl"
+                    className="glow-gold text-lg px-12 py-6"
+                    onClick={handleCTA}
+                  >
+                    Candidati Ora — Verifica Disponibilità
+                    <ArrowRight className="w-6 h-6 ml-2" />
+                  </Button>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-6 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-gold" />
+                      Zero costo iniziale
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-gold" />
+                      Valutazione in 48h
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-gold" />
+                      Nessun vincolo
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-muted-foreground/60 max-w-lg">
+                    Oppure contattaci direttamente:{" "}
                     <Link
                       to="/contattaci"
-                      className="text-secondary hover:underline underline-offset-4"
+                      className="text-gold underline underline-offset-4"
                     >
-                      Contattaci
+                      pagina contatti
                     </Link>
-                    <Link
-                      to="/blog/marketing-locale-serramentisti-google-business-seo"
-                      className="text-secondary hover:underline underline-offset-4"
-                    >
-                      Guida SEO per serramentisti
-                    </Link>
-                  </div>
+                  </p>
                 </div>
               </div>
             </AnimatedSection>
           </div>
         </section>
 
-        <Footer />
+        {/* ════════════════════════════════════════════════════
+            SECTION 10 — CROSS-LINKS TO OTHER SECTORS
+        ════════════════════════════════════════════════════ */}
+        <section className="section-padding bg-navy-light">
+          <div className="container-narrow">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4">
+                  Lavoriamo Anche in{" "}
+                  <span className="text-gold">Altri Settori Edili</span>
+                </h2>
+                <p className="text-muted-foreground text-lg">
+                  Il sistema funziona per tutto il comparto edile. Sempre a
+                  provvigione. Sempre con risultati misurabili.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {crossLinks.map((link) => (
+                <StaggerItem key={link.title}>
+                  <Link to={link.href}>
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      transition={{ duration: 0.2 }}
+                      className="p-6 rounded-2xl bg-card border border-border hover:border-gold/30 transition-colors h-full"
+                    >
+                      <link.icon className="w-8 h-8 text-gold mb-4" />
+                      <h3 className="text-foreground font-bold text-lg mb-2">
+                        {link.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {link.description}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-gold text-sm font-semibold mt-4">
+                        Scopri di più
+                        <ChevronRight className="w-4 h-4" />
+                      </span>
+                    </motion.div>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
       </main>
+
+      <Footer />
     </>
   );
 };
