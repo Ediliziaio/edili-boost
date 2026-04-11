@@ -13,6 +13,8 @@ interface SEOHeadProps {
   author?: string;
   noindex?: boolean;
   jsonLd?: object | object[];
+  articleSection?: string;
+  articleTags?: string[];
 }
 
 export function SEOHead({
@@ -26,7 +28,9 @@ export function SEOHead({
   updatedAt,
   author = siteConfig.author,
   noindex = false,
-  jsonLd
+  jsonLd,
+  articleSection,
+  articleTags
 }: SEOHeadProps) {
   const fullTitle = title
     ? `${title} | Marketing Edile`
@@ -82,6 +86,10 @@ export function SEOHead({
           <meta property="article:published_time" content={publishedAt} />
           {updatedAt && <meta property="article:modified_time" content={updatedAt} />}
           <meta property="article:author" content={author} />
+          {articleSection && <meta property="article:section" content={articleSection} />}
+          {articleTags && articleTags.map((tag, i) => (
+            <meta key={i} property="article:tag" content={tag} />
+          ))}
         </>
       )}
       

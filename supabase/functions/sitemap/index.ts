@@ -71,8 +71,8 @@ serve(async (req) => {
   <url>
     <loc>${SITE_URL}/blog/${post.slug}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>`;
       }
     }

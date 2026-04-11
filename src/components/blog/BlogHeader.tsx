@@ -37,24 +37,24 @@ export function BlogHeader({ totalArticles }: BlogHeaderProps) {
           </motion.div>
 
           {/* Title */}
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6"
           >
-            Strategie di Marketing per l'Edilizia
+            Marketing per Imprese Edili: Guide, Strategie e Casi Studio
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            Guide pratiche, casi studio e strategie testate per far crescere la tua impresa edile, 
-            showroom o attività di serramenti nel mondo digitale.
+            Strategie testate di <strong className="text-foreground">lead generation per serramentisti</strong>, imprese di ristrutturazione e aziende edili.
+            Scopri come acquisire clienti qualificati e aumentare il fatturato con il marketing digitale.
           </motion.p>
         </motion.div>
       </div>

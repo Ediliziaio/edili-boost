@@ -36,8 +36,10 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           {coverImageUrl ? (
             <img
               src={coverImageUrl}
-              alt={post.title}
+              alt={`${post.title} — Marketing Edile® blog`}
               loading="lazy"
+              width={600}
+              height={300}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
@@ -66,7 +68,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
         </div>
 
         {/* Title */}
-        <Link to={`/blog/${post.slug}`}>
+        <Link to={`/blog/${post.slug}`} aria-label={`Leggi l'articolo: ${post.title}`}>
           <h3 className={`font-heading font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 ${
             featured ? 'text-2xl md:text-3xl' : 'text-lg'
           }`}>
@@ -111,7 +113,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             </div>
             <div className="text-xs">
               <p className="font-medium text-foreground">{post.author?.name || 'Autore'}</p>
-              <p className="text-muted-foreground">{publishedDate}</p>
+              <time dateTime={post.published_at || ''} className="text-muted-foreground">{publishedDate}</time>
             </div>
           </div>
 
@@ -119,6 +121,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           <Link
             to={`/blog/${post.slug}`}
             className="flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
+            aria-label={`Leggi l'articolo completo: ${post.title}`}
           >
             Leggi
             <ArrowRight className="w-4 h-4" />

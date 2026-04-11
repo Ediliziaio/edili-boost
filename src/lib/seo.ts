@@ -256,25 +256,43 @@ export const generateArticleSchema = (article: {
   publishedAt: string;
   updatedAt?: string;
   author: string;
+  authorRole?: string;
+  authorAvatar?: string;
   url: string;
+  category?: string;
+  tags?: string[];
+  wordCount?: number;
+  readingTime?: number;
 }) => ({
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
+  "@id": article.url,
   headline: article.title,
   description: article.description,
-  image: article.image,
+  image: {
+    "@type": "ImageObject",
+    url: article.image,
+    width: 1200,
+    height: 630
+  },
   datePublished: article.publishedAt,
   dateModified: article.updatedAt || article.publishedAt,
   author: {
     "@type": "Person",
-    name: article.author
+    name: article.author,
+    ...(article.authorRole && { jobTitle: article.authorRole }),
+    ...(article.authorAvatar && { image: article.authorAvatar }),
+    url: `${siteConfig.url}/chi-siamo`
   },
   publisher: {
     "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     logo: {
       "@type": "ImageObject",
-      url: `${siteConfig.url}/logo.png`
+      url: `${siteConfig.url}/logo.png`,
+      width: 600,
+      height: 200
     }
   },
   mainEntityOfPage: {
@@ -282,7 +300,42 @@ export const generateArticleSchema = (article: {
     "@id": article.url
   },
   inLanguage: "it-IT",
-  isPartOf: { "@id": `${siteConfig.url}/#website` }
+  isPartOf: { "@id": `${siteConfig.url}/#website` },
+  ...(article.category && { articleSection: article.category }),
+  ...(article.tags && article.tags.length > 0 && { keywords: article.tags.join(", ") }),
+  ...(article.wordCount && { wordCount: article.wordCount }),
+  ...(article.readingTime && { timeRequired: `PT${article.readingTime}M` }),
+  copyrightHolder: { "@id": `${siteConfig.url}/#organization` },
+  copyrightYear: new Date(article.publishedAt).getFullYear()
+});
+
+export const generateBlogListingSchema = (posts: Array<{
+  title: string;
+  url: string;
+  image?: string;
+  publishedAt?: string;
+}>) => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${siteConfig.url}/blog`,
+  name: "Blog Marketing Edilizia — Strategie e Guide per Imprese Edili",
+  description: "Guide pratiche, strategie testate e casi studio reali per il marketing nel settore edile. Lead generation, vendita serramenti, acquisizione clienti per imprese edili.",
+  url: `${siteConfig.url}/blog`,
+  isPartOf: { "@id": `${siteConfig.url}/#website` },
+  publisher: { "@id": `${siteConfig.url}/#organization` },
+  inLanguage: "it-IT",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: post.title,
+      url: post.url,
+      ...(post.image && { image: post.image })
+    }))
+  }
 });
 
 export const generateFAQSchema = (faqs: Array<{ question: string; answer: string }>) => ({

@@ -7,7 +7,7 @@ import { BlogCard } from '@/components/blog/BlogCard';
 import { LeadConnectorForm } from '@/components/blog/LeadConnectorForm';
 import { useBlogPosts } from '@/hooks/useBlogPosts';
 import { categoryLabels, BlogCategory } from '@/types/blog';
-import { siteConfig, generateBreadcrumbSchema } from '@/lib/seo';
+import { siteConfig, generateBreadcrumbSchema, generateBlogListingSchema, generateFAQSchema } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -35,6 +35,40 @@ export default function Blog() {
     { name: 'Blog', url: `${siteConfig.url}/blog` }
   ]);
 
+  const blogListingSchema = generateBlogListingSchema(
+    (allPosts || []).map(post => ({
+      title: post.seo_title || post.title,
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      image: post.cover_image_url || undefined,
+      publishedAt: post.published_at || undefined
+    }))
+  );
+
+  const blogFAQs = [
+    {
+      question: "Come funziona il marketing a percentuale per imprese edili?",
+      answer: "Marketing Edile® lavora solo a percentuale sulle vendite generate. Non ci sono canoni fissi né anticipi: paghi solo quando chiudi una commessa grazie ai lead che ti portiamo. Se non generiamo vendite, non paghi nulla."
+    },
+    {
+      question: "Quali risultati può ottenere un'impresa edile con il marketing digitale?",
+      answer: "I nostri partner registrano in media un +40% di incremento del fatturato. Esempi concreti: Green Energy Group ha generato +€300.000 in 2 mesi, Teda Infissi raggiunge €30-40.000/mese costanti, Renova Tetto ha aggiunto +€600.000 al fatturato."
+    },
+    {
+      question: "Il marketing digitale funziona per serramentisti e showroom di infissi?",
+      answer: "Assolutamente sì. I serramentisti e gli showroom di infissi sono il nostro target principale. Generiamo lead qualificati pronti all'acquisto tramite campagne su Facebook, Instagram e Google, con landing page specifiche per il settore serramenti."
+    },
+    {
+      question: "Quanto tempo serve per vedere i primi risultati?",
+      answer: "I primi lead qualificati arrivano generalmente entro 2-4 settimane dall'avvio delle campagne. I risultati di fatturato significativi si vedono tipicamente entro 60-90 giorni, come dimostrato dai nostri casi studio documentati."
+    },
+    {
+      question: "Marketing Edile lavora con aziende di tutta Italia?",
+      answer: "Sì, Marketing Edile® segue aziende edili in tutta Italia. Operiamo da Milano ma gestiamo campagne per imprese di costruzioni, serramentisti e aziende fotovoltaiche su tutto il territorio nazionale."
+    }
+  ];
+
+  const faqSchema = generateFAQSchema(blogFAQs);
+
   // Filtra articoli per ricerca
   const filteredPosts = allPosts?.filter(post => 
     searchQuery === '' || 
@@ -51,7 +85,7 @@ export default function Blog() {
         description="Guide pratiche e strategie testate per il marketing nel settore edile. Lead generation, vendita infissi, acquisizione clienti."
         keywords={siteConfig.pageKeywords.blog}
         url={`${siteConfig.url}/blog`}
-        jsonLd={breadcrumbSchema}
+        jsonLd={[breadcrumbSchema, blogListingSchema, faqSchema]}
       />
 
       <Navbar />
@@ -169,6 +203,28 @@ export default function Blog() {
             )}
           </section>
         )}
+
+        {/* FAQ Section — SEO */}
+        <section className="container py-16 border-t border-border">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 text-center">
+              Domande Frequenti sul Marketing per Imprese Edili
+            </h2>
+            <div className="space-y-4">
+              {blogFAQs.map((faq, index) => (
+                <details key={index} className="group bg-card rounded-xl border border-border overflow-hidden">
+                  <summary className="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer font-medium text-foreground hover:bg-muted/50 transition-colors list-none">
+                    <span>{faq.question}</span>
+                    <span className="text-muted-foreground group-open:rotate-45 transition-transform text-xl">+</span>
+                  </summary>
+                  <div className="px-6 pb-5 text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="container py-20">

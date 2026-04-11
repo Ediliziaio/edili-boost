@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, Calendar, Share2, Linkedin, Twitter, Facebook, Loader2, User } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, Share2, Linkedin, Twitter, Facebook, Loader2, User, ChevronUp } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { ArticleContent } from '@/components/blog/ArticleContent';
+import { TableOfContents } from '@/components/blog/TableOfContents';
 import { LeadConnectorForm } from '@/components/blog/LeadConnectorForm';
 import { useBlogPost, useRelatedPosts } from '@/hooks/useBlogPosts';
 import { categoryLabels, categoryColors, BlogCategory } from '@/types/blog';
@@ -23,9 +24,21 @@ export default function BlogPost() {
     3
   );
 
+  const [readingProgress, setReadingProgress] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setReadingProgress(docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0);
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    return () => window.removeEventListener('scroll', updateProgress);
+  }, []);
 
   if (isLoading) {
     return (
@@ -47,14 +60,22 @@ export default function BlogPost() {
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
   const coverImageUrl = resolveBlogImageUrl(post.cover_image_url) || `${siteConfig.url}/og-image.jpg`;
 
+  const wordCount = post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).length : 0;
+
   const articleSchema = generateArticleSchema({
     title: post.seo_title || post.title,
     description: post.seo_description || post.excerpt,
     image: coverImageUrl,
     publishedAt: post.published_at || post.created_at,
     updatedAt: post.updated_at || undefined,
-    author: post.author?.name || 'EdilMarketing',
-    url: postUrl
+    author: post.author?.name || 'Marketing Edile®',
+    authorRole: post.author?.role || undefined,
+    authorAvatar: post.author?.avatar_url || undefined,
+    url: postUrl,
+    category: post.category,
+    tags: post.tags,
+    wordCount,
+    readingTime: post.reading_time
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -87,10 +108,20 @@ export default function BlogPost() {
         publishedAt={post.published_at || undefined}
         updatedAt={post.updated_at || undefined}
         author={post.author?.name}
+        articleSection={categoryLabels[category] || post.category}
+        articleTags={post.tags}
         jsonLd={[articleSchema, breadcrumbSchema]}
       />
 
       <Navbar />
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-transparent">
+        <div
+          className="h-full bg-primary transition-[width] duration-150 ease-out"
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
 
       <main className="min-h-screen bg-background pt-20">
         {/* Hero Section with Cover Image */}
@@ -100,7 +131,9 @@ export default function BlogPost() {
             <div className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
               <img
                 src={coverImageUrl}
-                alt={post.title}
+                alt={`${post.title} — Marketing Edile® blog`}
+                width={1200}
+                height={630}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
@@ -155,10 +188,10 @@ export default function BlogPost() {
                     </div>
                   </div>
                   <span className="text-muted-foreground/30">•</span>
-                  <span className="flex items-center gap-1 text-sm">
+                  <time dateTime={post.published_at || ''} className="flex items-center gap-1 text-sm">
                     <Calendar className="w-4 h-4" />
                     {publishedDate}
-                  </span>
+                  </time>
                   <span className="text-muted-foreground/30">•</span>
                   <span className="flex items-center gap-1 text-sm">
                     <Clock className="w-4 h-4" />
@@ -199,6 +232,9 @@ export default function BlogPost() {
             {/* Sidebar */}
             <aside className="lg:col-span-4">
               <div className="sticky top-24 space-y-8">
+                {/* Table of Contents */}
+                <TableOfContents content={post.content} />
+
                 {/* Share */}
                 <div className="bg-card rounded-xl border border-border p-6">
                   <h3 className="font-heading font-bold text-foreground mb-4 flex items-center gap-2">
@@ -268,6 +304,17 @@ export default function BlogPost() {
           </section>
         )}
       </main>
+
+      {/* Back to Top Button */}
+      {readingProgress > 25 && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 z-40 w-12 h-12 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
+          aria-label="Torna in cima all'articolo"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
+      )}
 
       <Footer />
     </>

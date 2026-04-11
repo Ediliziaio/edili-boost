@@ -6,19 +6,33 @@ interface ArticleContentProps {
 
 export function ArticleContent({ content }: ArticleContentProps) {
   // Processa il contenuto: se è plain text con \n, convertilo in HTML
+  // Aggiunge ID ai titoli H2/H3 per table of contents e anchor links
   const processedContent = useMemo(() => {
-    // Se il contenuto non contiene tag HTML, trattalo come plain text
     const hasHtmlTags = /<[a-z][\s\S]*>/i.test(content);
-    
+
+    let html = content;
     if (!hasHtmlTags) {
-      // Converti \n\n in paragrafi e \n singoli in <br>
-      return content
+      html = content
         .split(/\n\n+/)
         .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`)
         .join('');
     }
-    
-    return content;
+
+    // Add IDs to h2 and h3 headings for anchor navigation
+    html = html.replace(/<h([2-3])([^>]*)>(.*?)<\/h[2-3]>/gi, (match, level, attrs, text) => {
+      if (attrs.includes('id=')) return match;
+      const plainText = text.replace(/<[^>]*>/g, '');
+      const id = plainText
+        .toLowerCase()
+        .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+        .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o')
+        .replace(/[ùúûü]/g, 'u')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+      return `<h${level}${attrs} id="${id}">${text}</h${level}>`;
+    });
+
+    return html;
   }, [content]);
 
   return (
