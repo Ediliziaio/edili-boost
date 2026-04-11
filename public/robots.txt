@@ -1,16 +1,31 @@
+# ============================================================
 # Marketing Edile® — marketingedile.com
 # Ultimo aggiornamento: 2026-04-11
+# ============================================================
 
+# ------------------------------------------------------------
 # Motori di ricerca tradizionali
+# ------------------------------------------------------------
+
 User-agent: Googlebot
 Allow: /
+Allow: /blog
 Disallow: /admin
 Disallow: /auth
 
 User-agent: Bingbot
 Allow: /
+Allow: /blog
 Disallow: /admin
 Disallow: /auth
+
+User-agent: BingPreview
+Allow: /
+Allow: /blog
+
+# ------------------------------------------------------------
+# Social media crawlers
+# ------------------------------------------------------------
 
 User-agent: Twitterbot
 Allow: /
@@ -18,50 +33,130 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# AI Crawlers — GEO Optimization
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: Applebot-Extended
+User-agent: LinkedInBot
 Allow: /
 
 User-agent: Meta-ExternalAgent
 Allow: /
+Allow: /blog
 
+# ------------------------------------------------------------
+# AI Crawlers — GEO (Generative Engine Optimization)
+# ------------------------------------------------------------
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# You.com
+User-agent: YouBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# ByteDance
+User-agent: Bytespider
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Common Crawl
 User-agent: CCBot
 Allow: /
+Allow: /blog
+Allow: /llms.txt
 
-User-agent: LinkedInBot
+# Amazon Alexa / Search
+User-agent: Amazonbot
 Allow: /
+Allow: /blog
+Allow: /llms.txt
 
-User-agent: BingPreview
+# Allen AI
+User-agent: AI2Bot
 Allow: /
+Allow: /blog
+Allow: /llms.txt
 
-# Tutti gli altri
+# Timpi Search
+User-agent: Timpibot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Seekr AI
+User-agent: Seekr
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# Huawei / Petal Search
+User-agent: PetalBot
+Allow: /
+Allow: /blog
+Allow: /llms.txt
+
+# ------------------------------------------------------------
+# Tutti gli altri crawler
+# ------------------------------------------------------------
+
 User-agent: *
 Allow: /
+Allow: /blog
 Disallow: /admin
 Disallow: /auth
 
+# ------------------------------------------------------------
+# Sitemap & Host
+# ------------------------------------------------------------
+
 Sitemap: https://marketingedile.com/sitemap.xml
+Host: https://marketingedile.com

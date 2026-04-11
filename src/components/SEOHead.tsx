@@ -48,8 +48,10 @@ export function SEOHead({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.join(', ')} />
-      <meta name="author" content={author} />
-      
+      <meta name="author" content="Marketing Edile®" />
+      <meta name="publisher" content="Marketing Edile®" />
+      <meta name="format-detection" content="telephone=no" />
+
       {/* Robots */}
       {noindex ? (
         <meta name="robots" content="noindex, nofollow" />
@@ -80,12 +82,15 @@ export function SEOHead({
       <meta name="twitter:image" content={fullImageUrl} />
       <meta name="twitter:image:alt" content={title || siteConfig.name} />
       
+      {/* Article publisher (always present) */}
+      <meta property="article:publisher" content="https://marketingedile.com" />
+
       {/* Article specific meta tags */}
       {type === 'article' && publishedAt && (
         <>
           <meta property="article:published_time" content={publishedAt} />
           {updatedAt && <meta property="article:modified_time" content={updatedAt} />}
-          <meta property="article:author" content={author} />
+          <meta property="article:author" content="Florin Andriciuc" />
           {articleSection && <meta property="article:section" content={articleSection} />}
           {articleTags && articleTags.map((tag, i) => (
             <meta key={i} property="article:tag" content={tag} />

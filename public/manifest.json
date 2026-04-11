@@ -1,0 +1,17 @@
+{
+  "name": "Marketing Edile® — Marketing per Aziende Edili",
+  "short_name": "Marketing Edile",
+  "description": "Marketing Edile® porta clienti qualificati a imprese edili e serramentisti. Solo a percentuale sulle vendite.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#1a1a2e",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

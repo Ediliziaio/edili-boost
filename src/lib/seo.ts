@@ -455,6 +455,36 @@ export const generateOfferSchema = () => ({
   }
 });
 
+export const generateSectorServiceSchema = (sector: {
+  name: string;
+  description: string;
+  url: string;
+  areaServed?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": sector.url,
+  name: sector.name,
+  description: sector.description,
+  url: sector.url,
+  provider: { "@id": `${siteConfig.url}/#organization` },
+  areaServed: { "@type": "Country", name: sector.areaServed || "Italy" },
+  serviceType: "Marketing Agency Services",
+  offers: {
+    "@type": "Offer",
+    description: "Modello a provvigione — paghi solo sulle vendite generate",
+    priceCurrency: "EUR",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      description: "Percentuale sulle vendite chiuse, zero canone fisso"
+    }
+  },
+  broker: {
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`
+  }
+});
+
 export const generateCaseStudySchema = (caseStudy: {
   company: string;
   sector: string;
