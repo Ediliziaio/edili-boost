@@ -8,7 +8,7 @@ const OffertaFinalCTASection = () => {
   return (
     <section id="candidati" className="section-padding-sm relative overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroWindowsImage} alt="" className="w-full h-full object-cover" />
+        <img src={heroWindowsImage} alt="Infissi moderni — Marketing Edile" className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-navy-light/95" />
       </div>
       <div className="absolute inset-0">

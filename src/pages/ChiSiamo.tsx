@@ -277,7 +277,7 @@ const ChiSiamo = () => {
         {/* Stats animate */}
         <section className="section-padding relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src={heroWindowsImage} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src={heroWindowsImage} alt="Serramenti moderni — sezione statistiche Marketing Edile" className="w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-background/90" />
           </div>
           <div className="container-narrow relative z-10">

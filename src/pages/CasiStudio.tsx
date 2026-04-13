@@ -479,7 +479,7 @@ const CasiStudio = () => {
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 rounded-xl overflow-hidden bg-muted flex items-center justify-center shrink-0">
                     {selectedCase.logo ? (
-                      <img src={selectedCase.logo} alt={selectedCase.company} className="w-full h-full object-contain p-2" />
+                      <img src={selectedCase.logo} alt={selectedCase.company} className="w-full h-full object-contain p-2" loading="lazy" />
                     ) : (
                       <span className="text-2xl font-bold text-secondary">{selectedCase.company.charAt(0)}</span>
                     )}

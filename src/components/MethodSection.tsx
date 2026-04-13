@@ -21,7 +21,7 @@ const MethodSection = () => {
             <motion.div whileHover={{
             scale: 1.02
           }} className="relative rounded-2xl overflow-hidden aspect-square">
-              <img src={teamImage} alt="Il nostro team di professionisti" className="w-full h-full object-cover" />
+              <img src={teamImage} alt="Il nostro team di professionisti" className="w-full h-full object-cover" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-light/90 via-transparent to-transparent" />
             </motion.div>
           </AnimatedSection>

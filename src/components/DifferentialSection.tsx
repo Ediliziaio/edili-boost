@@ -59,7 +59,7 @@ const DifferentialSection = () => {
             <motion.div whileHover={{
             scale: 1.02
           }} className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-              <img src={showroomImage} alt="Showroom infissi e serramenti moderni" className="w-full h-full object-cover" />
+              <img src={showroomImage} alt="Showroom infissi e serramenti moderni" className="w-full h-full object-cover" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-sm text-foreground/80 font-medium">
@@ -104,7 +104,7 @@ const DifferentialSection = () => {
             <AnimatedSection delay={0.2} direction="left">
               <div className="relative mx-auto lg:mx-0 w-64 lg:w-full lg:sticky lg:top-24">
                 <div className="rounded-2xl overflow-hidden border-2 border-gold/20 aspect-[3/4]">
-                  <img src={floPortrait} alt="Florin Andriciuc, fondatore di Marketing Edile" className="w-full h-full object-cover" />
+                  <img src={floPortrait} alt="Florin Andriciuc, fondatore di Marketing Edile" className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div className="mt-4 text-center lg:text-left">
                   <p className="text-foreground font-bold text-lg">Florin Andriciuc</p>
