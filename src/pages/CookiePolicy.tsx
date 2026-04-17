@@ -12,6 +12,7 @@ const CookiePolicy = () => {
       <SEOHead
         title="Cookie Policy"
         description="Informativa sull'utilizzo dei cookie sul sito di Marketing Edile by Domus Group S.r.l."
+        url="https://www.marketingedile.com/cookie-policy"
         noindex
       />
       <Navbar />

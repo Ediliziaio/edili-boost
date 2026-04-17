@@ -12,6 +12,7 @@ const PrivacyPolicy = () => {
       <SEOHead
         title="Privacy Policy"
         description="Informativa sulla privacy di Domus Group S.r.l. ai sensi dell'Art. 13 del Regolamento UE 2016/679 (GDPR)."
+        url="https://www.marketingedile.com/privacy-policy"
         noindex
       />
       <Navbar />

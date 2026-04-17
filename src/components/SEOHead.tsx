@@ -83,7 +83,7 @@ export function SEOHead({
       <meta name="twitter:image:alt" content={title || siteConfig.name} />
       
       {/* Article publisher (always present) */}
-      <meta property="article:publisher" content="https://marketingedile.com" />
+      <meta property="article:publisher" content="https://www.marketingedile.com" />
 
       {/* Article specific meta tags */}
       {type === 'article' && publishedAt && (
