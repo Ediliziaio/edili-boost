@@ -3,7 +3,7 @@
 export const siteConfig = {
   name: "MARKETING EDILE®",
   description: "Marketing Edile® porta clienti qualificati a imprese edili e serramentisti. Solo a percentuale sulle vendite. 47+ aziende, €60M+ generati.",
-  url: "https://marketingedile.com",
+  url: "https://www.marketingedile.com",
   ogImage: "/og-image.jpg",
   author: "MARKETING EDILE®",
   founder: "Florin Andriciuc",

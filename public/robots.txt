@@ -158,5 +158,5 @@ Disallow: /auth
 # Sitemap & Host
 # ------------------------------------------------------------
 
-Sitemap: https://marketingedile.com/sitemap.xml
-Host: https://marketingedile.com
+Sitemap: https://www.marketingedile.com/sitemap.xml
+Host: https://www.marketingedile.com

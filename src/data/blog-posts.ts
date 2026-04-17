@@ -2733,5 +2733,257 @@ export const blogPosts: StaticBlogPost[] = [
 
 <p><strong>Marketing Edile\u00ae</strong> gestisce il marketing social media per imprese edili con un approccio completamente orientato alla generazione di lead e alla misurabilit\u00e0 dei risultati. Lavoriamo a provvigione — il che significa che siamo incentivati a produrre contatti reali, non metriche di vanit\u00e0. Per scoprire come possiamo trasformare i tuoi social in un canale di acquisizione clienti, <a href="/contattaci">contattaci</a> per una consulenza gratuita, oppure visita la nostra <a href="/servizi">pagina servizi</a> per vedere nel dettaglio cosa includiamo.</p>
 `
+  },
+
+  // ── Article 21 ── Google Ads per Imprese Edili ──────────────
+  {
+    id: "b1a2c3d4-e5f6-7890-abcd-ef1234567821",
+    slug: "google-ads-imprese-edili-guida-completa-2026",
+    title: "Google Ads per Imprese Edili: La Guida Completa per Generare Preventivi nel 2026",
+    excerpt: "Come strutturare campagne Google Ads che portano richieste di preventivo qualificate per serramentisti, imprese di ristrutturazione e aziende edili, evitando gli errori che bruciano budget.",
+    cover_image_url: "/blog-google-ads-edilizia.jpg",
+    author: blogAuthor,
+    category: "marketing",
+    tags: ["google ads", "PPC", "imprese edili", "lead generation", "preventivi", "pubblicità online", "serramenti"],
+    published_at: "2026-04-16T09:00:00+00:00",
+    updated_at: null,
+    reading_time: 11,
+    featured: false,
+    status: "published",
+    seo_title: "Google Ads Imprese Edili: Guida Completa 2026",
+    seo_description: "Scopri come strutturare campagne Google Ads per imprese edili che generano preventivi qualificati. Strategie, budget e errori da evitare nel 2026.",
+    content: `
+<p>Se possiedi un'impresa edile, un'azienda di serramenti o un'impresa di ristrutturazioni, probabilmente hai già sentito parlare di Google Ads. Ma c'è una differenza enorme tra "fare Google Ads" e "generare preventivi qualificati con Google Ads". La maggior parte delle aziende edili butta via migliaia di euro in campagne mal strutturate, con keyword troppo generiche e landing page inadeguate. In questa guida analizziamo esattamente come impostare campagne Google Ads che funzionano nel settore edile nel 2026.</p>
+
+<h2>Perché Google Ads è diverso dai social media per le imprese edili</h2>
+
+<p>Sui social media — Facebook, Instagram — intercetti persone che non stanno attivamente cercando un serramentista o un'impresa edile. Stai creando domanda. Su Google Ads, invece, intercetti persone che stanno già cercando attivamente un servizio. Questa è la differenza fondamentale che rende Google Ads così potente per il settore edile: <strong>catturi domanda esistente</strong>.</p>
+
+<p>Quando qualcuno digita "sostituzione infissi preventivo Milano" o "impresa ristrutturazioni Roma prezzi", ha già deciso che ha bisogno del servizio. Non devi convincerlo — devi solo essere davanti a lui nel momento giusto, con il messaggio giusto. Questo significa tassi di conversione molto più alti rispetto ai social ads, tipicamente tra il 5% e il 15% per keyword transazionali nel settore edile.</p>
+
+<h2>La struttura di una campagna Google Ads efficace per l'edilizia</h2>
+
+<p>L'errore più comune è creare una sola campagna con tutte le keyword mescolate insieme. Ecco come strutturare correttamente le campagne:</p>
+
+<h3>1. Campagne separate per servizio</h3>
+
+<p>Se offri serramenti, ristrutturazioni e impianti fotovoltaici, crea tre campagne distinte. Ogni campagna ha il suo budget, le sue keyword e le sue landing page dedicate. Mescolare servizi diversi nella stessa campagna rende impossibile ottimizzare il budget verso quello che converte meglio.</p>
+
+<h3>2. Gruppi di annunci per intenzione di ricerca</h3>
+
+<p>All'interno di ogni campagna, separa i gruppi di annunci per tipo di intenzione:</p>
+
+<ul>
+  <li><strong>Keyword transazionali</strong>: "preventivo infissi PVC", "costo ristrutturazione bagno", "prezzo fotovoltaico 6kW" — queste convertono di più</li>
+  <li><strong>Keyword comparative</strong>: "migliori serramentisti zona", "confronto infissi alluminio PVC" — intenzione alta ma ancora in fase decisionale</li>
+  <li><strong>Keyword informazionali</strong>: "quanto costa ristrutturare casa", "vantaggi triplo vetro" — usale solo per remarketing</li>
+</ul>
+
+<h3>3. Landing page dedicate, non la homepage</h3>
+
+<p>Questo è l'errore che vediamo nel 90% delle aziende edili. Mandano il traffico di Google Ads alla homepage del sito aziendale. La homepage è generica — parla di tutto. La landing page deve parlare esattamente di ciò che l'utente ha cercato, con un unico obiettivo: far compilare il modulo di richiesta preventivo.</p>
+
+<p>Una landing page efficace per un serramentista include: headline che rispecchia la keyword cercata, 3-5 benefici specifici con numeri, 2-3 testimonianze di clienti reali con nome e città, foto di lavori completati nella zona, modulo breve (nome, telefono, tipo di lavoro, città), e una garanzia chiara.</p>
+
+<h2>Budget: quanto investire in Google Ads nel settore edile</h2>
+
+<p>La domanda che tutti fanno. Non esiste una risposta universale, ma ci sono parametri realistici per il 2026:</p>
+
+<ul>
+  <li><strong>Serramenti e infissi</strong>: CPC medio €2-6, budget minimo consigliato €1.500/mese per una provincia</li>
+  <li><strong>Ristrutturazioni</strong>: CPC medio €3-8, budget minimo consigliato €2.000/mese</li>
+  <li><strong>Fotovoltaico</strong>: CPC medio €4-10, budget minimo consigliato €2.500/mese</li>
+  <li><strong>Coperture e tetti</strong>: CPC medio €2-5, budget minimo consigliato €1.200/mese</li>
+</ul>
+
+<p>Questi sono budget minimi per avere dati sufficienti a ottimizzare. Con meno di €1.000/mese in una sola provincia, non avrai abbastanza click per capire cosa funziona e cosa no. E senza ottimizzazione, stai buttando soldi.</p>
+
+<h2>I 5 errori che bruciano il budget delle aziende edili su Google Ads</h2>
+
+<h3>Errore 1: Non usare keyword negative</h3>
+
+<p>Se vendi infissi e non usi keyword negative come "gratis", "fai da te", "usati", "come costruire", stai pagando click di persone che non compreranno mai. Le keyword negative sono fondamentali — dovresti averne centinaia, non decine.</p>
+
+<h3>Errore 2: Targeting geografico troppo ampio</h3>
+
+<p>Se lavori in una provincia, non fare campagne nazionali. Sembra ovvio, ma moltissime aziende edili lasciano il targeting su "tutta Italia" perché non ci pensano. Risultato: paghi click da Palermo quando lavori solo in Lombardia.</p>
+
+<h3>Errore 3: Non tracciare le conversioni</h3>
+
+<p>Senza il tracciamento delle conversioni — compilazione modulo, chiamata telefonica, messaggio WhatsApp — non puoi sapere quali keyword, annunci e landing page generano preventivi. Stai guidando bendato. Il pixel di conversione di Google deve essere installato correttamente su ogni punto di contatto.</p>
+
+<h3>Errore 4: Annunci generici senza differenziazione</h3>
+
+<p>"Impresa edile di qualità, contattaci" non è un annuncio. Un annuncio efficace include: il servizio specifico, la zona, un numero concreto (anni di esperienza, lavori completati, percentuale di risparmio), e una call-to-action chiara con urgenza.</p>
+
+<h3>Errore 5: Non fare remarketing</h3>
+
+<p>Solo il 3-5% dei visitatori compila il modulo alla prima visita. Il restante 95% va via — ma non perché non è interessato. Semplicemente non era pronto. Il remarketing ti permette di mostrargli annunci su YouTube, Gmail e siti web partner per settimane dopo la visita, riportandolo sul sito quando è pronto a decidere. Nel settore edile, dove il ciclo decisionale può durare settimane o mesi, il remarketing è essenziale.</p>
+
+<h2>Google Ads vs gestione interna: cosa conviene</h2>
+
+<p>Gestire Google Ads internamente richiede competenze tecniche specifiche e almeno 8-10 ore settimanali di ottimizzazione continua. Se non hai un marketing manager dedicato, la gestione interna spesso risulta in budget sprecato e opportunità perse.</p>
+
+<p>L'alternativa è affidarsi a un'agenzia specializzata nel settore edile — non un'agenzia generica che gestisce anche ristoranti e dentisti. Un'agenzia specializzata conosce già i CPC medi del settore, le keyword che convertono, le obiezioni dei clienti e la stagionalità della domanda.</p>
+
+<p><strong>Marketing Edile®</strong> gestisce campagne di acquisizione clienti per aziende edili e serramentisti con un modello a percentuale sulle vendite — il che significa che siamo direttamente incentivati a generare preventivi che si chiudono, non click che non portano a nulla. Per una consulenza gratuita sulla tua strategia Google Ads, <a href="/contattaci">contattaci</a> oppure scopri il <a href="/servizi">nostro approccio completo</a> alla lead generation per il settore edile.</p>
+`
+  },
+
+  // ── Article 22 ── Preventivi Edilizia ──────────────────────
+  {
+    id: "b1a2c3d4-e5f6-7890-abcd-ef1234567822",
+    slug: "preventivi-edilizia-come-presentarli-chiudere-vendita",
+    title: "Come Presentare i Preventivi nell'Edilizia per Chiudere Più Vendite: Il Metodo in 7 Fasi",
+    excerpt: "La maggior parte delle aziende edili perde vendite non per il prezzo, ma per come presenta il preventivo. Scopri il metodo in 7 fasi per trasformare i preventivi in contratti firmati.",
+    cover_image_url: "/blog-preventivi-edilizia.jpg",
+    author: blogAuthor,
+    category: "vendite",
+    tags: ["preventivi", "chiusura vendite", "edilizia", "serramenti", "processo di vendita", "trattativa commerciale"],
+    published_at: "2026-04-17T09:00:00+00:00",
+    updated_at: null,
+    reading_time: 10,
+    featured: false,
+    status: "published",
+    seo_title: "Preventivi Edilizia: Come Presentarli e Chiudere",
+    seo_description: "Scopri il metodo in 7 fasi per presentare preventivi nell'edilizia che chiudono. Smetti di perdere vendite per come presenti il prezzo ai clienti.",
+    content: `
+<p>Ogni settimana, centinaia di imprese edili, serramentisti e aziende di ristrutturazioni inviano preventivi che non torneranno mai indietro. Il problema, nella stragrande maggioranza dei casi, non è il prezzo. È come il preventivo viene presentato, quando viene inviato, e cosa succede dopo l'invio. In questo articolo analizziamo un metodo strutturato in 7 fasi per trasformare i tuoi preventivi in contratti firmati.</p>
+
+<h2>Fase 1: Qualifica il cliente prima di investire tempo nel preventivo</h2>
+
+<p>Il primo errore che commettono quasi tutte le aziende edili è fare preventivi a chiunque li chieda, senza filtro. Un sopralluogo costa tempo, carburante e manodopera — ogni preventivo non qualificato è un costo nascosto. Prima di investire un'ora per un sopralluogo e due ore per preparare il preventivo, devi sapere tre cose fondamentali.</p>
+
+<p>Prima domanda: il cliente ha un budget realistico per il lavoro che chiede? Non devi chiedere direttamente "quanto vuole spendere", ma puoi guidarlo con domande come "ha già ricevuto altri preventivi?" o "ha un'idea dell'investimento che ha in mente per questo progetto?". Se il cliente si aspetta di ristrutturare un bagno completo con €3.000, non è il tuo cliente — e fargli il preventivo è tempo perso per entrambi.</p>
+
+<p>Seconda domanda: quando vuole iniziare i lavori? Se la risposta è "tra un anno, forse" o "stiamo ancora pensandoci", non è una priorità. Metti il contatto in un sistema di follow-up e richiamalo tra sei mesi. Non bloccare il tuo tempo per chi non ha urgenza.</p>
+
+<p>Terza domanda: chi decide? Se stai parlando con il genero della signora che possiede la casa, assicurati che il decisore sia presente al momento del preventivo. Altrimenti il tuo lavoro viene filtrato e distorto da un intermediario che non ha il contesto completo.</p>
+
+<h2>Fase 2: Il sopralluogo è il primo momento di vendita</h2>
+
+<p>Molti imprenditori edili trattano il sopralluogo come un momento tecnico — misure, foto, analisi. In realtà, il sopralluogo è il primo e più importante momento di vendita. Il cliente ti sta giudicando da come ti presenti, da come parli, da come ascolti.</p>
+
+<p>Durante il sopralluogo devi fare quattro cose: ascoltare attivamente il problema del cliente (non il lavoro tecnico — il problema emotivo: "sono stufo degli spifferi", "la casa è fredda", "le bollette sono assurde"); mostrare competenza con osservazioni specifiche che il cliente non si aspetta; anticipare le obiezioni più comuni per il tipo di lavoro; e creare fiducia attraverso prove tangibili — foto di lavori precedenti simili, testimonianze, garanzie scritte.</p>
+
+<h2>Fase 3: La struttura del preventivo che vende</h2>
+
+<p>Il preventivo non è un elenco di voci con prezzi. È un documento di vendita. La struttura fa la differenza tra un preventivo che viene firmato e uno che finisce nel cassetto. Ecco la struttura ottimale:</p>
+
+<ul>
+  <li><strong>Pagina 1 — Riepilogo del problema e della soluzione</strong>: riformula il problema del cliente con le sue parole, poi presenta la tua soluzione come risposta specifica a quel problema. Questo mostra che hai ascoltato e che il preventivo è personalizzato.</li>
+  <li><strong>Pagina 2 — Dettaglio dei lavori con benefici</strong>: ogni voce tecnica deve avere accanto il beneficio per il cliente. Non "Infisso PVC 70mm triplo vetro" ma "Infisso PVC 70mm triplo vetro — riduce le dispersioni termiche del 40% e le bollette del riscaldamento".</li>
+  <li><strong>Pagina 3 — Tre opzioni di prezzo</strong>: mai dare un solo prezzo. Offri tre livelli — base, consigliato e premium. L'opzione centrale (consigliata) è quella che vuoi vendere. Questo elimina la domanda "è troppo caro?" e la sostituisce con "quale scelgo?".</li>
+  <li><strong>Pagina 4 — Garanzie, tempistiche e prossimi passi</strong>: garanzia scritta con durata specifica, timeline precisa dei lavori, e istruzioni chiare su come procedere per accettare.</li>
+</ul>
+
+<h2>Fase 4: Presenta il preventivo di persona, mai via email</h2>
+
+<p>Questa è la regola più violata e la più importante. Inviare il preventivo via email significa perdere il controllo sulla presentazione. Il cliente vede un numero, lo confronta con altri numeri, e sceglie il più basso. Non hai la possibilità di spiegare il valore, rispondere alle obiezioni o creare urgenza.</p>
+
+<p>Quando presenti di persona, puoi guidare il cliente attraverso il documento, evidenziare i benefici, rispondere immediatamente ai dubbi, e proporre la firma nello stesso incontro. Il tasso di chiusura dei preventivi presentati di persona è tipicamente 3-4 volte superiore a quelli inviati via email nel settore edile.</p>
+
+<h2>Fase 5: Gestisci le obiezioni con preparazione</h2>
+
+<p>Le obiezioni più comuni nel settore edile sono sempre le stesse: "devo pensarci", "ho ricevuto un preventivo più basso", "ne parlo con mia moglie/mio marito", "non è il momento giusto". Ognuna richiede una risposta preparata, non improvvisata.</p>
+
+<p>Per l'obiezione "ho un preventivo più basso": mai criticare il concorrente. Chiedi invece "posso vedere il preventivo? Così posso spiegarle esattamente cosa è incluso nel nostro e cosa potrebbe mancare nell'altro". Nel 70% dei casi, il preventivo più economico ha voci mancanti, materiali inferiori o garanzie assenti. Mostralo con i fatti, non con le opinioni.</p>
+
+<p>Per "devo pensarci": rispetta la decisione, ma crea un framework temporale. "Capisco perfettamente. Le lascio il preventivo con validità di 15 giorni — dopo quella data, i prezzi dei materiali potrebbero variare. Posso richiamarla giovedì per rispondere a eventuali domande?". Hai dato tempo, ma anche urgenza e un appuntamento di follow-up.</p>
+
+<h2>Fase 6: Il follow-up sistematico</h2>
+
+<p>L'80% delle vendite nel settore edile avviene dopo il secondo contatto. Ma l'80% delle aziende edili non fa follow-up dopo il primo invio del preventivo. Questa è la più grande opportunità persa nel settore.</p>
+
+<p>Un sistema di follow-up efficace prevede: chiamata dopo 3 giorni per verificare ricezione e rispondere a domande; seconda chiamata dopo 7 giorni con valore aggiunto come foto di lavori simili completati; messaggio dopo 14 giorni con scadenza del preventivo; infine, follow-up mensile per 6 mesi via WhatsApp o email con contenuti utili.</p>
+
+<h2>Fase 7: Analizza i dati e migliora continuamente</h2>
+
+<p>Quanti preventivi invii ogni mese? Quanti ne chiudi? Qual è il tuo tasso di conversione? Qual è il valore medio del preventivo che chiudi vs quello che perdi? Senza questi numeri, stai lavorando alla cieca. Tieni un foglio Excel semplice — o meglio, un CRM — dove registri ogni preventivo con: data, importo, stato (in attesa, chiuso, perso), e motivo della perdita se non chiude.</p>
+
+<p>Dopo 3 mesi avrai dati sufficienti per identificare pattern: magari i preventivi sopra €20.000 chiudono il doppio di quelli sotto €5.000. O magari chiudi il 60% dei lavori di serramenti e solo il 20% delle ristrutturazioni complete. Questi dati ti dicono dove concentrare il marketing e dove migliorare il processo di vendita.</p>
+
+<p><strong>Marketing Edile®</strong> non si limita a portare contatti — aiutiamo le aziende edili a chiudere di più attraverso un processo di vendita ottimizzato e misurabile. Lavoriamo a percentuale sulle vendite, il che significa che se non chiudi, non guadagniamo. Per scoprire come possiamo migliorare il tuo tasso di chiusura dei preventivi, <a href="/contattaci">contattaci</a> per una consulenza gratuita oppure esplora i nostri <a href="/casi-studio">casi studio</a> per vedere risultati concreti.</p>
+`
+  },
+
+  // ── Article 23 ── Sito Web Azienda Edile ──────────────────
+  {
+    id: "b1a2c3d4-e5f6-7890-abcd-ef1234567823",
+    slug: "sito-web-azienda-edile-genera-clienti-2026",
+    title: "Il Sito Web della Tua Azienda Edile Non Genera Clienti? Ecco i 10 Problemi e Come Risolverli",
+    excerpt: "Il 93% dei siti web di aziende edili non genera nemmeno un contatto al mese. Scopri i 10 problemi più comuni e le soluzioni concrete per trasformare il tuo sito in una macchina di lead generation.",
+    cover_image_url: "/blog-sito-web-edile.jpg",
+    author: blogAuthor,
+    category: "marketing",
+    tags: ["sito web", "imprese edili", "lead generation", "SEO", "conversione", "web design edilizia"],
+    published_at: "2026-04-17T14:00:00+00:00",
+    updated_at: null,
+    reading_time: 12,
+    featured: false,
+    status: "published",
+    seo_title: "Sito Web Azienda Edile: 10 Errori che Costano Clienti",
+    seo_description: "Il tuo sito web edile non genera contatti? Scopri i 10 problemi più comuni e le soluzioni per trasformare il sito della tua impresa in una macchina di lead.",
+    content: `
+<p>Hai speso €3.000, €5.000 o anche €10.000 per il sito web della tua azienda edile. È bello, ha le foto dei lavori, la pagina "chi siamo", il modulo contatti. Ma quanti clienti ti porta ogni mese? Se la risposta è "pochi" o "non lo so", non sei solo. Il 93% dei siti web di aziende edili italiane funziona come una vetrina statica — esiste, ma non produce risultati misurabili. In questo articolo analizziamo i 10 problemi più comuni e le soluzioni concrete per trasformarli.</p>
+
+<h2>Problema 1: Nessuna strategia SEO locale</h2>
+
+<p>Il tuo sito è bello ma invisibile su Google. Se qualcuno cerca "serramentista Bergamo" o "impresa ristrutturazioni Padova", il tuo sito non compare. Il motivo è semplice: non è stato costruito con una strategia SEO. Le pagine non hanno i title tag ottimizzati per le keyword locali, non ci sono pagine dedicate ai servizi per zona, non c'è un profilo Google Business ottimizzato collegato al sito.</p>
+
+<p>La soluzione: ogni pagina di servizio deve targetizzare una keyword specifica con volume di ricerca. "Sostituzione infissi [città]", "ristrutturazione appartamento [provincia]", "installazione fotovoltaico [zona]". Crea pagine separate per ogni servizio principale nelle zone in cui operi. E ottimizza il profilo Google Business con foto aggiornate mensilmente, risposte alle recensioni e post settimanali.</p>
+
+<h2>Problema 2: Homepage che parla dell'azienda, non del cliente</h2>
+
+<p>La homepage tipica di un'azienda edile dice: "Fondata nel 1985, con 40 anni di esperienza, siamo leader nel settore...". Al cliente non importa. Al cliente importa: "puoi risolvere il mio problema, in quanto tempo, e a che prezzo indicativo?". La homepage deve rispondere a queste tre domande nei primi 5 secondi, prima che il visitatore prema il tasto indietro.</p>
+
+<p>Una homepage efficace ha: un headline che parla del risultato per il cliente, tre benefici principali con icone, testimonianze visibili sopra la piega, e una call-to-action chiara e visibile ripetuta in più punti della pagina.</p>
+
+<h2>Problema 3: Nessuna call-to-action chiara</h2>
+
+<p>Molti siti di aziende edili hanno il modulo contatti nascosto in una pagina separata raggiungibile solo dal menu. Il visitatore deve cercare attivamente come contattarti. Ogni barriera aggiuntiva riduce le conversioni del 20-30%. La call-to-action principale deve essere visibile su ogni pagina, in alto, al centro e in fondo. E deve essere accompagnata da un numero di telefono cliccabile e un pulsante WhatsApp.</p>
+
+<h2>Problema 4: Sito lento su mobile</h2>
+
+<p>Il 78% delle ricerche locali per servizi edili avviene da smartphone. Se il tuo sito impiega più di 3 secondi a caricarsi su 4G, perdi il 53% dei visitatori prima che vedano la prima riga di testo. Google lo sa e penalizza i siti lenti anche nel posizionamento organico.</p>
+
+<p>Le cause più comuni: immagini non ottimizzate (foto da 4MB scaricate direttamente dalla fotocamera), hosting economico condiviso che rallenta nei momenti di picco, plugin e script non necessari che appesantiscono il caricamento, e design non responsive che si adatta male agli schermi piccoli. La soluzione è tecnica ma non complessa: comprimi le immagini sotto i 200KB, usa un hosting performante con CDN, elimina gli script non essenziali e testa regolarmente con Google PageSpeed Insights.</p>
+
+<h2>Problema 5: Nessuna prova sociale</h2>
+
+<p>Il settore edile ha un problema di fiducia. Ogni cliente ha sentito almeno una storia di lavori mal fatti, aziende sparite dopo il pagamento, o cantieri infiniti. Il tuo sito deve combattere questa diffidenza con prove concrete: recensioni Google visibili sul sito, testimonianze con nome, cognome e città del cliente, foto prima/dopo dei lavori con descrizione dettagliata, certificazioni e assicurazioni in evidenza, e numero di lavori completati come dato numerico.</p>
+
+<p>Le aziende edili che mostrano almeno 10 recensioni verificate sul sito hanno un tasso di conversione doppio rispetto a quelle senza testimonianze. Non è un'opinione — è un dato che vediamo ripetutamente nei nostri clienti.</p>
+
+<h2>Problema 6: Nessun blog o contenuto educativo</h2>
+
+<p>Un sito senza blog è un sito morto per Google. Non genera traffico organico nuovo, non dimostra competenza e non fornisce contenuti condivisibili sui social. Un blog con articoli ottimizzati SEO è il motore che porta visitatori nuovi ogni mese — persone che cercano informazioni su ristrutturazioni, infissi, fotovoltaico e che scoprono la tua azienda attraverso contenuti utili.</p>
+
+<p>Non servono articoli tutti i giorni. Due articoli al mese, ben scritti e ottimizzati per keyword con volume di ricerca reale, sono sufficienti per costruire un asset di traffico che cresce nel tempo. Dopo 12 mesi con 24 articoli pubblicati, puoi generare 500-2.000 visite organiche mensili — tutte gratuite e con intenzione di ricerca pertinente al tuo business.</p>
+
+<h2>Problema 7: Modulo contatti troppo lungo o mal progettato</h2>
+
+<p>Se il tuo modulo chiede nome, cognome, email, telefono, indirizzo, tipo di lavoro, budget, tempistiche, come ci hai trovato e un messaggio dettagliato, stai chiedendo troppo. Ogni campo aggiuntivo riduce le compilazioni. Il modulo ideale per un'azienda edile ha massimo 4-5 campi: nome, telefono (obbligatorio), tipo di lavoro (menu a tendina), città e un campo note opzionale.</p>
+
+<p>Il telefono è più importante dell'email. Nel settore edile, la chiamata telefonica è dove avviene la qualifica e la vendita. Un contatto con numero di telefono vale 5 volte un contatto con solo email.</p>
+
+<h2>Problema 8: Nessun tracciamento delle conversioni</h2>
+
+<p>Come fai a sapere se il sito funziona se non misuri nulla? Google Analytics deve essere installato e configurato con obiettivi di conversione: compilazione modulo, click su numero di telefono, click su WhatsApp, download del catalogo. Senza questi dati non puoi sapere da dove arrivano i contatti, quali pagine convertono e quali sono inutili.</p>
+
+<h2>Problema 9: Design datato che comunica poca professionalità</h2>
+
+<p>Un sito con design del 2015 — slider gigante in homepage, testi piccoli su sfondi colorati — comunica un messaggio chiaro al visitatore: questa azienda è rimasta indietro. Nel 2026, il design web deve essere pulito, moderno, con molto spazio bianco, tipografia leggibile, colori coerenti con il brand e animazioni sottili che guidano l'occhio verso la call-to-action.</p>
+
+<p>Non serve un redesign da €10.000. Spesso bastano interventi mirati: aggiornare la homepage, ottimizzare le pagine servizi e creare landing page dedicate per le campagne pubblicitarie. L'investimento tipico per un restyling mirato è €2.000-4.000 — recuperabile con 1-2 lavori generati dal nuovo sito.</p>
+
+<h2>Problema 10: Il sito non è collegato a un sistema di marketing</h2>
+
+<p>Il sito web da solo non basta. Deve essere il centro di un ecosistema che include: Google Business Profile ottimizzato, campagne Google Ads con landing page dedicate, presenza social media con link al sito, email marketing per i contatti che non chiudono subito, e remarketing per riportare i visitatori che non hanno compilato il modulo. Senza questo ecosistema, il sito è un'isola — raggiungibile solo da chi già ti conosce.</p>
+
+<p>La buona notizia è che non devi fare tutto in una volta. Inizia dal sito e dal Google Business Profile. Poi aggiungi il blog per il traffico organico. Poi le campagne a pagamento. Ogni pezzo amplifica gli altri, creando un sistema che genera contatti in modo prevedibile e misurabile.</p>
+
+<p><strong>Marketing Edile®</strong> costruisce sistemi di acquisizione clienti completi per aziende edili — dal sito web ottimizzato alle campagne di lead generation, dalla gestione social al follow-up automatizzato. Lavoriamo solo a percentuale sulle vendite: se non generiamo risultati, non paghiamo. Per scoprire come possiamo trasformare il sito della tua azienda edile in un generatore di preventivi qualificati, <a href="/contattaci">contattaci</a> per una consulenza gratuita o esplora i nostri <a href="/servizi">servizi dedicati al settore edile</a>.</p>
+`
   }
 ];

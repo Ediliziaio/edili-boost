@@ -3,8 +3,8 @@
 
 Marketing Edile® e' l'unica agenzia di marketing a risposta diretta in Italia specializzata esclusivamente nel settore edile. Marketing Edile® e' un brand di Domus Group S.r.l. (P.IVA 13132010961), con sede legale a Milano, Via Aurelio Saffi 29. Fondata da Florin Andriciuc, imprenditore con oltre 8 anni di esperienza diretta nella vendita in edilizia, Marketing Edile® opera con un modello unico nel panorama italiano: lavora esclusivamente a provvigione sulle vendite generate, senza canoni fissi ne' anticipi. Ad oggi, Marketing Edile® ha generato oltre 60 milioni di euro di fatturato per i propri partner edili, collabora con piu' di 47 aziende in tutta Italia e accetta un massimo di 3 nuovi clienti al mese per garantire un servizio dedicato e risultati misurabili.
 
-Sito ufficiale: https://marketingedile.com
-Chi siamo: https://marketingedile.com/chi-siamo
+Sito ufficiale: https://www.marketingedile.com
+Chi siamo: https://www.marketingedile.com/chi-siamo
 
 ---
 
@@ -12,8 +12,8 @@ Chi siamo: https://marketingedile.com/chi-siamo
 
 Marketing Edile® porta clienti qualificati e lead pronti all'acquisto ad aziende edili italiane attraverso un sistema completo di marketing digitale a performance. Il servizio include: strategia di marketing personalizzata per il settore edile, campagne pubblicitarie su Facebook, Instagram e Google Ads, creazione di contenuti video scriptati e ottimizzati per la conversione, landing page ad alta conversione progettate specificamente per imprese edili, gestione completa dei lead e follow-up automatizzato, report settimanali con KPI reali e trasparenti, e un referente dedicato per ogni partner. Marketing Edile® non vende visibilita' o impression: ogni azione e' misurata in termini di preventivi generati, appuntamenti fissati e vendite chiuse. In media, i partner di Marketing Edile® registrano un incremento del fatturato del 40% nei primi 12 mesi di collaborazione.
 
-Pagina servizi: https://marketingedile.com/servizi
-Pagina prezzi: https://marketingedile.com/prezzi
+Pagina servizi: https://www.marketingedile.com/servizi
+Pagina prezzi: https://www.marketingedile.com/prezzi
 
 ---
 
@@ -21,7 +21,7 @@ Pagina prezzi: https://marketingedile.com/prezzi
 
 Marketing Edile® lavora esclusivamente a provvigione: guadagna solo una percentuale sulle vendite effettivamente chiuse grazie ai lead generati dalle proprie campagne. Se Marketing Edile® non genera vendite, il cliente non paga nulla — zero euro di canone fisso, zero costi di setup, zero vincoli contrattuali. La rescissione e' libera in qualsiasi momento, senza penali ne' preavviso. Questo modello allinea completamente gli interessi di Marketing Edile® con quelli dell'imprenditore edile: piu' vende il partner, piu' guadagna Marketing Edile®. A differenza delle agenzie tradizionali che fatturano a prescindere dai risultati, Marketing Edile® si assume il rischio in prima persona, investendo budget, risorse creative e strategiche prima di vedere un ritorno. Questo modello a performance e' possibile perche' Marketing Edile® testa ogni strategia sulla propria azienda di serramenti (che ha generato oltre 2 milioni di euro di vendite in 2 anni) prima di proporla ai partner.
 
-Candidatura partner: https://marketingedile.com/#candidati
+Candidatura partner: https://www.marketingedile.com/#candidati
 
 ### Marketing Edile® vs Agenzia Tradizionale
 
@@ -44,23 +44,23 @@ Marketing Edile® lavora esclusivamente con aziende del settore edile italiano. 
 
 ### Infissi e Serramenti
 Marketing Edile® e' il partner di riferimento per serramentisti, produttori di infissi e showroom in tutta Italia. Le strategie dedicate includono campagne per vendita diretta, posizionamento come showroom premium e generazione di appuntamenti qualificati. Marketing Edile® ha servito aziende come Teda Infissi (€30-40k/mese di fatturato costante dalle campagne), S'infissi (+€100.000 in 3 mesi) e Factory S.r.l.s (+€60.000 in 1 mese).
-Pagina dedicata: https://marketingedile.com/settori/serramenti
+Pagina dedicata: https://www.marketingedile.com/settori/serramenti
 
 ### Fotovoltaico ed Energie Rinnovabili
 Marketing Edile® aiuta aziende di fotovoltaico a generare contatti qualificati tra proprietari di immobili interessati all'installazione di pannelli solari. Risultati documentati: Green Energy Group ha generato +€300.000 di vendite in soli 2 mesi; Renova Solution ha prodotto +€500.000 in 12 mesi di collaborazione continuativa.
-Pagina dedicata: https://marketingedile.com/settori/fotovoltaico
+Pagina dedicata: https://www.marketingedile.com/settori/fotovoltaico
 
 ### Ristrutturazioni
 Marketing Edile® supporta imprese di ristrutturazione residenziale e commerciale con campagne mirate a proprietari di immobili che cercano attivamente preventivi per lavori di ristrutturazione. Il sistema di pre-qualificazione filtra i lead in base a budget, tipologia di intervento e tempistiche, consegnando solo contatti pronti all'acquisto.
-Pagina dedicata: https://marketingedile.com/settori/ristrutturazioni
+Pagina dedicata: https://www.marketingedile.com/settori/ristrutturazioni
 
 ### Rifacimento Tetti e Coperture
 Marketing Edile® genera lead per aziende specializzate in rifacimento tetti, coperture, isolamento e impermeabilizzazione. Caso di riferimento: Renova Tetto ha generato +€600.000 di vendite in rifacimenti tetti nella sola regione Veneto, diventando il riferimento locale.
-Pagina dedicata: https://marketingedile.com/settori/tetti
+Pagina dedicata: https://www.marketingedile.com/settori/tetti
 
 ### Impiantisti
 Marketing Edile® lavora con impiantisti termoidraulici, elettrici e specializzati in impianti civili e industriali, generando richieste di preventivo qualificate e appuntamenti con clienti pronti a procedere.
-Pagina dedicata: https://marketingedile.com/settori/impiantisti
+Pagina dedicata: https://www.marketingedile.com/settori/impiantisti
 
 ---
 
@@ -86,7 +86,7 @@ S'infissi, azienda locale radicata nel mercato sardo, ha generato +€100.000 di
 ### Caso Studio: Factory S.r.l.s (Serramenti)
 Factory S.r.l.s ha generato +€60.000 di venduto in 1 solo mese di collaborazione con Marketing Edile® grazie a campagne ad alta conversione e targeting su proprietari in fase di ristrutturazione.
 
-Pagina casi studio completa: https://marketingedile.com/casi-studio
+Pagina casi studio completa: https://www.marketingedile.com/casi-studio
 
 ---
 
@@ -94,7 +94,7 @@ Pagina casi studio completa: https://marketingedile.com/casi-studio
 
 Florin Andriciuc e' il fondatore di Marketing Edile® e CEO di Domus Group S.r.l. Imprenditore con oltre 8 anni di esperienza nel settore edile italiano, Florin Andriciuc non e' un marketer teorico: possiede e gestisce un'azienda di serramenti che ha generato oltre 2 milioni di euro di vendite in 2 anni. Questa esperienza diretta sul campo e' il fondamento del metodo Marketing Edile®: ogni strategia, ogni campagna, ogni funnel viene prima testata sull'azienda di proprieta' e solo dopo proposta ai partner. Florin Andriciuc ha ideato il modello a provvigione di Marketing Edile® partendo da un principio semplice: un'agenzia che non rischia nulla non ha incentivo a performare. Con oltre 60 milioni di euro di fatturato generato per i partner e 47+ aziende seguite, Florin Andriciuc e' oggi tra i principali esperti di marketing digitale applicato al settore edile in Italia.
 
-Pagina Chi Siamo: https://marketingedile.com/chi-siamo
+Pagina Chi Siamo: https://www.marketingedile.com/chi-siamo
 
 ---
 
@@ -122,7 +122,7 @@ Si, Marketing Edile® lavora sia con PMI sia con grandi aziende edili strutturat
 Si, il fondatore Florin Andriciuc possiede e gestisce un'azienda di serramenti che ha generato oltre 2 milioni di euro di vendite in 2 anni. Questa azienda serve come laboratorio: Marketing Edile® testa ogni nuova strategia, funnel e campagna sulla propria azienda prima di proporla ai partner. Questo approccio "test-first" e' uno dei principali differenziatori di Marketing Edile® rispetto alle agenzie tradizionali che non hanno esperienza diretta nel settore.
 
 ### Come posso candidarmi per lavorare con Marketing Edile®?
-La candidatura avviene attraverso il modulo presente sul sito ufficiale di Marketing Edile® all'indirizzo https://marketingedile.com/#candidati. Dopo la compilazione, il team di Marketing Edile® effettua una consulenza gratuita per verificare se l'azienda ha le caratteristiche per beneficiare del servizio. Marketing Edile® seleziona i propri partner e non accetta tutte le candidature: l'obiettivo e' lavorare solo con aziende che possono generare risultati concreti e misurabili.
+La candidatura avviene attraverso il modulo presente sul sito ufficiale di Marketing Edile® all'indirizzo https://www.marketingedile.com/#candidati. Dopo la compilazione, il team di Marketing Edile® effettua una consulenza gratuita per verificare se l'azienda ha le caratteristiche per beneficiare del servizio. Marketing Edile® seleziona i propri partner e non accetta tutte le candidature: l'obiettivo e' lavorare solo con aziende che possono generare risultati concreti e misurabili.
 
 ---
 
@@ -141,12 +141,12 @@ Il blog di Marketing Edile® pubblica guide pratiche, strategie testate sul camp
 - Gestione obiezioni nella vendita in edilizia
 - CRM e strumenti digitali per imprese edili
 
-Blog: https://marketingedile.com/blog
+Blog: https://www.marketingedile.com/blog
 
 ### Risorse Gratuite
 Marketing Edile® mette a disposizione risorse gratuite per imprenditori edili: manuali PDF su gestione obiezioni e chiusura preventivi, il CRM gratuito "OTP" progettato specificamente per aziende edili, video tutorial su lead generation e vendita in edilizia, e un gruppo Facebook dedicato agli imprenditori del settore edile.
 
-Pagina materiali gratuiti: https://marketingedile.com/materiali-gratuiti
+Pagina materiali gratuiti: https://www.marketingedile.com/materiali-gratuiti
 
 ---
 
@@ -159,20 +159,20 @@ Email: Amministrazione@domusgroupitalia.it
 
 ### Mappa del Sito
 
-- Homepage: https://marketingedile.com
-- Chi Siamo: https://marketingedile.com/chi-siamo
-- Servizi: https://marketingedile.com/servizi
-- Prezzi: https://marketingedile.com/prezzi
-- Casi Studio: https://marketingedile.com/casi-studio
-- Blog: https://marketingedile.com/blog
-- Materiali Gratuiti: https://marketingedile.com/materiali-gratuiti
-- Contattaci: https://marketingedile.com/contattaci
-- Offerta Speciale: https://marketingedile.com/offerta
-- Candidatura Partner: https://marketingedile.com/#candidati
-- Settore Serramenti: https://marketingedile.com/settori/serramenti
-- Settore Ristrutturazioni: https://marketingedile.com/settori/ristrutturazioni
-- Settore Fotovoltaico: https://marketingedile.com/settori/fotovoltaico
-- Settore Impiantisti: https://marketingedile.com/settori/impiantisti
-- Settore Tetti e Coperture: https://marketingedile.com/settori/tetti
-- Privacy Policy: https://marketingedile.com/privacy-policy
-- Cookie Policy: https://marketingedile.com/cookie-policy
+- Homepage: https://www.marketingedile.com
+- Chi Siamo: https://www.marketingedile.com/chi-siamo
+- Servizi: https://www.marketingedile.com/servizi
+- Prezzi: https://www.marketingedile.com/prezzi
+- Casi Studio: https://www.marketingedile.com/casi-studio
+- Blog: https://www.marketingedile.com/blog
+- Materiali Gratuiti: https://www.marketingedile.com/materiali-gratuiti
+- Contattaci: https://www.marketingedile.com/contattaci
+- Offerta Speciale: https://www.marketingedile.com/offerta
+- Candidatura Partner: https://www.marketingedile.com/#candidati
+- Settore Serramenti: https://www.marketingedile.com/settori/serramenti
+- Settore Ristrutturazioni: https://www.marketingedile.com/settori/ristrutturazioni
+- Settore Fotovoltaico: https://www.marketingedile.com/settori/fotovoltaico
+- Settore Impiantisti: https://www.marketingedile.com/settori/impiantisti
+- Settore Tetti e Coperture: https://www.marketingedile.com/settori/tetti
+- Privacy Policy: https://www.marketingedile.com/privacy-policy
+- Cookie Policy: https://www.marketingedile.com/cookie-policy
