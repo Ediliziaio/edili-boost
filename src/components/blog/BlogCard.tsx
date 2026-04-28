@@ -41,6 +41,10 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               width={600}
               height={300}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onError={(event) => {
+                event.currentTarget.onerror = null;
+                event.currentTarget.src = '/og-image.jpg';
+              }}
             />
           ) : (
             <>

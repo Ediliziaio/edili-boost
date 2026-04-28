@@ -143,6 +143,10 @@ export default function BlogPost() {
                 width={1200}
                 height={630}
                 className="w-full h-full object-cover"
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = '/og-image.jpg';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
             </div>

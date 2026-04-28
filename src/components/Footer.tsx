@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Casi Studio", href: "/casi-studio", isExternal: true },
   { label: "Servizi", href: "/servizi", isExternal: true },
   { label: "Prezzi", href: "/prezzi", isExternal: true },
+  { label: "Edilizia in Cloud", href: "/ecosistema/edilizia-in-cloud", isExternal: true },
   { label: "Blog", href: "/blog", isExternal: true },
   { label: "Contattaci", href: "/contattaci", isExternal: true },
   { label: "Materiali Gratuiti", href: "/materiali-gratuiti", isExternal: true },
@@ -106,6 +107,15 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
+            <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
+              Ecosistema
+            </h4>
+            <nav className="mb-6 flex flex-col gap-3" aria-label="Ecosistema Domus Group">
+              <Link to="/ecosistema/edilizia-in-cloud" className="text-muted-foreground hover:text-gold transition-colors">Edilizia in Cloud</Link>
+              <Link to="/ecosistema/gestionale-edilizia" className="text-muted-foreground hover:text-gold transition-colors">Gestionale Edilizia</Link>
+              <Link to="/ecosistema/crm-preventivi-cantieri" className="text-muted-foreground hover:text-gold transition-colors">CRM, Preventivi e Cantieri</Link>
+              <a href="https://www.ediliziaincloud.com/demo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-gold transition-colors">Demo Edilizia in Cloud</a>
+            </nav>
             <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
               Contatti
             </h4>

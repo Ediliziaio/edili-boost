@@ -8,6 +8,7 @@ import blogAziendaDipendeDaTe from '@/assets/blog-azienda-dipende-da-te.jpg';
 import blogClientiQualificati from '@/assets/blog-clienti-qualificati-edilizia.jpg';
 import blogAumentareVendite from '@/assets/blog-aumentare-vendite-edilizia.jpg';
 import blog30RichiesteQualificate from '@/assets/blog-30-richieste-qualificate.jpg';
+import blogPreventivi from '@/assets/blog-preventivi-edilizia.jpg';
 
 // Mappa path -> immagine importata (supporta sia /src/assets/ che /public/ paths)
 const blogImageMap: Record<string, string> = {
@@ -20,6 +21,7 @@ const blogImageMap: Record<string, string> = {
   '/src/assets/blog-clienti-qualificati-edilizia.jpg': blogClientiQualificati,
   '/src/assets/blog-aumentare-vendite-edilizia.jpg': blogAumentareVendite,
   '/src/assets/blog-30-richieste-qualificate.jpg': blog30RichiesteQualificate,
+  '/src/assets/blog-preventivi-edilizia.jpg': blogPreventivi,
   // Static data paths (from /public/)
   '/blog-preventivi-edilizia-cover.jpg': blogPreventiviCover,
   '/blog-controllo-gestione-edilizia.jpg': blogControlloGestione,
@@ -30,6 +32,7 @@ const blogImageMap: Record<string, string> = {
   '/blog-clienti-qualificati-edilizia.jpg': blogClientiQualificati,
   '/blog-aumentare-vendite-edilizia.jpg': blogAumentareVendite,
   '/blog-30-richieste-qualificate.jpg': blog30RichiesteQualificate,
+  '/blog-preventivi-edilizia.jpg': blogPreventivi,
 };
 
 /**

@@ -44,105 +44,30 @@ Allow: /blog
 # AI Crawlers — GEO (Generative Engine Optimization)
 # ------------------------------------------------------------
 
-# OpenAI
 User-agent: GPTBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
 User-agent: OAI-SearchBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Anthropic
 User-agent: ClaudeBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
 User-agent: anthropic-ai
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Google AI
 User-agent: Google-Extended
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Perplexity
 User-agent: PerplexityBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# You.com
 User-agent: YouBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Cohere
 User-agent: cohere-ai
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Diffbot
 User-agent: Diffbot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# ByteDance
 User-agent: Bytespider
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Apple
 User-agent: Applebot-Extended
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Common Crawl
 User-agent: CCBot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Amazon Alexa / Search
 User-agent: Amazonbot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Allen AI
 User-agent: AI2Bot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Timpi Search
 User-agent: Timpibot
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Seekr AI
 User-agent: Seekr
-Allow: /
-Allow: /blog
-Allow: /llms.txt
-
-# Huawei / Petal Search
 User-agent: PetalBot
 Allow: /
 Allow: /blog
+Allow: /settori
+Allow: /ecosistema
 Allow: /llms.txt
+Disallow: /admin
+Disallow: /auth
 
 # ------------------------------------------------------------
 # Tutti gli altri crawler

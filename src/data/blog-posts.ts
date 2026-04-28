@@ -1,3 +1,7 @@
+import { seoExpansionPosts } from "./seoExpansionPosts";
+import { ediliziaCloudPosts } from "./ediliziaCloudContent";
+import { cloudAiSeoPosts } from "./cloudAiSeoPosts";
+
 export interface StaticBlogAuthor {
   id: string;
   name: string;
@@ -33,7 +37,7 @@ export const blogAuthor: StaticBlogAuthor = {
   avatar_url: "/florin-avatar.jpg"
 };
 
-export const blogPosts: StaticBlogPost[] = [
+const baseBlogPosts: StaticBlogPost[] = [
   // ── Article 1 ──────────────────────────────────────────────
   {
     id: "b1a2c3d4-e5f6-7890-abcd-ef1234567801",
@@ -1223,7 +1227,7 @@ export const blogPosts: StaticBlogPost[] = [
     id: "c1d2e3f4-a5b6-7890-cdef-012345678910",
     slug: "marketing-locale-serramentisti-google-business-seo",
     title: "Marketing Locale per Serramentisti: Come Dominare Google Business Profile e la SEO Locale nel 2026",
-    excerpt: "Guida completa al marketing locale per showroom di infissi e serramenti: Google Business Profile, SEO locale, strategia recensioni e campagne geo-targetizzate per attirare clienti nella tua zona.",
+    excerpt: "Strategia completa di marketing locale per showroom di infissi e serramenti: Google Business Profile, SEO locale, recensioni e campagne geo-targetizzate per attirare clienti nella tua zona.",
     cover_image_url: "/blog-30-richieste-qualificate.jpg",
     author: blogAuthor,
     category: "marketing",
@@ -1233,8 +1237,8 @@ export const blogPosts: StaticBlogPost[] = [
     reading_time: 9,
     featured: true,
     status: "published",
-    seo_title: "Marketing Locale Serramentisti: Guida SEO e GBP",
-    seo_description: "Scopri come dominare la ricerca locale con Google Business Profile, SEO locale e recensioni. Guida pratica per showroom di infissi e serramenti.",
+    seo_title: "Marketing Locale Serramentisti: Google Business e Clienti",
+    seo_description: "Scopri come dominare la ricerca locale con Google Business Profile, SEO locale e recensioni. Strategia pratica per showroom di infissi e serramenti.",
     content: `
 <p>Il <strong>marketing locale per serramentisti</strong> rappresenta oggi la leva piu potente per attirare clienti qualificati nel proprio showroom. L'82% delle ricerche locali su Google porta a una visita in negozio entro 24 ore, e il settore infissi e serramenti e tra quelli con il piu alto tasso di conversione locale. Eppure, la maggior parte degli showroom di finestre e porte non sfrutta nemmeno il 20% del potenziale offerto dagli strumenti digitali locali.</p>
 
@@ -2104,7 +2108,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "come-scegliere-agenzia-marketing-azienda-edile-2026",
     title: "Come Scegliere un\u2019Agenzia di Marketing per la Tua Azienda Edile nel 2026",
     excerpt: "Non tutte le agenzie di marketing sono adatte al settore edile. Scopri i segnali di allarme da evitare, le domande giuste da fare e perch\u00e9 il modello a provvigione \u00e8 l\u2019unico che allinea davvero gli interessi.",
-    cover_image_url: "/blog-scegliere-agenzia-marketing-edile.jpg",
+    cover_image_url: "/blog-clienti-qualificati-edilizia.jpg",
     author: blogAuthor,
     category: "strategie",
     tags: ["agenzia marketing", "settore edile", "scelta agenzia", "provvigione"],
@@ -2234,7 +2238,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "marketing-serramentisti-7-errori-costano-100000-euro",
     title: "Marketing per Serramentisti: 7 Errori che Ti Costano \u20ac100.000 all\u2019Anno",
     excerpt: "Se vendi infissi e finestre ma i tuoi contatti sono scarsi o di bassa qualit\u00e0, probabilmente stai commettendo uno o pi\u00f9 di questi 7 errori critici di marketing. Ecco come correggerli.",
-    cover_image_url: "/blog-marketing-serramentisti-errori.jpg",
+    cover_image_url: "/blog-aumentare-vendite-edilizia.jpg",
     author: blogAuthor,
     category: "marketing",
     tags: ["serramenti", "errori marketing", "lead generation", "showroom"],
@@ -2244,7 +2248,7 @@ export const blogPosts: StaticBlogPost[] = [
     featured: false,
     status: "published",
     seo_title: "Marketing Serramentisti: 7 Errori da \u20ac100K | Guida",
-    seo_description: "I 7 errori di marketing pi\u00f9 costosi per i serramentisti italiani nel 2026. Scopri come ogni errore ti costa fino a 100.000\u20ac di vendite perse ogni anno.",
+    seo_description: "I 7 errori di marketing pi\u00f9 costosi per i serramentisti italiani nel 2026. Scopri come evitarli e recuperare vendite perse ogni anno.",
     content: `
 <h2>Il marketing per serramentisti nel 2026: un campo minato di errori costosi</h2>
 
@@ -2359,7 +2363,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "futuro-fotovoltaico-italia-acquisire-clienti-2026-2027",
     title: "Il Futuro del Fotovoltaico in Italia: Come Acquisire Clienti nel 2026-2027",
     excerpt: "Il mercato fotovoltaico italiano vale 8 miliardi e continua a crescere. Ma la concorrenza si intensifica e chi non costruisce oggi una macchina di acquisizione clienti efficiente sar\u00e0 fuori mercato nel 2027.",
-    cover_image_url: "/blog-futuro-fotovoltaico-italia-2026.jpg",
+    cover_image_url: "/blog-efficienza-operativa-edilizia.jpg",
     author: blogAuthor,
     category: "strategie",
     tags: ["fotovoltaico", "energia solare", "incentivi", "lead generation"],
@@ -2476,7 +2480,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "case-study-impresa-ristrutturazioni-triplicato-fatturato-8-mesi",
     title: "Case Study: Come un\u2019Impresa di Ristrutturazioni Ha Triplicato il Fatturato in 8 Mesi",
     excerpt: "Un\u2019impresa di ristrutturazioni con 380.000\u20ac di fatturato annuo. Otto mesi di lavoro con Marketing Edile\u00ae. Risultato: 1.140.000\u20ac. Ecco ogni singolo passaggio del processo.",
-    cover_image_url: "/blog-case-study-ristrutturazioni-fatturato-3x.jpg",
+    cover_image_url: "/blog-controllo-gestione-edilizia.jpg",
     author: blogAuthor,
     category: "vendite",
     tags: ["ristrutturazioni", "caso studio", "fatturato", "crescita aziendale"],
@@ -2611,7 +2615,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "social-media-imprese-edili-strategia-instagram-facebook",
     title: "Social Media per Imprese Edili: La Strategia Completa per Instagram e Facebook",
     excerpt: "La maggior parte delle imprese edili usa i social nel modo sbagliato — post casuali, nessuna strategia, zero conversioni. Ecco il sistema completo di Marketing Edile\u00ae per trasformare Instagram e Facebook in macchine di acquisizione clienti.",
-    cover_image_url: "/blog-social-media-imprese-edili-instagram-facebook.jpg",
+    cover_image_url: "/blog-aumentare-vendite-edilizia.jpg",
     author: blogAuthor,
     category: "marketing",
     tags: ["social media", "instagram", "facebook", "contenuti edilizia"],
@@ -2741,7 +2745,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "google-ads-imprese-edili-guida-completa-2026",
     title: "Google Ads per Imprese Edili: La Guida Completa per Generare Preventivi nel 2026",
     excerpt: "Come strutturare campagne Google Ads che portano richieste di preventivo qualificate per serramentisti, imprese di ristrutturazione e aziende edili, evitando gli errori che bruciano budget.",
-    cover_image_url: "/blog-google-ads-edilizia.jpg",
+    cover_image_url: "/blog-30-richieste-qualificate.jpg",
     author: blogAuthor,
     category: "marketing",
     tags: ["google ads", "PPC", "imprese edili", "lead generation", "preventivi", "pubblicità online", "serramenti"],
@@ -2913,7 +2917,7 @@ export const blogPosts: StaticBlogPost[] = [
     slug: "sito-web-azienda-edile-genera-clienti-2026",
     title: "Il Sito Web della Tua Azienda Edile Non Genera Clienti? Ecco i 10 Problemi e Come Risolverli",
     excerpt: "Il 93% dei siti web di aziende edili non genera nemmeno un contatto al mese. Scopri i 10 problemi più comuni e le soluzioni concrete per trasformare il tuo sito in una macchina di lead generation.",
-    cover_image_url: "/blog-sito-web-edile.jpg",
+    cover_image_url: "/blog-preventivi-edilizia-cover.jpg",
     author: blogAuthor,
     category: "marketing",
     tags: ["sito web", "imprese edili", "lead generation", "SEO", "conversione", "web design edilizia"],
@@ -2987,3 +2991,5 @@ export const blogPosts: StaticBlogPost[] = [
 `
   }
 ];
+
+export const blogPosts: StaticBlogPost[] = [...baseBlogPosts, ...seoExpansionPosts, ...ediliziaCloudPosts, ...cloudAiSeoPosts];

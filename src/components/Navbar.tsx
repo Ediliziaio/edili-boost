@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Casi Studio", href: "/casi-studio", isExternal: true },
   { label: "Servizi", href: "/servizi", isExternal: true },
   { label: "Prezzi", href: "/prezzi", isExternal: true },
+  { label: "Edilizia in Cloud", href: "/ecosistema/edilizia-in-cloud", isExternal: true },
   { label: "Blog", href: "/blog", isExternal: true },
   { label: "Contattaci", href: "/contattaci", isExternal: true },
 ];
@@ -178,21 +179,38 @@ const Navbar = () => {
           >
             <div className="flex flex-col items-center gap-6">
               {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleSmoothScroll(e, link.href)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`text-xl font-medium transition-colors ${
-                    activeSection === link.href.slice(1)
-                      ? "text-gold"
-                      : "text-foreground/70 hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </motion.a>
+                link.isExternal ? (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-xl font-medium text-foreground/70 transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className={`text-xl font-medium transition-colors ${
+                      activeSection === link.href.slice(1)
+                        ? "text-gold"
+                        : "text-foreground/70 hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.a>
+                )
               ))}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
