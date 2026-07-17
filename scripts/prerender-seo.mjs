@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { seoExpansionPosts } from "../src/data/seoExpansionPosts.js";
 import { ediliziaCloudPages, ediliziaCloudPosts } from "../src/data/ediliziaCloudContent.js";
 import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
+import { homeFaqs } from "../src/data/homeFaqs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -419,6 +420,31 @@ async function getBlogPosts() {
   return [...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
 
+function faqPageSchema(faqs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
+function faqHtml(faqs) {
+  return `
+      <section class="seo-fallback-faq" aria-label="Domande frequenti">
+        <h2>Domande frequenti su Marketing Edile®</h2>
+        <dl>
+          ${faqs
+            .map((faq) => `<dt>${esc(faq.question)}</dt><dd>${esc(faq.answer)}</dd>`)
+            .join("\n          ")}
+        </dl>
+      </section>
+  `;
+}
+
 function seoHead(route) {
   const title = fullTitle(route.title);
   const canonical = canonicalFor(route.path);
@@ -480,6 +506,7 @@ function fallbackContent(route) {
       <h1>${esc(route.h1 || route.title)}</h1>
       <p>${esc(route.description)}</p>
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
+      ${route.faqs ? faqHtml(route.faqs) : ""}
     </section>
   `;
 }
@@ -553,7 +580,26 @@ async function main() {
   const posts = await getBlogPosts();
 
   const blogLinks = posts.map((post) => ({ href: `/blog/${post.slug}`, label: post.title }));
-  const routes = staticRoutes.map((route) => route.path === "/blog" ? { ...route, links: blogLinks } : route);
+  const routes = staticRoutes.map((route) => {
+    if (route.path === "/blog") return { ...route, links: blogLinks };
+    if (route.path === "/") {
+      return {
+        ...route,
+        faqs: homeFaqs,
+        links: [
+          { href: "/servizi", label: "Servizi di marketing per imprese edili" },
+          { href: "/prezzi", label: "Prezzi: marketing a percentuale" },
+          { href: "/casi-studio", label: "Casi studio e risultati reali" },
+          { href: "/settori/serramenti", label: "Marketing per serramentisti" },
+          { href: "/settori/ristrutturazioni", label: "Marketing ristrutturazioni" },
+          { href: "/settori/fotovoltaico", label: "Marketing fotovoltaico" },
+          { href: "/blog", label: "Blog: strategie di marketing edile" },
+        ],
+        jsonLd: [organizationSchema(), websiteSchema(), faqPageSchema(homeFaqs)],
+      };
+    }
+    return route;
+  });
 
   for (const post of posts) {
     routes.push({

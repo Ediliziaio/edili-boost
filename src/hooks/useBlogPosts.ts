@@ -1,5 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { blogPosts, blogAuthor, StaticBlogPost, StaticBlogAuthor } from '@/data/blog-posts';
+// Archivi SEO aggiuntivi — stessa shape di StaticBlogPost.
+// Prima NON erano collegati al sito React: erano prerenderizzati e presenti in sitemap,
+// ma useBlogPost() non li trovava e BlogPost.tsx rimandava a /blog dopo l'hydration.
+// Questo generava il "Scansionata, ma attualmente non indicizzata" su GSC per ~70 URL.
+import { seoExpansionPosts } from '@/data/seoExpansionPosts.js';
+import { cloudAiSeoPosts } from '@/data/cloudAiSeoPosts.js';
+import { ediliziaCloudPosts } from '@/data/ediliziaCloudContent.js';
 
 export interface BlogAuthor {
   id: string;
@@ -39,6 +46,13 @@ function toAuthor(a: StaticBlogAuthor): BlogAuthor {
   };
 }
 
+// Alcuni archivi hanno updated_at come oggetto Date invece che stringa ISO.
+function toIso(value: unknown): string | null {
+  if (!value) return null;
+  if (value instanceof Date) return value.toISOString();
+  return String(value);
+}
+
 function toPostDB(p: StaticBlogPost): BlogPostDB {
   return {
     id: p.id,
@@ -50,21 +64,37 @@ function toPostDB(p: StaticBlogPost): BlogPostDB {
     author_id: p.author.id,
     category: p.category,
     tags: p.tags,
-    published_at: p.published_at,
-    updated_at: p.updated_at,
+    published_at: toIso(p.published_at),
+    updated_at: toIso(p.updated_at),
     reading_time: p.reading_time,
     featured: p.featured,
     status: p.status,
     seo_title: p.seo_title,
     seo_description: p.seo_description,
-    created_at: p.published_at,
+    created_at: toIso(p.published_at) ?? '',
     author: toAuthor(p.author)
   };
 }
 
-const allPosts: BlogPostDB[] = blogPosts
-  .filter(p => p.status === 'published')
-  .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+// Le stesse 4 fonti aggregate dal prerender (scripts/prerender-seo.mjs) devono essere
+// risolvibili dal sito React, così ogni URL in sitemap corrisponde a una pagina reale.
+const rawSources = [
+  ...(blogPosts as StaticBlogPost[]),
+  ...(seoExpansionPosts as unknown as StaticBlogPost[]),
+  ...(cloudAiSeoPosts as unknown as StaticBlogPost[]),
+  ...(ediliziaCloudPosts as unknown as StaticBlogPost[]),
+];
+
+// Dedup per slug: la prima occorrenza vince (blog-posts.ts ha precedenza).
+const bySlug = new Map<string, StaticBlogPost>();
+for (const p of rawSources) {
+  if (p && p.status === 'published' && p.slug && !bySlug.has(p.slug)) {
+    bySlug.set(p.slug, p);
+  }
+}
+
+const allPosts: BlogPostDB[] = Array.from(bySlug.values())
+  .sort((a, b) => new Date(toIso(b.published_at) ?? 0).getTime() - new Date(toIso(a.published_at) ?? 0).getTime())
   .map(toPostDB);
 
 export function useBlogPosts(category?: string) {

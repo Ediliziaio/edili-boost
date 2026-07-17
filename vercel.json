@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    { "source": "/hello-world", "destination": "/blog", "permanent": true },
+    { "source": "/hello-world/", "destination": "/blog", "permanent": true },
+    { "source": "/domande-e-risposte", "destination": "/blog", "permanent": true },
+    { "source": "/domande-e-risposte/", "destination": "/blog", "permanent": true },
+    { "source": "/elementor-hf/:path*", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/((?!assets|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms).*)", "destination": "/index.html" }
   ],
