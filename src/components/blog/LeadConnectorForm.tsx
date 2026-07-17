@@ -1,23 +1,15 @@
+// Form lead-gen del sito: embed EiC Form Builder (Edilizia in Cloud).
+// Usato in Blog, BlogPost, Contattaci, CTA homepage e Offerta.
 export function LeadConnectorForm() {
   return (
-    <div className="bg-card rounded-xl border border-border overflow-hidden">
+    <div className="flex justify-center">
       <iframe
-        src="https://api.leadconnectorhq.com/widget/form/54Xb37as0q5feYgkP9LW"
-        style={{ width: '100%', height: '593px', border: 'none' }}
-        id="inline-54Xb37as0q5feYgkP9LW"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Marketing Edile - Form"
-        data-height="593"
-        data-layout-iframe-id="inline-54Xb37as0q5feYgkP9LW"
-        data-form-id="54Xb37as0q5feYgkP9LW"
-        title="Marketing Edile - Form"
+        src="https://app.ediliziaincloud.com/f?slug=marketing-edile&company_id=00000000-0000-0000-0000-000000000001"
+        title="Richiedi informazioni"
         loading="lazy"
+        width="100%"
+        height="640"
+        style={{ border: 0, maxWidth: 640 }}
       />
     </div>
   );
