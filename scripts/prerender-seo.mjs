@@ -207,7 +207,7 @@ const staticRoutes = [
   {
     path: "/grazie",
     title: "Grazie — Richiesta ricevuta",
-    description: "Abbiamo ricevuto la tua richiesta. Ti ricontattiamo entro 24 ore.",
+    description: "Abbiamo ricevuto la tua richiesta. Verrai contattato nelle prossime ore da un nostro consulente.",
     keywords: ["grazie", "richiesta ricevuta"],
     h1: "Grazie! Abbiamo ricevuto la tua richiesta",
     noindex: true,

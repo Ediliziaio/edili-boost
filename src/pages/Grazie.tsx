@@ -26,7 +26,7 @@ const Grazie = () => {
     <>
       <SEOHead
         title="Grazie — Richiesta ricevuta"
-        description="Abbiamo ricevuto la tua richiesta. Ti ricontattiamo entro 24 ore."
+        description="Abbiamo ricevuto la tua richiesta. Verrai contattato nelle prossime ore da un nostro consulente."
         url={`${siteConfig.url}/grazie`}
         noindex
       />
@@ -46,7 +46,7 @@ const Grazie = () => {
                 Grazie! Abbiamo ricevuto la tua richiesta
               </h1>
               <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-                Un nostro referente analizzerà la tua azienda e ti ricontatterà a breve.
+                Verrai contattato nelle prossime ore da un nostro consulente.
                 Nel frattempo, tieni il telefono a portata di mano.
               </p>
 
@@ -54,9 +54,9 @@ const Grazie = () => {
                 <div className="flex items-start gap-3 bg-card border border-border rounded-xl p-5">
                   <Clock className="w-6 h-6 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-foreground">Risposta entro 24 ore</p>
+                    <p className="font-semibold text-foreground">Risposta in poche ore</p>
                     <p className="text-sm text-muted-foreground">
-                      Ti contattiamo nei prossimi giorni lavorativi.
+                      Un consulente ti contatta nelle prossime ore.
                     </p>
                   </div>
                 </div>
