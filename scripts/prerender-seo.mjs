@@ -5,6 +5,7 @@ import { seoExpansionPosts } from "../src/data/seoExpansionPosts.js";
 import { ediliziaCloudPages, ediliziaCloudPosts } from "../src/data/ediliziaCloudContent.js";
 import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
 import { homeFaqs } from "../src/data/homeFaqs.js";
+import { getPageFaq } from "../src/data/pageFaqs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -233,7 +234,17 @@ function slugDate(value) {
 }
 
 function fullTitle(title) {
-  return title ? `${title} | Marketing Edile` : "Marketing Edile® — Marketing per Aziende Edili";
+  if (!title) return "Marketing Edile® — Marketing per Aziende Edili";
+  const withBrand = `${title} | Marketing Edile`;
+  if (withBrand.length <= 60) return withBrand;      // brand incluso se ci sta
+  if (title.length <= 60) return title;              // altrimenti solo il titolo
+  return title.slice(0, 60).replace(/\s+\S*$/, "");  // ultimo caso: taglio a confine parola
+}
+
+// Google tronca le description oltre ~155 char: le accorciamo a confine di parola.
+function clampDesc(desc, max = 155) {
+  if (!desc || desc.length <= max) return desc || "";
+  return desc.slice(0, max).replace(/\s+\S*$/, "").replace(/[\s,;:.–—-]+$/, "") + "…";
 }
 
 function canonicalFor(routePath) {
@@ -449,18 +460,22 @@ function seoHead(route) {
   const title = fullTitle(route.title);
   const canonical = canonicalFor(route.path);
   const img = imageUrl(route.image);
-  const jsonLd = route.jsonLd || [
-    organizationSchema(),
-    websiteSchema(),
-    breadcrumbSchema([
-      { name: "Home", url: siteUrl },
-      ...(route.path === "/" ? [] : [{ name: route.h1 || route.title, url: canonical }]),
-    ]),
-  ];
+  let jsonLd = route.jsonLd;
+  if (!jsonLd) {
+    jsonLd = [
+      organizationSchema(),
+      websiteSchema(),
+      breadcrumbSchema([
+        { name: "Home", url: siteUrl },
+        ...(route.path === "/" ? [] : [{ name: route.h1 || route.title, url: canonical }]),
+      ]),
+    ];
+    if (route.faqs && route.faqs.length) jsonLd.push(faqPageSchema(route.faqs));
+  }
 
   return `
     <title>${esc(title)}</title>
-    <meta name="description" content="${esc(route.description)}">
+    <meta name="description" content="${esc(clampDesc(route.description))}">
     <meta name="keywords" content="${esc((route.keywords || []).join(", "))}">
     <meta name="author" content="Marketing Edile®">
     <meta name="publisher" content="Marketing Edile®">
@@ -505,6 +520,7 @@ function fallbackContent(route) {
     <section class="seo-fallback">
       <h1>${esc(route.h1 || route.title)}</h1>
       <p>${esc(route.description)}</p>
+      ${route.intro ? `<p>${esc(route.intro)}</p>` : ""}
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
       ${route.faqs ? faqHtml(route.faqs) : ""}
     </section>
@@ -597,6 +613,17 @@ async function main() {
         ],
         jsonLd: [organizationSchema(), websiteSchema(), faqPageSchema(homeFaqs)],
       };
+    }
+    const pf = getPageFaq(route.path);
+    if (pf) {
+      const links = route.links || [
+        { href: "/servizi", label: "Servizi di marketing edile" },
+        { href: "/casi-studio", label: "Casi studio e risultati reali" },
+        { href: "/prezzi", label: "Prezzi a percentuale" },
+        { href: "/contattaci", label: "Richiedi una valutazione gratuita" },
+        { href: "/blog", label: "Blog marketing edile" },
+      ];
+      return { ...route, faqs: pf.faqs, intro: pf.intro, links };
     }
     return route;
   });

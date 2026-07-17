@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useCountUp } from "@/hooks/useCountUp";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PageFaq } from "@/components/PageFaq";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOrganizationSchema, generatePersonSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import heroWindowsImage from "@/assets/hero-windows.jpg";
@@ -319,6 +320,7 @@ const ChiSiamo = () => {
           </div>
         </section>
 
+        <PageFaq path="/chi-siamo" title="Domande frequenti su Marketing Edile" />
         <Footer />
       </main>
     </>

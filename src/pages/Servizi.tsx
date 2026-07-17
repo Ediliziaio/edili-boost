@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PageFaq } from "@/components/PageFaq";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateProfessionalServiceSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import showroomImage from "@/assets/showroom.jpg";
@@ -225,6 +226,7 @@ const Servizi = () => {
           </div>
         </section>
 
+        <PageFaq path="/servizi" title="Domande frequenti sui servizi di marketing edile" />
         <Footer />
       </main>
     </>

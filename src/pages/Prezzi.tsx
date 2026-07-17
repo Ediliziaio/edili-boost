@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useCountUp } from "@/hooks/useCountUp";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PageFaq } from "@/components/PageFaq";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOfferSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import heroWindowsImage from "@/assets/hero-windows.jpg";
@@ -245,6 +246,7 @@ const Prezzi = () => {
           </div>
         </section>
 
+        <PageFaq path="/prezzi" title="Domande frequenti sui prezzi e sul modello a percentuale" />
         <Footer />
       </main>
     </>

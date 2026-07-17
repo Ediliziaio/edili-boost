@@ -18,6 +18,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateBreadcrumbSchema } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PageFaq } from "@/components/PageFaq";
 
 interface Resource {
   id: string;
@@ -333,6 +334,7 @@ const MaterialiGratuiti = () => {
         </section>
       </main>
 
+      <PageFaq path="/materiali-gratuiti" title="Domande frequenti sulle risorse gratuite" />
       <Footer />
 
       {/* Lead Capture Modal */}

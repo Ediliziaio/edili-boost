@@ -1,8 +1,8 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Helmet } from "react-helmet-async";
 
-const faqs = [
+// Lo schema FAQPage di /offerta è emesso da Offerta.tsx via SEOHead (jsonLd).
+export const offertaFaqs = [
   { q: "Come funziona il modello a percentuale?", a: "Definiamo un sistema di tracciamento delle vendite. Su quel volume concordiamo una percentuale. Se il mese è a zero vendite generate da noi, non fatturiamo nulla." },
   { q: "Quanto costa lavorare con voi?", a: "Non c'è canone fisso. Il costo è una percentuale sulle commesse generate e verificate." },
   { q: "Come calcolate le vendite generate?", a: "Link dedicati, numeri tracciati, form con sorgente, codici CRM. Ogni contatto è registrato e attribuito in modo verificabile." },
@@ -13,22 +13,11 @@ const faqs = [
   { q: "Gestite i social media?", a: "Sì, come strumento di acquisizione e social proof — non di intrattenimento. Ogni post serve a generare autorevolezza locale e contatti." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+const faqs = offertaFaqs;
 
 const OffertaFAQSection = () => {
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      </Helmet>
       <section id="faq" className="section-padding-sm bg-background relative overflow-hidden">
         <div className="container-narrow">
           <AnimatedSection>

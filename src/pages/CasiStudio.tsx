@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useCountUp } from "@/hooks/useCountUp";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PageFaq } from "@/components/PageFaq";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOrganizationSchema, generateBreadcrumbSchema, generateCaseStudySchema } from "@/lib/seo";
 import cantiereImage from "@/assets/cantiere.jpg";
@@ -467,6 +468,7 @@ const CasiStudio = () => {
           </div>
         </section>
 
+        <PageFaq path="/casi-studio" title="Domande frequenti sui risultati e i casi studio" />
         <Footer />
       </main>
 

@@ -5,31 +5,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Helmet } from "react-helmet-async";
 import { homeFaqs as faqs } from "@/data/homeFaqs.js";
 
-// Generate JSON-LD schema for FAQ
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-};
-
+// Lo schema FAQPage della homepage è emesso da Index.tsx via SEOHead (jsonLd),
+// così resta un'unica fonte per l'head. Qui rendiamo solo la FAQ visibile.
 const FAQSection = () => {
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
       <section id="faq" className="section-padding bg-muted/30 relative overflow-hidden">
         <div className="container-narrow">
           <AnimatedSection>

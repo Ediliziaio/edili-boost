@@ -21,6 +21,7 @@ import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOrganizationSchema, generateLocalBusinessSchema, generateWebSiteSchema, generateFAQSchema } from "@/lib/seo";
+import { homeFaqs } from "@/data/homeFaqs.js";
 
 const Index = () => {
   const location = useLocation();
@@ -47,7 +48,8 @@ const Index = () => {
   const schemas = [
     generateOrganizationSchema(),
     generateLocalBusinessSchema(),
-    generateWebSiteSchema()
+    generateWebSiteSchema(),
+    generateFAQSchema(homeFaqs)
   ];
 
   return (
