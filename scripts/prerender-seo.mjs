@@ -205,6 +205,14 @@ const staticRoutes = [
     ],
   },
   {
+    path: "/grazie",
+    title: "Grazie — Richiesta ricevuta",
+    description: "Abbiamo ricevuto la tua richiesta. Ti ricontattiamo entro 24 ore.",
+    keywords: ["grazie", "richiesta ricevuta"],
+    h1: "Grazie! Abbiamo ricevuto la tua richiesta",
+    noindex: true,
+  },
+  {
     path: "/privacy-policy",
     title: "Privacy Policy",
     description: "Informativa sulla privacy di Domus Group S.r.l. ai sensi dell'Art. 13 del Regolamento UE 2016/679 (GDPR).",

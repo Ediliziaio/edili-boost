@@ -30,6 +30,7 @@ const CasiStudio = lazy(() => import("./pages/CasiStudio"));
 const Servizi = lazy(() => import("./pages/Servizi"));
 const Prezzi = lazy(() => import("./pages/Prezzi"));
 const Contattaci = lazy(() => import("./pages/Contattaci"));
+const Grazie = lazy(() => import("./pages/Grazie"));
 const Serramenti = lazy(() => import("./pages/settori/Serramenti"));
 const Ristrutturazioni = lazy(() => import("./pages/settori/Ristrutturazioni"));
 const Fotovoltaico = lazy(() => import("./pages/settori/Fotovoltaico"));
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/servizi" element={<Servizi />} />
               <Route path="/prezzi" element={<Prezzi />} />
               <Route path="/contattaci" element={<Contattaci />} />
+              <Route path="/grazie" element={<Grazie />} />
               <Route path="/settori/serramenti" element={<Serramenti />} />
               <Route path="/settori/ristrutturazioni" element={<Ristrutturazioni />} />
               <Route path="/settori/fotovoltaico" element={<Fotovoltaico />} />
