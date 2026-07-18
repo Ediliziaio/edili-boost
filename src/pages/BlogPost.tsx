@@ -11,6 +11,7 @@ import { useBlogPost, useRelatedPosts } from '@/hooks/useBlogPosts';
 import { categoryLabels, categoryColors, BlogCategory } from '@/types/blog';
 import { siteConfig, generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
 import { resolveBlogImageUrl } from '@/lib/blog-images';
+import { blogCovers } from '@/data/blogCovers.js';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -66,7 +67,7 @@ export default function BlogPost() {
 
   const category = post.category as BlogCategory;
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
-  const coverImageUrl = resolveBlogImageUrl(post.cover_image_url) || `${siteConfig.url}/og-image.jpg`;
+  const coverImageUrl = blogCovers[post.slug] || resolveBlogImageUrl(post.cover_image_url) || `${siteConfig.url}/og-image.jpg`;
 
   const wordCount = post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).length : 0;
 

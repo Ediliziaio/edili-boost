@@ -6,6 +6,7 @@ import { ediliziaCloudPages, ediliziaCloudPosts } from "../src/data/ediliziaClou
 import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
 import { homeFaqs } from "../src/data/homeFaqs.js";
 import { getPageFaq } from "../src/data/pageFaqs.js";
+import { blogCovers } from "../src/data/blogCovers.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -436,7 +437,9 @@ async function getBlogPosts() {
       content: post.content,
     }));
 
-  return [...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  return [...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]
+    .map((post) => ({ ...post, cover: blogCovers[post.slug] || post.cover }))
+    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
 
 function faqPageSchema(faqs) {
