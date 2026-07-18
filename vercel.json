@@ -7,7 +7,7 @@
     { "source": "/elementor-hf/:path*", "destination": "/", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/((?!assets|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms).*)", "destination": "/index.html" }
+    { "source": "/((?!assets|blog-covers|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
