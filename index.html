@@ -40,7 +40,10 @@
         gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-WPFY0KXY0Y';
         document.head.appendChild(gaScript);
         gtag('js', new Date());
-        gtag('config', 'G-WPFY0KXY0Y');
+        // send_page_view:false + page_view manuale: la prima pagina è tracciata qui,
+        // i cambi rotta SPA li traccia ScrollToTop (evita il doppio conteggio).
+        gtag('config', 'G-WPFY0KXY0Y', { send_page_view: false });
+        gtag('event', 'page_view');
 
         // Meta Pixels
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
