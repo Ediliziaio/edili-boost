@@ -329,14 +329,9 @@ const CasiStudio = () => {
           generateBreadcrumbSchema([
             { name: "Home", url: siteConfig.url },
             { name: "Casi Studio", url: `${siteConfig.url}/casi-studio` }
-          ]),
-          ...caseStudies.map(cs => generateCaseStudySchema({
-            company: cs.company,
-            sector: cs.sector,
-            highlight: cs.highlight,
-            testimonialText: cs.testimonial.text,
-            testimonialAuthor: cs.testimonial.author
-          }))
+          ])
+          // Rimosse le Review "auto-referenziali" (itemReviewed = propria Organization):
+          // Google vieta le recensioni su sé stessi → errore snippet recensioni.
         ]}
       />
       <Navbar />

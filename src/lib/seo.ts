@@ -265,13 +265,9 @@ export const generateLocalBusinessSchema = () => ({
         }
       }
     ]
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "47",
-    bestRating: "5"
   }
+  // NB: rimosso aggregateRating "auto-referenziale" (4.9/47): Google vieta le
+  // recensioni su sé stessi (LocalBusiness/Organization) → errore snippet recensioni.
 });
 
 export const generateArticleSchema = (article: {
