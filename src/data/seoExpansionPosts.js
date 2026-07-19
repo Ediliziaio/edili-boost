@@ -20,7 +20,8 @@ const coverByTheme = {
 };
 
 function editorialDate(index) {
-  return new Date(Date.UTC(2024, 8, 10 + index * 17, 9, 0, 0)).toISOString();
+  // Date oneste nel periodo reale del sito (2026), non backdatate.
+  return new Date(Date.UTC(2026, 1, 5 + index * 5, 9, 0, 0)).toISOString();
 }
 
 const articlePlan = [
@@ -614,7 +615,7 @@ export const seoExpansionPosts = articlePlan.map((plan, index) => ({
   category: plan.category,
   tags: [plan.keyword, ...plan.secondary, plan.sector].slice(0, 8),
   published_at: editorialDate(index),
-  updated_at: null,
+  updated_at: "2026-07-19T09:00:00+00:00",
   reading_time: 14,
   featured: index < 4,
   status: "published",

@@ -227,7 +227,8 @@ const postPlans = [
 ];
 
 function cloudEditorialDate(index) {
-  return new Date(Date.UTC(2025, 4, 8 + index * 23, 9, 0, 0)).toISOString();
+  // Date oneste nel periodo reale del sito (2026), non backdatate.
+  return new Date(Date.UTC(2026, 3, 20 + index * 12, 9, 0, 0)).toISOString();
 }
 
 function p(text) {
@@ -412,7 +413,7 @@ export const ediliziaCloudPosts = postPlans.map((plan, index) => ({
   category: index % 2 === 0 ? "gestione" : "strategie",
   tags: [plan.keyword, "edilizia in cloud", "gestionale edilizia", "crm edilizia", "preventivi edilizia", "gestione cantieri"],
   published_at: cloudEditorialDate(index),
-  updated_at: null,
+  updated_at: "2026-07-19T09:00:00+00:00",
   reading_time: 11,
   featured: index < 2,
   status: "published",

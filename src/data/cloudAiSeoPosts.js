@@ -227,9 +227,10 @@ ${p(`${keyword} ha valore quando migliora vendita, gestione e margine. Per un'az
 function makePost(plan, index, type) {
   const isCloud = type === "cloud";
   const [slug, title, keyword, audience] = plan;
+  // Date oneste nel periodo reale del sito (2026), non backdatate.
   const publishedAt = isCloud
-    ? new Date(Date.UTC(2024, 0, 18 + index * 19, 9, 0, 0)).toISOString()
-    : new Date(Date.UTC(2024, 9, 4 + index * 18, 9, 0, 0)).toISOString();
+    ? new Date(Date.UTC(2026, 1, 20 + index * 4, 9, 0, 0)).toISOString()
+    : new Date(Date.UTC(2026, 2, 1 + index * 4, 9, 0, 0)).toISOString();
 
   return {
     id: `${type}-seo-${String(index + 1).padStart(2, "0")}`,
@@ -245,7 +246,7 @@ function makePost(plan, index, type) {
       ? [keyword, "edilizia in cloud", "gestionale edilizia", "gestione cantieri", "preventivi edilizia", "fatturazione elettronica"]
       : [keyword, "intelligenza artificiale edilizia", "AI edilizia", "render AI", "rapportini cantiere", "edilizia in cloud"],
     published_at: publishedAt,
-    updated_at: null,
+    updated_at: "2026-07-19T09:00:00+00:00",
     reading_time: isCloud ? 10 : 11,
     featured: false,
     status: "published",
