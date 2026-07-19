@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { generateBreadcrumbSchema, generateFAQSchema, generateServiceSchema, siteConfig } from "@/lib/seo";
 import { ediliziaCloudPages } from "@/data/ediliziaCloudContent";
+import ediliziaCloudLogo from "@/assets/ediliziaincloud-logo.png";
 
 type EdiliziaCloudPageKey = keyof typeof ediliziaCloudPages;
 
@@ -61,6 +62,13 @@ export default function EdiliziaCloudLanding({ pageKey }: EdiliziaCloudLandingPr
       <main className="min-h-screen bg-background pt-24">
         <section className="container grid gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
+            <img
+              src={ediliziaCloudLogo}
+              alt="Edilizia in Cloud — gestionale per imprese edili"
+              className="mb-7 h-12 w-auto md:h-16"
+              width={640}
+              height={161}
+            />
             <span className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-secondary">
               <Cloud className="h-4 w-4" />
               {page.eyebrow}

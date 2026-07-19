@@ -355,11 +355,11 @@ export const pageFaqs = {
     ]
   },
   "/chi-siamo": {
-    "intro": "Marketing Edile® è il brand di marketing a risposta diretta specializzato solo nell'edilizia italiana, parte di Domus Group S.r.l. con sede a Milano. Fondata da Florin Andriciuc, con 8+ anni di vendita in edilizia, testa ogni strategia sulla propria azienda di serramenti prima di proporla ai clienti.",
+    "intro": "Marketing Edile® è il brand di marketing a risposta diretta specializzato solo nell'edilizia italiana, con sede a Milano. Fondato da Florin Andriciuc, con 8+ anni di vendita in edilizia, testa ogni strategia sulla propria azienda di serramenti prima di proporla ai clienti.",
     "faqs": [
       {
         "question": "Chi è Marketing Edile e di chi è il brand?",
-        "answer": "Marketing Edile® è un brand di Domus Group S.r.l., con sede a Milano, specializzato esclusivamente nel marketing per il settore edile italiano. È stato fondato da Florin Andriciuc, imprenditore con oltre 8 anni di esperienza nella vendita in edilizia, per portare metodi a risposta diretta alle imprese di costruzioni."
+        "answer": "Marketing Edile® è un brand di marketing con sede a Milano, specializzato esclusivamente nel marketing per il settore edile italiano. È stato fondato da Florin Andriciuc, imprenditore con oltre 8 anni di esperienza nella vendita in edilizia, per portare metodi a risposta diretta alle imprese di costruzioni."
       },
       {
         "question": "Perché fidarsi di Marketing Edile rispetto ad altre agenzie?",

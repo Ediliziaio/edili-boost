@@ -67,7 +67,7 @@ export const siteConfig = {
     ],
     chiSiamo: [
       "chi è Marketing Edile", "agenzia marketing specializzata edilizia", "Florin Andriciuc Marketing Edile fondatore",
-      "Domus Group marketing edile", "team marketing edilizia", "esperienza marketing edile"
+      "chi è Marketing Edile", "team marketing edilizia", "esperienza marketing edile"
     ],
     contattaci: [
       "contattare agenzia marketing edile", "valutazione gratuita marketing edilizia",

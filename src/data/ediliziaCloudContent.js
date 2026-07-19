@@ -9,7 +9,7 @@ const cloudAuthor = {
 export const ediliziaCloudPages = {
   "edilizia-in-cloud": {
     slug: "edilizia-in-cloud",
-    title: "Marketing Edile ed Edilizia in Cloud | Ecosistema Domus Group",
+    title: "Marketing Edile ed Edilizia in Cloud | Ecosistema",
     description:
       "Marketing Edile porta richieste qualificate; Edilizia in Cloud aiuta a gestire lead, preventivi, cantieri, fatture e margini in un unico gestionale cloud per imprese edili.",
     keywords: [
@@ -20,7 +20,7 @@ export const ediliziaCloudPages = {
       "crm edilizia",
       "preventivi edilizia",
     ],
-    eyebrow: "Ecosistema Domus Group",
+    eyebrow: "Ecosistema Marketing Edile",
     h1: "Dal marketing al cantiere: Marketing Edile + Edilizia in Cloud",
     lead:
       "Una campagna funziona davvero solo quando il contatto non si perde dopo il form. Marketing Edile® genera domanda qualificata; Edilizia in Cloud organizza il lavoro dopo il lead: CRM, preventivi, cantieri, fatture, documenti e margini.",

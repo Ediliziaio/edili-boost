@@ -113,16 +113,6 @@ const Contattaci = () => {
                     </div>
                   </div>
 
-                  <div className="p-6 bg-card border border-border rounded-2xl">
-                    <h3 className="text-lg font-bold text-foreground mb-3">Domus Group S.r.l.</h3>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      <p>P.IVA: 13132010961</p>
-                      <p>Capitale Sociale: 20.000,00€</p>
-                      <p>PEC: domusgroupsrl@legalmail.it</p>
-                      <p>SDI: USAL8PV</p>
-                    </div>
-                  </div>
-
                   <div className="p-6 bg-gradient-to-br from-secondary/10 to-secondary/5 border border-secondary/30 rounded-2xl">
                     <div className="flex items-center gap-2 mb-2">
                       <Zap className="w-5 h-5 text-secondary" />
