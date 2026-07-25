@@ -7,6 +7,7 @@ import { blogPosts, blogAuthor, StaticBlogPost, StaticBlogAuthor } from '@/data/
 import { seoExpansionPosts } from '@/data/seoExpansionPosts.js';
 import { cloudAiSeoPosts } from '@/data/cloudAiSeoPosts.js';
 import { ediliziaCloudPosts } from '@/data/ediliziaCloudContent.js';
+import { aeoPosts } from '@/data/aeoPosts.js';
 
 export interface BlogAuthor {
   id: string;
@@ -79,6 +80,7 @@ function toPostDB(p: StaticBlogPost): BlogPostDB {
 // Le stesse 4 fonti aggregate dal prerender (scripts/prerender-seo.mjs) devono essere
 // risolvibili dal sito React, così ogni URL in sitemap corrisponde a una pagina reale.
 const rawSources = [
+  ...(aeoPosts as unknown as StaticBlogPost[]),
   ...(blogPosts as StaticBlogPost[]),
   ...(seoExpansionPosts as unknown as StaticBlogPost[]),
   ...(cloudAiSeoPosts as unknown as StaticBlogPost[]),

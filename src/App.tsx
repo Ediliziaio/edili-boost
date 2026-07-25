@@ -31,6 +31,7 @@ const Servizi = lazy(() => import("./pages/Servizi"));
 const Prezzi = lazy(() => import("./pages/Prezzi"));
 const Contattaci = lazy(() => import("./pages/Contattaci"));
 const Grazie = lazy(() => import("./pages/Grazie"));
+const MarketingHub = lazy(() => import("./pages/hub/MarketingHub"));
 const Serramenti = lazy(() => import("./pages/settori/Serramenti"));
 const Ristrutturazioni = lazy(() => import("./pages/settori/Ristrutturazioni"));
 const Fotovoltaico = lazy(() => import("./pages/settori/Fotovoltaico"));
@@ -62,6 +63,10 @@ const App = () => (
               <Route path="/prezzi" element={<Prezzi />} />
               <Route path="/contattaci" element={<Contattaci />} />
               <Route path="/grazie" element={<Grazie />} />
+              {/* HUB verticali (silo hub & spoke) — keyword "agenzia marketing <verticale>" */}
+              <Route path="/marketing-serramenti" element={<MarketingHub hubKey="marketing-serramenti" />} />
+              <Route path="/marketing-fotovoltaico" element={<MarketingHub hubKey="marketing-fotovoltaico" />} />
+              <Route path="/marketing-edilizia" element={<MarketingHub hubKey="marketing-edilizia" />} />
               <Route path="/settori/serramenti" element={<Serramenti />} />
               <Route path="/settori/ristrutturazioni" element={<Ristrutturazioni />} />
               <Route path="/settori/fotovoltaico" element={<Fotovoltaico />} />

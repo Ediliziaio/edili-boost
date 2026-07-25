@@ -97,6 +97,10 @@ const Footer = () => {
               Settori
             </h4>
             <nav className="flex flex-col gap-3" aria-label="Pagine settori">
+              {/* HUB verticali: ricevono link da ogni pagina del sito (flusso di autorità) */}
+              <Link to="/marketing-serramenti" className="text-muted-foreground hover:text-gold transition-colors">Agenzia Marketing Serramenti</Link>
+              <Link to="/marketing-fotovoltaico" className="text-muted-foreground hover:text-gold transition-colors">Agenzia Marketing Fotovoltaico</Link>
+              <Link to="/marketing-edilizia" className="text-muted-foreground hover:text-gold transition-colors">Agenzia Marketing Edilizia</Link>
               <Link to="/settori/serramenti" className="text-muted-foreground hover:text-gold transition-colors">Marketing Serramenti</Link>
               <Link to="/settori/ristrutturazioni" className="text-muted-foreground hover:text-gold transition-colors">Marketing Ristrutturazioni</Link>
               <Link to="/settori/fotovoltaico" className="text-muted-foreground hover:text-gold transition-colors">Marketing Fotovoltaico</Link>

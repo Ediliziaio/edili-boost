@@ -7,6 +7,8 @@ import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
 import { homeFaqs } from "../src/data/homeFaqs.js";
 import { getPageFaq } from "../src/data/pageFaqs.js";
 import { blogCovers } from "../src/data/blogCovers.js";
+import { aeoPosts, aeoFaqs } from "../src/data/aeoPosts.js";
+import { marketingHubs, marketingHubKeys } from "../src/data/marketingHubs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -437,7 +439,27 @@ async function getBlogPosts() {
       content: post.content,
     }));
 
-  return [...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]
+  const aeoArticles = aeoPosts
+    .filter((post) => post.status === "published")
+    .map((post) => ({
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      cover: post.cover_image_url,
+      category: post.category,
+      tags: post.tags,
+      publishedAt: post.published_at,
+      updatedAt: post.updated_at || null,
+      readingTime: post.reading_time,
+      featured: post.featured,
+      status: post.status,
+      seoTitle: post.seo_title,
+      seoDescription: post.seo_description,
+      content: post.content,
+    }));
+
+  return [...aeoArticles, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]
     .map((post) => ({ ...post, cover: blogCovers[post.slug] || post.cover }))
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
@@ -532,6 +554,7 @@ function fallbackContent(route) {
       <h1>${esc(route.h1 || route.title)}</h1>
       <p>${esc(route.description)}</p>
       ${route.intro ? `<p>${esc(route.intro)}</p>` : ""}
+      ${route.sections ? route.sections.map((s) => `<h2>${esc(s.title)}</h2><p>${esc(s.text)}</p>`).join("") : ""}
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
       ${route.faqs ? faqHtml(route.faqs) : ""}
     </section>
@@ -584,7 +607,9 @@ function sitemapXml(routes) {
     .map((route) => {
       const loc = canonicalFor(route.path);
       const lastmod = route.publishedAt ? slugDate(route.updatedAt || route.publishedAt) : now;
-      const priority = route.path === "/" ? "1.0" : route.path === "/blog" ? "0.9" : route.type === "article" ? "0.85" : "0.8";
+      // Gli hub verticali sono le pagine che devono ricevere più autorità: priorità 0.9.
+      const isHub = marketingHubKeys.some((key) => route.path === `/${key}`);
+      const priority = route.path === "/" ? "1.0" : route.path === "/blog" || isHub ? "0.9" : route.type === "article" ? "0.85" : "0.8";
       const changefreq = route.path === "/blog" ? "daily" : route.type === "article" ? "monthly" : "monthly";
       return `  <url>
     <loc>${loc}</loc>
@@ -614,6 +639,9 @@ async function main() {
         ...route,
         faqs: homeFaqs,
         links: [
+          { href: "/marketing-serramenti", label: "Agenzia marketing serramenti" },
+          { href: "/marketing-fotovoltaico", label: "Agenzia marketing fotovoltaico" },
+          { href: "/marketing-edilizia", label: "Agenzia marketing edilizia" },
           { href: "/servizi", label: "Servizi di marketing per imprese edili" },
           { href: "/prezzi", label: "Prezzi: marketing a percentuale" },
           { href: "/casi-studio", label: "Casi studio e risultati reali" },
@@ -639,6 +667,30 @@ async function main() {
     return route;
   });
 
+  // HUB verticali (silo hub & spoke): body ricco + FAQPage, priorità alta in sitemap.
+  for (const hub of Object.values(marketingHubs)) {
+    const hubUrl = `${siteUrl}/${hub.slug}`;
+    routes.push({
+      path: `/${hub.slug}`,
+      title: hub.title,
+      description: hub.description,
+      keywords: hub.keywords,
+      h1: hub.h1,
+      intro: `${hub.answer} ${hub.entityPhrase} ${hub.intro} ${hub.citable}`,
+      sections: hub.sections,
+      faqs: hub.faqs,
+      links: [...hub.spokes, hub.sectorLink, { href: "/contattaci", label: "Richiedi una valutazione gratuita" }],
+      jsonLd: [
+        organizationSchema(),
+        faqPageSchema(hub.faqs),
+        breadcrumbSchema([
+          { name: "Home", url: siteUrl },
+          { name: hub.title, url: hubUrl },
+        ]),
+      ],
+    });
+  }
+
   for (const post of posts) {
     routes.push({
       path: `/blog/${post.slug}`,
@@ -660,6 +712,7 @@ async function main() {
           { name: "Blog", url: `${siteUrl}/blog` },
           { name: post.title, url: `${siteUrl}/blog/${post.slug}` },
         ]),
+        ...(aeoFaqs[post.slug] ? [faqPageSchema(aeoFaqs[post.slug])] : []),
       ],
     });
   }
