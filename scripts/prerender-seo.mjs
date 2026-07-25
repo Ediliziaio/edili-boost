@@ -8,6 +8,7 @@ import { homeFaqs } from "../src/data/homeFaqs.js";
 import { getPageFaq } from "../src/data/pageFaqs.js";
 import { blogCovers } from "../src/data/blogCovers.js";
 import { aeoPosts, aeoFaqs } from "../src/data/aeoPosts.js";
+import { rewrittenPosts, rewrittenFaqs } from "../src/data/rewrittenPosts.js";
 import { marketingHubs, marketingHubKeys } from "../src/data/marketingHubs.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -439,6 +440,26 @@ async function getBlogPosts() {
       content: post.content,
     }));
 
+  const toPrerenderShape = (post) => ({
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    cover: post.cover_image_url,
+    category: post.category,
+    tags: post.tags,
+    publishedAt: post.published_at,
+    updatedAt: post.updated_at || null,
+    readingTime: post.reading_time,
+    featured: post.featured,
+    status: post.status,
+    seoTitle: post.seo_title,
+    seoDescription: post.seo_description,
+    content: post.content,
+  });
+
+  const rewritten = rewrittenPosts.filter((p) => p.status === "published").map(toPrerenderShape);
+
   const aeoArticles = aeoPosts
     .filter((post) => post.status === "published")
     .map((post) => ({
@@ -459,7 +480,15 @@ async function getBlogPosts() {
       content: post.content,
     }));
 
-  return [...aeoArticles, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]
+  // Deduplica per slug, prima occorrenza vince — stesso criterio di useBlogPosts.
+  // Serve perché le versioni riscritte rimpiazzano i vecchi duplicati a parità di
+  // slug: senza dedup si genererebbero route doppie e URL ripetuti in sitemap.
+  const bySlug = new Map();
+  for (const post of [...rewritten, ...aeoArticles, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]) {
+    if (post && post.slug && !bySlug.has(post.slug)) bySlug.set(post.slug, post);
+  }
+
+  return [...bySlug.values()]
     .map((post) => ({ ...post, cover: blogCovers[post.slug] || post.cover }))
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
@@ -712,7 +741,9 @@ async function main() {
           { name: "Blog", url: `${siteUrl}/blog` },
           { name: post.title, url: `${siteUrl}/blog/${post.slug}` },
         ]),
-        ...(aeoFaqs[post.slug] ? [faqPageSchema(aeoFaqs[post.slug])] : []),
+        ...(rewrittenFaqs[post.slug] || aeoFaqs[post.slug]
+          ? [faqPageSchema(rewrittenFaqs[post.slug] || aeoFaqs[post.slug])]
+          : []),
       ],
     });
   }
