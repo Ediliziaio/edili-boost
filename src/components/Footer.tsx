@@ -157,7 +157,16 @@ const Footer = () => {
         >
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} MARKETING EDILE® — Tutti i diritti
-            riservati
+            riservati · Un progetto di{" "}
+            {/* Anchor branded costante verso l'entità fondatore: consolida la persona
+                come entità unica sui domini del gruppo e le fa fluire autorità. */}
+            <a
+              href="https://www.florinandriciuc.com/chi-sono"
+              rel="author"
+              className="font-semibold text-foreground hover:text-gold transition-colors"
+            >
+              Florin Andriciuc
+            </a>
           </p>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <Link to="/privacy-policy" className="hover:text-gold transition-colors">
