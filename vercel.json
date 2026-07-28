@@ -7,12 +7,15 @@
     { "source": "/hello-world/", "destination": "/blog", "permanent": true },
     { "source": "/domande-e-risposte", "destination": "/blog", "permanent": true },
     { "source": "/domande-e-risposte/", "destination": "/blog", "permanent": true },
-    { "source": "/category/:path*", "destination": "/blog", "permanent": true },
-    { "source": "/tag/:path*", "destination": "/blog", "permanent": true },
-    { "source": "/author/:path*", "destination": "/chi-siamo", "permanent": true },
+    { "source": "/category", "destination": "/blog", "permanent": true },
+    { "source": "/category/(.*)", "destination": "/blog", "permanent": true },
+    { "source": "/tag", "destination": "/blog", "permanent": true },
+    { "source": "/tag/(.*)", "destination": "/blog", "permanent": true },
+    { "source": "/author", "destination": "/chi-siamo", "permanent": true },
+    { "source": "/author/(.*)", "destination": "/chi-siamo", "permanent": true },
     { "source": "/feed", "destination": "/blog", "permanent": true },
-    { "source": "/feed/:path*", "destination": "/blog", "permanent": true },
-    { "source": "/comments/feed/:path*", "destination": "/blog", "permanent": true }
+    { "source": "/feed/(.*)", "destination": "/blog", "permanent": true },
+    { "source": "/comments/feed/(.*)", "destination": "/blog", "permanent": true }
   ],
   "rewrites": [
     { "source": "/((?!assets|blog-covers|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms|wp-|xmlrpc|elementor-hf|post-sitemap|page-sitemap|category-sitemap|author-sitemap).*)", "destination": "/index.html" }
