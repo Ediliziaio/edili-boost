@@ -566,6 +566,17 @@ function seoHead(route) {
   `;
 }
 
+/* Firma dell'entità fondatore, dentro l'HTML PRERENDERIZZATO.
+   Il footer React vive solo lato client e non finisce mai in questo output: un link
+   messo lì sarebbe invisibile all'HTML iniziale. Qui invece entra in tutte le pagine
+   statiche, con anchor branded costante ("Florin Andriciuc"). */
+const authorFooter = `
+      <p class="seo-fallback-author">
+        Un progetto di
+        <a href="https://www.florinandriciuc.com/chi-sono" rel="author">Florin Andriciuc</a>,
+        founder e CEO di AEDIX.
+      </p>`;
+
 function fallbackContent(route) {
   if (route.articleContent) {
     return `
@@ -574,7 +585,7 @@ function fallbackContent(route) {
         <h1>${esc(route.h1)}</h1>
         <p>${esc(route.description)}</p>
         ${route.articleContent}
-      </article>
+      </article>${authorFooter}
     `;
   }
 
@@ -586,7 +597,7 @@ function fallbackContent(route) {
       ${route.sections ? route.sections.map((s) => `<h2>${esc(s.title)}</h2><p>${esc(s.text)}</p>`).join("") : ""}
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
       ${route.faqs ? faqHtml(route.faqs) : ""}
-    </section>
+    </section>${authorFooter}
   `;
 }
 
