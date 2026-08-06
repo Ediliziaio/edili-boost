@@ -10,6 +10,9 @@ import { blogCovers } from "../src/data/blogCovers.js";
 import { aeoPosts, aeoFaqs } from "../src/data/aeoPosts.js";
 import { rewrittenPosts, rewrittenFaqs } from "../src/data/rewrittenPosts.js";
 import { marketingHubs, marketingHubKeys } from "../src/data/marketingHubs.js";
+import { pillarTrovareClienti } from "../src/data/pillarTrovareClienti.js";
+import { pillarCostoMarketing } from "../src/data/pillarCostoMarketing.js";
+import { pillarLeadGeneration } from "../src/data/pillarLeadGeneration.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -493,6 +496,13 @@ async function getBlogPosts() {
 
   const rewritten = rewrittenPosts.filter((p) => p.status === "published").map(toPrerenderShape);
 
+  // Articoli pillar keyword-driven (file src/data/pillar*.js) — vanno aggiunti
+  // qui esplicitamente perché basePosts viene estratto via regex dal solo
+  // blog-posts.ts e non segue gli import.
+  const pillarPosts = [pillarTrovareClienti, pillarCostoMarketing, pillarLeadGeneration]
+    .filter((p) => p.status === "published")
+    .map(toPrerenderShape);
+
   const aeoArticles = aeoPosts
     .filter((post) => post.status === "published")
     .map((post) => ({
@@ -517,7 +527,7 @@ async function getBlogPosts() {
   // Serve perché le versioni riscritte rimpiazzano i vecchi duplicati a parità di
   // slug: senza dedup si genererebbero route doppie e URL ripetuti in sitemap.
   const bySlug = new Map();
-  for (const post of [...rewritten, ...aeoArticles, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]) {
+  for (const post of [...rewritten, ...aeoArticles, ...pillarPosts, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]) {
     if (post && post.slug && !bySlug.has(post.slug)) bySlug.set(post.slug, post);
   }
 

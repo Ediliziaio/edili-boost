@@ -1,6 +1,9 @@
 import { seoExpansionPosts } from "./seoExpansionPosts";
 import { ediliziaCloudPosts } from "./ediliziaCloudContent";
 import { cloudAiSeoPosts } from "./cloudAiSeoPosts";
+import { pillarTrovareClienti } from "./pillarTrovareClienti";
+import { pillarCostoMarketing } from "./pillarCostoMarketing";
+import { pillarLeadGeneration } from "./pillarLeadGeneration";
 
 export interface StaticBlogAuthor {
   id: string;
@@ -2992,4 +2995,12 @@ const baseBlogPosts: StaticBlogPost[] = [
   }
 ];
 
-export const blogPosts: StaticBlogPost[] = [...baseBlogPosts, ...seoExpansionPosts, ...ediliziaCloudPosts, ...cloudAiSeoPosts];
+export const blogPosts: StaticBlogPost[] = [
+  pillarTrovareClienti,
+  pillarCostoMarketing,
+  pillarLeadGeneration,
+  ...baseBlogPosts,
+  ...seoExpansionPosts,
+  ...ediliziaCloudPosts,
+  ...cloudAiSeoPosts,
+];
