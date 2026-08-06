@@ -1,14 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { blogPosts, blogAuthor, StaticBlogPost, StaticBlogAuthor } from '@/data/blog-posts';
-// Archivi SEO aggiuntivi — stessa shape di StaticBlogPost.
-// Prima NON erano collegati al sito React: erano prerenderizzati e presenti in sitemap,
-// ma useBlogPost() non li trovava e BlogPost.tsx rimandava a /blog dopo l'hydration.
-// Questo generava il "Scansionata, ma attualmente non indicizzata" su GSC per ~70 URL.
-import { seoExpansionPosts } from '@/data/seoExpansionPosts.js';
-import { cloudAiSeoPosts } from '@/data/cloudAiSeoPosts.js';
-import { ediliziaCloudPosts } from '@/data/ediliziaCloudContent.js';
-import { aeoPosts } from '@/data/aeoPosts.js';
-import { rewrittenPosts } from '@/data/rewrittenPosts.js';
+
+// I dati blog NON sono più importati nel bundle JS (erano ~1,2 MB di chunk
+// scaricato su ogni pagina blog). Vengono generati come JSON statici da
+// scripts/generate-blog-data.mjs (eseguito da `npm run dev` e `npm run build`):
+//   /blog-data/index.json        → tutti i post senza content (listing)
+//   /blog-data/posts/<slug>.json → post completo (pagina articolo)
+// La logica di merge/dedup/sort vive nello script ed è identica a quella storica.
 
 export interface BlogAuthor {
   id: string;
@@ -40,97 +37,51 @@ export interface BlogPostDB {
   author: BlogAuthor | null;
 }
 
-function toAuthor(a: StaticBlogAuthor): BlogAuthor {
-  return {
-    ...a,
-    bio: a.bio,
-    created_at: "2025-12-26T10:24:30.099858+00:00"
-  };
+// L'indice non contiene `content`: chi ha bisogno del testo usa useBlogPost(slug).
+export type BlogPostIndexEntry = Omit<BlogPostDB, 'content'>;
+
+async function fetchIndex(): Promise<BlogPostIndexEntry[]> {
+  const res = await fetch('/blog-data/index.json');
+  if (!res.ok) throw new Error(`Impossibile caricare l'indice del blog (HTTP ${res.status})`);
+  return res.json();
 }
 
-// Alcuni archivi hanno updated_at come oggetto Date invece che stringa ISO.
-function toIso(value: unknown): string | null {
-  if (!value) return null;
-  if (value instanceof Date) return value.toISOString();
-  return String(value);
-}
-
-function toPostDB(p: StaticBlogPost): BlogPostDB {
-  return {
-    id: p.id,
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt,
-    content: p.content,
-    cover_image_url: p.cover_image_url,
-    author_id: p.author.id,
-    category: p.category,
-    tags: p.tags,
-    published_at: toIso(p.published_at),
-    updated_at: toIso(p.updated_at),
-    reading_time: p.reading_time,
-    featured: p.featured,
-    status: p.status,
-    seo_title: p.seo_title,
-    seo_description: p.seo_description,
-    created_at: toIso(p.published_at) ?? '',
-    author: toAuthor(p.author)
-  };
-}
-
-// Le stesse 4 fonti aggregate dal prerender (scripts/prerender-seo.mjs) devono essere
-// risolvibili dal sito React, così ogni URL in sitemap corrisponde a una pagina reale.
-const rawSources = [
-  // Le versioni riscritte vanno PRIME: la deduplica per slug tiene la prima
-  // occorrenza, quindi shadowano automaticamente i vecchi duplicati.
-  ...(rewrittenPosts as unknown as StaticBlogPost[]),
-  ...(aeoPosts as unknown as StaticBlogPost[]),
-  ...(blogPosts as StaticBlogPost[]),
-  ...(seoExpansionPosts as unknown as StaticBlogPost[]),
-  ...(cloudAiSeoPosts as unknown as StaticBlogPost[]),
-  ...(ediliziaCloudPosts as unknown as StaticBlogPost[]),
-];
-
-// Dedup per slug: la prima occorrenza vince (blog-posts.ts ha precedenza).
-const bySlug = new Map<string, StaticBlogPost>();
-for (const p of rawSources) {
-  if (p && p.status === 'published' && p.slug && !bySlug.has(p.slug)) {
-    bySlug.set(p.slug, p);
-  }
-}
-
-const allPosts: BlogPostDB[] = Array.from(bySlug.values())
-  .sort((a, b) => new Date(toIso(b.published_at) ?? 0).getTime() - new Date(toIso(a.published_at) ?? 0).getTime())
-  .map(toPostDB);
+// Dati statici per build: nessun motivo di rifetchare durante la sessione.
+const staticQuery = { staleTime: Infinity, gcTime: Infinity } as const;
 
 export function useBlogPosts(category?: string) {
   return useQuery({
     queryKey: ['blog-posts', category],
     queryFn: async () => {
+      const posts = await fetchIndex();
       if (category && category !== 'all') {
-        return allPosts.filter(p => p.category === category);
+        return posts.filter(p => p.category === category);
       }
-      return allPosts;
+      return posts;
     },
+    ...staticQuery,
   });
 }
 
 export function useFeaturedPosts() {
   return useQuery({
     queryKey: ['blog-posts', 'featured'],
-    queryFn: async () => {
-      return allPosts.filter(p => p.featured);
-    },
+    queryFn: async () => (await fetchIndex()).filter(p => p.featured),
+    ...staticQuery,
   });
 }
 
 export function useBlogPost(slug: string) {
   return useQuery({
     queryKey: ['blog-post', slug],
-    queryFn: async () => {
-      return allPosts.find(p => p.slug === slug) || null;
+    queryFn: async (): Promise<BlogPostDB | null> => {
+      const res = await fetch(`/blog-data/posts/${encodeURIComponent(slug)}.json`);
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error(`Impossibile caricare l'articolo (HTTP ${res.status})`);
+      return res.json();
     },
     enabled: !!slug,
+    ...staticQuery,
   });
 }
 
@@ -138,10 +89,12 @@ export function useRelatedPosts(currentPostId: string, category: string, tags: s
   return useQuery({
     queryKey: ['blog-posts', 'related', currentPostId],
     queryFn: async () => {
-      return allPosts
+      const posts = await fetchIndex();
+      return posts
         .filter(p => p.id !== currentPostId && p.category === category)
         .slice(0, limit);
     },
     enabled: !!currentPostId,
+    ...staticQuery,
   });
 }

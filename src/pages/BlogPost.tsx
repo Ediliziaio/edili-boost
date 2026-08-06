@@ -10,7 +10,7 @@ import { LeadConnectorForm } from '@/components/blog/LeadConnectorForm';
 import { useBlogPost, useRelatedPosts } from '@/hooks/useBlogPosts';
 import { categoryLabels, categoryColors, BlogCategory } from '@/types/blog';
 import { siteConfig, generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
-import { resolveBlogImageUrl } from '@/lib/blog-images';
+import { resolveBlogImageUrl, webpCoverUrl } from '@/lib/blog-images';
 import { blogCovers } from '@/data/blogCovers.js';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -68,6 +68,8 @@ export default function BlogPost() {
   const category = post.category as BlogCategory;
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
   const coverImageUrl = blogCovers[post.slug] || resolveBlogImageUrl(post.cover_image_url) || `${siteConfig.url}/og-image.jpg`;
+  // WebP solo per il tag <img> (LCP): og:image e schema restano sul .jpg per compatibilità social.
+  const coverDisplayUrl = webpCoverUrl(coverImageUrl, 1200) || coverImageUrl;
 
   const wordCount = post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).length : 0;
 
@@ -139,10 +141,11 @@ export default function BlogPost() {
           {coverImageUrl && (
             <div className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
               <img
-                src={coverImageUrl}
+                src={coverDisplayUrl}
                 alt={`${post.title} — Marketing Edile® blog`}
                 width={1200}
                 height={630}
+                {...({ fetchpriority: 'high' } as Record<string, string>)}
                 className="w-full h-full object-cover"
                 onError={(event) => {
                   event.currentTarget.onerror = null;

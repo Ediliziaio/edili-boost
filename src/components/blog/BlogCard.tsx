@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, ArrowRight, User } from 'lucide-react';
-import { BlogPostDB } from '@/hooks/useBlogPosts';
+import { BlogPostIndexEntry } from '@/hooks/useBlogPosts';
 import { categoryLabels, categoryColors, BlogCategory } from '@/types/blog';
-import { resolveBlogImageUrl } from '@/lib/blog-images';
+import { resolveBlogImageUrl, webpCoverUrl } from '@/lib/blog-images';
 import { blogCovers } from '@/data/blogCovers.js';
 
 interface BlogCardProps {
-  post: BlogPostDB;
+  post: BlogPostIndexEntry;
   featured?: boolean;
 }
 
 export function BlogCard({ post, featured = false }: BlogCardProps) {
   const category = post.category as BlogCategory;
-  const coverImageUrl = blogCovers[post.slug] || resolveBlogImageUrl(post.cover_image_url);
+  const coverImageUrl = webpCoverUrl(blogCovers[post.slug] || resolveBlogImageUrl(post.cover_image_url), 600);
   const publishedDate = post.published_at ? new Date(post.published_at).toLocaleDateString('it-IT', {
     day: 'numeric',
     month: 'short',

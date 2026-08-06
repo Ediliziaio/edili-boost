@@ -18,13 +18,25 @@
     { "source": "/comments/feed/(.*)", "destination": "/blog", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/((?!assets|blog-covers|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms|wp-|xmlrpc|elementor-hf|post-sitemap|page-sitemap|category-sitemap|author-sitemap).*)", "destination": "/index.html" }
+    { "source": "/((?!assets|blog-data|blog-covers|favicon|og-image|apple-touch-icon|manifest|sitemap|robots|llms|wp-|xmlrpc|elementor-hf|post-sitemap|page-sitemap|category-sitemap|author-sitemap).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/blog-data/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/blog-covers/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
     },
     {

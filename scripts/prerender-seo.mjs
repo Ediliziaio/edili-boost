@@ -294,6 +294,8 @@ function websiteSchema() {
   };
 }
 
+// Allineato a generateOrganizationSchema di src/lib/seo.ts: è la versione che
+// Google e i motori AI vedono nell'HTML statico, quindi deve essere quella ricca.
 function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -303,7 +305,38 @@ function organizationSchema() {
     legalName: "Domus Group S.r.l.",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
-    founder: { "@type": "Person", name: "Florin Andriciuc" },
+    description: "Marketing Edile® porta clienti qualificati a imprese edili e serramentisti. Solo a percentuale sulle vendite. 47+ aziende, €60M+ generati.",
+    foundingDate: "2018",
+    founder: { "@type": "Person", name: "Florin Andriciuc", jobTitle: "Fondatore & CEO" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Via Aurelio Saffi 29",
+      addressLocality: "Milano",
+      postalCode: "20123",
+      addressRegion: "Lombardia",
+      addressCountry: "IT",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "Amministrazione@domusgroupitalia.it",
+      contactType: "customer service",
+      areaServed: "IT",
+      availableLanguage: "Italian",
+    },
+    sameAs: [
+      "https://facebook.com/marketingedile",
+      "https://instagram.com/marketingedile",
+      "https://linkedin.com/company/marketingedile",
+      "https://youtube.com/@marketingedile",
+    ],
+    knowsAbout: [
+      "Marketing per imprese edili",
+      "Lead generation settore edile",
+      "Marketing serramenti e infissi",
+      "Pubblicità per aziende di costruzioni",
+      "Marketing fotovoltaico",
+      "Acquisizione clienti edilizia",
+    ],
     areaServed: "IT",
   };
 }
@@ -640,13 +673,18 @@ async function maybeCopyCover(cover) {
   }
 }
 
+// Data ultimo aggiornamento REALE dei contenuti delle pagine statiche (non degli
+// articoli, che hanno le proprie date). Da bumpare a mano quando si tocca il
+// contenuto di una pagina statica: usare la data del build renderebbe "aggiornate"
+// tutte le pagine a ogni deploy, e Google smette di fidarsi del lastmod.
+const STATIC_CONTENT_LASTMOD = "2026-08-06";
+
 function sitemapXml(routes) {
-  const now = new Date().toISOString().split("T")[0];
   const entries = routes
     .filter((route) => !route.noindex)
     .map((route) => {
       const loc = canonicalFor(route.path);
-      const lastmod = route.publishedAt ? slugDate(route.updatedAt || route.publishedAt) : now;
+      const lastmod = route.publishedAt ? slugDate(route.updatedAt || route.publishedAt) : STATIC_CONTENT_LASTMOD;
       // Gli hub verticali sono le pagine che devono ricevere più autorità: priorità 0.9.
       const isHub = marketingHubKeys.some((key) => route.path === `/${key}`);
       const priority = route.path === "/" ? "1.0" : route.path === "/blog" || isHub ? "0.9" : route.type === "article" ? "0.85" : "0.8";

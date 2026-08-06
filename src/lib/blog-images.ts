@@ -48,3 +48,16 @@ export function resolveBlogImageUrl(url: string | null | undefined): string | nu
 
   return url;
 }
+
+/**
+ * Variante WebP di una cover in /blog-covers/ (generata da scripts/convert-covers.mjs).
+ * size 1200 → hero articolo (LCP), size 600 → card del listing.
+ * I .jpg originali restano per og:image (i social non accettano sempre WebP).
+ * Per URL fuori da /blog-covers/ restituisce l'URL invariato.
+ */
+export function webpCoverUrl(url: string | null | undefined, size: 600 | 1200 = 1200): string | null {
+  if (!url) return null;
+  if (!url.startsWith('/blog-covers/') || !url.endsWith('.jpg')) return url;
+  const base = url.slice(0, -'.jpg'.length);
+  return size === 600 ? `${base}-600.webp` : `${base}.webp`;
+}

@@ -255,7 +255,7 @@ export default function EdiliziaCloudLanding({ pageKey }: EdiliziaCloudLandingPr
           <aside className="rounded-xl border border-border bg-card p-6">
             <h2 className="text-xl font-black text-foreground">Pagine ecosistema</h2>
             <div className="mt-5 space-y-3">
-              {Object.values(ediliziaCloudPages).map((item) => (
+              {(Object.values(ediliziaCloudPages) as Array<{ slug: string; h1: string }>).map((item) => (
                 <Link
                   key={item.slug}
                   to={`/ecosistema/${item.slug}`}
