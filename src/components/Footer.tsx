@@ -67,7 +67,7 @@ const Footer = () => {
             <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
               Link Rapidi
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Link rapidi del sito">
+            <nav className="flex flex-col gap-3" aria-label="Pagine principali Marketing Edile">
               {navLinks.map((link) => (
                 link.isExternal ? (
                   <Link
@@ -96,7 +96,7 @@ const Footer = () => {
             <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
               Settori
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Pagine settori">
+            <nav className="flex flex-col gap-3" aria-label="Marketing per settori edili">
               {/* HUB verticali: ricevono link da ogni pagina del sito (flusso di autorità) */}
               <Link to="/marketing-serramenti" className="text-muted-foreground hover:text-gold transition-colors">Agenzia Marketing Serramenti</Link>
               <Link to="/marketing-fotovoltaico" className="text-muted-foreground hover:text-gold transition-colors">Agenzia Marketing Fotovoltaico</Link>
@@ -114,7 +114,7 @@ const Footer = () => {
             <h4 className="text-foreground font-bold mb-4 uppercase tracking-wider text-sm">
               Ecosistema
             </h4>
-            <nav className="mb-6 flex flex-col gap-3" aria-label="Ecosistema Domus Group">
+            <nav className="mb-6 flex flex-col gap-3" aria-label="Ecosistema Marketing Edile">
               <Link to="/ecosistema/edilizia-in-cloud" className="text-muted-foreground hover:text-gold transition-colors">Edilizia in Cloud</Link>
               <Link to="/ecosistema/gestionale-edilizia" className="text-muted-foreground hover:text-gold transition-colors">Gestionale Edilizia</Link>
               <Link to="/ecosistema/crm-preventivi-cantieri" className="text-muted-foreground hover:text-gold transition-colors">CRM, Preventivi e Cantieri</Link>
