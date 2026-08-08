@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "marketingedile.com" }],
+      "destination": "https://www.marketingedile.com/$1",
+      "permanent": true
+    },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/metodo-base", "destination": "/offerta", "permanent": true },
     { "source": "/metodo-base/", "destination": "/offerta", "permanent": true },
