@@ -35,6 +35,7 @@ export interface BlogPostDB {
   seo_description: string | null;
   created_at: string;
   author: BlogAuthor | null;
+  faqs?: Array<{ question: string; answer: string }> | null;
 }
 
 // L'indice non contiene `content`: chi ha bisogno del testo usa useBlogPost(slug).

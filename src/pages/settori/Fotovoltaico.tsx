@@ -933,6 +933,15 @@ const Fotovoltaico = () => {
           </div>
         </section>
       </main>
+      {/* Link all'hub del silo (architettura hub & spoke) */}
+      <section className="container py-10">
+        <div className="rounded-xl border border-border bg-card p-6 text-center">
+          <p className="text-muted-foreground">
+            Vuoi capire come lavora un'agenzia verticale per installatori fotovoltaici, pagata solo sulle vendite chiuse? 
+            <Link to="/marketing-fotovoltaico" className="font-semibold text-secondary hover:underline">Scopri la nostra agenzia marketing fotovoltaico</Link>.
+          </p>
+        </div>
+      </section>
       <Footer />
     </>
   );

@@ -9,7 +9,7 @@ import { TableOfContents } from '@/components/blog/TableOfContents';
 import { LeadConnectorForm } from '@/components/blog/LeadConnectorForm';
 import { useBlogPost, useRelatedPosts } from '@/hooks/useBlogPosts';
 import { categoryLabels, categoryColors, BlogCategory } from '@/types/blog';
-import { siteConfig, generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
+import { siteConfig, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/seo';
 import { resolveBlogImageUrl, webpCoverUrl } from '@/lib/blog-images';
 import { blogCovers } from '@/data/blogCovers.js';
 import Navbar from '@/components/Navbar';
@@ -121,7 +121,7 @@ export default function BlogPost() {
         author={post.author?.name}
         articleSection={categoryLabels[category] || post.category}
         articleTags={post.tags}
-        jsonLd={[articleSchema, breadcrumbSchema]}
+        jsonLd={[articleSchema, breadcrumbSchema, ...(post.faqs && post.faqs.length ? [generateFAQSchema(post.faqs)] : [])]}
       />
 
       <Navbar />

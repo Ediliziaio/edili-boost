@@ -32,7 +32,9 @@ await build({
 
 const { blogPosts } = await import(pathToFileURL(bundleFile).href);
 const { rewrittenPosts } = await import(pathToFileURL(path.join(root, "src/data/rewrittenPosts.js")).href);
-const { aeoPosts } = await import(pathToFileURL(path.join(root, "src/data/aeoPosts.js")).href);
+const { aeoPosts, aeoFaqs } = await import(pathToFileURL(path.join(root, "src/data/aeoPosts.js")).href);
+const { rewrittenFaqs } = await import(pathToFileURL(path.join(root, "src/data/rewrittenPosts.js")).href);
+const { enhanceContent, getPostFaqs } = await import(pathToFileURL(path.join(root, "src/data/postEnhancements.js")).href);
 
 const toIso = (value) => {
   if (!value) return null;
@@ -45,7 +47,9 @@ const toPostDB = (p) => ({
   slug: p.slug,
   title: p.title,
   excerpt: p.excerpt,
-  content: p.content,
+  content: enhanceContent(p.slug, p.content),
+  // FAQ strutturate (FAQPage JSON-LD lato React): riscritti, AEO o potenziamento.
+  faqs: rewrittenFaqs?.[p.slug] || aeoFaqs?.[p.slug] || getPostFaqs(p.slug) || null,
   cover_image_url: p.cover_image_url,
   author_id: p.author?.id ?? null,
   category: p.category,

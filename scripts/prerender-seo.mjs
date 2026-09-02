@@ -10,6 +10,7 @@ import { blogCovers } from "../src/data/blogCovers.js";
 import { aeoPosts, aeoFaqs } from "../src/data/aeoPosts.js";
 import { rewrittenPosts, rewrittenFaqs } from "../src/data/rewrittenPosts.js";
 import { marketingHubs, marketingHubKeys } from "../src/data/marketingHubs.js";
+import { enhanceContent, getPostFaqs } from "../src/data/postEnhancements.js";
 import { pillarTrovareClienti } from "../src/data/pillarTrovareClienti.js";
 import { pillarCostoMarketing } from "../src/data/pillarCostoMarketing.js";
 import { pillarLeadGeneration } from "../src/data/pillarLeadGeneration.js";
@@ -358,6 +359,7 @@ function articleSchema(post) {
       "@type": "Person",
       name: "Florin Andriciuc",
       url: `${siteUrl}/chi-siamo`,
+      sameAs: ["https://florinandriciuc.com"],
     },
     publisher: { "@id": `${siteUrl}/#organization` },
     mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
@@ -532,7 +534,7 @@ async function getBlogPosts() {
   }
 
   return [...bySlug.values()]
-    .map((post) => ({ ...post, cover: blogCovers[post.slug] || post.cover }))
+    .map((post) => ({ ...post, content: enhanceContent(post.slug, post.content), cover: blogCovers[post.slug] || post.cover }))
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
 
@@ -699,17 +701,20 @@ function sitemapXml(routes) {
       const isHub = marketingHubKeys.some((key) => route.path === `/${key}`);
       const priority = route.path === "/" ? "1.0" : route.path === "/blog" || isHub ? "0.9" : route.type === "article" ? "0.85" : "0.8";
       const changefreq = route.path === "/blog" ? "daily" : route.type === "article" ? "monthly" : "monthly";
+      const img = route.type === "article" && route.image
+        ? `\n    <image:image><image:loc>${esc(imageUrl(route.image))}</image:loc><image:title>${esc(route.h1 || route.title)}</image:title></image:image>`
+        : "";
       return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
+    <priority>${priority}</priority>${img}
   </url>`;
     })
     .join("\n\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries}
 </urlset>
 `;
@@ -800,8 +805,8 @@ async function main() {
           { name: "Blog", url: `${siteUrl}/blog` },
           { name: post.title, url: `${siteUrl}/blog/${post.slug}` },
         ]),
-        ...(rewrittenFaqs[post.slug] || aeoFaqs[post.slug]
-          ? [faqPageSchema(rewrittenFaqs[post.slug] || aeoFaqs[post.slug])]
+        ...((rewrittenFaqs[post.slug] || aeoFaqs[post.slug] || getPostFaqs(post.slug))
+          ? [faqPageSchema(rewrittenFaqs[post.slug] || aeoFaqs[post.slug] || getPostFaqs(post.slug))]
           : []),
       ],
     });

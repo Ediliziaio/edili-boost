@@ -303,7 +303,8 @@ export const generateArticleSchema = (article: {
     name: article.author,
     ...(article.authorRole && { jobTitle: article.authorRole }),
     ...(article.authorAvatar && { image: article.authorAvatar }),
-    url: `${siteConfig.url}/chi-siamo`
+    url: `${siteConfig.url}/chi-siamo`,
+    sameAs: ["https://florinandriciuc.com"]
   },
   publisher: {
     "@type": "Organization",
