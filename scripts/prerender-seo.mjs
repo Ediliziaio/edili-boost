@@ -94,21 +94,21 @@ const staticRoutes = [
     path: "/fissa-appuntamento",
     lastmod: "2026-09-04",
     title: "Fissa il Tuo Appuntamento | Marketing Edile",
-    description: "Prenota una call gratuita di 15-20 minuti con Marketing Edile\u00ae. Accettiamo solo 3 nuove aziende edili al mese. Nessun impegno.",
+    description: "Prenota una call consulenza gratuita di 20 minuti con Marketing Edile\u00ae. Solo 3 nuove aziende edili al mese. Nessun canone, nessun impegno.",
     keywords: pageKeywords.fissaAppuntamento,
     h1: "Fissa il tuo appuntamento",
     sections: [
       {
-        title: "Come funziona l'appuntamento",
-        text: "Compili il modulo con azienda, settore e recapito: bastano due minuti. Un consulente ti richiama nelle ore successive e fissate insieme giorno e ora. La call dura 15-20 minuti: guardiamo i tuoi numeri (preventivi fatti, preventivi chiusi, ticket medio, canali attuali) e ti diciamo con onest\u00e0 se possiamo aiutarti a vendere di pi\u00f9.",
+        title: "Come funziona la call",
+        text: "Lasci azienda, settore e un recapito: due minuti, nessun questionario infinito. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora. La call dura venti minuti e parte dai tuoi numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
       },
       {
-        title: "Perch\u00e9 gli appuntamenti sono limitati",
-        text: "Marketing Edile lavora solo a provvigione sulle vendite chiuse, senza canone fisso: ogni azienda seguita ci costa tempo e lavoro prima di generare ricavi. Per questo accettiamo un massimo di 3 nuove aziende al mese. Quando i posti del mese finiscono, la candidatura passa al mese successivo.",
+        title: "Perch\u00e9 i posti sono limitati",
+        text: "Marketing Edile non incassa canoni fissi: guadagna solo quando l'azienda cliente vende. Ogni azienda presa in carico costa mesi di lavoro prima di generare un euro di ricavo, quindi ne seguiamo al massimo 3 nuove al mese. Non \u00e8 una tattica di vendita: \u00e8 il limite reale di quante aziende possiamo seguire bene con un modello a provvigione.",
       },
       {
-        title: "Chi pu\u00f2 prenotare",
-        text: "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono una struttura in grado di gestire nuovi appuntamenti e la disponibilit\u00e0 a investire in budget pubblicitario, che resta sempre di propriet\u00e0 dell'azienda.",
+        title: "Chi pu\u00f2 prenotare la call",
+        text: "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono due cose: una struttura capace di gestire nuovi appuntamenti senza affogare, e un budget pubblicitario da investire, che resta sempre di propriet\u00e0 dell'azienda. Se manca una delle due, lo diciamo durante la call invece di farti perdere tempo.",
       },
     ],
     links: [

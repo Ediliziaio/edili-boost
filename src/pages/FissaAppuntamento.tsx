@@ -28,17 +28,17 @@ const steps = [
   {
     icon: CalendarCheck,
     title: "1. Lasci i tuoi dati",
-    text: "Compili il modulo con azienda, settore e recapito. Bastano due minuti.",
+    text: "Azienda, settore, un recapito. Due minuti, nessun questionario infinito.",
   },
   {
     icon: PhoneCall,
     title: "2. Ti richiamiamo",
-    text: "Un consulente ti contatta nelle ore successive e fissate insieme giorno e ora.",
+    text: "Un consulente ti chiama entro 24 ore e fissate insieme giorno e ora della call.",
   },
   {
     icon: Clock,
-    title: "3. Call da 15-20 minuti",
-    text: "Guardiamo i tuoi numeri e ti diciamo con onestà se possiamo aiutarti.",
+    title: "3. Venti minuti al telefono",
+    text: "Guardiamo i tuoi numeri e ti diciamo, senza giri di parole, se possiamo aiutarti.",
   },
 ];
 
@@ -50,7 +50,7 @@ const FissaAppuntamento = () => {
     <>
       <SEOHead
         title="Fissa il Tuo Appuntamento | Marketing Edile"
-        description={`Prenota una call gratuita di 15-20 minuti con Marketing Edile®. Accettiamo solo ${POSTI_MESE} nuove aziende edili al mese. Nessun impegno.`}
+        description={`Prenota una call consulenza gratuita di 20 minuti con Marketing Edile®. Solo ${POSTI_MESE} nuove aziende edili al mese. Nessun canone, nessun impegno.`}
         keywords={siteConfig.pageKeywords.fissaAppuntamento}
         url={`${siteConfig.url}${PATH}`}
         jsonLd={[
@@ -83,6 +83,10 @@ const FissaAppuntamento = () => {
           <div className="container-narrow">
             <AnimatedSection>
               <div className="max-w-2xl mx-auto text-center">
+                <p className="text-gold font-medium mb-4 tracking-wider uppercase text-sm">
+                  Call consulenza
+                </p>
+
                 <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gold/10 border border-gold/30 text-gold text-sm font-semibold uppercase tracking-wider">
                   <Users className="w-4 h-4" />
                   Solo {POSTI_MESE} posti a {meseCorrente}
@@ -94,9 +98,10 @@ const FissaAppuntamento = () => {
                 </h1>
 
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Una call conoscitiva gratuita di 15-20 minuti con un consulente
-                  specializzato in acquisizione clienti per aziende edili. Capiamo i tuoi
-                  numeri e ti diciamo se possiamo farti vendere di più. Senza impegno.
+                  Venti minuti al telefono con chi vende serramenti e ristrutturazioni
+                  tutti i giorni. Guardiamo i tuoi numeri veri — preventivi fatti,
+                  preventivi chiusi, ticket medio — e ti diciamo se possiamo portarti
+                  clienti. Se non possiamo, te lo diciamo subito.
                 </p>
               </div>
             </AnimatedSection>
@@ -109,13 +114,13 @@ const FissaAppuntamento = () => {
             <AnimatedSection delay={0.1}>
               <div className="max-w-2xl mx-auto bg-card border border-gold/30 rounded-xl p-6 text-center">
                 <p className="text-foreground font-semibold mb-1">
-                  Gli appuntamenti sono limitati
+                  Perché i posti sono limitati
                 </p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Lavoriamo solo a provvigione sulle vendite chiuse: nessun canone fisso.
-                  Per questo seguiamo al massimo {POSTI_MESE} nuove aziende al mese,
-                  quelle in cui crediamo davvero. Quando i posti finiscono, si passa al mese
-                  successivo.
+                  Non incassiamo canoni fissi: guadagniamo solo quando tu vendi. Ogni
+                  azienda che prendiamo ci costa mesi di lavoro prima di generare un
+                  euro, quindi ne seguiamo al massimo {POSTI_MESE} nuove al mese. Non è
+                  una tattica: è il limite reale di quante aziende possiamo seguire bene.
                 </p>
               </div>
             </AnimatedSection>
@@ -128,13 +133,13 @@ const FissaAppuntamento = () => {
             <AnimatedSection delay={0.15}>
               <div className="max-w-2xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
-                  Richiedi il tuo appuntamento
+                  Prenota la tua call
                 </h2>
                 <LeadConnectorForm />
                 <div className="flex flex-wrap justify-center gap-4 mt-6">
                   <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                     <ShieldCheck className="w-4 h-4 text-gold" />
-                    Gratuito e senza impegno
+                    Gratis, nessun impegno
                   </span>
                   <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                     <Clock className="w-4 h-4 text-gold" />
@@ -151,7 +156,7 @@ const FissaAppuntamento = () => {
           <div className="container-narrow">
             <AnimatedSection delay={0.2}>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
-                Come funziona l'appuntamento
+                Come funziona la call
               </h2>
               <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
                 {steps.map((step) => (

@@ -430,11 +430,11 @@ export const pageFaqs = {
     ]
   },
   "/fissa-appuntamento": {
-    "intro": "Fissare un appuntamento con Marketing Edile significa prenotare una call conoscitiva gratuita di 15-20 minuti con un consulente specializzato in acquisizione clienti per aziende edili, serramentisti, ristrutturazioni e fotovoltaico. Accettiamo un massimo di 3 nuove aziende al mese, perché lavoriamo solo a provvigione sulle vendite chiuse e ogni partner richiede tempo reale di lavoro: per questo gli appuntamenti sono limitati e selezionati.",
+    "intro": "Fissare un appuntamento con Marketing Edile significa prenotare una call consulenza gratuita di venti minuti con chi vende serramenti, ristrutturazioni e impianti tutti i giorni. Si parte dai numeri veri dell'azienda — preventivi fatti, preventivi chiusi, ticket medio, canali di acquisizione attuali — per capire se c'è margine per portare nuovi clienti. Accettiamo un massimo di 3 nuove aziende al mese perché lavoriamo solo a provvigione sulle vendite chiuse: per questo gli appuntamenti sono limitati e selezionati.",
     "faqs": [
       {
         "question": "Come fisso un appuntamento con Marketing Edile?",
-        "answer": "Compili il modulo qui sopra con i dati della tua azienda e il settore in cui operi. Un consulente ti ricontatta nelle ore successive per concordare giorno e orario della call conoscitiva. La chiamata dura 15-20 minuti e serve a capire i tuoi numeri, il tuo mercato e se possiamo davvero aiutarti a vendere di più."
+        "answer": "Compili il modulo qui sopra con i dati della tua azienda e il settore in cui operi. Un consulente ti richiama entro 24 ore per concordare giorno e orario della call. La chiamata dura venti minuti e serve a capire i tuoi numeri, il tuo mercato e se possiamo davvero aiutarti a vendere di più."
       },
       {
         "question": "L'appuntamento è gratuito?",
