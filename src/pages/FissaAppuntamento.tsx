@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CalendarCheck, Clock, ShieldCheck, PhoneCall, Users } from "lucide-react";
+import { CalendarCheck, Clock, ShieldCheck, PhoneCall, Users, X, Check } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { PageFaq } from "@/components/PageFaq";
@@ -39,6 +39,23 @@ const situazioni = [
     text: "Ha retto per anni. Poi arriva il mese vuoto e non sai da dove far uscire il prossimo lavoro.",
   },
 ];
+
+// Confronto sul modello di costo. Nessuna cifra e nessun competitor nominato:
+// si mette a confronto la STRUTTURA del costo, che e' il vero differenziale.
+const confronto = {
+  altre: [
+    "Canone fisso ogni mese, che tu venda o no",
+    "Più il budget pubblicitario, a tuo carico",
+    "Costo di setup iniziale",
+    "Incassano lo stesso anche a zero contratti",
+  ],
+  noi: [
+    "Zero canone fisso",
+    "Solo il budget pubblicitario: è tuo e resta tuo",
+    "Zero costi di setup",
+    "Guadagniamo solo sulle vendite che chiudi",
+  ],
+};
 
 const steps = [
   {
@@ -148,6 +165,57 @@ const FissaAppuntamento = () => {
                 tu paghi prima, loro incassano comunque.{" "}
                 <span className="text-foreground font-semibold">
                   Noi lo abbiamo girato al contrario.
+                </span>
+              </p>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Confronto modello di costo: e' il vero motivo per cui si prenota. */}
+        <section className="px-6 pb-14">
+          <div className="container-narrow">
+            <AnimatedSection delay={0.12}>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-3">
+                Noi lavoriamo a provvigione
+              </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
+                L'unica cosa che devi mettere è il budget pubblicitario. Nient'altro.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="font-semibold text-foreground mb-4">Le altre agenzie</p>
+                  <ul className="space-y-3">
+                    {confronto.altre.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <X className="w-5 h-5 text-muted-foreground/70 shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-card border border-gold/40 rounded-xl p-6">
+                  <p className="font-semibold text-gold mb-4">Marketing Edile</p>
+                  <ul className="space-y-3">
+                    {confronto.noi.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+                        <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <p className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto text-sm leading-relaxed">
+                Con un canone fisso l'agenzia incassa comunque, quindi il rischio è tutto
+                tuo. A provvigione il rischio ce lo prendiamo noi: se non vendi, non
+                guadagniamo.{" "}
+                <span className="text-foreground font-semibold">
+                  Per questo ti diciamo subito se i numeri non ci sono.
                 </span>
               </p>
             </AnimatedSection>

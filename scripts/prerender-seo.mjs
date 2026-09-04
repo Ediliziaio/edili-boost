@@ -103,6 +103,10 @@ const staticRoutes = [
         text: "Hai gi\u00e0 pagato un'agenzia: canone fisso, sei mesi, report pieni di grafici e due contratti firmati. Oppure i contatti arrivano ma i clienti no: chiedono il prezzo, dicono che ci pensano, spariscono. Oppure il passaparola ha retto per anni, poi \u00e8 arrivato il mese vuoto e non sai da dove far uscire il prossimo lavoro. Il problema non sei tu: \u00e8 il modo in cui ti hanno venduto il marketing, dove tu paghi prima e l'agenzia incassa comunque.",
       },
       {
+        title: "Noi lavoriamo a provvigione, tu investi solo in pubblicit\u00e0",
+        text: "La maggior parte delle agenzie chiede un canone fisso ogni mese, spesso un costo di setup iniziale, e in pi\u00f9 il budget pubblicitario resta comunque a carico dell'azienda: incassano lo stesso anche a zero contratti firmati, quindi il rischio \u00e8 tutto tuo. Marketing Edile lavora solo a provvigione sulle vendite chiuse: zero canone fisso, zero costi di setup. L'unica cosa che devi mettere \u00e8 il budget pubblicitario, che resta di tua propriet\u00e0 e va sulle tue campagne. Se non vendi, non guadagniamo: per questo ti diciamo subito se i numeri non ci sono.",
+      },
+      {
         title: "Come funziona la consulenza",
         text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura venti minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
       },

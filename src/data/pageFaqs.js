@@ -441,6 +441,10 @@ export const pageFaqs = {
         "answer": "Sì, la call è gratuita e senza impegno. Non paghi nulla per parlare con noi e non c'è alcun obbligo di proseguire. Se al termine non c'è fit reciproco te lo diciamo subito, senza forzature: preferiamo un no chiaro a una collaborazione che non porta contratti firmati."
       },
       {
+        "question": "Cosa pago esattamente?",
+        "answer": "Nessun canone mensile e nessun costo di setup. Paghi solo due cose: il budget pubblicitario, che resta tuo e va sulle tue campagne, e una provvigione sulle vendite che chiudi davvero. Molte agenzie chiedono un canone fisso più il budget pubblicitario e incassano anche a zero contratti firmati: lì il rischio è tutto tuo, qui ce lo prendiamo noi."
+      },
+      {
         "question": "Perché accettate solo 3 aziende al mese?",
         "answer": "Perché non incassiamo canoni fissi: guadagniamo solo quando l'azienda cliente vende. Ogni azienda che prendiamo ci costa mesi di lavoro e budget prima di generare un euro di ricavo per noi. Possiamo permetterci di seguirne poche e bene. Accettarle tutte significherebbe lavorare male su tutte, e con il nostro modello ci rimetteremmo per primi."
       },
