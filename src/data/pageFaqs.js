@@ -428,6 +428,35 @@ export const pageFaqs = {
         "answer": "No, le risorse gratuite (manuali PDF, CRM, video e community) sono accessibili a tutti gli imprenditori edili senza costi e senza candidatura. La candidatura serve solo se vuoi lavorare con noi al sistema di acquisizione a provvigione. I materiali gratuiti sono un primo passo, liberamente disponibile."
       }
     ]
+  },
+  "/fissa-appuntamento": {
+    "intro": "Fissare un appuntamento con Marketing Edile significa prenotare una call conoscitiva gratuita di 15-20 minuti con un consulente specializzato in acquisizione clienti per aziende edili, serramentisti, ristrutturazioni e fotovoltaico. Accettiamo un massimo di 3 nuove aziende al mese, perché lavoriamo solo a provvigione sulle vendite chiuse e ogni partner richiede tempo reale di lavoro: per questo gli appuntamenti sono limitati e selezionati.",
+    "faqs": [
+      {
+        "question": "Come fisso un appuntamento con Marketing Edile?",
+        "answer": "Compili il modulo qui sopra con i dati della tua azienda e il settore in cui operi. Un consulente ti ricontatta nelle ore successive per concordare giorno e orario della call conoscitiva. La chiamata dura 15-20 minuti e serve a capire i tuoi numeri, il tuo mercato e se possiamo davvero aiutarti a vendere di più."
+      },
+      {
+        "question": "L'appuntamento è gratuito?",
+        "answer": "Sì, la call conoscitiva è completamente gratuita e senza impegno. Non paghi nulla per parlare con noi e non c'è alcun obbligo di proseguire. Se al termine della chiamata non c'è fit reciproco te lo diciamo subito, senza forzature: preferiamo un no chiaro a una collaborazione che non produce risultati."
+      },
+      {
+        "question": "Perché gli appuntamenti sono limitati a 3 al mese?",
+        "answer": "Perché lavoriamo solo a provvigione sulle vendite chiuse: non incassiamo canoni fissi, quindi ogni azienda che seguiamo ci costa tempo e budget prima di generare ricavi. Possiamo permetterci di seguire bene solo poche aziende alla volta. Accettare tutti significherebbe lavorare male su tutti, e con il nostro modello ci rimetteremmo per primi."
+      },
+      {
+        "question": "Cosa succede durante la call conoscitiva?",
+        "answer": "Ti facciamo domande concrete: quanti preventivi fai al mese, quanti ne chiudi, qual è il tuo ticket medio, da dove arrivano oggi i clienti. Poi ti spieghiamo come funziona il modello a provvigione e cosa serve per partire. Non è una presentazione commerciale: è una valutazione reciproca per capire se ci sono i numeri per lavorare insieme."
+      },
+      {
+        "question": "Quali aziende accettate?",
+        "answer": "Lavoriamo con imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di coperture e tetti. Servono una struttura in grado di gestire nuovi appuntamenti e la disponibilità a investire in budget pubblicitario, che resta sempre tuo. Se manca uno dei due, te lo diciamo durante la call."
+      },
+      {
+        "question": "Quanto tempo passa dall'appuntamento all'avvio delle campagne?",
+        "answer": "Se dopo la call c'è accordo, servono in genere 7-10 giorni per essere operativi: definiamo l'offerta, prepariamo landing e creatività, configuriamo tracciamento e follow-up. I primi appuntamenti qualificati arrivano di norma entro le prime 3-4 settimane di campagna attiva, in base al settore e alla zona."
+      }
+    ]
   }
 };
 

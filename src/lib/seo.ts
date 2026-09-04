@@ -73,6 +73,11 @@ export const siteConfig = {
       "contattare agenzia marketing edile", "valutazione gratuita marketing edilizia",
       "consulenza marketing imprese edili", "richiedi preventivo marketing edile"
     ],
+    fissaAppuntamento: [
+      "fissa appuntamento marketing edile", "prenota consulenza marketing edilizia",
+      "consulenza gratuita imprese edili", "appuntamento agenzia marketing serramenti",
+      "call strategica marketing edile"
+    ],
     blog: [
       "blog marketing edilizia", "strategie marketing imprese edili", "guide lead generation edile",
       "consigli marketing serramenti", "SEO locale edilizia"

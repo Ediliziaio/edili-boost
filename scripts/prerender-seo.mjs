@@ -91,6 +91,36 @@ const staticRoutes = [
     h1: "Contatta Marketing Edile",
   },
   {
+    path: "/fissa-appuntamento",
+    lastmod: "2026-09-04",
+    title: "Fissa il Tuo Appuntamento | Marketing Edile",
+    description: "Prenota una call gratuita di 15-20 minuti con Marketing Edile\u00ae. Accettiamo solo 3 nuove aziende edili al mese. Nessun impegno.",
+    keywords: pageKeywords.fissaAppuntamento,
+    h1: "Fissa il tuo appuntamento",
+    sections: [
+      {
+        title: "Come funziona l'appuntamento",
+        text: "Compili il modulo con azienda, settore e recapito: bastano due minuti. Un consulente ti richiama nelle ore successive e fissate insieme giorno e ora. La call dura 15-20 minuti: guardiamo i tuoi numeri (preventivi fatti, preventivi chiusi, ticket medio, canali attuali) e ti diciamo con onest\u00e0 se possiamo aiutarti a vendere di pi\u00f9.",
+      },
+      {
+        title: "Perch\u00e9 gli appuntamenti sono limitati",
+        text: "Marketing Edile lavora solo a provvigione sulle vendite chiuse, senza canone fisso: ogni azienda seguita ci costa tempo e lavoro prima di generare ricavi. Per questo accettiamo un massimo di 3 nuove aziende al mese. Quando i posti del mese finiscono, la candidatura passa al mese successivo.",
+      },
+      {
+        title: "Chi pu\u00f2 prenotare",
+        text: "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono una struttura in grado di gestire nuovi appuntamenti e la disponibilit\u00e0 a investire in budget pubblicitario, che resta sempre di propriet\u00e0 dell'azienda.",
+      },
+    ],
+    links: [
+      { href: "/offerta", label: "Come funziona il modello a provvigione" },
+      { href: "/prezzi", label: "Prezzi: marketing a percentuale" },
+      { href: "/casi-studio", label: "Casi studio e risultati reali" },
+      { href: "/marketing-serramenti", label: "Agenzia marketing serramenti" },
+      { href: "/marketing-edilizia", label: "Agenzia marketing edilizia" },
+      { href: "/contattaci", label: "Contatta Marketing Edile" },
+    ],
+  },
+  {
     path: "/offerta",
     title: "Offerta — Acquisizione Clienti Edili",
     description: "Marketing Edile® porta clienti pronti all'acquisto. Solo a percentuale, nessun canone fisso. Se non vendiamo, non ci devi nulla.",
@@ -696,7 +726,11 @@ function sitemapXml(routes) {
     .filter((route) => !route.noindex)
     .map((route) => {
       const loc = canonicalFor(route.path);
-      const lastmod = route.publishedAt ? slugDate(route.updatedAt || route.publishedAt) : STATIC_CONTENT_LASTMOD;
+      // route.lastmod: override per singola pagina statica (es. pagina nuova pubblicata
+      // oggi), cosi non serve bumpare la data di TUTTE le pagine per una sola.
+      const lastmod = route.publishedAt
+        ? slugDate(route.updatedAt || route.publishedAt)
+        : route.lastmod || STATIC_CONTENT_LASTMOD;
       // Gli hub verticali sono le pagine che devono ricevere più autorità: priorità 0.9.
       const isHub = marketingHubKeys.some((key) => route.path === `/${key}`);
       const priority = route.path === "/" ? "1.0" : route.path === "/blog" || isHub ? "0.9" : route.type === "article" ? "0.85" : "0.8";
@@ -742,6 +776,7 @@ async function main() {
           { href: "/settori/ristrutturazioni", label: "Marketing ristrutturazioni" },
           { href: "/settori/fotovoltaico", label: "Marketing fotovoltaico" },
           { href: "/blog", label: "Blog: strategie di marketing edile" },
+          { href: "/fissa-appuntamento", label: "Fissa un appuntamento con Marketing Edile" },
         ],
         jsonLd: [organizationSchema(), websiteSchema(), faqPageSchema(homeFaqs)],
       };
