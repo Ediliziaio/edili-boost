@@ -24,21 +24,37 @@ const MESI = [
   "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre",
 ];
 
+// Blocco "dolore": situazioni che il titolare riconosce prima che si parli di noi.
+const situazioni = [
+  {
+    title: "Hai già pagato un'agenzia",
+    text: "Canone fisso, sei mesi, report pieni di grafici. Contratti firmati: due.",
+  },
+  {
+    title: "I contatti arrivano, i clienti no",
+    text: "Chiedono il prezzo, dicono che ci pensano, spariscono. Li richiami tre volte e basta.",
+  },
+  {
+    title: "Il passaparola non basta più",
+    text: "Ha retto per anni. Poi arriva il mese vuoto e non sai da dove far uscire il prossimo lavoro.",
+  },
+];
+
 const steps = [
   {
     icon: CalendarCheck,
     title: "1. Lasci i tuoi dati",
-    text: "Azienda, settore, un recapito. Due minuti, nessun questionario infinito.",
+    text: "Azienda, settore, un numero. Due minuti, niente questionari.",
   },
   {
     icon: PhoneCall,
     title: "2. Ti richiamiamo",
-    text: "Un consulente ti chiama entro 24 ore e fissate insieme giorno e ora della call.",
+    text: "Entro 24 ore. Fissiamo giorno e ora, anche fuori orario se sei in cantiere.",
   },
   {
     icon: Clock,
     title: "3. Venti minuti al telefono",
-    text: "Guardiamo i tuoi numeri e ti diciamo, senza giri di parole, se possiamo aiutarti.",
+    text: "Guardiamo i tuoi numeri. Ti diciamo se possiamo aiutarti. O se non possiamo.",
   },
 ];
 
@@ -49,8 +65,8 @@ const FissaAppuntamento = () => {
   return (
     <>
       <SEOHead
-        title="Fissa il Tuo Appuntamento | Marketing Edile"
-        description={`Prenota una call consulenza gratuita di 20 minuti con Marketing Edile®. Solo ${POSTI_MESE} nuove aziende edili al mese. Nessun canone, nessun impegno.`}
+        title="Fissa la Tua Consulenza | Marketing Edile"
+        description={`Consulenza gratuita di 20 minuti con Marketing Edile®. Solo ${POSTI_MESE} nuove aziende edili al mese, una per provincia. Paghi solo sulle vendite chiuse.`}
         keywords={siteConfig.pageKeywords.fissaAppuntamento}
         url={`${siteConfig.url}${PATH}`}
         jsonLd={[
@@ -58,7 +74,7 @@ const FissaAppuntamento = () => {
           ...(faqData?.faqs?.length ? [generateFAQSchema(faqData.faqs)] : []),
           generateBreadcrumbSchema([
             { name: "Home", url: siteConfig.url },
-            { name: "Fissa il tuo appuntamento", url: `${siteConfig.url}${PATH}` },
+            { name: "Fissa la tua consulenza", url: `${siteConfig.url}${PATH}` },
           ]),
         ]}
       />
@@ -89,40 +105,51 @@ const FissaAppuntamento = () => {
 
                 <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gold/10 border border-gold/30 text-gold text-sm font-semibold uppercase tracking-wider">
                   <Users className="w-4 h-4" />
-                  Solo {POSTI_MESE} posti a {meseCorrente}
+                  {POSTI_MESE} posti a {meseCorrente} · 1 azienda per provincia
                 </span>
 
                 <h1 className="text-4xl md:text-6xl font-black text-foreground mb-5">
-                  FISSA IL TUO{" "}
-                  <span className="text-gold">APPUNTAMENTO</span>
+                  FISSA LA TUA{" "}
+                  <span className="text-gold">CONSULENZA</span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Venti minuti al telefono con chi vende serramenti e ristrutturazioni
-                  tutti i giorni. Guardiamo i tuoi numeri veri — preventivi fatti,
-                  preventivi chiusi, ticket medio — e ti diciamo se possiamo portarti
-                  clienti. Se non possiamo, te lo diciamo subito.
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
+                  Venti minuti al telefono con chi vende in edilizia tutti i giorni.
+                  Guardiamo i tuoi numeri veri e ti diciamo se possiamo portarti clienti.
+                </p>
+                <p className="text-lg md:text-xl text-foreground font-semibold">
+                  Se poi lavoriamo insieme, ci paghi solo sul venduto.
                 </p>
               </div>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Perché i posti sono limitati: la scarsità è una conseguenza del modello, va spiegata. */}
-        <section className="px-6 pb-10">
+        {/* Dolore: il lettore deve riconoscersi prima che si parli di noi. */}
+        <section className="px-6 pb-12">
           <div className="container-narrow">
             <AnimatedSection delay={0.1}>
-              <div className="max-w-2xl mx-auto bg-card border border-gold/30 rounded-xl p-6 text-center">
-                <p className="text-foreground font-semibold mb-1">
-                  Perché i posti sono limitati
-                </p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Non incassiamo canoni fissi: guadagniamo solo quando tu vendi. Ogni
-                  azienda che prendiamo ci costa mesi di lavoro prima di generare un
-                  euro, quindi ne seguiamo al massimo {POSTI_MESE} nuove al mese. Non è
-                  una tattica: è il limite reale di quante aziende possiamo seguire bene.
-                </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
+                Quando ha senso fissare la consulenza
+              </h2>
+              <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+                {situazioni.map((s) => (
+                  <div
+                    key={s.title}
+                    className="bg-card border border-border rounded-xl p-6 border-l-4 border-l-gold/60"
+                  >
+                    <p className="font-semibold text-foreground mb-2">{s.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
+                  </div>
+                ))}
               </div>
+              <p className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto">
+                Il problema non sei tu. È il modo in cui ti hanno venduto il marketing:
+                tu paghi prima, loro incassano comunque.{" "}
+                <span className="text-foreground font-semibold">
+                  Noi lo abbiamo girato al contrario.
+                </span>
+              </p>
             </AnimatedSection>
           </div>
         </section>
@@ -133,7 +160,7 @@ const FissaAppuntamento = () => {
             <AnimatedSection delay={0.15}>
               <div className="max-w-2xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
-                  Prenota la tua call
+                  Prenota la tua consulenza
                 </h2>
                 <LeadConnectorForm />
                 <div className="flex flex-wrap justify-center gap-4 mt-6">
@@ -151,12 +178,43 @@ const FissaAppuntamento = () => {
           </div>
         </section>
 
+        {/* Scarsità: spiegata dalla causa, non asserita. */}
+        <section className="px-6 pb-14">
+          <div className="container-narrow">
+            <AnimatedSection delay={0.2}>
+              <div className="max-w-2xl mx-auto bg-card border border-gold/30 rounded-xl p-6 text-center">
+                <p className="text-foreground font-semibold mb-2">
+                  Perché i posti sono {POSTI_MESE} e non trenta
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  Non incassiamo canoni. Guadagniamo solo quando tu vendi. Ogni azienda
+                  che prendiamo ci costa mesi di lavoro prima di vedere un euro — quindi
+                  ne seguiamo {POSTI_MESE} al mese, non trenta. Non è una tattica per
+                  farti correre: è quante aziende riusciamo a seguire bene davvero.
+                </p>
+                <div className="border-t border-border pt-4">
+                  <p className="text-foreground font-semibold mb-2">
+                    E una sola azienda per provincia
+                  </p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Se lavoriamo con un serramentista a Brescia, non lavoriamo con il suo
+                    concorrente. Non ha senso far salire il costo dei lead facendo
+                    competere due nostri clienti sullo stesso pubblico. Chi entra prima,
+                    si prende la provincia. Quando la tua è occupata, non possiamo farci
+                    niente.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
         {/* Come funziona */}
         <section className="px-6 pb-16 border-t border-border pt-14">
           <div className="container-narrow">
-            <AnimatedSection delay={0.2}>
+            <AnimatedSection delay={0.25}>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
-                Come funziona la call
+                Come funziona la consulenza
               </h2>
               <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
                 {steps.map((step) => (
@@ -176,7 +234,7 @@ const FissaAppuntamento = () => {
           </div>
         </section>
 
-        <PageFaq path={PATH} title="Domande sull'appuntamento" />
+        <PageFaq path={PATH} title="Domande sulla consulenza" />
       </main>
 
       {/* Footer minimo: solo gli obblighi legali, per non distrarre dalla conversione. */}

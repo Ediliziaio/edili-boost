@@ -93,22 +93,30 @@ const staticRoutes = [
   {
     path: "/fissa-appuntamento",
     lastmod: "2026-09-04",
-    title: "Fissa il Tuo Appuntamento | Marketing Edile",
-    description: "Prenota una call consulenza gratuita di 20 minuti con Marketing Edile\u00ae. Solo 3 nuove aziende edili al mese. Nessun canone, nessun impegno.",
+    title: "Fissa la Tua Consulenza | Marketing Edile",
+    description: "Consulenza gratuita di 20 minuti con Marketing Edile\u00ae. Solo 3 nuove aziende edili al mese, una per provincia. Paghi solo sulle vendite chiuse.",
     keywords: pageKeywords.fissaAppuntamento,
-    h1: "Fissa il tuo appuntamento",
+    h1: "Fissa la tua consulenza",
     sections: [
       {
-        title: "Come funziona la call",
-        text: "Lasci azienda, settore e un recapito: due minuti, nessun questionario infinito. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora. La call dura venti minuti e parte dai tuoi numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
+        title: "Quando ha senso fissare la consulenza",
+        text: "Hai gi\u00e0 pagato un'agenzia: canone fisso, sei mesi, report pieni di grafici e due contratti firmati. Oppure i contatti arrivano ma i clienti no: chiedono il prezzo, dicono che ci pensano, spariscono. Oppure il passaparola ha retto per anni, poi \u00e8 arrivato il mese vuoto e non sai da dove far uscire il prossimo lavoro. Il problema non sei tu: \u00e8 il modo in cui ti hanno venduto il marketing, dove tu paghi prima e l'agenzia incassa comunque.",
       },
       {
-        title: "Perch\u00e9 i posti sono limitati",
-        text: "Marketing Edile non incassa canoni fissi: guadagna solo quando l'azienda cliente vende. Ogni azienda presa in carico costa mesi di lavoro prima di generare un euro di ricavo, quindi ne seguiamo al massimo 3 nuove al mese. Non \u00e8 una tattica di vendita: \u00e8 il limite reale di quante aziende possiamo seguire bene con un modello a provvigione.",
+        title: "Come funziona la consulenza",
+        text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura venti minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
       },
       {
-        title: "Chi pu\u00f2 prenotare la call",
-        text: "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono due cose: una struttura capace di gestire nuovi appuntamenti senza affogare, e un budget pubblicitario da investire, che resta sempre di propriet\u00e0 dell'azienda. Se manca una delle due, lo diciamo durante la call invece di farti perdere tempo.",
+        title: "Perch\u00e9 i posti sono 3 e non trenta",
+        text: "Marketing Edile non incassa canoni fissi: guadagna solo quando l'azienda cliente vende. Ogni azienda presa in carico costa mesi di lavoro e budget prima di generare un euro di ricavo, quindi ne seguiamo 3 nuove al mese. Non \u00e8 una tattica per far correre: \u00e8 quante aziende riusciamo a seguire bene con un modello a provvigione sulle vendite chiuse.",
+      },
+      {
+        title: "Una sola azienda per provincia",
+        text: "Prendiamo un solo cliente per provincia. Se lavoriamo con un serramentista a Brescia non lavoriamo con il suo concorrente: far competere due nostri clienti sullo stesso pubblico fa salire il costo dei contatti e danneggia entrambi. Chi entra per primo si prende la provincia e, finch\u00e9 resta cliente, quella zona resta sua. Quando una provincia \u00e8 occupata non possiamo farci niente.",
+      },
+      {
+        title: "Chi pu\u00f2 prenotare la consulenza",
+        text: "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono due cose: una struttura capace di gestire nuovi appuntamenti senza affogare, e un budget pubblicitario da investire, che resta sempre di propriet\u00e0 dell'azienda. Se manca una delle due lo diciamo durante la call, invece di far perdere tempo.",
       },
     ],
     links: [
@@ -281,6 +289,9 @@ function slugDate(value) {
 
 function fullTitle(title) {
   if (!title) return "Marketing Edile® — Marketing per Aziende Edili";
+  // Se il brand c'e' gia' nel titolo non va riappeso: "... | Marketing Edile |
+  // Marketing Edile" e' un titolo sprecato agli occhi di Google.
+  if (/marketing edile/i.test(title)) return title.length <= 60 ? title : title.slice(0, 60).replace(/\s+\S*$/, "");
   const withBrand = `${title} | Marketing Edile`;
   if (withBrand.length <= 60) return withBrand;      // brand incluso se ci sta
   if (title.length <= 60) return title;              // altrimenti solo il titolo

@@ -37,6 +37,11 @@ function upsertMeta(selectorAttr: 'name' | 'property', key: string, content: str
 // farlo troncare da Google, mantenendo coerenza tra HTML servito e vista renderizzata.
 function buildTitle(title?: string) {
   if (!title) return 'Marketing Edile® — Marketing per Aziende Edili';
+  // Il brand non va riappeso se e' gia' nel titolo (stessa regola del prerender,
+  // altrimenti prerender e idratazione producono due title diversi).
+  if (/marketing edile/i.test(title)) {
+    return title.length <= 60 ? title : title.slice(0, 60).replace(/\s+\S*$/, '');
+  }
   const withBrand = `${title} | Marketing Edile`;
   if (withBrand.length <= 60) return withBrand;
   if (title.length <= 60) return title;

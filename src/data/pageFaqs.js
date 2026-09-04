@@ -430,30 +430,34 @@ export const pageFaqs = {
     ]
   },
   "/fissa-appuntamento": {
-    "intro": "Fissare un appuntamento con Marketing Edile significa prenotare una call consulenza gratuita di venti minuti con chi vende serramenti, ristrutturazioni e impianti tutti i giorni. Si parte dai numeri veri dell'azienda — preventivi fatti, preventivi chiusi, ticket medio, canali di acquisizione attuali — per capire se c'è margine per portare nuovi clienti. Accettiamo un massimo di 3 nuove aziende al mese perché lavoriamo solo a provvigione sulle vendite chiuse: per questo gli appuntamenti sono limitati e selezionati.",
+    "intro": "Fissare una consulenza con Marketing Edile significa prenotare una call gratuita di venti minuti con chi vende serramenti, ristrutturazioni e impianti tutti i giorni. Si parte dai numeri veri dell'azienda — preventivi fatti, preventivi chiusi, ticket medio, da dove arrivano oggi i clienti — per capire se c'è margine per portarne di nuovi. Accettiamo un massimo di 3 nuove aziende al mese e una sola azienda per provincia: lavoriamo solo a provvigione sulle vendite chiuse, quindi possiamo seguirne poche e non possiamo far competere due nostri clienti sullo stesso pubblico.",
     "faqs": [
       {
-        "question": "Come fisso un appuntamento con Marketing Edile?",
-        "answer": "Compili il modulo qui sopra con i dati della tua azienda e il settore in cui operi. Un consulente ti richiama entro 24 ore per concordare giorno e orario della call. La chiamata dura venti minuti e serve a capire i tuoi numeri, il tuo mercato e se possiamo davvero aiutarti a vendere di più."
+        "question": "Come fisso una consulenza con Marketing Edile?",
+        "answer": "Lasci nel modulo qui sopra azienda, settore e un numero di telefono: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora, anche fuori orario se durante il giorno sei in cantiere. La call dura venti minuti e parte dai tuoi numeri, non da una presentazione."
       },
       {
-        "question": "L'appuntamento è gratuito?",
-        "answer": "Sì, la call conoscitiva è completamente gratuita e senza impegno. Non paghi nulla per parlare con noi e non c'è alcun obbligo di proseguire. Se al termine della chiamata non c'è fit reciproco te lo diciamo subito, senza forzature: preferiamo un no chiaro a una collaborazione che non produce risultati."
+        "question": "La consulenza è gratuita?",
+        "answer": "Sì, la call è gratuita e senza impegno. Non paghi nulla per parlare con noi e non c'è alcun obbligo di proseguire. Se al termine non c'è fit reciproco te lo diciamo subito, senza forzature: preferiamo un no chiaro a una collaborazione che non porta contratti firmati."
       },
       {
-        "question": "Perché gli appuntamenti sono limitati a 3 al mese?",
-        "answer": "Perché lavoriamo solo a provvigione sulle vendite chiuse: non incassiamo canoni fissi, quindi ogni azienda che seguiamo ci costa tempo e budget prima di generare ricavi. Possiamo permetterci di seguire bene solo poche aziende alla volta. Accettare tutti significherebbe lavorare male su tutti, e con il nostro modello ci rimetteremmo per primi."
+        "question": "Perché accettate solo 3 aziende al mese?",
+        "answer": "Perché non incassiamo canoni fissi: guadagniamo solo quando l'azienda cliente vende. Ogni azienda che prendiamo ci costa mesi di lavoro e budget prima di generare un euro di ricavo per noi. Possiamo permetterci di seguirne poche e bene. Accettarle tutte significherebbe lavorare male su tutte, e con il nostro modello ci rimetteremmo per primi."
       },
       {
-        "question": "Cosa succede durante la call conoscitiva?",
-        "answer": "Ti facciamo domande concrete: quanti preventivi fai al mese, quanti ne chiudi, qual è il tuo ticket medio, da dove arrivano oggi i clienti. Poi ti spieghiamo come funziona il modello a provvigione e cosa serve per partire. Non è una presentazione commerciale: è una valutazione reciproca per capire se ci sono i numeri per lavorare insieme."
+        "question": "Lavorate anche con i miei concorrenti?",
+        "answer": "No. Prendiamo una sola azienda per provincia. Se lavoriamo con un serramentista a Brescia non lavoriamo con il suo concorrente: far competere due nostri clienti sullo stesso pubblico fa salire il costo dei contatti e danneggia entrambi. Chi entra per primo si prende la provincia, e finché resta cliente quella zona è sua."
+      },
+      {
+        "question": "Cosa succede durante la call?",
+        "answer": "Ti facciamo domande concrete: quanti preventivi fai al mese, quanti ne chiudi, qual è il ticket medio, da dove arrivano oggi i clienti. Poi ti spieghiamo come funziona il modello a provvigione e cosa serve per partire. Non è una presentazione commerciale: è una valutazione reciproca per capire se ci sono i numeri per lavorare insieme."
       },
       {
         "question": "Quali aziende accettate?",
-        "answer": "Lavoriamo con imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di coperture e tetti. Servono una struttura in grado di gestire nuovi appuntamenti e la disponibilità a investire in budget pubblicitario, che resta sempre tuo. Se manca uno dei due, te lo diciamo durante la call."
+        "answer": "Imprese edili, serramentisti e showroom infissi, aziende di ristrutturazioni, installatori fotovoltaico, impiantisti e specialisti di tetti e coperture. Servono due cose: una struttura capace di gestire nuovi appuntamenti senza affogare, e un budget pubblicitario da investire, che resta sempre tuo. Se manca una delle due te lo diciamo durante la call, invece di farti perdere tempo."
       },
       {
-        "question": "Quanto tempo passa dall'appuntamento all'avvio delle campagne?",
+        "question": "Quanto tempo passa dalla consulenza all'avvio delle campagne?",
         "answer": "Se dopo la call c'è accordo, servono in genere 7-10 giorni per essere operativi: definiamo l'offerta, prepariamo landing e creatività, configuriamo tracciamento e follow-up. I primi appuntamenti qualificati arrivano di norma entro le prime 3-4 settimane di campagna attiva, in base al settore e alla zona."
       }
     ]
