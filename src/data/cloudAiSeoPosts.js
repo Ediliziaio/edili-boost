@@ -206,8 +206,8 @@ ${p(`Settimana 4: misura il risultato. Quanto tempo hai risparmiato? Quanti prev
 </ul>
 
 <h2>Perché collegarla a Edilizia in Cloud</h2>
-${p(`Edilizia in Cloud è il punto naturale dove portare ordine: cantieri, preventivi, fatturazione elettronica, DDT, subappalti, HR, presenze e margini. Se l'azienda vuole usare AI in modo serio, deve prima sapere dove sono i dati e quali processi vuole migliorare.`)}
-${p(`La CTA è semplice: se vuoi usare AI, render, rapportini e automazioni senza aumentare il caos, parti da un gestionale pensato per imprese edili. Poi l'AI diventa un acceleratore, non una toppa.`)}
+${p(`<a href="https://www.ediliziaincloud.com/" target="_blank" rel="noopener">Edilizia in Cloud</a> è il punto naturale dove portare ordine: <a href="https://www.ediliziaincloud.com/funzionalita/gestione-cantieri/" target="_blank" rel="noopener">cantieri</a>, preventivi, <a href="https://www.ediliziaincloud.com/funzionalita/fatturazione-elettronica/" target="_blank" rel="noopener">fatturazione elettronica</a>, DDT, subappalti, HR, presenze e margini. Se l'azienda vuole usare AI in modo serio, deve prima sapere dove sono i dati e quali processi vuole migliorare.`)}
+${p(`La CTA è semplice: se vuoi usare AI, render, rapportini e automazioni senza aumentare il caos, parti da un <a href="https://www.ediliziaincloud.com/per/imprese-edili/" target="_blank" rel="noopener">gestionale pensato per imprese edili</a>. Poi l'AI diventa un acceleratore, non una toppa.`)}
 
 ${cloudCta("https://www.ediliziaincloud.com/demo", "Richiedi una demo e valuta Edilizia in Cloud per la tua impresa")}
 
