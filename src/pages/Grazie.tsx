@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Clock, ShieldCheck, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, CalendarCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import {
+  BookingCalendarEmbed,
+  CALENDARIO_PRENOTAZIONE_ATTIVO,
+} from "@/components/BookingCalendarEmbed";
 import { siteConfig } from "@/lib/seo";
 
 // ID del pixel Meta "principale" (lo stesso usato per PageView/Lead altrove).
@@ -31,7 +35,7 @@ const Grazie = () => {
         noindex
       />
       <Navbar />
-      <main className="min-h-screen bg-background pt-24 pb-20 flex items-center justify-center">
+      <main className="min-h-screen bg-background pt-24 pb-20">
         <div className="container-narrow">
           <AnimatedSection>
             <div className="max-w-2xl mx-auto text-center">
@@ -47,16 +51,48 @@ const Grazie = () => {
               </h1>
               <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
                 Verrai contattato nelle prossime ore da un nostro consulente.
-                Nel frattempo, tieni il telefono a portata di mano.
+                {CALENDARIO_PRENOTAZIONE_ATTIVO
+                  ? " Se preferisci non aspettare, scegli tu qui sotto giorno e ora."
+                  : " Nel frattempo, tieni il telefono a portata di mano."}
               </p>
+            </div>
+          </AnimatedSection>
 
+          {/* Prenotazione diretta. Nascosta finché l'embed EiC non è utilizzabile
+              (vedi BookingCalendarEmbed.tsx): meglio niente che un riquadro rotto
+              sulla pagina che vede ogni lead appena arrivato. */}
+          {CALENDARIO_PRENOTAZIONE_ATTIVO && (
+          <AnimatedSection delay={0.15}>
+            <div className="max-w-3xl mx-auto mb-12">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gold/10 text-gold mb-4">
+                  <CalendarCheck className="w-7 h-7" />
+                </div>
+                <h2 className="heading-section text-foreground mb-3">
+                  Fissa ora la tua consulenza
+                </h2>
+                <p className="text-muted-foreground max-w-xl mx-auto">
+                  Scegli lo slot che ti va meglio: venti minuti al telefono, gratis e
+                  senza impegno. Ricevi subito la conferma via email.
+                </p>
+              </div>
+
+              <div className="bg-card border border-border rounded-2xl p-2 sm:p-4">
+                <BookingCalendarEmbed />
+              </div>
+            </div>
+          </AnimatedSection>
+          )}
+
+          <AnimatedSection delay={0.25}>
+            <div className="max-w-2xl mx-auto text-center">
               <div className="grid sm:grid-cols-2 gap-4 mb-10 text-left">
                 <div className="flex items-start gap-3 bg-card border border-border rounded-xl p-5">
                   <Clock className="w-6 h-6 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-foreground">Risposta in poche ore</p>
+                    <p className="font-semibold text-foreground">Venti minuti, non di più</p>
                     <p className="text-sm text-muted-foreground">
-                      Un consulente ti contatta nelle prossime ore.
+                      Guardiamo i tuoi numeri e ti diciamo se possiamo aiutarti.
                     </p>
                   </div>
                 </div>
@@ -65,7 +101,7 @@ const Grazie = () => {
                   <div>
                     <p className="font-semibold text-foreground">Nessun impegno</p>
                     <p className="text-sm text-muted-foreground">
-                      La valutazione è gratuita e senza vincoli.
+                      La consulenza è gratuita e senza vincoli.
                     </p>
                   </div>
                 </div>
@@ -73,7 +109,7 @@ const Grazie = () => {
 
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Torna alla homepage
