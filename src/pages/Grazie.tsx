@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   CheckCircle2,
@@ -12,11 +12,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import {
-  BookingCalendarEmbed,
-  CALENDARIO_IN_PAGINA,
-  BOOKING_URL,
-} from "@/components/BookingCalendarEmbed";
+import { BookingCalendarEmbed, BOOKING_URL } from "@/components/BookingCalendarEmbed";
 import { siteConfig } from "@/lib/seo";
 
 // ID del pixel Meta "principale" (lo stesso usato per PageView/Lead altrove).
@@ -30,6 +26,17 @@ const Grazie = () => {
       window.fbq("trackSingle", META_PIXEL_ID, "Lead", {
         content_name: "Richiesta contatto",
         content_category: "Contatto",
+      });
+    }
+  }, []);
+
+  // La prenotazione e' un passo oltre il lead: la tracciamo a parte, quando il
+  // widget conferma che l'appuntamento e' stato preso davvero.
+  const onPrenotato = useCallback(() => {
+    if (typeof window.fbq === "function") {
+      window.fbq("trackSingle", META_PIXEL_ID, "Schedule", {
+        content_name: "Consulenza prenotata",
+        content_category: "Appuntamento",
       });
     }
   }, []);
@@ -64,10 +71,8 @@ const Grazie = () => {
             </div>
           </AnimatedSection>
 
-          {/* Prenotazione diretta: chi sceglie da solo lo slot si presenta molto piu'
-              spesso di chi aspetta la chiamata. L'iframe e' bloccato da
-              X-Frame-Options (vedi BookingCalendarEmbed.tsx), quindi finche' non
-              viene rimosso apriamo il calendario in una scheda nuova. */}
+          {/* Prenotazione diretta in pagina: chi sceglie da solo lo slot si
+              presenta molto piu' spesso di chi aspetta la chiamata. */}
           <AnimatedSection delay={0.15}>
             <div className="max-w-3xl mx-auto mb-12">
               <div className="text-center mb-6">
@@ -83,27 +88,22 @@ const Grazie = () => {
                 </p>
               </div>
 
-              {CALENDARIO_IN_PAGINA ? (
-                <div className="bg-card border border-border rounded-2xl p-2 sm:p-4">
-                  <BookingCalendarEmbed />
-                </div>
-              ) : (
-                <div className="text-center">
-                  <a
-                    href={BOOKING_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gold text-background px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold/90 transition-colors"
-                  >
-                    <CalendarCheck className="w-5 h-5" />
-                    Scegli data e ora
-                    <ExternalLink className="w-4 h-4 opacity-70" />
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-4">
-                    Si apre il calendario con gli orari liberi. Ci vuole meno di un minuto.
-                  </p>
-                </div>
-              )}
+              <div className="bg-card border border-border rounded-2xl p-2 sm:p-3 overflow-hidden">
+                <BookingCalendarEmbed onPrenotato={onPrenotato} />
+              </div>
+
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                Non vedi il calendario?{" "}
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:underline inline-flex items-center gap-1"
+                >
+                  Aprilo in una nuova scheda
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </p>
             </div>
           </AnimatedSection>
 
