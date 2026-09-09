@@ -1,13 +1,21 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Clock, ShieldCheck, ArrowLeft, CalendarCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  Clock,
+  ShieldCheck,
+  ArrowLeft,
+  CalendarCheck,
+  ExternalLink,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import {
   BookingCalendarEmbed,
-  CALENDARIO_PRENOTAZIONE_ATTIVO,
+  CALENDARIO_IN_PAGINA,
+  BOOKING_URL,
 } from "@/components/BookingCalendarEmbed";
 import { siteConfig } from "@/lib/seo";
 
@@ -51,17 +59,15 @@ const Grazie = () => {
               </h1>
               <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
                 Verrai contattato nelle prossime ore da un nostro consulente.
-                {CALENDARIO_PRENOTAZIONE_ATTIVO
-                  ? " Se preferisci non aspettare, scegli tu qui sotto giorno e ora."
-                  : " Nel frattempo, tieni il telefono a portata di mano."}
+                Se preferisci non aspettare, scegli tu giorno e ora qui sotto.
               </p>
             </div>
           </AnimatedSection>
 
-          {/* Prenotazione diretta. Nascosta finché l'embed EiC non è utilizzabile
-              (vedi BookingCalendarEmbed.tsx): meglio niente che un riquadro rotto
-              sulla pagina che vede ogni lead appena arrivato. */}
-          {CALENDARIO_PRENOTAZIONE_ATTIVO && (
+          {/* Prenotazione diretta: chi sceglie da solo lo slot si presenta molto piu'
+              spesso di chi aspetta la chiamata. L'iframe e' bloccato da
+              X-Frame-Options (vedi BookingCalendarEmbed.tsx), quindi finche' non
+              viene rimosso apriamo il calendario in una scheda nuova. */}
           <AnimatedSection delay={0.15}>
             <div className="max-w-3xl mx-auto mb-12">
               <div className="text-center mb-6">
@@ -72,17 +78,34 @@ const Grazie = () => {
                   Fissa ora la tua consulenza
                 </h2>
                 <p className="text-muted-foreground max-w-xl mx-auto">
-                  Scegli lo slot che ti va meglio: venti minuti al telefono, gratis e
-                  senza impegno. Ricevi subito la conferma via email.
+                  Scegli tu il giorno e l'orario che ti vanno meglio. Ricevi subito la
+                  conferma via email, senza aspettare che ti richiamiamo.
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-2xl p-2 sm:p-4">
-                <BookingCalendarEmbed />
-              </div>
+              {CALENDARIO_IN_PAGINA ? (
+                <div className="bg-card border border-border rounded-2xl p-2 sm:p-4">
+                  <BookingCalendarEmbed />
+                </div>
+              ) : (
+                <div className="text-center">
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gold text-background px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold/90 transition-colors"
+                  >
+                    <CalendarCheck className="w-5 h-5" />
+                    Scegli data e ora
+                    <ExternalLink className="w-4 h-4 opacity-70" />
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    Si apre il calendario con gli orari liberi. Ci vuole meno di un minuto.
+                  </p>
+                </div>
+              )}
             </div>
           </AnimatedSection>
-          )}
 
           <AnimatedSection delay={0.25}>
             <div className="max-w-2xl mx-auto text-center">
@@ -90,7 +113,7 @@ const Grazie = () => {
                 <div className="flex items-start gap-3 bg-card border border-border rounded-xl p-5">
                   <Clock className="w-6 h-6 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-foreground">Venti minuti, non di più</p>
+                    <p className="font-semibold text-foreground">Una call, non una presentazione</p>
                     <p className="text-sm text-muted-foreground">
                       Guardiamo i tuoi numeri e ti diciamo se possiamo aiutarti.
                     </p>
