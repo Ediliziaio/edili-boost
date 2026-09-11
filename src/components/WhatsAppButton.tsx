@@ -7,7 +7,11 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const WhatsAppButton = () => {
-  const link = "https://wa.me/393501782744";
+  // Numero WhatsApp di Marketing Edile (+39 350 178 0908) e messaggio che
+  // compare gia' scritto nella chat quando l'utente la apre.
+  const numero = "393501780908";
+  const messaggio = "Voglio avere maggiori informazioni su Marketing Edile";
+  const link = `https://wa.me/${numero}?text=${encodeURIComponent(messaggio)}`;
   const animProps = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
