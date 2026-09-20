@@ -111,6 +111,18 @@ const staticRoutes = [
         text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura 45 minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
       },
       {
+        title: "Il sistema, spiegato passo per passo",
+        text: "Si parte dai numeri dell'azienda: quanti preventivi fa al mese, quanti ne chiude, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti e quanto raggio copre. Poi si costruiscono offerta e annunci partendo dal risultato che vuole il cliente finale, non dal prodotto, e si mandano in campagna su Meta e Google geolocalizzate sulla zona. Chi clicca arriva su una pagina dedicata al settore, lascia i dati e risponde alle domande che contano: i curiosi si fermano l\u00ec. I contatti entrano nel CRM e il richiamo parte subito, perch\u00e9 un contatto richiamato dopo tre giorni ha gi\u00e0 parlato con altri due. In agenda arrivano appuntamenti con persone che sanno chi sei e quanto costi. Ogni settimana il budget si sposta su ci\u00f2 che ha prodotto vendite vere, non clic.",
+      },
+      {
+        title: "Cosa mettiamo noi e cosa metti tu",
+        text: "Marketing Edile mette strategia e offerta costruite sul mercato e sulla zona dell'azienda, annunci e creativit\u00e0, una pagina dedicata al settore invece del sito generico, tracciamento e CRM configurati, qualificazione e follow-up dei contatti, e l'ottimizzazione continua sui contratti chiusi. L'azienda cliente mette il budget pubblicitario, che resta di sua propriet\u00e0 e va sulle sue campagne, qualcuno che richiami chi lascia i dati, la capacit\u00e0 di gestire i nuovi appuntamenti e la provvigione solo sulle vendite chiuse davvero.",
+      },
+      {
+        title: "Con chi parli in consulenza",
+        text: "Marketing Edile \u00e8 fondata da Florin Andriciuc: il padre ha un'azienda edile e da 8 anni si occupa solo di portare clienti alle aziende di questo settore \u2014 serramentisti, imprese di ristrutturazione, fotovoltaico, tetti. A fine 2023 ha aperto una propria azienda di serramenti per provare sul campo lo stesso sistema: 400.000 euro di vendite nei primi 3 mesi e oltre 2 milioni in due anni. Non \u00e8 un'agenzia generalista che ha aggiunto l'edilizia ai settori serviti.",
+      },
+      {
         title: "Cosa \u00e8 successo a chi ha gi\u00e0 fatto questa call",
         text: "Renova Tetto ha generato oltre 600.000 euro di vendite in rifacimento tetti, estendendo la copertura a tutto il Veneto. Renova Solution ha superato i 500.000 euro in 12 mesi di flusso commerciale costante nel fotovoltaico. Green Energy Group \u00e8 passata da contatti sporadici a oltre 300.000 euro in 2 mesi. Sono casi reali pubblicati per intero nella sezione casi studio, con settore, situazione di partenza e risultati.",
       },
