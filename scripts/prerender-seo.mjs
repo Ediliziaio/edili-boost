@@ -94,7 +94,7 @@ const staticRoutes = [
     path: "/fissa-appuntamento",
     lastmod: "2026-09-04",
     title: "Fissa la Tua Consulenza | Marketing Edile",
-    description: "Consulenza gratuita di 20 minuti con Marketing Edile\u00ae. Solo 3 nuove aziende edili al mese, una per provincia. Paghi solo sulle vendite chiuse.",
+    description: "Consulenza gratuita di 45 minuti con Marketing Edile\u00ae. Solo 3 nuove aziende edili al mese, una per provincia. Paghi solo sulle vendite chiuse.",
     keywords: pageKeywords.fissaAppuntamento,
     h1: "Fissa la tua consulenza",
     sections: [
@@ -108,7 +108,11 @@ const staticRoutes = [
       },
       {
         title: "Come funziona la consulenza",
-        text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura venti minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
+        text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura 45 minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
+      },
+      {
+        title: "Cosa \u00e8 successo a chi ha gi\u00e0 fatto questa call",
+        text: "Renova Tetto ha generato oltre 600.000 euro di vendite in rifacimento tetti, estendendo la copertura a tutto il Veneto. Renova Solution ha superato i 500.000 euro in 12 mesi di flusso commerciale costante nel fotovoltaico. Green Energy Group \u00e8 passata da contatti sporadici a oltre 300.000 euro in 2 mesi. Sono casi reali pubblicati per intero nella sezione casi studio, con settore, situazione di partenza e risultati.",
       },
       {
         title: "Perch\u00e9 i posti sono 3 e non trenta",

@@ -430,11 +430,11 @@ export const pageFaqs = {
     ]
   },
   "/fissa-appuntamento": {
-    "intro": "Fissare una consulenza con Marketing Edile significa prenotare una call gratuita di venti minuti con chi vende serramenti, ristrutturazioni e impianti tutti i giorni. Si parte dai numeri veri dell'azienda — preventivi fatti, preventivi chiusi, ticket medio, da dove arrivano oggi i clienti — per capire se c'è margine per portarne di nuovi. Accettiamo un massimo di 3 nuove aziende al mese e una sola azienda per provincia: lavoriamo solo a provvigione sulle vendite chiuse, quindi possiamo seguirne poche e non possiamo far competere due nostri clienti sullo stesso pubblico.",
+    "intro": "Fissare una consulenza con Marketing Edile significa prenotare una call gratuita di 45 minuti con chi vende serramenti, ristrutturazioni e impianti tutti i giorni. Si parte dai numeri veri dell'azienda — preventivi fatti, preventivi chiusi, ticket medio, da dove arrivano oggi i clienti — per capire se c'è margine per portarne di nuovi. Accettiamo un massimo di 3 nuove aziende al mese e una sola azienda per provincia: lavoriamo solo a provvigione sulle vendite chiuse, quindi possiamo seguirne poche e non possiamo far competere due nostri clienti sullo stesso pubblico.",
     "faqs": [
       {
         "question": "Come fisso una consulenza con Marketing Edile?",
-        "answer": "Lasci nel modulo qui sopra azienda, settore e un numero di telefono: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora, anche fuori orario se durante il giorno sei in cantiere. La call dura venti minuti e parte dai tuoi numeri, non da una presentazione."
+        "answer": "Lasci nel modulo qui sopra azienda, settore e un numero di telefono: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora, anche fuori orario se durante il giorno sei in cantiere. La call dura 45 minuti e parte dai tuoi numeri, non da una presentazione."
       },
       {
         "question": "La consulenza è gratuita?",

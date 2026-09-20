@@ -16,7 +16,7 @@ const trustBadges = [
 ];
 
 const faqs = [
-  { q: "Come funziona il primo contatto?", a: "Compili il form, ti contattiamo entro 24h per una call conoscitiva di 15-20 minuti. Capiamo il tuo business, i tuoi numeri e se possiamo aiutarti." },
+  { q: "Come funziona il primo contatto?", a: "Compili il form, ti contattiamo entro 24h per una call conoscitiva di 45 minuti. Capiamo il tuo business, i tuoi numeri e se possiamo aiutarti." },
   { q: "Devo pagare per la valutazione?", a: "No, la valutazione iniziale è completamente gratuita e senza impegno. Vogliamo capire se siamo il partner giusto per te." },
   { q: "Quanto tempo serve per iniziare?", a: "Dopo la call, se c'è fit reciproco, in 7-10 giorni siamo operativi con strategia, contenuti e campagne." },
   { q: "Lavorate con qualsiasi azienda edile?", a: "No. Accettiamo solo aziende con cui possiamo generare risultati concreti. Per questo la call iniziale è fondamentale." },
@@ -120,7 +120,7 @@ const Contattaci = () => {
                     </div>
                     <ol className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex gap-2"><span className="text-secondary font-bold">1.</span> Ricevi la nostra chiamata entro 24h</li>
-                      <li className="flex gap-2"><span className="text-secondary font-bold">2.</span> Call conoscitiva di 15-20 min</li>
+                      <li className="flex gap-2"><span className="text-secondary font-bold">2.</span> Call conoscitiva di 45 min</li>
                       <li className="flex gap-2"><span className="text-secondary font-bold">3.</span> Se c'è fit, partiamo in 7-10 giorni</li>
                     </ol>
                   </div>
