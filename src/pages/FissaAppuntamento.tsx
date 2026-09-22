@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   CalendarCheck,
-  Clock,
   ShieldCheck,
   PhoneCall,
   Check,
@@ -15,11 +14,15 @@ import {
   Filter,
   Handshake,
   LineChart,
+  Video,
+  BellRing,
+  MessageCircle,
+  ExternalLink,
 } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { PageFaq } from "@/components/PageFaq";
-import { EicLeadForm } from "@/components/EicLeadForm";
+import { BookingCalendarEmbed, BOOKING_URL } from "@/components/BookingCalendarEmbed";
 import {
   siteConfig,
   generateLocalBusinessSchema,
@@ -40,6 +43,14 @@ import imgFotovoltaico from "@/assets/fotovoltaico-hero.jpg";
 import ritrattoFlo from "@/assets/flo-portrait.jpg";
 
 const PATH = "/fissa-appuntamento";
+
+// Pixel Meta principale: lo stesso usato da /grazie e dal bottone WhatsApp.
+const META_PIXEL_ID = "912028060826443";
+
+// Per chi non trova un orario: stesso numero e messaggio del bottone WhatsApp.
+const WHATSAPP_URL = `https://wa.me/393501780908?text=${encodeURIComponent(
+  "Voglio avere maggiori informazioni su Marketing Edile",
+)}`;
 
 // Aziende accettate ogni mese: stessa capienza dichiarata su /contattaci, e
 // nasce dal modello a provvigione (poche aziende seguite bene).
@@ -202,17 +213,17 @@ const settori = [
 const passi = [
   {
     icona: CalendarCheck,
-    titolo: "Lasci i tuoi dati",
-    testo: "Azienda, settore, un numero. Due minuti, niente questionari.",
+    titolo: "Scegli giorno e ora",
+    testo: "Dal calendario qui sopra vedi gli orari liberi e prendi quello che ti va. Un minuto.",
   },
   {
-    icona: PhoneCall,
-    titolo: "Ti richiamiamo",
-    testo: "Entro 24 ore. Fissiamo giorno e ora, anche fuori orario se sei in cantiere.",
+    icona: BellRing,
+    titolo: "Ricevi la conferma",
+    testo: "Arriva subito per email. Ti ricordiamo l'appuntamento il giorno prima e un'ora prima.",
   },
   {
-    icona: Clock,
-    titolo: "Parliamo 45 minuti",
+    icona: Video,
+    titolo: "Parliamo 45 minuti in videochiamata",
     testo: "Guardiamo i tuoi numeri. Ti diciamo se possiamo aiutarti. O se non possiamo.",
   },
 ];
@@ -278,30 +289,61 @@ function Contatore({
   );
 }
 
-/** Riquadro del modulo: ripetuto in alto e in fondo alla pagina. */
-function BloccoForm({ id }: { id?: string }) {
+/** Il calendario: è l'unica azione della pagina, quindi sta in alto e ha tutto lo spazio. */
+function BloccoCalendario({ onPrenotato }: { onPrenotato: () => void }) {
   return (
     <div
-      id={id}
-      className="relative rounded-2xl border border-gold/25 bg-card/80 backdrop-blur-sm p-5 sm:p-7 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.9)]"
+      id="calendario"
+      className="relative scroll-mt-6 rounded-2xl border border-gold/25 bg-card/80 backdrop-blur-sm p-3 sm:p-5 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.9)]"
     >
       <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-      <p className="text-center text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-1">
-        Candidatura
-      </p>
-      <p className="text-center text-foreground font-bold text-xl mb-5">
-        Richiedi la tua consulenza
-      </p>
-      <EicLeadForm slug="marketing-edile" eager className="mx-auto" />
-      <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+      <div className="px-2 pt-2 pb-4 text-center">
+        <p className="text-gold text-xs font-semibold uppercase tracking-[0.2em]">
+          Prenota la videochiamata
+        </p>
+        <p className="mt-1 text-foreground font-bold text-xl">Scegli giorno e ora</p>
+      </div>
+
+      <div className="overflow-hidden rounded-xl">
+        <BookingCalendarEmbed onPrenotato={onPrenotato} />
+      </div>
+
+      <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-gold" />
           Gratis, nessun impegno
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5 text-gold" />
-          Ti richiamiamo entro 24 ore
+          <BellRing className="w-3.5 h-3.5 text-gold" />
+          Conferma subito via email
         </span>
+      </div>
+
+      <div className="mt-4 pt-4 border-t border-border/60 text-center text-sm text-muted-foreground space-y-1.5">
+        <p>
+          Nessun orario ti va bene?{" "}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-gold font-semibold hover:underline"
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
+            Scrivici su WhatsApp
+          </a>
+        </p>
+        <p className="text-xs">
+          Non vedi il calendario?{" "}
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 hover:text-gold"
+          >
+            Aprilo in una nuova scheda
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -310,6 +352,26 @@ function BloccoForm({ id }: { id?: string }) {
 const FissaAppuntamento = () => {
   const faqData = getPageFaq(PATH);
   const meseCorrente = MESI[new Date().getMonth()];
+
+  // Prima il modulo portava a /grazie, che faceva scattare il Lead. Ora la
+  // prenotazione avviene dentro la pagina: il Lead (su cui ottimizzano le
+  // campagne) e lo Schedule vanno inviati qui, una volta sola.
+  const tracciato = useRef(false);
+  const onPrenotato = useCallback(() => {
+    if (tracciato.current) return;
+    tracciato.current = true;
+    const dati = { content_name: "Consulenza prenotata", content_category: "Appuntamento" };
+    if (typeof window.fbq === "function") {
+      window.fbq("trackSingle", META_PIXEL_ID, "Lead", dati);
+      window.fbq("trackSingle", META_PIXEL_ID, "Schedule", dati);
+    }
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "generate_lead", { method: "calendario_consulenza" });
+    }
+  }, []);
+
+  const vaiAlCalendario = () =>
+    document.getElementById("calendario")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const rivela = (delay: number) => ({
     initial: { opacity: 0, y: 24 },
@@ -346,10 +408,23 @@ const FissaAppuntamento = () => {
               height="40"
             />
           </Link>
-          <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            {POSTI_MESE} posti a {meseCorrente}
-          </span>
+          <div className="flex items-center gap-5">
+            {/* "3 posti" sono le aziende che prendiamo, non gli orari del calendario:
+                scritto cosi' nessuno li confonde con gli slot liberi. */}
+            <span className="hidden md:inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+              {POSTI_MESE} nuove aziende a {meseCorrente}
+            </span>
+            <button
+              type="button"
+              onClick={vaiAlCalendario}
+              className="inline-flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-sm font-bold text-navy-dark transition-colors hover:bg-gold-glow"
+            >
+              <CalendarCheck className="w-4 h-4" />
+              <span className="hidden sm:inline">Prenota la videochiamata</span>
+              <span className="sm:hidden">Prenota</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -382,8 +457,8 @@ const FissaAppuntamento = () => {
           </div>
 
           <div className="max-w-6xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-              <div className="lg:col-span-7">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-5 lg:pt-4">
                 <motion.div {...rivela(0)}>
                   <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/[0.07] text-gold text-[0.7rem] font-bold uppercase tracking-[0.18em]">
                     Una sola azienda per provincia
@@ -399,7 +474,7 @@ const FissaAppuntamento = () => {
 
                 <motion.h1
                   {...rivela(0.12)}
-                  className="mt-3 text-[2.7rem] leading-[0.95] sm:text-6xl lg:text-7xl font-black tracking-tighter text-foreground"
+                  className="mt-3 text-[2.7rem] leading-[0.95] sm:text-6xl lg:text-[3.4rem] xl:text-6xl font-black tracking-tighter text-foreground"
                 >
                   FISSA LA TUA
                   <br />
@@ -409,7 +484,7 @@ const FissaAppuntamento = () => {
                 <motion.div {...rivela(0.2)} className="mt-6 max-w-xl">
                   <div className="pl-5 border-l-2 border-gold/50">
                     <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                      45 minuti al telefono con chi vende in edilizia tutti i giorni.
+                      45 minuti in videochiamata con chi vende in edilizia tutti i giorni.
                       Guardiamo i tuoi numeri veri e ti diciamo se possiamo portarti clienti.
                     </p>
                     <p className="mt-3 text-lg sm:text-xl text-foreground font-semibold">
@@ -419,7 +494,7 @@ const FissaAppuntamento = () => {
                 </motion.div>
 
                 <motion.div {...rivela(0.28)} className="mt-8 flex flex-wrap gap-2.5">
-                  {["Zero canone fisso", "Nessun impegno", "Risposta entro 24 ore"].map((t) => (
+                  {["Scegli tu giorno e ora", "Conferma immediata", "Zero canone fisso"].map((t) => (
                     <span
                       key={t}
                       className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3.5 py-1.5 text-sm text-muted-foreground"
@@ -430,18 +505,20 @@ const FissaAppuntamento = () => {
                   ))}
                 </motion.div>
 
-                <motion.a
+                {/* Su mobile il calendario sta sotto al testo: una freccia che ci porta. */}
+                <motion.button
                   {...rivela(0.36)}
-                  href="#candidatura"
+                  type="button"
+                  onClick={vaiAlCalendario}
                   className="lg:hidden mt-8 inline-flex items-center gap-2 text-gold font-semibold"
                 >
-                  Vai al modulo
+                  Scegli giorno e ora
                   <ArrowDown className="w-4 h-4 animate-bounce" />
-                </motion.a>
+                </motion.button>
               </div>
 
-              <motion.div {...rivela(0.2)} className="lg:col-span-5 lg:sticky lg:top-8">
-                <BloccoForm id="candidatura" />
+              <motion.div {...rivela(0.2)} className="lg:col-span-7">
+                <BloccoCalendario onPrenotato={onPrenotato} />
               </motion.div>
             </div>
           </div>
@@ -892,13 +969,12 @@ const FissaAppuntamento = () => {
               <div className="grid lg:grid-cols-12 gap-10 items-center">
                 <div className="lg:col-span-6">
                   <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
-                    Restano {POSTI_MESE} posti a {meseCorrente}
+                    A {meseCorrente} prendiamo {POSTI_MESE} nuove aziende
                   </h2>
                   <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-                    Lascia i tuoi dati: ti richiamiamo entro 24 ore e fissiamo la call. Se
-                    dopo 45 minuti non ci sono i numeri per lavorare insieme, te lo diciamo
-                    e ti sei tolto il dubbio. Gratis, e senza che nessuno ti richiami per
-                    mesi.
+                    Scegli giorno e ora della videochiamata. Se dopo 45 minuti non ci sono i
+                    numeri per lavorare insieme, te lo diciamo e ti sei tolto il dubbio.
+                    Gratis, e senza che nessuno ti richiami per mesi.
                   </p>
                   <div className="mt-7 flex flex-wrap gap-2.5">
                     {["Zero canone fisso", "Una sola azienda per provincia", "Paghi sul venduto"].map(
@@ -914,8 +990,18 @@ const FissaAppuntamento = () => {
                     )}
                   </div>
                 </div>
-                <div className="lg:col-span-6">
-                  <BloccoForm />
+                <div className="lg:col-span-6 flex flex-col items-start lg:items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={vaiAlCalendario}
+                    className="group inline-flex items-center gap-3 rounded-xl bg-gold px-8 py-5 text-lg font-black text-navy-dark shadow-[0_0_40px_hsl(var(--gold)/0.25)] transition-all hover:bg-gold-glow hover:shadow-[0_0_60px_hsl(var(--gold)/0.4)]"
+                  >
+                    <CalendarCheck className="w-6 h-6" />
+                    Scegli giorno e ora
+                  </button>
+                  <p className="text-sm text-muted-foreground">
+                    Gratis · 45 minuti in videochiamata · conferma immediata
+                  </p>
                 </div>
               </div>
             </AnimatedSection>

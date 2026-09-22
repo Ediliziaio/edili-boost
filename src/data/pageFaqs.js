@@ -434,7 +434,7 @@ export const pageFaqs = {
     "faqs": [
       {
         "question": "Come fisso una consulenza con Marketing Edile?",
-        "answer": "Lasci nel modulo qui sopra azienda, settore e un numero di telefono: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate insieme giorno e ora, anche fuori orario se durante il giorno sei in cantiere. La call dura 45 minuti e parte dai tuoi numeri, non da una presentazione."
+        "answer": "Scegli giorno e ora direttamente dal calendario in cima alla pagina: vedi gli orari liberi e prenoti in un minuto, senza aspettare di essere richiamato. Ricevi subito la conferma via email e un promemoria il giorno prima e un'ora prima. La videochiamata dura 45 minuti e parte dai tuoi numeri, non da una presentazione. Se nessun orario ti va bene, scrivici su WhatsApp."
       },
       {
         "question": "La consulenza è gratuita?",

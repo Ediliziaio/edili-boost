@@ -108,7 +108,7 @@ const staticRoutes = [
       },
       {
         title: "Come funziona la consulenza",
-        text: "Lasci azienda, settore e un numero: due minuti, niente questionari. Un consulente ti richiama entro 24 ore e fissate giorno e ora, anche fuori orario se sei in cantiere. La call dura 45 minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole.",
+        text: "Si prenota direttamente dal calendario in pagina: si vedono gli orari liberi e si sceglie giorno e ora in un minuto, senza aspettare di essere richiamati. La conferma arriva subito per email, con un promemoria il giorno prima e un'ora prima. La videochiamata dura 45 minuti e parte dai numeri veri: quanti preventivi fai al mese, quanti ne chiudi, qual \u00e8 il ticket medio, da dove arrivano oggi i clienti. Alla fine sai se possiamo aiutarti oppure no, detto senza giri di parole. Se nessun orario va bene si pu\u00f2 scrivere su WhatsApp.",
       },
       {
         title: "Il sistema, spiegato passo per passo",
