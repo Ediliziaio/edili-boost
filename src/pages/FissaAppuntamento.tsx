@@ -7,7 +7,6 @@ import {
   PhoneCall,
   Check,
   X,
-  ArrowDown,
   Quote,
   Target,
   Megaphone,
@@ -289,37 +288,35 @@ function Contatore({
   );
 }
 
-/** Il calendario: è l'unica azione della pagina, quindi sta in alto e ha tutto lo spazio. */
+/**
+ * Il calendario, a tutta larghezza e senza riquadro attorno: il titolo della
+ * sezione fa gia' da intestazione. Largo abbastanza (max 1024px) perche' il
+ * widget usi il suo impianto a tre colonne: descrizione, giorni e orari
+ * affiancati, senza dover scorrere per vedere gli slot.
+ */
 function BloccoCalendario({ onPrenotato }: { onPrenotato: () => void }) {
   return (
-    <div
-      id="calendario"
-      className="relative scroll-mt-6 rounded-2xl border border-gold/25 bg-card/80 backdrop-blur-sm p-3 sm:p-5 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.9)]"
-    >
-      <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-      <div className="px-2 pt-2 pb-4 text-center">
-        <p className="text-gold text-xs font-semibold uppercase tracking-[0.2em]">
-          Prenota la videochiamata
-        </p>
-        <p className="mt-1 text-foreground font-bold text-xl">Scegli giorno e ora</p>
-      </div>
-
-      <div className="overflow-hidden rounded-xl">
+    <div id="calendario" className="relative scroll-mt-6 mx-auto w-full max-w-5xl">
+      {/* Alone d'oro dietro il widget: lo stacca dal fondo senza chiuderlo in un box. */}
+      <div
+        aria-hidden
+        className="absolute -inset-x-10 -inset-y-8 -z-10 rounded-[3rem] bg-gold/[0.08] blur-3xl"
+      />
+      <div className="overflow-hidden rounded-2xl shadow-[0_30px_90px_-30px_rgba(0,0,0,0.95)] ring-1 ring-gold/20">
         <BookingCalendarEmbed onPrenotato={onPrenotato} />
       </div>
 
-      <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-gold" />
-          Gratis, nessun impegno
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <BellRing className="w-3.5 h-3.5 text-gold" />
-          Conferma subito via email
-        </span>
-      </div>
-
-      <div className="mt-4 pt-4 border-t border-border/60 text-center text-sm text-muted-foreground space-y-1.5">
+      <div className="mt-6 flex flex-col items-center gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-gold" />
+            Gratis, nessun impegno
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <BellRing className="w-4 h-4 text-gold" />
+            Conferma subito via email e promemoria
+          </span>
+        </div>
         <p>
           Nessun orario ti va bene?{" "}
           <a
@@ -328,7 +325,7 @@ function BloccoCalendario({ onPrenotato }: { onPrenotato: () => void }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-gold font-semibold hover:underline"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
+            <MessageCircle className="w-4 h-4" />
             Scrivici su WhatsApp
           </a>
         </p>
@@ -456,71 +453,60 @@ const FissaAppuntamento = () => {
             />
           </div>
 
-          <div className="max-w-6xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              <div className="lg:col-span-5 lg:pt-4">
-                <motion.div {...rivela(0)}>
-                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/[0.07] text-gold text-[0.7rem] font-bold uppercase tracking-[0.18em]">
-                    Una sola azienda per provincia
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 pb-16 md:pt-20 md:pb-24">
+            {/* Testo: una colonna sola, centrata. */}
+            <div className="max-w-3xl mx-auto text-center">
+              <motion.div {...rivela(0)}>
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/[0.07] text-gold text-[0.7rem] font-bold uppercase tracking-[0.18em]">
+                  Una sola azienda per provincia
+                </span>
+              </motion.div>
+
+              <motion.p
+                {...rivela(0.06)}
+                className="mt-6 text-lg sm:text-2xl font-bold uppercase tracking-tight text-gold leading-tight"
+              >
+                Hai un'azienda edile, di serramenti o fotovoltaico?
+              </motion.p>
+
+              <motion.h1
+                {...rivela(0.12)}
+                className="mt-3 text-[2.6rem] leading-[0.95] sm:text-6xl lg:text-7xl font-black tracking-tighter text-foreground"
+              >
+                FISSA LA TUA <span className="text-gold">CONSULENZA</span>
+              </motion.h1>
+
+              <motion.p
+                {...rivela(0.2)}
+                className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+              >
+                45 minuti in videochiamata con chi vende in edilizia tutti i giorni. Guardiamo
+                i tuoi numeri veri e ti diciamo se possiamo portarti clienti.{" "}
+                <span className="text-foreground font-semibold">
+                  Se poi lavoriamo insieme, ci paghi solo sul venduto.
+                </span>
+              </motion.p>
+
+              <motion.div
+                {...rivela(0.28)}
+                className="mt-6 sm:mt-7 flex flex-wrap justify-center gap-2 sm:gap-2.5"
+              >
+                {["Scegli tu giorno e ora", "Conferma immediata", "Zero canone fisso"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-border bg-card/60 px-3 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm text-muted-foreground"
+                  >
+                    <Check className="w-3.5 h-3.5 text-gold" />
+                    {t}
                   </span>
-                </motion.div>
-
-                <motion.p
-                  {...rivela(0.06)}
-                  className="mt-6 text-lg sm:text-2xl font-bold uppercase tracking-tight text-gold leading-tight"
-                >
-                  Hai un'azienda edile, di serramenti o fotovoltaico?
-                </motion.p>
-
-                <motion.h1
-                  {...rivela(0.12)}
-                  className="mt-3 text-[2.7rem] leading-[0.95] sm:text-6xl lg:text-[3.4rem] xl:text-6xl font-black tracking-tighter text-foreground"
-                >
-                  FISSA LA TUA
-                  <br />
-                  <span className="text-gold">CONSULENZA</span>
-                </motion.h1>
-
-                <motion.div {...rivela(0.2)} className="mt-6 max-w-xl">
-                  <div className="pl-5 border-l-2 border-gold/50">
-                    <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                      45 minuti in videochiamata con chi vende in edilizia tutti i giorni.
-                      Guardiamo i tuoi numeri veri e ti diciamo se possiamo portarti clienti.
-                    </p>
-                    <p className="mt-3 text-lg sm:text-xl text-foreground font-semibold">
-                      Se poi lavoriamo insieme, ci paghi solo sul venduto.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div {...rivela(0.28)} className="mt-8 flex flex-wrap gap-2.5">
-                  {["Scegli tu giorno e ora", "Conferma immediata", "Zero canone fisso"].map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3.5 py-1.5 text-sm text-muted-foreground"
-                    >
-                      <Check className="w-3.5 h-3.5 text-gold" />
-                      {t}
-                    </span>
-                  ))}
-                </motion.div>
-
-                {/* Su mobile il calendario sta sotto al testo: una freccia che ci porta. */}
-                <motion.button
-                  {...rivela(0.36)}
-                  type="button"
-                  onClick={vaiAlCalendario}
-                  className="lg:hidden mt-8 inline-flex items-center gap-2 text-gold font-semibold"
-                >
-                  Scegli giorno e ora
-                  <ArrowDown className="w-4 h-4 animate-bounce" />
-                </motion.button>
-              </div>
-
-              <motion.div {...rivela(0.2)} className="lg:col-span-7">
-                <BloccoCalendario onPrenotato={onPrenotato} />
+                ))}
               </motion.div>
             </div>
+
+            {/* Calendario: subito sotto, a tutta larghezza. */}
+            <motion.div {...rivela(0.34)} className="mt-8 md:mt-14">
+              <BloccoCalendario onPrenotato={onPrenotato} />
+            </motion.div>
           </div>
         </section>
 
