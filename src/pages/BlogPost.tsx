@@ -1,3 +1,4 @@
+import NotFound from "./NotFound";
 import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -19,8 +20,8 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading, error } = useBlogPost(slug || '');
   const { data: relatedPosts } = useRelatedPosts(
-    post?.id || '', 
-    post?.category || '', 
+    post?.id || '',
+    post?.category || '',
     post?.tags || [],
     3
   );
@@ -62,7 +63,7 @@ export default function BlogPost() {
   }
 
   if (error || !post) {
-    return <Navigate to="/blog" replace />;
+    return <NotFound />;
   }
 
   const category = post.category as BlogCategory;
@@ -155,7 +156,7 @@ export default function BlogPost() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
             </div>
           )}
-          
+
           {/* Content Overlay */}
           <div className={`${coverImageUrl ? 'relative -mt-32 md:-mt-48' : 'pt-16'}`}>
             <div className="container relative z-10">
@@ -189,8 +190,8 @@ export default function BlogPost() {
                   <div className="flex items-center gap-2">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
                       {post.author?.avatar_url ? (
-                        <img 
-                          src={post.author.avatar_url} 
+                        <img
+                          src={post.author.avatar_url}
                           alt={post.author.name}
                           className="w-full h-full object-cover"
                         />
@@ -235,7 +236,7 @@ export default function BlogPost() {
               </p>
 
               <ArticleContent content={post.content} />
-              
+
               {/* Form in fondo all'articolo */}
               <div className="mt-12 pt-8 border-t border-border">
                 <h3 className="font-heading font-bold text-foreground text-xl mb-4">

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { generateBreadcrumbSchema, generateFAQSchema, generateServiceSchema, siteConfig } from "@/lib/seo";
-import { ediliziaCloudPages } from "@/data/ediliziaCloudContent";
+import { ediliziaCloudPages, ediliziaCloudFaqs } from "@/data/ediliziaCloudContent";
 import ediliziaCloudLogo from "@/assets/ediliziaincloud-logo.png";
 
 type EdiliziaCloudPageKey = keyof typeof ediliziaCloudPages;
@@ -19,23 +19,7 @@ export default function EdiliziaCloudLanding({ pageKey }: EdiliziaCloudLandingPr
   const pageUrl = `${siteConfig.url}/ecosistema/${page.slug}`;
   const isMainCloudPage = pageKey === "edilizia-in-cloud";
   const moduleIcons = [HardHat, FileText, ReceiptText, BarChart3, Users, Smartphone];
-  const faq = [
-    {
-      question: "Perché Marketing Edile parla di Edilizia in Cloud?",
-      answer:
-        "Perché fanno parte dello stesso ecosistema di gruppo e coprono due bisogni collegati: acquisire clienti qualificati e gestire il processo operativo dopo il contatto.",
-    },
-    {
-      question: "Edilizia in Cloud sostituisce Marketing Edile?",
-      answer:
-        "No. Marketing Edile genera domanda e opportunità commerciali; Edilizia in Cloud aiuta l'impresa a organizzare CRM, preventivi, cantieri, documenti, fatture e margini.",
-    },
-    {
-      question: "Queste pagine servono anche per la SEO?",
-      answer:
-        "Sì. Intercettano ricerche legate a gestionale edilizia, CRM edilizia, preventivi edilizia, gestione cantieri e controllo margini, collegandole al tema della crescita commerciale.",
-    },
-  ];
+  const faq = ediliziaCloudFaqs;
 
   return (
     <>

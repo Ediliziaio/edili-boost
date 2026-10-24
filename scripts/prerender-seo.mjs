@@ -1,8 +1,10 @@
+import { reviewDate } from "../src/data/editorialReviews.js";
+import { writeStaticRoute, writeNotFound } from "./static-routing.mjs";
 import { mkdir, readFile, writeFile, copyFile, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { seoExpansionPosts } from "../src/data/seoExpansionPosts.js";
-import { ediliziaCloudPages, ediliziaCloudPosts } from "../src/data/ediliziaCloudContent.js";
+import { ediliziaCloudPages, ediliziaCloudPosts, ediliziaCloudFaqs } from "../src/data/ediliziaCloudContent.js";
 import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
 import { homeFaqs } from "../src/data/homeFaqs.js";
 import { getPageFaq } from "../src/data/pageFaqs.js";
@@ -595,7 +597,7 @@ async function getBlogPosts() {
   }
 
   return [...bySlug.values()]
-    .map((post) => ({ ...post, content: enhanceContent(post.slug, post.content), cover: blogCovers[post.slug] || post.cover }))
+    .map((post) => ({ ...post, content: enhanceContent(post.slug, post.content), updatedAt: reviewDate(post.slug) || post.updatedAt, cover: blogCovers[post.slug] || post.cover }))
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
 
@@ -721,9 +723,7 @@ function replaceSeo(indexHtml, route) {
 
 async function writeRoute(indexHtml, route) {
   const html = replaceSeo(indexHtml, route);
-  const outDir = route.path === "/" ? dist : path.join(dist, route.path.replace(/^\//, ""));
-  await mkdir(outDir, { recursive: true });
-  await writeFile(path.join(outDir, "index.html"), html);
+  await writeStaticRoute(dist, route.path, html);
 }
 
 async function maybeCopyCover(cover) {
@@ -879,10 +879,21 @@ async function main() {
   }
 
   for (const route of routes) {
+    if (route.path.startsWith("/ecosistema/")) {
+      const page = ediliziaCloudPages[route.path.split("/").pop()];
+      if (page) {
+        route.intro = page.lead;
+        route.sections = page.sections;
+        route.faqs = ediliziaCloudFaqs;
+        route.links = [{ href: "/servizi", label: "Servizi di Marketing Edile" }, ...Object.values(ediliziaCloudPages).filter(p => p.slug !== page.slug).map(p => ({ href: `/ecosistema/${p.slug}`, label: p.h1 })), ...(page.modules || []).map(m => ({ href: m.href, label: m.title })), ...(page.officialLinks || []).map(l => ({ href: l.href, label: l.name }))];
+        route.jsonLd = [...(route.jsonLd || []), faqPageSchema(ediliziaCloudFaqs)];
+      }
+    }
     await writeRoute(indexHtml, route);
     if (route.image) await maybeCopyCover(route.image);
   }
 
+  await writeNotFound(dist, indexHtml, "Marketing Edile");
   await writeFile(path.join(dist, "sitemap.xml"), sitemapXml(routes));
   console.log(`SEO prerender complete: ${routes.length} routes, ${posts.length} blog posts.`);
 }

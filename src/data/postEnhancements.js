@@ -1,3 +1,4 @@
+import { editorialReviews } from "./editorialReviews.js";
 // Potenziamento AEO degli articoli unici di blog-posts.ts (risposta secca + link hub + FAQ).
 // Applicato a build time SIA da scripts/generate-blog-data.mjs (React) SIA da
 // scripts/prerender-seo.mjs (HTML servito ai crawler): i due lati devono coincidere.
@@ -32,6 +33,7 @@ export function getPostFaqs(slug) {
 
 /** Restituisce il content HTML potenziato (idempotente: non riapplica se già presente). */
 export function enhanceContent(slug, content = "") {
+  if (editorialReviews[slug] && !content.includes('id="verifica-campagne"') && !content.includes('id="scheda-presentazione-offerta"') && !content.includes('id="criteri-confronto-agenzie"')) content += editorialReviews[slug];
   const e = enhancementsData[slug];
   if (!e || content.includes('class="risposta-secca"')) return content;
   const hub = HUB[HUB_BY_SLUG[slug] || "edilizia"];

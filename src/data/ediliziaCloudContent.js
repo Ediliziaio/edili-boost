@@ -421,3 +421,9 @@ export const ediliziaCloudPosts = postPlans.map((plan, index) => ({
   seo_description: `Scopri ${plan.keyword}: metodo per collegare lead generation, CRM, preventivi, cantieri e margini con Marketing Edile ed Edilizia in Cloud.`,
   content: cloudArticle(plan),
 }));
+
+export const ediliziaCloudFaqs = [
+  { question: "Che differenza c’è tra acquisire un contatto e gestire una commessa?", answer: "L’acquisizione genera una richiesta. La gestione collega la richiesta a qualificazione, sopralluogo, preventivo e, quando il cliente accetta, commessa. Conservare il passaggio tra queste attività permette di capire quali campagne producono lavori, oltre ai soli contatti." },
+  { question: "Quali informazioni devono passare dal marketing al commerciale?", answer: "Origine della richiesta, recapiti, zona, tipo di intervento, note della qualificazione e prossimo appuntamento concordato. Le informazioni vanno raccolte e utilizzate rispettando le finalità dichiarate al cliente e le regole applicabili ai dati personali." },
+  { question: "Come valuto un CRM per un’impresa edile?", answer: "Prova un caso reale: inserisci una richiesta, assegna il referente, registra il sopralluogo e prepara il preventivo. Controlla che si possano ritrovare documenti, attività e stato della trattativa senza ricopiare le stesse informazioni in più strumenti." }
+];

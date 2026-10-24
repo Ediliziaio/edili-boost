@@ -1,3 +1,4 @@
+import { reviewDate } from "../src/data/editorialReviews.js";
 // Genera i dati blog come JSON statici in public/blog-data/:
 //   - index.json          → tutti i post SENZA content (per il listing /blog)
 //   - posts/<slug>.json   → post completo (caricato on-demand da /blog/:slug)
@@ -55,7 +56,7 @@ const toPostDB = (p) => ({
   category: p.category,
   tags: p.tags,
   published_at: toIso(p.published_at),
-  updated_at: toIso(p.updated_at),
+  updated_at: reviewDate(p.slug) || toIso(p.updated_at),
   reading_time: p.reading_time,
   featured: p.featured,
   status: p.status,
