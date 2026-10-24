@@ -1,3 +1,4 @@
+import { seoConsulting } from "../src/data/seoConsulting.js";
 import { reviewDate } from "../src/data/editorialReviews.js";
 import { writeStaticRoute, writeNotFound, replaceRootContent } from "./static-routing.mjs";
 import { mkdir, readFile, writeFile, copyFile, access } from "node:fs/promises";
@@ -43,6 +44,7 @@ const pageKeywords = {
 };
 
 const staticRoutes = [
+  seoConsulting,
   {
     path: "/",
     title: "Marketing Aziende Edili e Serramenti",
@@ -792,6 +794,14 @@ async function main() {
 
   const blogLinks = posts.map((post) => ({ href: `/blog/${post.slug}`, label: post.title }));
   const routes = staticRoutes.map((route) => {
+    if ([seoConsulting.path, "/servizi", "/blog", "/", "/ecosistema/edilizia-in-cloud", "/ecosistema/gestionale-edilizia", "/ecosistema/crm-preventivi-cantieri"].includes(route.path)) {
+      route = { ...route, lastmod: "2026-10-24" };
+    }
+    if (route.path === seoConsulting.path) return { ...route, jsonLd: [
+      organizationSchema(), websiteSchema(), faqPageSchema(seoConsulting.faqs),
+      { "@context": "https://schema.org", "@type": "Service", name: route.title, url: siteUrl + route.path, description: route.description, provider: { "@type": "Organization", name: "Marketing Edile", url: siteUrl } }
+    ] };
+    if (route.path === "/servizi") return { ...route, links: seoConsulting.links.filter(link => link.href !== "/servizi").concat({ href: seoConsulting.path, label: seoConsulting.title }) };
     if (route.path === "/blog") return { ...route, links: blogLinks };
     if (route.path === "/") {
       return {

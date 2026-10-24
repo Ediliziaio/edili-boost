@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import { Target, MessageSquare, FileText, Video, Layout, Megaphone, BarChart3, User, ArrowRight, Check, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { PageFaq } from "@/components/PageFaq";
@@ -84,6 +84,7 @@ const Servizi = () => {
       />
       <Navbar />
       <main className="overflow-hidden">
+        <div className="container pt-24 text-center"><Link to="/consulenza-seo-imprese-edili" className="text-secondary underline underline-offset-4">Scopri il percorso di consulenza SEO per imprese edili</Link></div>
         {/* Hero con immagine */}
         <section className="pt-32 pb-16 px-6 relative overflow-hidden">
           <div className="absolute inset-0">

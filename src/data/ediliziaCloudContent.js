@@ -42,9 +42,9 @@ export const ediliziaCloudPages = {
       },
     ],
     metrics: [
-      { value: "500+", label: "imprese edili servite" },
-      { value: "-70%", label: "tempo amministrativo" },
-      { value: "-20%", label: "costi operativi" },
+      { value: "150+", label: "aziende indicate dal sito ufficiale, ottobre 2026" },
+      { value: "Meno doppioni", label: "risparmio da misurare sui propri processi" },
+      { value: "Un solo flusso", label: "dal preventivo ai costi della commessa" },
       { value: "31 giorni", label: "prova indicata sul sito ufficiale" },
     ],
     modules: [

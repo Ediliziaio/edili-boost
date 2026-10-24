@@ -27,6 +27,7 @@ const AuthorsList = lazy(() => import("./pages/admin/AuthorsList"));
 const Offerta = lazy(() => import("./pages/Offerta"));
 const ChiSiamo = lazy(() => import("./pages/ChiSiamo"));
 const CasiStudio = lazy(() => import("./pages/CasiStudio"));
+const SeoConsulting = lazy(() => import("./pages/SeoConsulting"));
 const Servizi = lazy(() => import("./pages/Servizi"));
 const Prezzi = lazy(() => import("./pages/Prezzi"));
 const Contattaci = lazy(() => import("./pages/Contattaci"));
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/offerta" element={<Offerta />} />
               <Route path="/chi-siamo" element={<ChiSiamo />} />
               <Route path="/casi-studio" element={<CasiStudio />} />
+              <Route path="/consulenza-seo-imprese-edili" element={<SeoConsulting />} />
               <Route path="/servizi" element={<Servizi />} />
               <Route path="/prezzi" element={<Prezzi />} />
               <Route path="/contattaci" element={<Contattaci />} />
