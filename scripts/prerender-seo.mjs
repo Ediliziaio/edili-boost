@@ -1,5 +1,5 @@
 import { reviewDate } from "../src/data/editorialReviews.js";
-import { writeStaticRoute, writeNotFound } from "./static-routing.mjs";
+import { writeStaticRoute, writeNotFound, replaceRootContent } from "./static-routing.mjs";
 import { mkdir, readFile, writeFile, copyFile, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -716,9 +716,10 @@ function replaceSeo(indexHtml, route) {
     .replace(/\s*<link\s+rel="canonical"[^>]*>\s*/gi, "\n")
     .replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi, "\n");
 
-  return cleaned
-    .replace("</head>", `${seoHead(route)}\n  </head>`)
-    .replace(/<div id="root">[\s\S]*?<\/noscript>\s*<\/div>/, `<div id="root">${fallbackContent(route)}</div>`);
+  return replaceRootContent(
+    cleaned.replace("</head>", `${seoHead(route)}\n  </head>`),
+    fallbackContent(route),
+  );
 }
 
 async function writeRoute(indexHtml, route) {
