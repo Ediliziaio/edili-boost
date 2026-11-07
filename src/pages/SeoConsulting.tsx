@@ -26,11 +26,18 @@ export default function SeoConsulting() {
           <h2 className="mt-3 text-2xl font-bold">{section.title}</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">{section.text}</p>
         </section>)}
+        <section className="rounded-2xl border border-secondary/40 bg-card p-6 md:p-8" aria-labelledby="piano-operativo">
+          <h2 id="piano-operativo" className="text-2xl font-bold">{page.resource.title}</h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">{page.resource.description}</p>
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2">{page.deliverables.map(item => <li key={item.title}><h3 className="font-bold text-lg">{item.title}</h3><p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.text}</p></li>)}</ul>
+          <a href={page.resource.href} download className="inline-flex mt-7 rounded-lg bg-secondary px-6 py-3 font-bold text-secondary-foreground">Scarica il modello CSV, senza registrazione</a>
+          <p className="mt-3 text-sm text-muted-foreground">Apribile con Excel, Google Fogli e LibreOffice. Perimetro, tempi e consegne del servizio si concordano prima dell’avvio.</p>
+        </section>
         <section className="py-8"><h2 className="text-2xl font-bold">Domande frequenti</h2>
           {page.faqs.map(faq => <details key={faq.question} className="border-b border-border py-5"><summary className="cursor-pointer font-semibold">{faq.question}</summary><p className="mt-4 text-muted-foreground leading-relaxed">{faq.answer}</p></details>)}
         </section>
         <nav aria-label="Approfondimenti SEO" className="flex flex-col gap-4">{page.links.map(link => <Link className="text-secondary underline underline-offset-4" key={link.href} to={link.href}>{link.label}</Link>)}</nav>
-        <p className="pt-6 text-sm text-muted-foreground">Riferimenti: <a className="underline" href="https://support.google.com/business/answer/3038177?hl=it">linee guida Google per le attività locali</a> e <a className="underline" href="https://developers.google.com/search/docs/appearance/ai-features">documentazione Google sulle funzionalità AI</a>. Pagina aggiornata il 24 ottobre 2026.</p>
+        <p className="pt-6 text-sm text-muted-foreground">Riferimenti: <a className="underline" href="https://support.google.com/business/answer/3038177?hl=it">linee guida Google per le attività locali</a> e <a className="underline" href="https://developers.google.com/search/docs/appearance/ai-features">documentazione Google sulle funzionalità AI</a>. Pagina aggiornata il 7 novembre 2026.</p>
       </div>
     </main><Footer />
   </>;

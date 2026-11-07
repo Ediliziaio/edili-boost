@@ -717,6 +717,7 @@ function fallbackContent(route) {
       <p>${esc(route.description)}</p>
       ${route.intro ? `<p>${esc(route.intro)}</p>` : ""}
       ${route.sections ? route.sections.map((s) => `<h2>${esc(s.title)}</h2><p>${esc(s.text)}</p>`).join("") : ""}
+      ${route.resource ? `<section><h2>${esc(route.resource.title)}</h2><p>${esc(route.resource.description)}</p><ul>${route.deliverables.map(item => `<li><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></li>`).join("")}</ul><a href="${esc(route.resource.href)}" download>Scarica il modello CSV, senza registrazione</a><p>Apribile con Excel, Google Fogli e LibreOffice. Perimetro, tempi e consegne del servizio si concordano prima dell’avvio.</p></section>` : ""}
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
       ${route.faqs ? faqHtml(route.faqs) : ""}
     </section>${authorFooter}

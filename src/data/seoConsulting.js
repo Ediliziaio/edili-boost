@@ -34,6 +34,17 @@ export const seoConsulting = {
       "text": "Porta l’indirizzo del sito, i servizi prioritari, le zone realmente coperte e gli obiettivi commerciali. Se già disponibili, si esaminano Search Console, analisi delle visite e un riepilogo anonimo degli esiti dei contatti. Gli accessi devono essere delegati al ruolo necessario: gli account dell’impresa restano sotto il suo controllo. La prima decisione è su quali problemi intervenire, prima di moltiplicare pagine o campagne."
     }
   ],
+  "resource": {
+    "title": "Un piano SEO che puoi controllare",
+    "description": "Scarica un modello vuoto con esempi di compilazione: per ogni problema annoti pagina, evidenza, priorità, responsabile e verifica. È una traccia di lavoro, non un audit già svolto sul tuo sito.",
+    "href": "/risorse/modello-piano-seo-imprese-edili.csv"
+  },
+  "deliverables": [
+    { "title": "Diagnosi documentata", "text": "URL interessati, problema osservato, fonte del dato e data del controllo. Quando mancano dati o accessi, la lacuna è esplicita." },
+    { "title": "Interventi con priorità", "text": "Un ordine di lavoro che distingue indicizzazione, pagine servizio, collegamenti e misurazione, con criteri di verifica comprensibili." },
+    { "title": "Prove e contenuti da raccogliere", "text": "Elenco di materiali reali necessari: lavori, foto, informazioni dei servizi e aree coperte. Il referente dell’impresa verifica i fatti prima della pubblicazione." },
+    { "title": "Report delle richieste pertinenti", "text": "Definizioni di invio modulo, richiesta valida e sopralluogo; periodo di confronto e limiti di attribuzione, quando questi dati sono disponibili." }
+  ],
   "links": [
     {
       "href": "/contattaci",
