@@ -2997,6 +2997,67 @@ const baseBlogPosts: StaticBlogPost[] = [
 
 export const blogPosts: StaticBlogPost[] = [
 {
+  id: "seo-aggiornare-articoli-seo-impresa-edile",
+  slug: "aggiornare-articoli-seo-impresa-edile",
+  title: "Aggiornare gli articoli SEO di un’impresa edile: cosa cambiare e quando",
+  excerpt: "Scegli quali articoli SEO aggiornare: intento, informazioni mancanti, fonti e link ai servizi. Un metodo per migliorare le pagine già pubblicate.",
+  cover_image_url: "/blog-covers/aggiornare-articoli-seo-impresa-edile.jpg",
+  category: "SEO",
+  tags: ["SEO", "imprese edili", "report"],
+  published_at: "2026-11-07T08:00:00+01:00",
+  updated_at: null,
+  reading_time: 7,
+  featured: false,
+  status: "published",
+  seo_title: "Aggiornare articoli SEO per imprese edili",
+  seo_description: "Scegli quali articoli SEO aggiornare: intento, informazioni mancanti, fonti e link ai servizi. Un metodo per migliorare le pagine già pubblicate.",
+  author: blogAuthor,
+  content: `<p>Il blog della tua impresa contiene già molte pagine, ma alcune descrivono servizi cambiati, altre ripetono gli stessi concetti e altre ancora portano lettori verso un’offerta poco chiara. Aggiornare gli articoli SEO di un’impresa edile significa scegliere quali problemi risolvere nelle pagine esistenti, invece di considerare ogni nuova pubblicazione un miglioramento automatico.</p>
+<p>Il punto di partenza è una domanda concreta: che cosa manca a chi arriva su questa pagina? Può mancare una risposta, una prova, un’informazione sul servizio o un passaggio comprensibile per contattare l’impresa. In questa guida trovi un metodo di revisione e un esempio illustrativo di piano di lavoro, senza promesse di posizionamento.</p>
+<h2>Scegliere una pagina e un bisogno preciso</h2>
+<p>Non iniziare cambiando contemporaneamente tutto il blog. Seleziona una pagina collegata a un servizio realmente offerto e descrivi la domanda a cui dovrebbe rispondere. “Migliorare la SEO” è un obiettivo troppo ampio per decidere quali paragrafi riscrivere.</p>
+<p>Una guida sul rifacimento del tetto può dover chiarire fasi, condizioni da verificare e informazioni necessarie per un sopralluogo. Una pagina sulle fotografie dei lavori può invece aiutare a capire come l’impresa documenta gli interventi. Sono bisogni diversi, anche quando entrambi fanno parte del percorso di un potenziale cliente.</p>
+<p>Confronta la pagina con quelle vicine del sito. Se due articoli rispondono alla stessa domanda con informazioni quasi identiche, valuta come distinguerne il compito. Non basta sostituire qualche parola nel titolo per costruire due contenuti utili.</p>
+<h2>Raccogliere i segnali disponibili</h2>
+<p>Prima della revisione, conserva URL, titolo, data e una copia del contenuto. Annota le query e i dati disponibili in Search Console, mantenendo visibile il periodo osservato. Se i dati sono pochi, non inventare un’intenzione di ricerca certa a partire da un singolo clic.</p>
+<p>Leggi anche le domande che arrivano all’impresa. Un chiarimento ripetuto durante le telefonate può indicare un’informazione poco comprensibile nel sito, ma va verificato: non tutte le persone hanno visitato quella pagina. Usa questi segnali per preparare ipotesi, non per attribuire automaticamente una causa.</p>
+<p>Per distinguere impressioni, clic e richieste commerciali puoi usare la guida alla <a href="/blog/report-seo-imprese-edili-come-leggerlo">lettura dei report SEO per imprese edili</a>. La revisione ha bisogno di una base misurabile, pur riconoscendo i limiti dei dati disponibili.</p>
+<h2>Controllare se il contenuto risolve davvero la domanda</h2>
+<p>Rileggi la pagina come una persona che non conosce la tua impresa. Riesce a capire quale intervento viene descritto, quali informazioni sono necessarie e quale passaggio può fare dopo? Se deve aprire cinque pagine per trovare la risposta principale, il percorso merita una revisione.</p>
+<p>La <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content">documentazione di Google sui contenuti utili</a> invita a valutare completezza, originalità e utilità per le persone. La lunghezza, da sola, non dimostra queste qualità. Un aggiornamento dovrebbe aggiungere una risposta o chiarire un punto, non soltanto estendere il testo.</p>
+<p>Segna quindi le lacune specifiche: una fase non spiegata, un termine ambiguo, un documento citato ma non disponibile, un collegamento che porta al servizio sbagliato. Questo elenco è più utilizzabile di una valutazione generica come “articolo troppo corto”.</p>
+<h2>Distinguere ciò che è verificabile dalle promesse</h2>
+<p>Un articolo può contenere affermazioni su tempi, costi o risultati. Prima di mantenerle, chiedi quale documento le sostiene e se descrivano davvero il servizio attuale. Se manca un riscontro, non rendere l’affermazione più convincente cambiando soltanto il tono.</p>
+<p>Quando usi un esempio costruito per spiegare un passaggio, dichiaralo illustrativo. Quando presenti un lavoro reale, conserva i materiali che consentono di descriverlo e verifica le informazioni da pubblicare. Una storia anonima inventata non diventa un caso aziendale perché sembra plausibile.</p>
+<p>Lo stesso criterio vale per certificazioni, qualifiche e recensioni. Il contenuto deve usare informazioni verificabili e pertinenti. La revisione SEO è un buon momento per chiedere documenti mancanti e correggere formulazioni che non descrivono più ciò che l’impresa offre.</p>
+<h2>Una matrice per ordinare gli interventi</h2>
+<p>Prepara una tabella con problema, riscontro, intervento e verifica. Assegna una priorità in base all’utilità della pagina e alla gravità della lacuna, senza attribuire un punteggio scientifico a valutazioni ancora qualitative.</p>
+<div class="overflow-x-auto"><table><thead><tr><th>Problema osservato</th><th>Informazione da controllare</th><th>Intervento possibile</th></tr></thead><tbody><tr><td>Servizio poco chiaro</td><td>Attività effettivamente incluse</td><td>Riscrivere il perimetro</td></tr><tr><td>Domanda senza risposta</td><td>Esigenza dei lettori</td><td>Aggiungere una sezione utile</td></tr><tr><td>Dato non aggiornato</td><td>Documento e periodo</td><td>Correggere o contestualizzare</td></tr><tr><td>Link non pertinente</td><td>Destinazione reale</td><td>Collegare il servizio corretto</td></tr><tr><td>Due guide sovrapposte</td><td>Domanda di ciascuna pagina</td><td>Distinguere o consolidare il percorso</td></tr></tbody></table></div>
+<p>La tabella non deve trasformare ogni modifica in un progetto separato. Puoi riunire più correzioni coerenti sulla stessa pagina, mantenendo un riepilogo che permetta di sapere che cosa è cambiato e perché.</p>
+<h2>Un esempio illustrativo di revisione</h2>
+<p>Immagina un’impresa che pubblica una guida sulle ristrutturazioni interne. Il testo spiega i materiali, ma non indica quali informazioni preparare per il primo incontro. Il servizio collegato descrive invece il processo commerciale senza chiarire come inviare una richiesta.</p>
+<p>La revisione può aggiungere una sezione su ambienti, obiettivi e documenti disponibili, poi collegarla alla pagina di contatto pertinente. Non serve promettere un preventivo immediato se l’impresa deve prima verificare il progetto. Serve rendere comprensibile il passaggio successivo.</p>
+<p>Nel registro dell’aggiornamento annota le sezioni aggiunte e l’URL collegato. Il miglioramento atteso riguarda la chiarezza del percorso. Eventuali variazioni di traffico o contatti saranno osservazioni successive, da interpretare senza attribuirle automaticamente alla singola modifica.</p>
+<h2>Quando modificare titolo e indirizzo</h2>
+<p>Il titolo deve descrivere il contenuto effettivo. Se l’articolo cambia compito, rivedilo in modo coerente con la nuova risposta. Evita però di inserire un servizio nel titolo se il corpo continua a parlare di altro: la promessa iniziale deve trovare riscontro nella pagina.</p>
+<p>L’indirizzo non va cambiato soltanto per aggiungere una parola. Una modifica dell’URL richiede attenzione ai collegamenti e alla continuità del percorso. Prima di intervenire, verifica con chi segue il sito quali conseguenze avrà sulla pagina esistente e come verrà gestita la destinazione precedente.</p>
+<p>Se la revisione riguarda soltanto informazioni e collegamenti, spesso puoi mantenere lo stesso indirizzo. La scelta deve dipendere dalla struttura del sito e dal contenuto, non da una regola automatica applicata a ogni aggiornamento.</p>
+<h2>Pubblicare e verificare il risultato</h2>
+<p>Dopo la pubblicazione, apri la pagina e controlla che il testo completo sia disponibile, che i collegamenti funzionino e che il modulo o il contatto indicato sia raggiungibile. Una modifica presente nel file di lavoro non è ancora una modifica verificata sul sito pubblico.</p>
+<p>Per le questioni di scansione, la <a href="https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl">guida di Google alle richieste di nuova scansione</a> chiarisce che una richiesta non garantisce l’inclusione immediata nell’indice. Ripetere l’invio dello stesso URL non sostituisce il controllo della pagina e della sua utilità.</p>
+<p>Conserva la data reale dell’intervento e il riepilogo dei cambiamenti. Non aggiornare la data soltanto per far sembrare recente un testo identico. La cronologia deve essere utile a chi mantiene il sito e a chi interpreta i risultati.</p>
+<h2>Collegare il lavoro alle priorità dell’impresa</h2>
+<p>Una revisione ha più valore quando sostiene un servizio prioritario e una zona effettivamente servita. Per organizzare le attività puoi utilizzare il <a href="/risorse/modello-piano-seo-imprese-edili.csv">modello di piano SEO</a>, indicando pagina, problema e controllo da eseguire.</p>
+<p>Se vuoi impostare un percorso di <a href="/consulenza-seo-imprese-edili">consulenza SEO per imprese edili</a>, prepara alcune pagine rappresentative, le domande dei clienti e i servizi su cui vuoi concentrarti. Sarà più semplice valutare un intervento concreto e riconoscere il lavoro effettivamente svolto.</p>
+<h2>Domande frequenti</h2>
+<h3>Devo riscrivere tutti gli articoli vecchi?</h3>
+<p>No. Valuta utilità, pertinenza e informazioni da correggere. Un contenuto ancora valido può richiedere pochi interventi; una pagina sovrapposta o incompleta richiede una decisione più ampia sul suo ruolo.</p>
+<h3>Aggiungere parole migliora automaticamente la SEO?</h3>
+<p>No. La revisione deve rendere la risposta più utile, chiara e verificabile. La quantità di testo non dimostra da sola che una pagina risolva meglio la domanda del lettore.</p>
+<h3>Quando posso valutare i risultati dell’aggiornamento?</h3>
+<p>Distingui la verifica immediata della pubblicazione dall’osservazione successiva dei dati. Non esiste un termine universale: considera scansione, domanda, periodo e quantità di informazioni disponibili prima di attribuire un effetto alla modifica.</p>`
+},
+{
   id: "seo-report-20261107",
   slug: "report-seo-imprese-edili-come-leggerlo",
   title: "Report SEO per imprese edili: dai clic alle richieste che puoi lavorare",
