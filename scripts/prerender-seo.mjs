@@ -681,6 +681,18 @@ function seoHead(route) {
    messo lì sarebbe invisibile all'HTML iniziale. Qui invece entra in tutte le pagine
    statiche, con anchor branded costante ("Florin Andriciuc"). */
 const authorFooter = `
+      <nav aria-label="Pagine principali Marketing Edile">
+        <a href="/">Home</a> ·
+        <a href="/chi-siamo">Chi siamo</a> ·
+        <a href="/servizi">Servizi</a> ·
+        <a href="/casi-studio">Casi studio</a> ·
+        <a href="/prezzi">Prezzi</a> ·
+        <a href="/blog">Blog</a> ·
+        <a href="/materiali-gratuiti">Materiali gratuiti</a> ·
+        <a href="/contattaci">Contattaci</a> ·
+        <a href="/privacy-policy">Privacy Policy</a> ·
+        <a href="/cookie-policy">Cookie Policy</a>
+      </nav>
       <p class="seo-fallback-author">
         Un progetto di
         <a href="https://www.florinandriciuc.com/chi-sono" rel="author">Florin Andriciuc</a>,
