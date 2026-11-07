@@ -2,6 +2,7 @@
 // Mappa slug -> path. Usata da BlogCard, BlogPost e dal prerender per og:image.
 // 93 copertine.
 export const blogCovers = {
+"report-seo-imprese-edili-come-leggerlo": "/blog-covers/report-seo-imprese-edili-come-leggerlo.jpg",
   "30-richieste-preventivi-qualificati-infissi-fotovoltaico-edilizia-2026": "/blog-covers/30-richieste-preventivi-qualificati-infissi-fotovoltaico-edilizia-2026.jpg",
   "aumentare-vendite-infissi-fotovoltaico-edilizia-2026": "/blog-covers/aumentare-vendite-infissi-fotovoltaico-edilizia-2026.jpg",
   "clienti-qualificati-settore-edile-2026": "/blog-covers/clienti-qualificati-settore-edile-2026.jpg",
