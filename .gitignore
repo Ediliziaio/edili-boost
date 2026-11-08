@@ -29,3 +29,4 @@ dist-ssr
 # Generati a build time (scripts/generate-blog-data.mjs, scripts/convert-covers.mjs)
 public/blog-data/
 public/blog-covers/*.webp
+.editorial-length-report.json

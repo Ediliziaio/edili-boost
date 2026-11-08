@@ -36,7 +36,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
   }, [content]);
 
   return (
-    <div 
+    <div data-editorial-body
       className="prose prose-lg dark:prose-invert max-w-prose mx-auto
         prose-headings:font-heading prose-headings:text-foreground
         prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:font-bold prose-h2:mt-14 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-border

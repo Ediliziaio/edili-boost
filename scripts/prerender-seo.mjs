@@ -706,7 +706,7 @@ function fallbackContent(route) {
         <a href="/blog">Blog Marketing Edile</a>
         <h1>${esc(route.h1)}</h1>
         <p>${esc(route.description)}</p>
-        ${route.articleContent}
+        <div data-editorial-body>${route.articleContent}</div>
       </article>${authorFooter}
     `;
   }
