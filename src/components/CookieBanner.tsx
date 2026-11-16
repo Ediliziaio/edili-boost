@@ -36,7 +36,7 @@ const CookieBanner = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          className="fixed bottom-0 left-0 right-0 z-[60] p-4 md:p-6"
         >
           <div className="container-narrow mx-auto bg-card border border-border/50 rounded-xl p-5 md:p-6 shadow-2xl backdrop-blur-sm">
             <div className="flex items-start gap-4">
