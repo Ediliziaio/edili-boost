@@ -1,3 +1,4 @@
+import { selectRelatedPosts } from "../src/data/relatedPosts.js";
 import { seoConsulting } from "../src/data/seoConsulting.js";
 import { reviewDate } from "../src/data/editorialReviews.js";
 import { writeStaticRoute, writeNotFound, replaceRootContent } from "./static-routing.mjs";
@@ -707,6 +708,7 @@ function fallbackContent(route) {
         <h1>${esc(route.h1)}</h1>
         <p>${esc(route.description)}</p>
         <div data-editorial-body>${route.articleContent}</div>
+        ${route.relatedPosts?.length ? `<nav aria-label="Guide correlate"><h2>Guide correlate</h2><ul>${route.relatedPosts.map(post => `<li><a href="/blog/${esc(post.slug)}">${esc(post.title)}</a></li>`).join("")}</ul></nav>` : ""}
       </article>${authorFooter}
     `;
   }
@@ -815,7 +817,7 @@ async function main() {
       { "@context": "https://schema.org", "@type": "Service", name: route.title, url: siteUrl + route.path, description: route.description, provider: { "@type": "Organization", name: "Marketing Edile", url: siteUrl } }
     ] };
     if (route.path === "/servizi") return { ...route, links: seoConsulting.links.filter(link => link.href !== "/servizi").concat({ href: seoConsulting.path, label: seoConsulting.title }) };
-    if (route.path === "/blog") return { ...route, links: blogLinks };
+    if (route.path === "/blog") return { ...route, links: blogLinks, lastmod: posts.map(post => slugDate(post.updatedAt || post.publishedAt)).sort().at(-1) };
     if (route.path === "/") {
       return {
         ...route,
@@ -887,6 +889,7 @@ async function main() {
       updatedAt: post.updatedAt,
       tags: post.tags,
       articleContent: post.content,
+      relatedPosts: selectRelatedPosts(posts, post),
       jsonLd: [
         organizationSchema(),
         articleSchema(post),

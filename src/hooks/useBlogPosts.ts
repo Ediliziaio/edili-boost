@@ -1,3 +1,4 @@
+import { selectRelatedPosts } from "@/data/relatedPosts";
 import { useQuery } from '@tanstack/react-query';
 
 // I dati blog NON sono più importati nel bundle JS (erano ~1,2 MB di chunk
@@ -91,9 +92,8 @@ export function useRelatedPosts(currentPostId: string, category: string, tags: s
     queryKey: ['blog-posts', 'related', currentPostId],
     queryFn: async () => {
       const posts = await fetchIndex();
-      return posts
-        .filter(p => p.id !== currentPostId && p.category === category)
-        .slice(0, limit);
+      const current = posts.find(p => p.id === currentPostId);
+      return current ? selectRelatedPosts(posts, current, limit) : [];
     },
     enabled: !!currentPostId,
     ...staticQuery,
