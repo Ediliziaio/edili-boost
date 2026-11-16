@@ -1,3 +1,4 @@
+import { PriorityPaths } from "@/components/PriorityPaths";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -74,6 +75,7 @@ const Index = () => {
         <TestimonialsSection />
         <WhatWeDoSection />
         <ServicesSection />
+        <PriorityPaths />
         <ComparisonSection />
         <PricingSection />
         <GuaranteeSection />

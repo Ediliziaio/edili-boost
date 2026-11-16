@@ -1,3 +1,4 @@
+import { renderPriorityPaths } from "../src/data/render-priority-paths.mjs";
 import { selectRelatedPosts } from "../src/data/relatedPosts.js";
 import { seoConsulting } from "../src/data/seoConsulting.js";
 import { reviewDate } from "../src/data/editorialReviews.js";
@@ -735,7 +736,7 @@ function replaceSeo(indexHtml, route) {
 
   return replaceRootContent(
     cleaned.replace("</head>", `${seoHead(route)}\n  </head>`),
-    fallbackContent(route),
+    fallbackContent(route) + (route.path === "/" ? renderPriorityPaths() : ""),
   );
 }
 
