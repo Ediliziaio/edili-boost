@@ -708,6 +708,7 @@ function fallbackContent(route) {
         <a href="/blog">Blog Marketing Edile</a>
         <h1>${esc(route.h1)}</h1>
         <p>${esc(route.description)}</p>
+        ${route.image ? `<figure><img src="${esc(imageUrl(route.image))}" alt="${esc(route.h1)}" width="1200" height="630" decoding="async" fetchpriority="high" style="width:100%;height:auto;border-radius:12px"></figure>` : ""}
         <div data-editorial-body>${route.articleContent}</div>
         ${route.relatedPosts?.length ? `<nav aria-label="Guide correlate"><h2>Guide correlate</h2><ul>${route.relatedPosts.map(post => `<li><a href="/blog/${esc(post.slug)}">${esc(post.title)}</a></li>`).join("")}</ul></nav>` : ""}
       </article>${authorFooter}
