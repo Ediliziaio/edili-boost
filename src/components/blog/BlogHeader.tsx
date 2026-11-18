@@ -1,3 +1,4 @@
+import { blogPage } from "@/data/marketingEditorialPages.js";
 import { motion } from 'framer-motion';
 import { BookOpen } from 'lucide-react';
 
@@ -43,7 +44,7 @@ export function BlogHeader({ totalArticles }: BlogHeaderProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6"
           >
-            Marketing per Imprese Edili: Guide, Strategie e Casi Studio
+            {blogPage.h1}
           </motion.h1>
 
           {/* Subtitle */}
@@ -53,8 +54,7 @@ export function BlogHeader({ totalArticles }: BlogHeaderProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            Strategie testate di <strong className="text-foreground">lead generation per serramentisti</strong>, imprese di ristrutturazione e aziende edili.
-            Scopri come acquisire clienti qualificati e aumentare il fatturato con il marketing digitale.
+            {blogPage.description}
           </motion.p>
         </motion.div>
       </div>

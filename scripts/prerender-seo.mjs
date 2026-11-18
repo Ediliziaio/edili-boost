@@ -1,3 +1,4 @@
+import { servicePage, serviceBodyHtml, serviceFaqs, blogPage, blogPathsHtml, blogFaqs } from "../src/data/marketingEditorialPages.js";
 import { renderPriorityPaths } from "../src/data/render-priority-paths.mjs";
 import { selectRelatedPosts } from "../src/data/relatedPosts.js";
 import { seoConsulting } from "../src/data/seoConsulting.js";
@@ -55,18 +56,17 @@ const staticRoutes = [
     h1: "Marketing per aziende edili e serramenti",
   },
   {
-    path: "/blog",
-    title: "Blog — Strategie Marketing Edilizia",
-    description: "Guide pratiche e strategie testate per il marketing nel settore edile. Lead generation, vendita infissi, acquisizione clienti.",
+    ...blogPage,
     keywords: pageKeywords.blog,
-    h1: "Blog Marketing Edile",
+    editorialContent: blogPathsHtml,
+    faqs: blogFaqs,
   },
   {
-    path: "/servizi",
-    title: "Servizi Marketing Imprese Edili",
-    description: "Sistema marketing per imprese edili: strategia, contenuti video, advertising gestito e referente dedicato. Paghi solo a percentuale.",
+    ...servicePage,
+    sections: undefined,
     keywords: pageKeywords.servizi,
-    h1: "Servizi marketing per imprese edili",
+    editorialContent: serviceBodyHtml,
+    faqs: serviceFaqs,
   },
   {
     path: "/prezzi",
@@ -719,7 +719,8 @@ function fallbackContent(route) {
     <section class="seo-fallback">
       <h1>${esc(route.h1 || route.title)}</h1>
       <p>${esc(route.description)}</p>
-      ${route.intro ? `<p>${esc(route.intro)}</p>` : ""}
+      ${route.intro && !route.editorialContent ? `<p>${esc(route.intro)}</p>` : ""}
+      ${route.editorialContent || ""}
       ${route.sections ? route.sections.map((s) => `<h2>${esc(s.title)}</h2><p>${esc(s.text)}</p>`).join("") : ""}
       ${route.resource ? `<section><h2>${esc(route.resource.title)}</h2><p>${esc(route.resource.description)}</p><ul>${route.deliverables.map(item => `<li><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></li>`).join("")}</ul><a href="${esc(route.resource.href)}" download>Scarica il modello CSV, senza registrazione</a><p>Apribile con Excel, Google Fogli e LibreOffice. Perimetro, tempi e consegne del servizio si concordano prima dell’avvio.</p></section>` : ""}
       ${route.links ? `<nav><ul>${route.links.map((link) => `<li><a href="${esc(link.href)}">${esc(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
@@ -818,7 +819,7 @@ async function main() {
       organizationSchema(), websiteSchema(), faqPageSchema(seoConsulting.faqs),
       { "@context": "https://schema.org", "@type": "Service", name: route.title, url: siteUrl + route.path, description: route.description, provider: { "@type": "Organization", name: "Marketing Edile", url: siteUrl } }
     ] };
-    if (route.path === "/servizi") return { ...route, links: seoConsulting.links.filter(link => link.href !== "/servizi").concat({ href: seoConsulting.path, label: seoConsulting.title }) };
+    if (route.path === "/servizi") return { ...route, lastmod: "2026-11-18", links: seoConsulting.links.filter(link => link.href !== "/servizi").concat({ href: seoConsulting.path, label: seoConsulting.title }) };
     if (route.path === "/blog") return { ...route, links: blogLinks, lastmod: posts.map(post => slugDate(post.updatedAt || post.publishedAt)).sort().at(-1) };
     if (route.path === "/") {
       return {

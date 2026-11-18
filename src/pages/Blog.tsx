@@ -1,3 +1,4 @@
+import { blogPage, blogPathsHtml, blogFaqs } from "@/data/marketingEditorialPages.js";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Search, Target, TrendingUp, Lightbulb, Settings, LayoutGrid, FileText } from 'lucide-react';
@@ -49,28 +50,7 @@ export default function Blog() {
     }))
   );
 
-  const blogFAQs = [
-    {
-      question: "Come funziona il marketing a percentuale per imprese edili?",
-      answer: "Marketing Edile® lavora solo a percentuale sulle vendite generate. Non ci sono canoni fissi né anticipi: paghi solo quando chiudi una commessa grazie ai lead che ti portiamo. Se non generiamo vendite, non paghi nulla."
-    },
-    {
-      question: "Quali risultati può ottenere un'impresa edile con il marketing digitale?",
-      answer: "I nostri partner registrano in media un +40% di incremento del fatturato. Esempi concreti: Green Energy Group ha generato +€300.000 in 2 mesi, Teda Infissi raggiunge €30-40.000/mese costanti, Renova Tetto ha aggiunto +€600.000 al fatturato."
-    },
-    {
-      question: "Il marketing digitale funziona per serramentisti e showroom di infissi?",
-      answer: "Assolutamente sì. I serramentisti e gli showroom di infissi sono il nostro target principale. Generiamo lead qualificati pronti all'acquisto tramite campagne su Facebook, Instagram e Google, con landing page specifiche per il settore serramenti."
-    },
-    {
-      question: "Quanto tempo serve per vedere i primi risultati?",
-      answer: "I primi lead qualificati arrivano generalmente entro 2-4 settimane dall'avvio delle campagne. I risultati di fatturato significativi si vedono tipicamente entro 60-90 giorni, come dimostrato dai nostri casi studio documentati."
-    },
-    {
-      question: "Marketing Edile lavora con aziende di tutta Italia?",
-      answer: "Sì, Marketing Edile® segue aziende edili in tutta Italia. Operiamo da Milano ma gestiamo campagne per imprese di costruzioni, serramentisti e aziende fotovoltaiche su tutto il territorio nazionale."
-    }
-  ];
+  const blogFAQs = blogFaqs;
 
   const faqSchema = generateFAQSchema(blogFAQs);
 
@@ -86,8 +66,8 @@ export default function Blog() {
   return (
     <>
       <SEOHead
-        title="Blog — Strategie Marketing Edilizia"
-        description="Guide pratiche e strategie testate per il marketing nel settore edile. Lead generation, vendita infissi, acquisizione clienti."
+        title={blogPage.title}
+        description={blogPage.description}
         keywords={siteConfig.pageKeywords.blog}
         url={`${siteConfig.url}/blog`}
         jsonLd={[breadcrumbSchema, blogListingSchema, faqSchema]}
@@ -97,6 +77,7 @@ export default function Blog() {
 
       <main className="min-h-screen bg-background pt-20">
         <BlogHeader totalArticles={totalArticles} />
+        <div className="container pb-10 prose prose-invert max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: blogPathsHtml }} />
 
         {/* Search & Filter Section */}
         <section className="container py-8 border-b border-border">
@@ -243,11 +224,11 @@ export default function Blog() {
                 Pronto a crescere?
               </span>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
-                Vuoi risultati come quelli dei nostri casi studio?
+                Vuoi lavorare sul marketing della tua impresa?
               </h2>
               <p className="text-muted-foreground">
-                Prenota una consulenza gratuita e scopri come possiamo aiutare la tua impresa 
-                a crescere nel digitale.
+                Descrivi il servizio, il territorio e il passaggio commerciale che vuoi migliorare.
+                Il confronto parte dalle informazioni della tua impresa.
               </p>
             </div>
             <div className="relative z-10 max-w-xl mx-auto">

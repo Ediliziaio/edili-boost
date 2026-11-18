@@ -1,3 +1,4 @@
+import { agencyGuidePosts, agencyGuideSlugs } from "./agencyGuidePosts.js";
 // Articoli RISCRITTI da zero per eliminare il contenuto near-duplicate.
 // Il blog aveva 71 articoli su 97 con sovrapposizione testuale fino al 95% (stesso
 // scheletro riciclato): è la causa che teneva fermo il crawl di Google.
@@ -2653,7 +2654,7 @@ const posts = [
   },
 ];
 
-export const rewrittenPosts = posts.map((p) => ({
+const legacyRewrittenPosts = posts.filter(p => !agencyGuideSlugs.has(p.slug)).map((p) => ({
   id: `rw-${p.slug}`,
   slug: p.slug,
   title: p.title,
@@ -2672,5 +2673,10 @@ export const rewrittenPosts = posts.map((p) => ({
   seo_description: p.seo_description,
 }));
 
-// slug -> FAQ, per il FAQPage JSON-LD.
-export const rewrittenFaqs = Object.fromEntries(posts.map((p) => [p.slug, p.faqs]));
+export const rewrittenPosts = [...agencyGuidePosts, ...legacyRewrittenPosts];
+
+// Keep visible article FAQs and generated schema on the same revised source.
+export const rewrittenFaqs = Object.fromEntries([
+  ...posts.filter(post => !agencyGuideSlugs.has(post.slug)).map(post => [post.slug, post.faqs]),
+  ...agencyGuidePosts.map(post => [post.slug, post.faqs]),
+]);

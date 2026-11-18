@@ -1,3 +1,4 @@
+import { agencyGuideSlugs } from "./agencyGuidePosts.js";
 import { editorialReviews } from "./editorialReviews.js";
 // Potenziamento AEO degli articoli unici di blog-posts.ts (risposta secca + link hub + FAQ).
 // Applicato a build time SIA da scripts/generate-blog-data.mjs (React) SIA da
@@ -33,6 +34,8 @@ export function getPostFaqs(slug) {
 
 /** Restituisce il content HTML potenziato (idempotente: non riapplica se già presente). */
 export function enhanceContent(slug, content = "") {
+  // These complete revisions already include their own answer, links and FAQs.
+  if (agencyGuideSlugs.has(slug)) return content;
   if (editorialReviews[slug] && !content.includes('id="verifica-campagne"') && !content.includes('id="scheda-presentazione-offerta"') && !content.includes('id="criteri-confronto-agenzie"')) content += editorialReviews[slug];
   const e = enhancementsData[slug];
   if (!e || content.includes('class="risposta-secca"')) return content;

@@ -1,3 +1,4 @@
+import { servicePage, serviceFaqs } from "./marketingEditorialPages.js";
 // FAQ + intro per pagina - fonte unica condivisa tra il prerender SEO
 // (scripts/prerender-seo.mjs) e i componenti React (VerticalLanding, pagine statiche).
 // Serve a: FAQPage JSON-LD nell'HTML servito (AEO/rich results), contenuto reale
@@ -254,31 +255,7 @@ export const pageFaqs = {
       }
     ]
   },
-  "/servizi": {
-    "intro": "I servizi di Marketing Edile® formano un sistema completo di acquisizione clienti per imprese edili: Meta Ads e Google Ads, video scriptati, landing page ad alta conversione, gestione lead con follow-up automatizzato e report settimanali. Ogni strategia è testata sulla nostra azienda di serramenti prima di arrivare a te.",
-    "faqs": [
-      {
-        "question": "Quali servizi di marketing offre un'agenzia per imprese edili?",
-        "answer": "Offriamo un sistema completo: campagne Meta Ads e Google Ads mirate, contenuti video scriptati, landing page ad alta conversione, gestione dei lead con follow-up automatizzato, report settimanali con KPI reali e un referente dedicato. Tutto pensato solo per edilizia, serramenti, ristrutturazioni, fotovoltaico e impiantistica."
-      },
-      {
-        "question": "Come funziona la generazione di lead per un'impresa edile?",
-        "answer": "Intercettiamo chi cerca lavori edili nella tua zona con annunci Meta e Google, li portiamo su una landing page costruita per convertire e raccogliamo il contatto. Da lì il follow-up automatizzato scalda il lead e organizza l'appuntamento. I primi contatti arrivano in 3-4 settimane."
-      },
-      {
-        "question": "Le campagne pubblicitarie funzionano nel settore edile?",
-        "answer": "Sì, se fatte da chi conosce il settore. Testiamo ogni strategia sulla nostra azienda di serramenti, che ha fatturato 2 milioni in 2 anni, prima di applicarla ai clienti. Questo ci ha permesso di generare oltre 60 milioni di euro per i partner in Italia."
-      },
-      {
-        "question": "Chi gestisce i contatti dopo che arrivano dalla pubblicità?",
-        "answer": "Il nostro sistema di gestione lead e follow-up automatizzato smista ogni contatto e lo tiene caldo con messaggi e promemoria, così nessuna richiesta si perde. Tu ricevi appuntamenti pronti e report settimanali con i numeri reali, seguito da un referente dedicato alla tua azienda."
-      },
-      {
-        "question": "Devo pagare io il budget pubblicitario delle campagne?",
-        "answer": "Sì, il budget ads su Meta e Google è tuo e resta sul tuo account, sempre trasparente. Noi non prendiamo canoni fissi: veniamo pagati solo a provvigione sulle vendite chiuse. Così il tuo investimento va in visibilità reale e noi guadagniamo solo se tu vendi."
-      }
-    ]
-  },
+  "/servizi": { intro: servicePage.intro, faqs: serviceFaqs },
   "/prezzi": {
     "intro": "Marketing Edile® ha un modello di prezzo unico nel settore: lavoriamo solo a provvigione sulle vendite realmente chiuse. Zero canone fisso, zero anticipo, zero setup. Se non generiamo vendite, non paghi. Un modello a percentuale pensato per allineare al 100% i nostri interessi ai tuoi.",
     "faqs": [
