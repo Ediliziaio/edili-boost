@@ -12,20 +12,26 @@ const CookieBanner = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(CONSENT_KEY);
-    if (!consent) {
-      // Small delay so the page loads first
-      const timer = setTimeout(() => setVisible(true), 1500);
-      return () => clearTimeout(timer);
-    }
+    let consent: string | null = null;
+    try { consent = localStorage.getItem(CONSENT_KEY); } catch { /* No implicit consent. */ }
+    const timer = consent ? null : setTimeout(() => setVisible(true), 1500);
+    const reopen = () => setVisible(true);
+    window.addEventListener("me:cookie-settings", reopen);
+    return () => { if (timer) clearTimeout(timer); window.removeEventListener("me:cookie-settings", reopen); };
   }, []);
 
   const handleConsent = (value: "all" | "necessary") => {
-    localStorage.setItem(CONSENT_KEY, value);
+    let persisted = true;
+    try { localStorage.setItem(CONSENT_KEY, value); } catch { persisted = false; }
+    const w = window as Window & { _meTrackingLoaded?: boolean; EICAnalytics?: { getState: () => { scriptRequested: boolean } } };
+    const googleRequested = w.EICAnalytics?.getState().scriptRequested === true;
+    if (value === "necessary") window.fbq?.("consent", "revoke");
+    window.dispatchEvent(new CustomEvent("me:consent-updated", { detail: value }));
     setVisible(false);
     if (value === "all" && typeof window._meInitTracking === "function") {
       window._meInitTracking();
     }
+    if (value === "necessary" && persisted && w._meTrackingLoaded && !googleRequested) window.location.reload();
   };
 
   return (

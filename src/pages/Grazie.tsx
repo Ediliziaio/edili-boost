@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
   CheckCircle2,
@@ -19,16 +19,6 @@ import { siteConfig } from "@/lib/seo";
 const META_PIXEL_ID = "912028060826443";
 
 const Grazie = () => {
-  useEffect(() => {
-    // Evento di conversione Meta "Lead" — scatta all'apertura della thank-you page,
-    // cioè dopo l'invio del form. fbq esiste solo se l'utente ha dato il consenso cookie.
-    if (typeof window.fbq === "function") {
-      window.fbq("trackSingle", META_PIXEL_ID, "Lead", {
-        content_name: "Richiesta contatto",
-        content_category: "Contatto",
-      });
-    }
-  }, []);
 
   // La prenotazione e' un passo oltre il lead: la tracciamo a parte, quando il
   // widget conferma che l'appuntamento e' stato preso davvero.

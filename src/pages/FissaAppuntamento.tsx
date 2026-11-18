@@ -362,9 +362,6 @@ const FissaAppuntamento = () => {
       window.fbq("trackSingle", META_PIXEL_ID, "Lead", dati);
       window.fbq("trackSingle", META_PIXEL_ID, "Schedule", dati);
     }
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "generate_lead", { method: "calendario_consulenza" });
-    }
   }, []);
 
   const vaiAlCalendario = () =>

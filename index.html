@@ -22,29 +22,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://connect.facebook.net" />
 
     <!-- Tracking: GA4 + Meta Pixel — caricati solo dopo consenso cookie (GDPR) -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
 
       window._meTrackingLoaded = false;
       window._meInitTracking = function() {
-        if (window._meTrackingLoaded) return;
+        var allowed = false;
+        try { allowed = location.protocol === "https:" && ["marketingedile.com", "www.marketingedile.com"].indexOf(location.hostname) >= 0 && !/^\/(auth|admin)(\/|$)/.test(location.pathname) && localStorage.getItem("cookie-consent") === "all"; } catch(e) {}
+        if (!allowed || window._meTrackingLoaded) return;
         window._meTrackingLoaded = true;
-
-        // Google Analytics 4
-        var gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-WPFY0KXY0Y';
-        document.head.appendChild(gaScript);
-        gtag('js', new Date());
-        // send_page_view:false + page_view manuale: la prima pagina è tracciata qui,
-        // i cambi rotta SPA li traccia ScrollToTop (evita il doppio conteggio).
-        gtag('config', 'G-WPFY0KXY0Y', { send_page_view: false });
-        gtag('event', 'page_view');
 
         // Meta Pixels
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -54,6 +41,9 @@
         (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
         // Pixel vecchio (912028060826443) — PageView, Lead, ViewContent
+        fbq('set', 'autoConfig', false, '912028060826443');
+        fbq('set', 'autoConfig', false, '1526425959076537');
+        fbq('consent', 'grant');
         fbq('init', '912028060826443');
         // Pixel nuovo (1526425959076537) — solo PageviewMarketingEdile
         fbq('init', '1526425959076537');
@@ -61,12 +51,6 @@
         fbq('trackSingle', '912028060826443', 'PageView');
         fbq('trackSingleCustom', '1526425959076537', 'PageviewMarketingEdile');
 
-        // Google Tag Manager — caricato solo dopo consenso (coerente col gating GDPR).
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MFRW246S');
       };
 
       // Auto-init se il consenso è già stato dato in una sessione precedente
@@ -124,11 +108,7 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFRW246S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <!-- Meta Pixel noscript fallback -->
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912028060826443&ev=PageView&noscript=1"></noscript>
     <div id="root">
       <!-- SSR fallback content for search engines -->
       <noscript>

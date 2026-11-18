@@ -20,14 +20,6 @@ const ScrollToTop = () => {
       window.fbq("trackSingle", "912028060826443", "PageView");
       window.fbq("trackSingleCustom", "1526425959076537", "PageviewMarketingEdile");
     }
-    // GA4 — page_view come evento (config ha send_page_view:false)
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "page_view", {
-        page_path: pathname,
-        page_location: window.location.href,
-        page_title: document.title,
-      });
-    }
   }, [pathname]);
 
   return null;

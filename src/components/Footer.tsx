@@ -175,6 +175,7 @@ const Footer = () => {
             <Link to="/cookie-policy" className="hover:text-gold transition-colors">
               Cookie Policy
             </Link>
+            <button type="button" onClick={() => window.dispatchEvent(new Event("me:cookie-settings"))} className="text-sm text-muted-foreground hover:text-secondary">Preferenze cookie</button>
           </div>
         </motion.div>
       </div>
