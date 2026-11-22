@@ -1,5 +1,6 @@
 import { AnimatedSection } from "./AnimatedSection";
 import { LeadConnectorForm } from "@/components/blog/LeadConnectorForm";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const FinalCTASection = () => {
   return (
@@ -8,6 +9,8 @@ const FinalCTASection = () => {
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/10 rounded-full blur-[150px]" />
       </div>
+
+      <ReteViva className="opacity-70" />
 
       <div className="container-narrow text-center relative z-10">
         <AnimatedSection>

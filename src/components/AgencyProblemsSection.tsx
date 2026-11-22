@@ -29,7 +29,7 @@ const AgencyProblemsSection = () => {
           </p>
         </AnimatedSection>
 
-        <StaggerContainer className="space-y-6 mb-16" staggerDelay={0.15}>
+        <StaggerContainer className="scorri-mobile space-y-6 mb-16" staggerDelay={0.15}>
           {falsePromises.map((item, index) => (
             <StaggerItem key={index}>
               <motion.div

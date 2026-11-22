@@ -14,6 +14,7 @@ import PerformanceBanner from "@/components/PerformanceBanner";
 import showroomImage from "@/assets/showroom.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import teamImage from "@/assets/team.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const values = [
   {
@@ -89,6 +90,7 @@ const ChiSiamo = () => {
             <img src={heroWindowsImage} alt="Infissi e serramenti moderni — Marketing Edile specializzazione settore edile" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 bg-background/85" />
           </div>
+          <ReteViva />
           <div className="absolute inset-0">
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-secondary/10 rounded-full blur-[100px] md:blur-[150px]" />
           </div>

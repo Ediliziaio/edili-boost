@@ -46,6 +46,8 @@ import {
 
 import cantiereImage from "@/assets/cantiere.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 /* ══════════════════════════════════════════════════════════
    DATA
@@ -266,6 +268,8 @@ const Impiantisti = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50" />
           </div>
 
+          <ReteViva />
+
           <div className="container-narrow relative z-10">
             <AnimatedSection>
               <div className="max-w-3xl">
@@ -345,6 +349,8 @@ const Impiantisti = () => {
           </div>
         </section>
 
+        <SistemaEsplosoSection oggetto="caldaia" settore="gli impiantisti" />
+
         {/* ═══════════════════════════════════════════════════
             2. IL PROBLEMA VERO
            ═══════════════════════════════════════════════════ */}
@@ -366,7 +372,7 @@ const Impiantisti = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="scorri-mobile grid md:grid-cols-2 gap-6">
               {problems.map((p, i) => (
                 <AnimatedSection key={i} delay={i * 0.1}>
                   <div className="bg-card rounded-2xl p-8 border border-red-500/10 hover:border-red-500/30 transition-colors h-full">
@@ -823,7 +829,7 @@ const Impiantisti = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
                   to: "/servizi",

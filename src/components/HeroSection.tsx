@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, AlertTriangle, TrendingUp } from "lucide-react";
 import { meseAnnoCorrente, postiDisponibili, postiTotali } from "@/lib/dynamic-date";
+import ReteViva from "@/components/vivo/ReteViva";
 const HeroSection = () => {
   return <section className="min-h-screen flex flex-col justify-center section-padding bg-background relative overflow-hidden">
       {/* Subtle gradient background */}
@@ -17,6 +18,8 @@ const HeroSection = () => {
         backgroundSize: "60px 60px"
       }} />
       </div>
+
+      <ReteViva />
 
       <div className="container-narrow relative z-10">
         {/* Warning Badge */}

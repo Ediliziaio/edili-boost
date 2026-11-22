@@ -7,6 +7,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { generateBreadcrumbSchema, generateFAQSchema, generateServiceSchema, siteConfig } from "@/lib/seo";
 import { ediliziaCloudPages, ediliziaCloudFaqs } from "@/data/ediliziaCloudContent";
 import ediliziaCloudLogo from "@/assets/ediliziaincloud-logo.png";
+import ReteViva from "@/components/vivo/ReteViva";
 
 type EdiliziaCloudPageKey = keyof typeof ediliziaCloudPages;
 
@@ -44,7 +45,8 @@ export default function EdiliziaCloudLanding({ pageKey }: EdiliziaCloudLandingPr
       />
       <Navbar />
       <main className="min-h-screen bg-background pt-24">
-        <section className="container grid gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <section className="container relative isolate grid gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <ReteViva className="-z-10 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]" />
           <div>
             <img
               src={ediliziaCloudLogo}

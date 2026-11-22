@@ -26,6 +26,8 @@ import floPortrait from "@/assets/flo-portrait.jpg";
 import cantiereImage from "@/assets/cantiere.jpg";
 import teamImage from "@/assets/team.jpg";
 import logoGreenEnergy from "@/assets/green_energy.png";
+import ReteViva from "@/components/vivo/ReteViva";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 /* ────────────────────────────────────────────────────────────
    DATA
@@ -268,6 +270,8 @@ const Fotovoltaico = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
+          <ReteViva />
+
           <div className="container-narrow relative z-10 pt-32 pb-20 px-6">
             <AnimatedSection>
               <div className="max-w-4xl">
@@ -342,6 +346,8 @@ const Fotovoltaico = () => {
           </div>
         </section>
 
+        <SistemaEsplosoSection oggetto="fotovoltaico" settore="chi installa fotovoltaico" />
+
         {/* ═══════════════════════════════════════════════════════
             SECTION 2 — BASTA PORTALI, BASTA AGENZIE
         ═══════════════════════════════════════════════════════ */}
@@ -365,7 +371,7 @@ const Fotovoltaico = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid md:grid-cols-2 gap-6">
+            <StaggerContainer className="scorri-mobile grid md:grid-cols-2 gap-6">
               {portalProblems.map((problem, index) => (
                 <StaggerItem key={index}>
                   <div className="bg-card rounded-2xl p-8 border border-red-500/20 h-full hover:border-red-500/40 transition-colors">
@@ -504,7 +510,7 @@ const Fotovoltaico = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="scorri-mobile grid md:grid-cols-2 gap-8">
               {processSteps.map((step, index) => (
                 <AnimatedSection key={index} delay={index * 0.15}>
                   <div className="bg-card rounded-2xl p-8 border border-border h-full relative overflow-hidden group hover:border-gold/30 transition-colors">
@@ -885,7 +891,7 @@ const Fotovoltaico = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
                   title: "Blog",

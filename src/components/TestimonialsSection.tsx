@@ -431,7 +431,7 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="space-y-6">
+        <div className="scorri-mobile space-y-6">
           {caseStudies.map((caseStudy, index) => (
             <motion.div
               key={caseStudy.id}

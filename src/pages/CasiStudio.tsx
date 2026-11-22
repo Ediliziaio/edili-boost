@@ -19,6 +19,7 @@ import logoTeda from "@/assets/teda.png";
 import logoFactory from "@/assets/factory.png";
 import logoRenovaSolution from "@/assets/renova_solution.png";
 import logoRenovaTetto from "@/assets/renova_tetto.png";
+import ReteViva from "@/components/vivo/ReteViva";
 
 // ─── Types ──────────────────────────────────────────────
 interface CaseStudyResult {
@@ -342,6 +343,7 @@ const CasiStudio = () => {
             <img src={cantiereImage} alt="Cantiere edile — casi studio di successo Marketing Edile con risultati documentati" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 bg-background/85" />
           </div>
+          <ReteViva />
           <div className="absolute inset-0">
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-secondary/10 rounded-full blur-[100px] md:blur-[150px]" />
           </div>

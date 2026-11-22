@@ -9,6 +9,7 @@ import { siteConfig, generateProfessionalServiceSchema, generateBreadcrumbSchema
 import { serviceBodyHtml, serviceFaqs, servicePage } from "@/data/marketingEditorialPages.js";
 import showroomImage from "@/assets/showroom.jpg";
 import PerformanceBanner from "@/components/PerformanceBanner";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const Servizi = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Servizi = () => {
             <img src={showroomImage} alt="Showroom di serramenti: uno dei settori a cui si rivolge Marketing Edile" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 bg-background/85" />
           </div>
+          <ReteViva />
           <div className="container-narrow relative z-10">
             <p className="text-secondary text-sm font-semibold uppercase tracking-wider mb-5">Servizi Marketing Edile</p>
             <h1 className="text-4xl md:text-5xl font-black text-foreground mb-6 max-w-4xl">{servicePage.h1}</h1>

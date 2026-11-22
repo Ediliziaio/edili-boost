@@ -84,7 +84,7 @@ const GuaranteeSection = () => {
             Zero Rischi. Zero Trappole.
           </h3>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="scorri-mobile scorri-pad-4 grid md:grid-cols-3 lg:grid-cols-5 gap-4">
             {riskReversals.map((item, index) => (
               <motion.div
                 key={index}

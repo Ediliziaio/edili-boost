@@ -1,14 +1,9 @@
 import { motion } from "framer-motion";
-import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
-import { Check, FlaskConical } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
+import { BarChart3, FlaskConical, Store, Wrench } from "lucide-react";
 import teamImage from "@/assets/team.jpg";
+import FlussoVivo from "@/components/vivo/FlussoVivo";
 const MethodSection = () => {
-  const methodPoints = [
-    "È stata testata sulla nostra azienda di serramenti",
-    "È passata dal nostro showroom — con clienti reali",
-    "È stata misurata sugli incassi effettivi, non sui like",
-    "È stata corretta sugli errori — pagati da noi, non da te",
-  ];
   return <section id="metodo" className="section-padding bg-navy-light relative overflow-hidden">
       {/* Decorative */}
       <div className="absolute inset-0">
@@ -48,19 +43,17 @@ const MethodSection = () => {
               </p>
             </AnimatedSection>
 
-            <StaggerContainer className="space-y-3" staggerDelay={0.1}>
-              {methodPoints.map((point, index) => <StaggerItem key={index}>
-                  <motion.div whileHover={{
-                x: 10,
-                borderColor: "hsl(var(--gold))"
-              }} className="flex items-center gap-4 p-4 bg-background/10 backdrop-blur-sm border border-border/30 rounded-xl transition-colors">
-                    <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Check className="w-4 h-4 text-background" strokeWidth={3} />
-                    </div>
-                    <span className="text-foreground">{point}</span>
-                  </motion.div>
-                </StaggerItem>)}
-            </StaggerContainer>
+            <AnimatedSection delay={0.3}>
+              <FlussoVivo
+                colonne="sm:grid-cols-2"
+                steps={[
+                  { etichetta: "Testata", title: "Sulla nostra azienda di serramenti", icon: FlaskConical },
+                  { etichetta: "Provata", title: "Nel nostro showroom, con clienti reali", icon: Store },
+                  { etichetta: "Misurata", title: "Sugli incassi veri, non sui like", icon: BarChart3 },
+                  { etichetta: "Corretta", title: "Sugli errori, pagati da noi e non da te", icon: Wrench },
+                ]}
+              />
+            </AnimatedSection>
           </div>
         </div>
 

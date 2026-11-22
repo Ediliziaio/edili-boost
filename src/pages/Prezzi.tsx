@@ -10,6 +10,7 @@ import { PageFaq } from "@/components/PageFaq";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOfferSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import heroWindowsImage from "@/assets/hero-windows.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const valueStack = [
   { service: "Strategia Marketing Personalizzata", value: 3000 },
@@ -59,6 +60,7 @@ const Prezzi = () => {
             <img src={heroWindowsImage} alt="Prezzi marketing edile — modello a percentuale per imprese edili" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 bg-background/85" />
           </div>
+          <ReteViva />
           <div className="absolute inset-0">
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-secondary/10 rounded-full blur-[100px] md:blur-[150px]" />
           </div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, TrendingUp, ChevronDown, Hammer, HardHat, Ruler, Home, Wrench, Building2, Fence, PaintBucket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const floatingIcons = [
   { Icon: Hammer, size: 32, top: "8%", left: "5%", delay: 0, rotate: -15 },
@@ -29,6 +30,8 @@ const OffertaHero = () => {
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[80px] md:blur-[200px]" style={{ backgroundColor: "hsl(var(--gold) / 0.04)" }} />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-[80px] md:blur-[250px]" style={{ backgroundColor: "hsl(var(--gold) / 0.14)" }} />
       </div>
+
+      <ReteViva />
 
       {/* Grid pattern overlay — hidden on mobile */}
       <div className="absolute inset-0 opacity-[0.03] hidden md:block" style={{

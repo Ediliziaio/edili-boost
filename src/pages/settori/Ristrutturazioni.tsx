@@ -45,6 +45,8 @@ import cantiereImage from "@/assets/cantiere.jpg";
 import heroWindowsImage from "@/assets/hero-windows.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import teamImage from "@/assets/team.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 /* ───────────────────────── FAQ DATA ───────────────────────── */
 
@@ -316,6 +318,8 @@ const Ristrutturazioni = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
+          <ReteViva />
+
           <div className="container-narrow relative z-10 text-center pt-32 pb-20 px-6">
             <AnimatedSection>
               {/* Badge provvigione */}
@@ -383,6 +387,8 @@ const Ristrutturazioni = () => {
           </div>
         </section>
 
+        <SistemaEsplosoSection oggetto="casa" settore="chi fa ristrutturazioni" />
+
         {/* ════════════════════════════════════════════════════════
             2. LA VERITA SCOMODA - Perche le agenzie falliscono
         ════════════════════════════════════════════════════════ */}
@@ -409,7 +415,7 @@ const Ristrutturazioni = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.12}>
+            <StaggerContainer className="scorri-mobile grid md:grid-cols-2 gap-6" staggerDelay={0.12}>
               {truthBombs.map((bomb) => (
                 <StaggerItem key={bomb.title}>
                   <motion.div
@@ -538,7 +544,7 @@ const Ristrutturazioni = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="scorri-mobile grid md:grid-cols-2 gap-8">
               {processSteps.map((step, index) => (
                 <AnimatedSection key={step.number} delay={index * 0.15}>
                   <motion.div
@@ -972,7 +978,7 @@ const Ristrutturazioni = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" staggerDelay={0.1}>
+            <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-5" staggerDelay={0.1}>
               {crossLinks.map((link) => (
                 <StaggerItem key={link.href}>
                   <Link to={link.href} className="block h-full">

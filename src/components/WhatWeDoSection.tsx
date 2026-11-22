@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 import { TrendingUp, Clock, Euro, AlertTriangle, Target, Zap } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
+import TelefonoSistema from "@/components/vivo/TelefonoSistema";
 
 interface MetricCardProps {
   icon: React.ElementType;
@@ -155,8 +156,14 @@ const WhatWeDoSection = () => {
           </div>
         </AnimatedSection>
 
+        <AnimatedSection delay={0.2}>
+          <div className="mx-auto mb-14 max-w-4xl">
+            <TelefonoSistema />
+          </div>
+        </AnimatedSection>
+
         {/* 4 Metrics Grid - Hormozi Style */}
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" staggerDelay={0.15}>
+        <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" staggerDelay={0.15}>
           {metrics.map((metric, index) => (
             <StaggerItem key={index}>
               <MetricCard {...metric} />

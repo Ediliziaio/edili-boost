@@ -8,6 +8,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateLocalBusinessSchema, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import teamImage from "@/assets/team.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
 
 const trustBadges = [
   { icon: Users, label: "Solo 3 posti al mese" },
@@ -47,6 +48,7 @@ const Contattaci = () => {
             <img src={teamImage} alt="Team Marketing Edile — contattaci per una valutazione gratuita" className="w-full h-full object-cover" loading="eager" />
             <div className="absolute inset-0 bg-background/85" />
           </div>
+          <ReteViva />
           <div className="absolute inset-0">
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-secondary/10 rounded-full blur-[100px] md:blur-[150px]" />
           </div>

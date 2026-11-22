@@ -164,7 +164,7 @@ const FakeStrategySection = () => {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto bg-card border-2 border-destructive/30 rounded-2xl p-6 md:p-8"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="scorri-mobile grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {unchanged.map((item, i) => (
                 <motion.div
                   key={item.label}

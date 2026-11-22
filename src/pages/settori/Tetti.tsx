@@ -52,6 +52,8 @@ import tettiHero from "@/assets/tetti-hero.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import teamImage from "@/assets/team.jpg";
 import logoRenovaTetto from "@/assets/renova_tetto.png";
+import ReteViva from "@/components/vivo/ReteViva";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 /* ══════════════════════════════════════════════════════════
    DATA
@@ -292,7 +294,7 @@ export default function Tetti() {
 
       <Navbar />
 
-      <main className="bg-background min-h-screen">
+      <main className="bg-background min-h-screen overflow-hidden">
         {/* ═══════════════════════════════════════════════
             1. HERO
             ═══════════════════════════════════════════════ */}
@@ -306,6 +308,8 @@ export default function Tetti() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95" />
           </div>
+
+          <ReteViva />
 
           <div className="relative z-10 section-padding w-full">
             <div className="container-narrow">
@@ -395,6 +399,8 @@ export default function Tetti() {
           </div>
         </section>
 
+        <SistemaEsplosoSection oggetto="casa" settore="chi rifà tetti e coperture" />
+
         {/* ═══════════════════════════════════════════════
             2. "LA VERITA'" — Why agencies fail roofers
             ═══════════════════════════════════════════════ */}
@@ -416,7 +422,7 @@ export default function Tetti() {
               </p>
             </AnimatedSection>
 
-            <StaggerContainer className="grid md:grid-cols-2 gap-6">
+            <StaggerContainer className="scorri-mobile grid md:grid-cols-2 gap-6">
               {truthCards.map((card) => (
                 <StaggerItem key={card.title}>
                   <div className="bg-card border border-border rounded-2xl p-8 h-full hover:border-gold/30 transition-colors">
@@ -545,7 +551,7 @@ export default function Tetti() {
               </p>
             </AnimatedSection>
 
-            <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerContainer className="scorri-mobile grid md:grid-cols-2 gap-8">
               {systemSteps.map((step) => (
                 <StaggerItem key={step.step}>
                   <div className="bg-card border border-border rounded-2xl p-8 h-full hover:border-gold/30 transition-colors relative overflow-hidden">
@@ -580,7 +586,7 @@ export default function Tetti() {
               </h2>
             </AnimatedSection>
 
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {stats.map((stat) => (
                 <StaggerItem key={stat.label}>
                   <div className="bg-card border border-border rounded-2xl p-6 text-center hover:border-gold/30 transition-colors">
@@ -866,7 +872,7 @@ export default function Tetti() {
               </p>
             </AnimatedSection>
 
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {crossLinks.map((link) => (
                 <StaggerItem key={link.href}>
                   <Link

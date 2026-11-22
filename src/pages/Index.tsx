@@ -23,6 +23,7 @@ import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { siteConfig, generateOrganizationSchema, generateLocalBusinessSchema, generateWebSiteSchema, generateFAQSchema } from "@/lib/seo";
 import { homeFaqs } from "@/data/homeFaqs.js";
+import SistemaInDirettaSection from "@/components/SistemaInDirettaSection";
 
 const Index = () => {
   const location = useLocation();
@@ -70,6 +71,7 @@ const Index = () => {
         <EmptyPromisesSection />
         <UncomfortableQuestionSection />
         <DifferentialSection />
+        <SistemaInDirettaSection />
         <MethodSection />
         <StatsSection />
         <TestimonialsSection />

@@ -19,6 +19,9 @@ import {
   generateProfessionalServiceSchema,
 } from "@/lib/seo";
 import { marketingHubs } from "@/data/marketingHubs.js";
+import ReteViva from "@/components/vivo/ReteViva";
+import FlussoVivo from "@/components/vivo/FlussoVivo";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 interface MarketingHubProps {
   /** Chiave dell'hub in src/data/marketingHubs.js, es. "marketing-serramenti" */
@@ -56,7 +59,8 @@ export default function MarketingHub({ hubKey }: MarketingHubProps) {
       <Navbar />
       <main className="min-h-screen bg-background pt-24">
         {/* HERO — risposta secca in apertura (blocco estratto dagli LLM) */}
-        <section className="container py-16 md:py-20">
+        <section className="container relative isolate py-16 md:py-20">
+          <ReteViva className="-z-10 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]" />
           <AnimatedSection>
             <div className="max-w-4xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-secondary">
@@ -87,12 +91,17 @@ export default function MarketingHub({ hubKey }: MarketingHubProps) {
           </AnimatedSection>
         </section>
 
+        <SistemaEsplosoSection
+          oggetto={hub.slug === "marketing-serramenti" ? "finestra" : hub.slug === "marketing-fotovoltaico" ? "fotovoltaico" : "palazzina"}
+          settore={hub.slug === "marketing-serramenti" ? "chi vende serramenti" : hub.slug === "marketing-fotovoltaico" ? "chi installa fotovoltaico" : "le imprese edili"}
+        />
+
         {/* METRICHE */}
         <section className="border-y border-border bg-card py-10">
-          <div className="container grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="container grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {hub.metrics.map((metric) => (
               <div key={metric.label} className="rounded-xl border border-border bg-background p-5">
-                <p className="text-3xl font-black text-secondary">{metric.value}</p>
+                <p className="text-2xl font-black text-secondary sm:text-3xl">{metric.value}</p>
                 <p className="mt-2 text-sm font-semibold text-muted-foreground">{metric.label}</p>
               </div>
             ))}
@@ -114,7 +123,7 @@ export default function MarketingHub({ hubKey }: MarketingHubProps) {
             <h2 className="text-3xl font-black text-foreground">
               Cosa cambia rispetto a un'agenzia generalista
             </h2>
-            <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="scorri-mobile [--scorri-pad:2rem] mt-8 grid gap-5 md:grid-cols-2">
               {hub.sections.map((section) => (
                 <article key={section.title} className="rounded-xl border border-border bg-background p-6">
                   <CheckCircle2 className="h-6 w-6 text-secondary" />
@@ -129,19 +138,10 @@ export default function MarketingHub({ hubKey }: MarketingHubProps) {
         {/* COME FUNZIONA */}
         <section className="container py-16">
           <h2 className="text-3xl font-black text-foreground">Come funziona, passo per passo</h2>
-          <div className="mt-8 space-y-4">
-            {hub.steps.map((step, index) => (
-              <div key={step.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-sm font-black text-secondary">
-                  {index + 1}
-                </span>
-                <div>
-                  <h3 className="text-lg font-black text-foreground">{step.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">{step.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FlussoVivo
+            className="mt-8 [--scorri-pad:2rem]"
+            steps={hub.steps.map((step: { title: string; text: string }) => ({ title: step.title, text: step.text }))}
+          />
         </section>
 
         {/* FAQ */}

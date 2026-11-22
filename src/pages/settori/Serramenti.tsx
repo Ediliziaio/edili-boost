@@ -52,6 +52,8 @@ import showroomImage from "@/assets/showroom.jpg";
 import floPortrait from "@/assets/flo-portrait.jpg";
 import cantiereImage from "@/assets/cantiere.jpg";
 import teamImage from "@/assets/team.jpg";
+import ReteViva from "@/components/vivo/ReteViva";
+import SistemaEsplosoSection from "@/components/vivo/SistemaEsplosoSection";
 
 // ─── FAQ Data ──────────────────────────────────────────
 const faqs = [
@@ -318,6 +320,8 @@ const Serramenti = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
           </div>
 
+          <ReteViva />
+
           <div className="container-narrow relative z-10 text-center py-32 px-6">
             <AnimatedSection>
               {/* Provvigione badge */}
@@ -413,6 +417,8 @@ const Serramenti = () => {
           </div>
         </section>
 
+        <SistemaEsplosoSection oggetto="finestra" settore="chi vende serramenti" />
+
         {/* ════════════════════════════════════════════════════
             SECTION 2 — THE UGLY TRUTH
         ════════════════════════════════════════════════════ */}
@@ -436,7 +442,7 @@ const Serramenti = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid md:grid-cols-2 gap-6">
+            <StaggerContainer className="scorri-mobile grid md:grid-cols-2 gap-6">
               {uglyTruthCards.map((card) => (
                 <StaggerItem key={card.title}>
                   <motion.div
@@ -585,7 +591,7 @@ const Serramenti = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="scorri-mobile grid md:grid-cols-2 gap-8">
               {processSteps.map((step, index) => (
                 <AnimatedSection key={step.number} delay={index * 0.15}>
                   <motion.div
@@ -725,7 +731,7 @@ const Serramenti = () => {
 
             {/* Case study teaser */}
             <AnimatedSection delay={0.4}>
-              <div className="mt-12 grid md:grid-cols-3 gap-6">
+              <div className="scorri-mobile max-sm:!mx-0 mt-12 grid md:grid-cols-3 gap-6">
                 {[
                   {
                     company: "Teda Infissi",
@@ -1248,7 +1254,7 @@ const Serramenti = () => {
               </div>
             </AnimatedSection>
 
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StaggerContainer className="scorri-mobile grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {crossLinks.map((link) => (
                 <StaggerItem key={link.title}>
                   <Link to={link.href}>

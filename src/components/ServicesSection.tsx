@@ -194,7 +194,7 @@ const ServicesSection = () => {
         </AnimatedSection>
 
         {/* Category Cards */}
-        <StaggerContainer className="grid md:grid-cols-3 gap-6 mb-12" staggerDelay={0.15}>
+        <StaggerContainer className="scorri-mobile grid md:grid-cols-3 gap-6 mb-12" staggerDelay={0.15}>
           {categories.map((category) => {
             const colors = getCategoryColors(category.color);
             return (

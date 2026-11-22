@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { generateBreadcrumbSchema, generateFAQSchema, generateServiceSchema, siteConfig } from "@/lib/seo";
 import { VerticalLandingKey, getVerticalLandingUrl, verticalLandingPages } from "@/data/verticalLandingPages";
+import ReteViva from "@/components/vivo/ReteViva";
+import FlussoVivo from "@/components/vivo/FlussoVivo";
 
 interface VerticalLandingProps {
   pageKey: VerticalLandingKey;
@@ -39,7 +41,8 @@ export default function VerticalLanding({ pageKey }: VerticalLandingProps) {
       />
       <Navbar />
       <main className="min-h-screen bg-background pt-24">
-        <section className="container py-16 md:py-24">
+        <section className="container relative isolate py-16 md:py-24">
+          <ReteViva className="-z-10 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]" />
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-secondary">
               <Search className="h-4 w-4" />
@@ -87,15 +90,11 @@ export default function VerticalLanding({ pageKey }: VerticalLandingProps) {
                 <TrendingUp className="h-6 w-6 text-secondary" />
                 <h2 className="text-2xl font-black text-foreground">Come ti posizioniamo</h2>
               </div>
-              <div className="space-y-4">
-                {page.systemSteps.map((step, index) => (
-                  <div key={step.title} className="rounded-xl border border-secondary/20 bg-secondary/5 p-5">
-                    <span className="text-sm font-bold text-secondary">0{index + 1}</span>
-                    <h3 className="mt-1 text-lg font-bold text-foreground">{step.title}</h3>
-                    <p className="mt-2 leading-relaxed text-muted-foreground">{step.text}</p>
-                  </div>
-                ))}
-              </div>
+              <FlussoVivo
+                colonne="sm:grid-cols-2 lg:grid-cols-1"
+                className="[--scorri-pad:2rem]"
+                steps={page.systemSteps.map((step, index) => ({ ...step, etichetta: `0${index + 1}` }))}
+              />
             </div>
           </div>
         </section>

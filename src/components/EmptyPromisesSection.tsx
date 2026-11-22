@@ -30,7 +30,7 @@ const EmptyPromisesSection = () => {
           </div>
         </AnimatedSection>
 
-        <StaggerContainer className="grid md:grid-cols-3 gap-4 mb-12" staggerDelay={0.1}>
+        <StaggerContainer className="scorri-mobile grid md:grid-cols-3 gap-4 mb-12" staggerDelay={0.1}>
           {problems.map((problem, index) => (
             <StaggerItem key={index}>
               <motion.div
