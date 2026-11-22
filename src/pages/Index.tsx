@@ -13,6 +13,7 @@ import StatsSection from "@/components/StatsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WhatWeDoSection from "@/components/WhatWeDoSection";
 import FunzioniVive from "@/components/vivo/FunzioniVive";
+import LavagnaFlusso from "@/components/vivo/LavagnaFlusso";
 import ServicesSection from "@/components/ServicesSection";
 import ComparisonSection from "@/components/ComparisonSection";
 import PricingSection from "@/components/PricingSection";
@@ -78,6 +79,7 @@ const Index = () => {
         <TestimonialsSection />
         <WhatWeDoSection />
         <FunzioniVive />
+        <LavagnaFlusso />
         <ServicesSection />
         <PriorityPaths />
         <ComparisonSection />
