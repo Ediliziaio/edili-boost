@@ -12,6 +12,7 @@ import MethodSection from "@/components/MethodSection";
 import StatsSection from "@/components/StatsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WhatWeDoSection from "@/components/WhatWeDoSection";
+import FunzioniVive from "@/components/vivo/FunzioniVive";
 import ServicesSection from "@/components/ServicesSection";
 import ComparisonSection from "@/components/ComparisonSection";
 import PricingSection from "@/components/PricingSection";
@@ -76,6 +77,7 @@ const Index = () => {
         <StatsSection />
         <TestimonialsSection />
         <WhatWeDoSection />
+        <FunzioniVive />
         <ServicesSection />
         <PriorityPaths />
         <ComparisonSection />
