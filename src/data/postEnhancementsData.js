@@ -30,31 +30,27 @@ export const enhancementsData = {
     ]
   },
   "acquisire-clienti-fotovoltaico-lead-generation-2026": {
-    "answer": "Acquisire clienti per il fotovoltaico nel 2026 richiede una macchina di lead generation su tre livelli: campagne locali su Google e Meta, prequalifica del contatto su consumi e proprietà dell'immobile, e un processo di vendita che chiude in sopralluogo. Con un ticket medio di 10.000-25.000 € per impianto con accumulo, ogni contatto qualificato vale troppo per essere gestito a caso.",
+    "answer": "Per acquisire clienti fotovoltaico nel 2027 collega servizio, territorio, qualifica e risultati, separando richieste, appuntamenti, proposte e contratti.",
     "faqs": [
       {
-        "question": "Quanto costa acquisire un cliente per il fotovoltaico nel 2026?",
-        "answer": "Il costo per contatto varia molto tra zona, stagione e canale, quindi il dato utile è un altro: quanto ti costa un contratto firmato. Con impianti con accumulo da 10.000 a 25.000 €, un'acquisizione è sostenibile se il costo per contratto resta una frazione contenuta del margine. Misura per contratto, non per contatto, e taglia i canali che portano curiosi."
+        "question": "Come acquisire clienti fotovoltaico nel 2027?",
+        "answer": "Definisci servizio e territorio, prepara una pagina coerente, assegna ogni richiesta e registra qualifica, passaggio successivo ed esito. Confronta i risultati con criteri costanti."
       },
       {
-        "question": "Conviene ancora vendere fotovoltaico residenziale con meno incentivi?",
-        "answer": "Sì, se smetti di vendere l'incentivo e vendi il risparmio in bolletta. Il cliente che compra solo per la detrazione sparisce quando cambia la norma; quello che compra per abbattere la spesa energetica resta. Le aziende che acquisiscono clienti nel 2026 costruiscono il messaggio su costi reali, autoconsumo e accumulo, e usano gli incentivi come acceleratore, non come argomento principale."
+        "question": "Un modulo compilato è un cliente qualificato?",
+        "answer": "No. Definisci quali informazioni rendano la richiesta pertinente e tieni separati contatto, incontro, proposta e contratto."
       },
       {
-        "question": "Meglio comprare lead fotovoltaico da portali o generarli in proprio?",
-        "answer": "I lead comprati da portali sono condivisi con altri installatori, arrivano già confrontati sul prezzo e raramente conoscono il tuo nome. Generarli in proprio costa più fatica iniziale ma il contatto è esclusivo, ha visto la tua azienda e arriva prequalificato. Chi vuole margini pieni su impianti da 10.000-25.000 € deve possedere il canale di acquisizione, non affittarlo."
+        "question": "Quanto costa un lead fotovoltaico?",
+        "answer": "Non esiste un costo universale. Distingui richieste grezze, opportunità deduplicate, pertinenti e contratti, usando spesa e periodo coerenti."
       },
       {
-        "question": "Come acquisire clienti fotovoltaico tra le aziende, oltre al residenziale?",
-        "answer": "Il fotovoltaico per capannoni e PMI si vende con un percorso diverso: cicli più lunghi, decisori multipli, analisi dei consumi sui dati reali. Funzionano campagne LinkedIn e Google mirate su capannoni e settori energivori, un'analisi gratuita della bolletta come primo passo e un commerciale capace di parlare di ammortamento. Il ticket più alto giustifica un processo di vendita dedicato."
+        "question": "In quanto tempo arrivano le vendite?",
+        "answer": "Non esiste un tempo garantito. Segui gruppi di richieste entrati nello stesso periodo e conserva gli esiti ancora aperti."
       },
       {
-        "question": "Quanto tempo serve per vedere i primi clienti da una campagna fotovoltaico?",
-        "answer": "I primi contatti qualificati arrivano in 3-4 settimane dall'avvio, il tempo perché le campagne imparino e la prequalifica scarti chi non è proprietario o non ha consumi adeguati. I primi contratti seguono i tempi del tuo sopralluogo e della tua offerta. L'impatto reale sul fatturato si misura in 60-90 giorni, non nella prima settimana."
-      },
-      {
-        "question": "Un'agenzia a provvigione conviene a un installatore fotovoltaico?",
-        "answer": "Conviene se hai capacità di installazione e un commerciale che fa sopralluoghi, perché paghi solo una percentuale sui contratti chiusi: zero canone, zero anticipo, zero setup e rescissione libera. Il budget pubblicitario resta sul tuo account. Se non chiudi, l'agenzia non incassa: l'interesse è allineato sul contratto firmato, non sul numero di contatti consegnati."
+        "question": "Posso usare l’AI per le richieste fotovoltaico?",
+        "answer": "Puoi preparare bozze e riepiloghi con dati confermati e strumenti autorizzati. Una persona verifica contenuto, condizioni e destinatario prima dell’uso."
       }
     ]
   },

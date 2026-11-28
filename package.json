@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "npm run blog:data && npm run covers:webp && vite",
-    "build": "npm run blog:data && npm run covers:webp && vite build && node scripts/prerender-seo.mjs && node scripts/check-editorial-length.mjs dist",
+    "build": "npm run blog:data && npm run covers:webp && vite build && node scripts/prerender-seo.mjs && node scripts/check-blog-consistency.mjs && node scripts/check-editorial-length.mjs dist",
     "blog:data": "node scripts/generate-blog-data.mjs",
     "covers:webp": "node scripts/convert-covers.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "seo:prerender": "node scripts/prerender-seo.mjs"
+    "seo:prerender": "npm run blog:data && node scripts/prerender-seo.mjs && node scripts/check-blog-consistency.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

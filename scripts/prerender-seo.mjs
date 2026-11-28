@@ -2,21 +2,19 @@ import { servicePage, serviceBodyHtml, serviceFaqs, blogPage, blogPathsHtml, blo
 import { renderPriorityPaths } from "../src/data/render-priority-paths.mjs";
 import { selectRelatedPosts } from "../src/data/relatedPosts.js";
 import { seoConsulting } from "../src/data/seoConsulting.js";
-import { reviewDate } from "../src/data/editorialReviews.js";
 import { writeStaticRoute, writeNotFound, replaceRootContent } from "./static-routing.mjs";
-import { mkdir, readFile, writeFile, copyFile, access } from "node:fs/promises";
+import { readFile, writeFile, copyFile, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { seoExpansionPosts } from "../src/data/seoExpansionPosts.js";
-import { ediliziaCloudPages, ediliziaCloudPosts, ediliziaCloudFaqs } from "../src/data/ediliziaCloudContent.js";
+import { ediliziaCloudPages, ediliziaCloudFaqs } from "../src/data/ediliziaCloudContent.js";
 import { cloudAiSeoPosts } from "../src/data/cloudAiSeoPosts.js";
 import { homeFaqs } from "../src/data/homeFaqs.js";
 import { getPageFaq } from "../src/data/pageFaqs.js";
 import { blogCovers } from "../src/data/blogCovers.js";
-import { aeoPosts, aeoFaqs } from "../src/data/aeoPosts.js";
-import { rewrittenPosts, rewrittenFaqs } from "../src/data/rewrittenPosts.js";
+import { aeoPosts } from "../src/data/aeoPosts.js";
+import { rewrittenPosts } from "../src/data/rewrittenPosts.js";
 import { marketingHubs, marketingHubKeys } from "../src/data/marketingHubs.js";
-import { enhanceContent, getPostFaqs } from "../src/data/postEnhancements.js";
 import { pillarTrovareClienti } from "../src/data/pillarTrovareClienti.js";
 import { pillarCostoMarketing } from "../src/data/pillarCostoMarketing.js";
 import { pillarLeadGeneration } from "../src/data/pillarLeadGeneration.js";
@@ -417,7 +415,7 @@ function articleSchema(post) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${siteUrl}/blog/${post.slug}`,
-    headline: post.seoTitle || post.title,
+    headline: post.title,
     description: post.seoDescription || post.excerpt,
     image: imageUrl(post.cover),
     datePublished: post.publishedAt,
@@ -438,171 +436,40 @@ function articleSchema(post) {
   };
 }
 
-function extractString(block, field) {
-  const match = block.match(new RegExp(`${field}:\\s*"((?:\\\\.|[^"\\\\])*)"`));
-  return match ? JSON.parse(`"${match[1]}"`) : "";
-}
-
-function extractArray(block, field) {
-  const match = block.match(new RegExp(`${field}:\\s*\\[([^\\]]*)\\]`));
-  if (!match) return [];
-  return [...match[1].matchAll(/"((?:\\.|[^"\\])*)"/g)].map((item) => JSON.parse(`"${item[1]}"`));
-}
-
-function extractBoolean(block, field) {
-  const match = block.match(new RegExp(`${field}:\\s*(true|false)`));
-  return match ? match[1] === "true" : false;
-}
-
-function extractNumber(block, field) {
-  const match = block.match(new RegExp(`${field}:\\s*(\\d+)`));
-  return match ? Number(match[1]) : 0;
-}
-
+// Use the same generated records that React fetches. Parsing TypeScript with
+// a content-template regex can join one post's metadata to another post's body.
 async function getBlogPosts() {
-  const source = await readFile(path.join(root, "src/data/blog-posts.ts"), "utf8");
-  const blocks = [...source.matchAll(/\{\s*id:\s*"[^"]+"[\s\S]*?content:\s*`([\s\S]*?)`\s*\},?/g)];
-  const basePosts = blocks
-    .map((match) => {
-      const block = match[0];
-      return {
-        id: extractString(block, "id"),
-        slug: extractString(block, "slug"),
-        title: extractString(block, "title"),
-        excerpt: extractString(block, "excerpt"),
-        cover: extractString(block, "cover_image_url"),
-        category: extractString(block, "category"),
-        tags: extractArray(block, "tags"),
-        publishedAt: extractString(block, "published_at"),
-        updatedAt: extractString(block, "updated_at") || null,
-        readingTime: extractNumber(block, "reading_time"),
-        featured: extractBoolean(block, "featured"),
-        status: extractString(block, "status"),
-        seoTitle: extractString(block, "seo_title"),
-        seoDescription: extractString(block, "seo_description"),
-        content: match[1].trim(),
-      };
-    })
-    .filter((post) => post.status === "published");
-
-  const expansionPosts = seoExpansionPosts
-    .filter((post) => post.status === "published")
-    .map((post) => ({
+  const directory = path.join(root, "public", "blog-data");
+  const index = JSON.parse(await readFile(path.join(directory, "index.json"), "utf8"));
+  const posts = await Promise.all(index.map(async (entry) => {
+    if (!/^[a-z0-9-]+$/.test(entry.slug)) throw new Error(`Invalid blog slug: ${entry.slug}`);
+    const post = JSON.parse(await readFile(path.join(directory, "posts", `${entry.slug}.json`), "utf8"));
+    if (post.slug !== entry.slug || post.status !== "published" || !post.content) {
+      throw new Error(`Invalid published blog record: ${entry.slug}`);
+    }
+    return {
       id: post.id,
       slug: post.slug,
       title: post.title,
       excerpt: post.excerpt,
-      cover: post.cover_image_url,
+      cover: blogCovers[post.slug] || post.cover_image_url,
       category: post.category,
       tags: post.tags,
       publishedAt: post.published_at,
-      updatedAt: post.updated_at || null,
+      updatedAt: post.updated_at,
       readingTime: post.reading_time,
       featured: post.featured,
       status: post.status,
       seoTitle: post.seo_title,
       seoDescription: post.seo_description,
       content: post.content,
-    }));
-
-  const cloudPosts = ediliziaCloudPosts
-    .filter((post) => post.status === "published")
-    .map((post) => ({
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      cover: post.cover_image_url,
-      category: post.category,
-      tags: post.tags,
-      publishedAt: post.published_at,
-      updatedAt: post.updated_at || null,
-      readingTime: post.reading_time,
-      featured: post.featured,
-      status: post.status,
-      seoTitle: post.seo_title,
-      seoDescription: post.seo_description,
-      content: post.content,
-    }));
-
-  const cloudAiPosts = cloudAiSeoPosts
-    .filter((post) => post.status === "published")
-    .map((post) => ({
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      cover: post.cover_image_url,
-      category: post.category,
-      tags: post.tags,
-      publishedAt: post.published_at,
-      updatedAt: post.updated_at || null,
-      readingTime: post.reading_time,
-      featured: post.featured,
-      status: post.status,
-      seoTitle: post.seo_title,
-      seoDescription: post.seo_description,
-      content: post.content,
-    }));
-
-  const toPrerenderShape = (post) => ({
-    id: post.id,
-    slug: post.slug,
-    title: post.title,
-    excerpt: post.excerpt,
-    cover: post.cover_image_url,
-    category: post.category,
-    tags: post.tags,
-    publishedAt: post.published_at,
-    updatedAt: post.updated_at || null,
-    readingTime: post.reading_time,
-    featured: post.featured,
-    status: post.status,
-    seoTitle: post.seo_title,
-    seoDescription: post.seo_description,
-    content: post.content,
-  });
-
-  const rewritten = rewrittenPosts.filter((p) => p.status === "published").map(toPrerenderShape);
-
-  // Articoli pillar keyword-driven (file src/data/pillar*.js) — vanno aggiunti
-  // qui esplicitamente perché basePosts viene estratto via regex dal solo
-  // blog-posts.ts e non segue gli import.
-  const pillarPosts = [pillarTrovareClienti, pillarCostoMarketing, pillarLeadGeneration]
-    .filter((p) => p.status === "published")
-    .map(toPrerenderShape);
-
-  const aeoArticles = aeoPosts
-    .filter((post) => post.status === "published")
-    .map((post) => ({
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      cover: post.cover_image_url,
-      category: post.category,
-      tags: post.tags,
-      publishedAt: post.published_at,
-      updatedAt: post.updated_at || null,
-      readingTime: post.reading_time,
-      featured: post.featured,
-      status: post.status,
-      seoTitle: post.seo_title,
-      seoDescription: post.seo_description,
-      content: post.content,
-    }));
-
-  // Deduplica per slug, prima occorrenza vince — stesso criterio di useBlogPosts.
-  // Serve perché le versioni riscritte rimpiazzano i vecchi duplicati a parità di
-  // slug: senza dedup si genererebbero route doppie e URL ripetuti in sitemap.
-  const bySlug = new Map();
-  for (const post of [...rewritten, ...aeoArticles, ...pillarPosts, ...basePosts, ...expansionPosts, ...cloudPosts, ...cloudAiPosts]) {
-    if (post && post.slug && !bySlug.has(post.slug)) bySlug.set(post.slug, post);
+      faqs: post.faqs,
+    };
+  }));
+  if (new Set(posts.map(post => post.slug)).size !== posts.length) {
+    throw new Error("Duplicate generated blog slug");
   }
-
-  return [...bySlug.values()]
-    .map((post) => ({ ...post, content: enhanceContent(post.slug, post.content), updatedAt: reviewDate(post.slug) || post.updatedAt, cover: blogCovers[post.slug] || post.cover }))
-    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  return posts;
 }
 
 function faqPageSchema(faqs) {
@@ -901,8 +768,8 @@ async function main() {
           { name: "Blog", url: `${siteUrl}/blog` },
           { name: post.title, url: `${siteUrl}/blog/${post.slug}` },
         ]),
-        ...((rewrittenFaqs[post.slug] || aeoFaqs[post.slug] || getPostFaqs(post.slug))
-          ? [faqPageSchema(rewrittenFaqs[post.slug] || aeoFaqs[post.slug] || getPostFaqs(post.slug))]
+        ...((post.faqs)
+          ? [faqPageSchema(post.faqs)]
           : []),
       ],
     });

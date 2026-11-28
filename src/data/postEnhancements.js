@@ -35,7 +35,7 @@ export function getPostFaqs(slug) {
 /** Restituisce il content HTML potenziato (idempotente: non riapplica se già presente). */
 export function enhanceContent(slug, content = "") {
   // These complete revisions already include their own answer, links and FAQs.
-  if (agencyGuideSlugs.has(slug) || ["ai-crm-edilizia-follow-up", "ai-gestione-recensioni-edilizia", "ai-marketing-serramenti-lead-qualificati"].includes(slug)) return content;
+  if (agencyGuideSlugs.has(slug) || ["ai-crm-edilizia-follow-up", "ai-gestione-recensioni-edilizia", "ai-marketing-serramenti-lead-qualificati", "acquisire-clienti-fotovoltaico-lead-generation-2026"].includes(slug)) return content;
   if (editorialReviews[slug] && !content.includes('id="verifica-campagne"') && !content.includes('id="scheda-presentazione-offerta"') && !content.includes('id="criteri-confronto-agenzie"')) content += editorialReviews[slug];
   const e = enhancementsData[slug];
   if (!e || content.includes('class="risposta-secca"')) return content;

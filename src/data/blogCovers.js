@@ -18,7 +18,7 @@ export const blogCovers = {
   "social-media-marketing-imprese-edili-facebook-instagram": "/blog-covers/social-media-marketing-imprese-edili-facebook-instagram.jpg",
   "come-scegliere-agenzia-marketing-edilizia": "/blog-covers/come-scegliere-agenzia-marketing-edilizia.jpg",
   "gestione-tempo-imprenditore-edile-produttivita": "/blog-covers/gestione-tempo-imprenditore-edile-produttivita.jpg",
-  "acquisire-clienti-fotovoltaico-lead-generation-2026": "/blog-covers/acquisire-clienti-fotovoltaico-lead-generation-2026.jpg",
+  "acquisire-clienti-fotovoltaico-lead-generation-2026": "/blog-covers/lead-fotovoltaico-2027.jpg",
   "come-scegliere-agenzia-marketing-azienda-edile-2026": "/blog-covers/come-scegliere-agenzia-marketing-azienda-edile-2026.jpg",
   "marketing-serramentisti-7-errori-costano-100000-euro": "/blog-covers/marketing-serramentisti-7-errori-costano-100000-euro.jpg",
   "futuro-fotovoltaico-italia-acquisire-clienti-2026-2027": "/blog-covers/futuro-fotovoltaico-italia-acquisire-clienti-2026-2027.jpg",
